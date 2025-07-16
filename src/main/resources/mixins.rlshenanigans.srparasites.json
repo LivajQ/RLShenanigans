@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "rlshenanigans.mixin",
+
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "mixins": [
+    "srparasites.MixinEntityMob"
+  ],
+  "injectors": {
+    "maxShiftBy": 10
+  }
+}
