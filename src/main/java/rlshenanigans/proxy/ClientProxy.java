@@ -51,7 +51,6 @@ public class ClientProxy extends CommonProxy {
                 System.err.println("Renderer failed for: " + mob.name + " → " + e.getMessage());
             }
         }
-        
     }
     
     @Override

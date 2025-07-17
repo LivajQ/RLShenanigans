@@ -14,7 +14,13 @@ public class ClientModRegistry {
 
     @SubscribeEvent
     public static void modelRegisterEvent(ModelRegistryEvent event) {
-    
+        registerModels(
+                ModRegistry.sinPendantLust,
+                ModRegistry.exampleHelmet,
+                ModRegistry.exampleChestplate,
+                ModRegistry.exampleLeggings,
+                ModRegistry.exampleBoots
+        );
     }
 
     private static void registerModels(Item... values) {

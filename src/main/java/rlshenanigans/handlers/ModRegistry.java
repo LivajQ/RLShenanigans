@@ -17,6 +17,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
+import rlshenanigans.item.ItemAmuletSinLust;
 import rlshenanigans.item.ItemExampleArmor;
 import rlshenanigans.potion.PotionPookie;
 import rlshenanigans.recipe.RecipeExample;
@@ -32,7 +33,9 @@ public class ModRegistry {
         public static Item exampleBoots = new ItemExampleArmor("example_boots", EXAMPLE_ARMOR, 1, EntityEquipmentSlot.FEET);
 
         public static PotionType pookiePotion = new PotionType("Pookie", new PotionEffect(PotionPookie.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Pookie"));
-
+        
+        public static Item sinPendantLust = new ItemAmuletSinLust();
+        
         public static void init() {
 
         }
@@ -43,7 +46,8 @@ public class ModRegistry {
                         exampleHelmet,
                         exampleChestplate,
                         exampleLeggings,
-                        exampleBoots
+                        exampleBoots,
+                        sinPendantLust
                 );
         }
 

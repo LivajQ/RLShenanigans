@@ -246,7 +246,6 @@ public class TameParasiteHandler
             
             if (data.hasUniqueId("OwnerUUID") && data.getUniqueId("OwnerUUID").equals(player.getUniqueID())) {
                 event.setCanceled(true);
-                return;
             }
         }
     }

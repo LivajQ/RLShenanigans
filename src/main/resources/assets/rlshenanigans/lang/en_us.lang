@@ -3,3 +3,6 @@ splash_potion.effect.Pookie=Splash Potion of §d§oPookie
 lingering_potion.effect.Pookie=Lingering Potion of §d§oPookie
 tipped_arrow.effect.Pookie=Arrow of §d§oPookie
 effects.rlshenanigans.Pookie=§d§oPookie :3
+item.amulet_sin_lust.name=Lust Pendant
+item.amulet_sin_lust.tooltip.0=§fThis pendant resonates with the §d§ofreaky §r§fessence.
+item.amulet_sin_lust.tooltip.1=§9Grants sinful buff (+damage, +armor) when around multiple entities.

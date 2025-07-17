@@ -60,6 +60,10 @@ dependencies {
     implementation fg.deobf("curse.maven:jei-${jei_version}")
 	
 	implementation fg.deobf("libs:SRParasites:${srparasites_version}")
+	
+	implementation fg.deobf("libs:Baubles:${baubles_version}")
+	
+	implementation fg.deobf("libs:BountifulBaubles:1.12.2-0.1.8")
 
 	
 }
