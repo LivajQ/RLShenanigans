@@ -1,5 +1,6 @@
 package rlshenanigans.handlers;
 
+import com.dhanantry.scapeandrunparasites.entity.EntityDamage;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
 import net.minecraft.entity.Entity;
@@ -18,9 +19,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +35,7 @@ import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.util.ParasiteNames;
 import rlshenanigans.util.TamedParasiteRegistry;
 
-import java.util.Random;
+import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
@@ -49,7 +49,7 @@ public class TameParasiteHandler
         Entity target = event.getTarget();
         World world = player.world;
         
-        if (!(target instanceof EntityParasiteBase)) return;
+        if (!(target instanceof EntityParasiteBase)) return;  //not enough apparently? apples still consumed for normal mobs
         EntityParasiteBase parasite = (EntityParasiteBase) target;
         
         if (stack.getItem() == Items.GOLDEN_APPLE && stack.getMetadata() == 0)
@@ -135,10 +135,8 @@ public class TameParasiteHandler
     }
     
     @SubscribeEvent
-    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event)
-    {
+    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (!(event.getEntityLiving() instanceof EntityParasiteBase)) return;
-        
         
         EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
         if (parasite.getEntityData().getBoolean("Tamed") && !parasite.getEntityData().getBoolean("PersistenceRequired"))
@@ -211,7 +209,33 @@ public class TameParasiteHandler
     }
     
     @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
+    public static void onEntityJoinWorld(EntityJoinWorldEvent event) { //curse you charge attacks
+        Entity entity = event.getEntity();
+        
+        if (entity instanceof EntityDamage) {
+            EntityDamage damage = (EntityDamage) entity;
+            
+            List<EntityParasiteBase> nearbyParasites = entity.world.getEntitiesWithinAABB(
+                    EntityParasiteBase.class,
+                    entity.getEntityBoundingBox().grow(2.0)
+            );
+            
+            for (EntityParasiteBase parasite : nearbyParasites) {
+                UUID ownerUUID = parasite.getEntityData().getUniqueId("OwnerUUID");
+                
+                if (ownerUUID != null && parasite.isBeingRidden()) {
+                    Entity rider = parasite.getPassengers().get(0);
+                    if (rider instanceof EntityPlayer && ((EntityPlayer) rider).getUniqueID().equals(ownerUUID)) {
+                        event.setCanceled(true);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    
+    @SubscribeEvent
+    public static void onLivingAttack(LivingAttackEvent event) {
         EntityLivingBase target = event.getEntityLiving();
         Entity attacker = event.getSource().getTrueSource();
         
@@ -220,13 +244,18 @@ public class TameParasiteHandler
             EntityParasiteBase parasite = (EntityParasiteBase) attacker;
             NBTTagCompound data = parasite.getEntityData();
             
-            if (data.hasUniqueId("OwnerUUID") &&
-                    data.getUniqueId("OwnerUUID").equals(player.getUniqueID())) {
+            if (data.hasUniqueId("OwnerUUID") && data.getUniqueId("OwnerUUID").equals(player.getUniqueID())) {
                 event.setCanceled(true);
                 return;
             }
         }
-        
+    }
+    
+    @SubscribeEvent
+    public static void onLivingHurt(LivingHurtEvent event) {
+        EntityLivingBase target = event.getEntityLiving();
+        Entity attacker = event.getSource().getTrueSource();
+    
         if (attacker instanceof EntityParasiteBase) {
             EntityParasiteBase parasite = (EntityParasiteBase) attacker;
             NBTTagCompound data = parasite.getEntityData();
@@ -247,8 +276,7 @@ public class TameParasiteHandler
         }
     }
     
-    private static boolean hasLoyaltyTasks(EntityParasiteBase parasite)
-    {
+    private static boolean hasLoyaltyTasks(EntityParasiteBase parasite) {
         for (EntityAITasks.EntityAITaskEntry entry : parasite.targetTasks.taskEntries)
         {
             if (entry.action instanceof ParasiteEntityAIOwnerHurtTarget ||

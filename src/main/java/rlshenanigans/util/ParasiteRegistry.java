@@ -135,16 +135,16 @@ public class ParasiteRegistry
     public static final Map<Class<?>, ProjectileLauncher> RANGED_PARASITES = new HashMap<>();
     
     static {
-        RANGED_PARASITES.put(EntityAnged.class, new ProjectileLauncher(EntityProjectileAngedball.class, SRPSounds.EMANA_SHOOTING, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityDorpa.class, new ProjectileLauncher(EntityProjectileWebball.class, SRPSounds.DORPA_RANGE, 1000L, 2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityInfDragonE.class, new ProjectileLauncher(EntityProjectileDragonE.class, SoundEvents.ENTITY_BLAZE_SHOOT, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityEmanaAdapted.class, new ProjectileLauncher(EntityProjectileSpineball.class, SRPSounds.EMANA_SHOOTING, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityEmana.class, new ProjectileLauncher(EntityProjectileSpineball.class, SRPSounds.EMANA_SHOOTING, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityUnvo.class, new ProjectileLauncher(EntityProjectileSpineball.class, SRPSounds.EMANA_SHOOTING, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityAlafha.class, new ProjectileLauncher(EntityProjectileAlafhaBall.class, SRPSounds.ALAFHA_SHOOTING, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityOrch.class, new ProjectileLauncher(EntityProjectileWebball.class, SRPSounds.DORPA_RANGE, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityLencia.class, new ProjectileLauncher(EntityProjectileLenciaBall.class, SRPSounds.DORPA_RANGE, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityElvia.class, new ProjectileLauncher(EntityProjectileElviaBall.class, SRPSounds.DORPA_RANGE, 1000L,2.0F, 1.0F));
-        RANGED_PARASITES.put(EntityOronco.class, new ProjectileLauncher(EntityProjectileAncientball.class, SRPSounds.ORONCO_SHOOTING, 1000L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityAnged.class, new ProjectileLauncher(EntityProjectileAngedball.class, SRPSounds.EMANA_SHOOTING, 50L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityDorpa.class, new ProjectileLauncher(EntityProjectileWebball.class, SRPSounds.DORPA_RANGE, 50L, 2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityInfDragonE.class, new ProjectileLauncher(EntityProjectileDragonE.class, SoundEvents.ENTITY_BLAZE_SHOOT, 300L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityEmanaAdapted.class, new ProjectileLauncher(EntityProjectileSpineball.class, SRPSounds.EMANA_SHOOTING, 200L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityEmana.class, new ProjectileLauncher(EntityProjectileSpineball.class, SRPSounds.EMANA_SHOOTING, 200L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityUnvo.class, new ProjectileLauncher(EntityProjectileSpineball.class, SRPSounds.EMANA_SHOOTING, 50L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityAlafha.class, new ProjectileLauncher(EntityProjectileAlafhaBall.class, SRPSounds.ALAFHA_SHOOTING, 250L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityOrch.class, new ProjectileLauncher(EntityProjectileWebball.class, SRPSounds.DORPA_RANGE, 50L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityLencia.class, new ProjectileLauncher(EntityProjectileLenciaBall.class, SRPSounds.DORPA_RANGE, 500L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityElvia.class, new ProjectileLauncher(EntityProjectileLenciaBall.class, SRPSounds.DORPA_RANGE, 500L,2.0F, 1.0F));
+        RANGED_PARASITES.put(EntityOronco.class, new ProjectileLauncher(EntityProjectileLenciaBall.class, SRPSounds.ORONCO_SHOOTING, 250L,2.0F, 1.0F));
     }
 }
