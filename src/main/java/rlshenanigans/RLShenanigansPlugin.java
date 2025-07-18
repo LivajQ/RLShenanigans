@@ -13,7 +13,14 @@ public class RLShenanigansPlugin implements IFMLLoadingPlugin {
 		MixinBootstrap.init();
 		//False for Vanilla/Coremod mixins, true for regular mod mixins
 		FermiumRegistryAPI.enqueueMixin(false, "mixins.rlshenanigans.vanilla.json");
-		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.jei.json", () -> Loader.isModLoaded("jei"));
+		
+		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.jei.json", () -> {
+			return Loader.isModLoaded("jei");
+		});
+		
+		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.eaglemixins.json", () -> {
+			return Loader.isModLoaded("eaglemixins");
+		});
 	}
 
 	@Override

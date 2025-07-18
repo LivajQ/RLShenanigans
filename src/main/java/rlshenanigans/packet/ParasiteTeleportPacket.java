@@ -85,15 +85,16 @@ public class ParasiteTeleportPacket implements IMessage {
                     newMob.getEntityData().setUniqueId("OwnerUUID", player.getUniqueID());
                     newMob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(info.maxHealth);
                     newMob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(info.attackDamage);
-                    newMob.setHealth(info.maxHealth);
+                    newMob.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(info.armor);
+                    newMob.setHealth((float) info.maxHealth);
                     
                     TamedParasiteRegistry.track(newMob, player);
+                    
                 } catch (Exception e) {
                     System.err.println("[Teleport] Failed: " + e.getMessage());
                     e.printStackTrace();
                 }
             });
-            
             return null;
         }
     }

@@ -89,7 +89,7 @@ public class TameParasiteHandler
                 parasite.getEntityData().setBoolean("parasitedespawn", false);
                 parasite.getEntityData().setBoolean("ParasiteDespawn", false);
                 parasite.getEntityData().setBoolean("AllowConverting", false);
-
+                
                 TamedParasiteRegistry.track(parasite, player);
  
                 if (!world.isRemote) {

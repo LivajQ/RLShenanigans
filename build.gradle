@@ -63,7 +63,9 @@ dependencies {
 	
 	implementation fg.deobf("libs:Baubles:${baubles_version}")
 	
-	implementation fg.deobf("libs:BountifulBaubles:1.12.2-0.1.8")
+	implementation fg.deobf("libs:BountifulBaubles:${bountifulbaubles_version}")
+	
+	implementation fg.deobf("libs:EagleMixins:${eaglemixins_version}")
 
 	
 }

@@ -1,12 +1,12 @@
 {
   "required": true,
-  "package": "rlshenanigans.mixin",
+  "package": "rlshenanigans.mixin.vanilla",
   "refmap": "mixins.rlshenanigans.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "mixins": [
-    "vanilla.EntityPlayerMixin"
+    "EntityPlayerMixin"
   ],
   "injectors": {
     "maxShiftBy": 10
