@@ -6,7 +6,10 @@ import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITasks;
+import net.minecraft.entity.ai.attributes.IAttribute;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -30,6 +33,7 @@ import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.ParasiteEntityAIFollowOwner;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtByTarget;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtTarget;
+import rlshenanigans.mixin.vanilla.LivingDeathMixin;
 import rlshenanigans.packet.OpenParasiteGuiPacket;
 import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.util.ParasiteNames;
@@ -119,8 +123,32 @@ public class TameParasiteHandler
     }
     
     @SubscribeEvent
-    public static void onParasiteDeath(LivingDeathEvent event) {
-        if (!(event.getEntityLiving() instanceof EntityParasiteBase)) return;
+    public static void onLivingDeath(LivingDeathEvent event) {
+        
+        EntityLivingBase target = event.getEntityLiving();
+        DamageSource source = event.getSource();
+        Entity killer = source.getTrueSource();
+        
+        if (killer instanceof EntityParasiteBase) {
+            EntityParasiteBase parasite = (EntityParasiteBase) killer;
+            NBTTagCompound data = parasite.getEntityData();
+            
+            if (data.hasUniqueId("OwnerUUID")) {
+                UUID ownerId = data.getUniqueId("OwnerUUID");
+                EntityPlayerMP owner = FMLCommonHandler.instance()
+                        .getMinecraftServerInstance()
+                        .getPlayerList()
+                        .getPlayerByUUID(ownerId);
+                
+                if (owner != null) {
+                    target.setLastAttackedEntity(owner);
+                    target.getCombatTracker().trackDamage(DamageSource.causePlayerDamage(owner), target.getHealth(), 1.0F);
+                    ((LivingDeathMixin) target).invokeDropLoot(true, 0, DamageSource.GENERIC);
+                }
+            }
+        }
+        
+        if (!(target instanceof EntityParasiteBase)) return;
         
         EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
         if (!parasite.getEntityData().getBoolean("Tamed")) return;
@@ -143,6 +171,11 @@ public class TameParasiteHandler
             parasite.getEntityData().setBoolean("PersistenceRequired", true);
         
         if (!parasite.getEntityData().getBoolean("Tamed")) return;
+        
+        removeIfActive(parasite, SharedMonsterAttributes.MAX_HEALTH, UUID.fromString("554f3929-4194-4ae5-a4da-4b528a89ca32"));
+        removeIfActive(parasite, SharedMonsterAttributes.ATTACK_DAMAGE, UUID.fromString("554f3929-4196-4ae5-a4da-4b528a89ca32"));
+        removeIfActive(parasite, SharedMonsterAttributes.ARMOR, UUID.fromString("554f3929-4195-4ae5-a4da-4b528a89ca32"));
+        removeIfActive(parasite, SharedMonsterAttributes.KNOCKBACK_RESISTANCE, UUID.fromString("554f3929-4197-4ae5-a4da-4b528a89ca32"));
         
         UUID ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
         if (ownerId == null) return;
@@ -249,32 +282,7 @@ public class TameParasiteHandler
             }
         }
     }
-    
-    @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
-        EntityLivingBase target = event.getEntityLiving();
-        Entity attacker = event.getSource().getTrueSource();
-    
-        if (attacker instanceof EntityParasiteBase) {
-            EntityParasiteBase parasite = (EntityParasiteBase) attacker;
-            NBTTagCompound data = parasite.getEntityData();
-            
-            if (data.hasUniqueId("OwnerUUID")) {
-                UUID ownerId = data.getUniqueId("OwnerUUID");
-                EntityPlayerMP owner = FMLCommonHandler.instance()
-                        .getMinecraftServerInstance()
-                        .getPlayerList()
-                        .getPlayerByUUID(ownerId);
-                
-                if (owner != null) {
-                    float dmg = event.getAmount();
-                    event.setCanceled(true);
-                    target.attackEntityFrom(DamageSource.causePlayerDamage(owner), dmg);
-                }
-            }
-        }
-    }
-    
+
     private static boolean hasLoyaltyTasks(EntityParasiteBase parasite) {
         for (EntityAITasks.EntityAITaskEntry entry : parasite.targetTasks.taskEntries)
         {
@@ -289,5 +297,12 @@ public class TameParasiteHandler
             if (entry.action instanceof ParasiteEntityAIFollowOwner) return true;
         }
         return false;
+    }
+    
+    private static void removeIfActive(EntityLivingBase entity, IAttribute attribute, UUID uuid) {
+        IAttributeInstance instance = entity.getEntityAttribute(attribute);
+        if (instance != null && instance.getModifier(uuid) != null) {
+            instance.removeModifier(uuid);
+        }
     }
 }
