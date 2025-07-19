@@ -24,10 +24,10 @@ public class SpeechParasiteHandler {
         
         if (!entity.hasCustomName()) return;
         
-        if (entity.ticksExisted % 100 != 0) return;
+        if (entity.ticksExisted % 1200 != 0) return;
         
         if (rand.nextFloat() < 0.5f) {
-            SpeechHelper.trySpeak(entity, ParasiteSpeech.getRandomQuote(), 80);
+            SpeechHelper.trySpeak(entity, ParasiteSpeech.getRandomQuote(), 120);
         }
     }
 }

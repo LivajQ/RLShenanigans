@@ -7,7 +7,8 @@
   "minVersion": "0.8",
   "mixins": [
     "EntityPlayerMixin",
-    "LivingDeathMixin"
+    "EntityLivingBaseMixin",
+    "CombatTrackerMixin"
   ],
   "injectors": {
     "maxShiftBy": 10

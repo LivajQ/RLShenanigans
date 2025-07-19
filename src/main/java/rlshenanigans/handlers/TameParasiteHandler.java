@@ -33,7 +33,7 @@ import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.ParasiteEntityAIFollowOwner;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtByTarget;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtTarget;
-import rlshenanigans.mixin.vanilla.LivingDeathMixin;
+import rlshenanigans.mixin.vanilla.EntityLivingBaseMixin;
 import rlshenanigans.packet.OpenParasiteGuiPacket;
 import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.util.ParasiteNames;
@@ -143,7 +143,7 @@ public class TameParasiteHandler
                 if (owner != null) {
                     target.setLastAttackedEntity(owner);
                     target.getCombatTracker().trackDamage(DamageSource.causePlayerDamage(owner), target.getHealth(), 1.0F);
-                    ((LivingDeathMixin) target).invokeDropLoot(true, 0, DamageSource.GENERIC);
+                    ((EntityLivingBaseMixin) target).invokeDropLoot(true, 0, DamageSource.GENERIC);
                 }
             }
         }
