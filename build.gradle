@@ -69,6 +69,8 @@ dependencies {
 	
 	implementation fg.deobf("libs:SRPMixins:${srpmixins_version}")
 
+	implementation fg.deobf("libs:DynamicSurroundings:${dynamicsurroundings_version}")
+
 	
 }
 

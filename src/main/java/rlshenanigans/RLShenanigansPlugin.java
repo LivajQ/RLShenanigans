@@ -21,6 +21,10 @@ public class RLShenanigansPlugin implements IFMLLoadingPlugin {
 		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.eaglemixins.json", () -> {
 			return Loader.isModLoaded("eaglemixins");
 		});
+		
+		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.dynamicsurroundings.json", () -> {
+			return Loader.isModLoaded("dsurround");
+		});
 	}
 
 	@Override
