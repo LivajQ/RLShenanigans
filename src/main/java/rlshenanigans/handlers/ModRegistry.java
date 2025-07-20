@@ -24,7 +24,7 @@ import rlshenanigans.recipe.RecipeExample;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ModRegistry {
-
+        
         public static ItemArmor.ArmorMaterial EXAMPLE_ARMOR = EnumHelper.addArmorMaterial("example_armor", RLShenanigans.MODID + ":example_armor", 26, new int[]{2,4,6,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
         public static Item exampleHelmet = new ItemExampleArmor("example_helmet", EXAMPLE_ARMOR, 2, EntityEquipmentSlot.HEAD);

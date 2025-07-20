@@ -4,8 +4,6 @@ import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants;
 
 import java.util.UUID;
 

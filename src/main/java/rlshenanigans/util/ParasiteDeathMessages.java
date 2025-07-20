@@ -48,7 +48,7 @@ public class ParasiteDeathMessages {
         
         DEATH_MESSAGES.put(ParasiteTrait.GENERIC, Arrays.asList(
                 "{{victim}} got clapped by {{parasite}}",
-                "{{Parasite}} took a bit too much liking to {{victim}}",
+                "{{parasite}} took a bit too much liking to {{victim}}",
                 "{{victim}} was punched into assimilation by {{parasite}}",
                 "{{victim}} submitted to {{parasite}}"
         ));
@@ -68,7 +68,7 @@ public class ParasiteDeathMessages {
         
         DEATH_MESSAGES.put(ParasiteTrait.GAPING, Arrays.asList(
                 "{{victim}} was eaten by {{parasite}}",
-                "{{victim}} learned the definition of vore with {{parasite}",
+                "{{victim}} learned the definition of vore with {{parasite}}",
                 "{{victim}} became {{parasite}} snack"
         ));
         

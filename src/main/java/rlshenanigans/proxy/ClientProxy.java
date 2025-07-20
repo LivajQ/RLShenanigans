@@ -5,12 +5,16 @@ import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.client.model.*;
 import net.minecraft.item.Item;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
+import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.RenderParasiteEntity;
+import rlshenanigans.client.render.RenderRLSModel;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
+import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.handlers.ModRegistry;
 import rlshenanigans.handlers.ParasiteMovementListener;
 import rlshenanigans.handlers.RideParasiteHandler;
@@ -50,7 +54,14 @@ public class ClientProxy extends CommonProxy {
             } catch (Exception e) {
                 System.err.println("Renderer failed for: " + mob.name + " → " + e.getMessage());
             }
+            
         }
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityDrJr.class, manager ->
+                new RenderRLSModel<>(manager, new ModelDrJr(), 0.5F,
+                        new ResourceLocation("rlshenanigans", "textures/entity/creature/drjr.png")
+                )
+        );
     }
     
     @Override

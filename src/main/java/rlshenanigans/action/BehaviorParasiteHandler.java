@@ -33,7 +33,7 @@ public class BehaviorParasiteHandler {
                 
             case ASKFORDROP:
                 NBTTagCompound data = parasite.getEntityData();
-                long currentTime = parasite.world.getTotalWorldTime();
+                long currentTime = parasite.ticksExisted;
                 long lastDrop = data.getLong("LastDropTime");
                 
                 if (currentTime - lastDrop < 12000) {

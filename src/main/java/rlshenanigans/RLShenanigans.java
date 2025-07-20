@@ -8,7 +8,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rlshenanigans.handlers.ModRegistry;
+import rlshenanigans.handlers.RLSEntityHandler;
 import rlshenanigans.handlers.RLSPacketHandler;
+import rlshenanigans.handlers.RLSSoundHandler;
 import rlshenanigans.proxy.CommonProxy;
 
 @Mod(modid = RLShenanigans.MODID, version = RLShenanigans.VERSION, name = RLShenanigans.NAME,
@@ -28,6 +30,8 @@ public class RLShenanigans {
 	@Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ModRegistry.init();
+        RLSEntityHandler.init();
+        RLSSoundHandler.init();
         RLShenanigans.PROXY.preInit();
     }
     

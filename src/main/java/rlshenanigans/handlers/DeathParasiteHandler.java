@@ -20,7 +20,7 @@ public class DeathParasiteHandler
         EntityLivingBase victim = event.getEntityLiving();
         Entity source = event.getSource().getTrueSource();
         
-        if (source instanceof EntityParasiteBase && victim instanceof EntityPlayer)
+        if (source instanceof EntityParasiteBase)
         {
             String deathMsg = ParasiteDeathMessages.getParasiteDeathMessage(victim, (EntityParasiteBase) source);
             victim.sendMessage(new TextComponentString(deathMsg));
