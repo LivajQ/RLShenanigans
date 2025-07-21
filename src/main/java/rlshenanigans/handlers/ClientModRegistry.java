@@ -16,6 +16,7 @@ public class ClientModRegistry {
     public static void modelRegisterEvent(ModelRegistryEvent event) {
         registerModels(
                 ModRegistry.sinPendantLust,
+                ModRegistry.weaponZweihander,
                 ModRegistry.exampleHelmet,
                 ModRegistry.exampleChestplate,
                 ModRegistry.exampleLeggings,
