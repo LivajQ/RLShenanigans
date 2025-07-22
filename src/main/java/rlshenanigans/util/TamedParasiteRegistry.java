@@ -15,10 +15,7 @@ public class TamedParasiteRegistry {
     public static void track(EntityParasiteBase mob, EntityPlayer owner) {
         TamedParasiteData data = getOverworldData();
         
-        data.getAll().removeIf(info ->
-                info.mobUUID.equals(mob.getUniqueID()) ||
-                        (info.ownerId.equals(owner.getUniqueID()) && info.name.equalsIgnoreCase(mob.getCustomNameTag()))
-        );
+        data.getAll().removeIf(info -> info.mobUUID.equals(mob.getUniqueID()));
         
         data.getAll().add(new TamedParasiteInfo(mob, owner));
         data.markDirty();

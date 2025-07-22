@@ -39,16 +39,15 @@ public class ModRegistry {
         public static Item weaponZweihander = new ItemWeaponZweihander("weapon_zweihander");
         
         public static void init() {
-
         }
 
         @SubscribeEvent
         public static void registerItemEvent(RegistryEvent.Register<Item> event) {
                 event.getRegistry().registerAll(
-                        exampleHelmet,
-                        exampleChestplate,
-                        exampleLeggings,
-                        exampleBoots,
+                        //exampleHelmet,
+                        //exampleChestplate,
+                        //exampleLeggings,
+                        //exampleBoots,
                         sinPendantLust,
                         weaponZweihander
                 );

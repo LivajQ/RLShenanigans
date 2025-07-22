@@ -74,8 +74,6 @@ dependencies {
 	implementation fg.deobf("libs:lycanitesmobs:${lycanitesmobs_version}")
 	
 	implementation fg.deobf("libs:SpartanWeaponry:${spartanweaponry_version}")
-
-	
 }
 
 mixin {

@@ -23,7 +23,6 @@ public class ParasiteRequestTPListPacket implements IMessage
             EntityPlayerMP player = ctx.getServerHandler().player;
             
             List<TamedParasiteInfo> infos = TamedParasiteRegistry.getOwnedBy(player.getUniqueID());
-            
             return new ParasiteShowTPListPacket(infos);
         }
     }

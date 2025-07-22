@@ -3,6 +3,7 @@ package rlshenanigans.item;
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
+import cursedflames.bountifulbaubles.item.ModItems;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -91,5 +92,10 @@ public class ItemAmuletSinLust extends Item implements IBauble
         if(totalHealth > 300) return 2;
         if(totalHealth > 100) return 1;
         return 0;
+    }
+    
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        return repair.getItem() == ModItems.spectralSilt || super.getIsRepairable(toRepair, repair);
     }
 }

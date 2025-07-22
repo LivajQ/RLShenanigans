@@ -34,7 +34,7 @@ public class ParasiteShowTPListPacket implements IMessage
         for (ParasiteBrief brief : parasiteList) {
             ByteBufUtils.writeUTF8String(buf, brief.mobUUID.toString());
             ByteBufUtils.writeUTF8String(buf, brief.name);
-            ByteBufUtils.writeUTF8String(buf, brief.className);
+            ByteBufUtils.writeUTF8String(buf, brief.strainId);
             buf.writeInt(brief.skin);
         }
     }
@@ -60,7 +60,7 @@ public class ParasiteShowTPListPacket implements IMessage
             Minecraft.getMinecraft().addScheduledTask(() -> {
                 List<TamedParasiteInfo> reconstructed = new ArrayList<>();
                 for (ParasiteBrief brief : message.parasiteList) {
-                    reconstructed.add(new TamedParasiteInfo(brief.mobUUID, brief.name, brief.className, brief.skin));
+                    reconstructed.add(new TamedParasiteInfo(brief.mobUUID, brief.name, brief.strainId, brief.skin));
                 }
                 Minecraft.getMinecraft().displayGuiScreen(new ParasiteTeleportMenu(reconstructed));
             });
