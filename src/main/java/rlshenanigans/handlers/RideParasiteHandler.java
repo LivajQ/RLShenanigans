@@ -22,7 +22,6 @@ import com.dhanantry.scapeandrunparasites.util.config.SRPConfigMobs;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -34,7 +33,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.lwjgl.input.Keyboard;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.RideParasitePacket;
 import rlshenanigans.util.ProjectileLauncher;
@@ -46,10 +44,6 @@ import static rlshenanigans.util.ParasiteRegistry.RANGED_PARASITES;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class RideParasiteHandler {
-    public static final KeyBinding keyAscend = new KeyBinding("key.rls.ascend", Keyboard.KEY_SPACE, "key.categories.rls");
-    public static final KeyBinding keyDescend = new KeyBinding("key.rls.descend", Keyboard.KEY_X, "key.categories.rls");
-    public static final KeyBinding keyProjectile = new KeyBinding("key.rls.projectile", Keyboard.KEY_R, "key.categories.rls");
-    
     private static final Map<UUID, Double> originalSpeeds = new HashMap<>();
     private static final Map<UUID, Long> attackCooldowns = new HashMap<>();
     

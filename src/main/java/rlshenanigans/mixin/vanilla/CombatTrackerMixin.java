@@ -1,6 +1,7 @@
 package rlshenanigans.mixin.vanilla;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
+import com.dhanantry.scapeandrunparasites.entity.projectile.EntitySRPProjectile;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.CombatEntry;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import rlshenanigans.util.ParasiteDeathMessages;
 
 import java.util.List;
 
@@ -25,16 +27,27 @@ public abstract class CombatTrackerMixin {
     protected abstract List<CombatEntry> getCombatEntries();
     
     @Inject(method = "getDeathMessage", at = @At("HEAD"), cancellable = true)
-    private void suppressParasiteDeathMessage(CallbackInfoReturnable<ITextComponent> cir) {
+    private void overrideDeathMessageForParasites(CallbackInfoReturnable<ITextComponent> cir) {
         List<CombatEntry> entries = getCombatEntries();
-        
         if (entries.isEmpty()) return;
         
         CombatEntry lastEntry = entries.get(entries.size() - 1);
-        Entity killer = lastEntry.getDamageSrc().getTrueSource();
+        Entity trueSource = lastEntry.getDamageSrc().getTrueSource();
         
-        if (killer instanceof EntityParasiteBase) {
-            cir.setReturnValue(new TextComponentString(""));
+        EntityParasiteBase parasite = null;
+        
+        if (trueSource instanceof EntityParasiteBase) {
+            parasite = (EntityParasiteBase) trueSource;
+        } else if (trueSource instanceof EntitySRPProjectile) {
+            Entity projectileShooter = ((EntitySRPProjectile) trueSource).shootingEntity;
+            if (projectileShooter instanceof EntityParasiteBase) {
+                parasite = (EntityParasiteBase) projectileShooter;
+            }
+        }
+        
+        if (parasite != null) {
+            String custom = ParasiteDeathMessages.getParasiteDeathMessage(fighter, parasite);
+            cir.setReturnValue(new TextComponentString(custom));
         }
     }
 }

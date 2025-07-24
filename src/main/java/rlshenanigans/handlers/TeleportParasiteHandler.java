@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.ParasiteRequestTPListPacket;
 
-@Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
+@Mod.EventBusSubscriber(modid = RLShenanigans.MODID, value = Side.CLIENT)
 @SideOnly(Side.CLIENT)
 public class TeleportParasiteHandler {
     public static final KeyBinding keyTeleport = new KeyBinding("key.rls.teleport", Keyboard.KEY_N, "key.categories.rls");

@@ -15,7 +15,7 @@ public class RLSPacketHandler {
         INSTANCE.registerMessage(OpenParasiteGuiPacket.Handler.class, OpenParasiteGuiPacket.class, 2, Side.CLIENT);
         INSTANCE.registerMessage(RideParasiteHandler.Handler.class, RideParasitePacket.class, 7,Side.SERVER);
         INSTANCE.registerMessage(ParasiteTeleportPacket.Handler.class, ParasiteTeleportPacket.class, 8, Side.SERVER);
-        RLSPacketHandler.INSTANCE.registerMessage(ParasiteShowTPListPacket.Handler.class, ParasiteShowTPListPacket.class, 9, Side.CLIENT);
-        RLSPacketHandler.INSTANCE.registerMessage(ParasiteRequestTPListPacket.Handler.class, ParasiteRequestTPListPacket.class, 10, Side.SERVER);
+        INSTANCE.registerMessage(ParasiteShowTPListPacket.Handler.class, ParasiteShowTPListPacket.class, 9, Side.CLIENT);
+        INSTANCE.registerMessage(ParasiteRequestTPListPacket.Handler.class, ParasiteRequestTPListPacket.class, 10, Side.SERVER);
     }
 }

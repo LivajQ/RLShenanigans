@@ -2,11 +2,16 @@ package rlshenanigans.action;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import rlshenanigans.entity.ai.ParasiteEntityAIFollowOwner;
+import rlshenanigans.handlers.RLSPacketHandler;
+import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.util.ParasiteDropList;
 
 public class BehaviorParasiteHandler {
@@ -29,6 +34,15 @@ public class BehaviorParasiteHandler {
             
             case RIDE:
                 player.startRiding(parasite, true);
+                break;
+            
+            case SMOOCH:
+                RLSPacketHandler.INSTANCE.sendToAll(
+                        new ParticlePulsePacket(parasite, EnumParticleTypes.HEART, 100, 30)
+                );
+                
+                parasite.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 600, 2));
+                player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 600, 2));
                 break;
                 
             case ASKFORDROP:

@@ -17,8 +17,8 @@ public class ParasiteSpeech {
             "Golem armor bad",
             "Can we go kill something?",
             "Your skin is so squishy. Like, best squishy. Top-tier squishy (っ˘ω˘ς )",
-            "Golem armor bad",
-            "Nice armor. Can I break it?"
+            "Nice armor. Can I break it?",
+            "Evasion bad"
     );
     
     public static String getRandomQuote() {

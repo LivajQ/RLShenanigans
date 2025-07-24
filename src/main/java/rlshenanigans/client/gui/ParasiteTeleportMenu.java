@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSlot;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.packet.ParasiteTeleportPacket;
 import rlshenanigans.util.TamedParasiteInfo;
@@ -14,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+@SideOnly(Side.CLIENT)
 public class ParasiteTeleportMenu extends GuiScreen {
     private final List<TamedParasiteInfo> availableMobs;
     private GuiParasiteList list;

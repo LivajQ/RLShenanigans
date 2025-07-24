@@ -155,6 +155,7 @@ public class ParasiteDeathMessages {
         TRAIT_REGISTRY.put(EntityRathol.class, EnumSet.of(ParasiteTrait.BOOMER));
         TRAIT_REGISTRY.put(EntityGothol.class, EnumSet.of(ParasiteTrait.BOOMER));
         TRAIT_REGISTRY.put(EntityButhol.class, EnumSet.of(ParasiteTrait.BOOMER));
+        TRAIT_REGISTRY.put(EntityFlam.class, EnumSet.of(ParasiteTrait.BOOMER));
         TRAIT_REGISTRY.put(EntityAnged.class, EnumSet.of(ParasiteTrait.HUGGER, ParasiteTrait.SPIDER));
         TRAIT_REGISTRY.put(EntityVenkrol.class, EnumSet.of(ParasiteTrait.GENERIC));
         TRAIT_REGISTRY.put(EntityVenkrolSII.class, EnumSet.of(ParasiteTrait.GENERIC));

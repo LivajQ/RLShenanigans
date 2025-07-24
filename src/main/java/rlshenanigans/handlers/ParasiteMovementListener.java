@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.packet.RideParasitePacket;
+import rlshenanigans.proxy.ClientProxy;
 
 public class ParasiteMovementListener {
     @SubscribeEvent
@@ -19,9 +20,9 @@ public class ParasiteMovementListener {
             float forward = event.getMovementInput().moveForward;
             float strafe = event.getMovementInput().moveStrafe;
             boolean jump = event.getMovementInput().jump;
-            boolean ascend = RideParasiteHandler.keyAscend.isKeyDown();
-            boolean descend = RideParasiteHandler.keyDescend.isKeyDown();
-            boolean projectile = RideParasiteHandler.keyProjectile.isKeyDown();
+            boolean ascend = ClientProxy.keyAscend.isKeyDown();
+            boolean descend = ClientProxy.keyDescend.isKeyDown();
+            boolean projectile = ClientProxy.keyProjectile.isKeyDown();
             boolean sprinting = player.isSprinting();
             
             RLSPacketHandler.INSTANCE.sendToServer(new RideParasitePacket(forward, strafe, jump, sprinting, ascend, descend, projectile));

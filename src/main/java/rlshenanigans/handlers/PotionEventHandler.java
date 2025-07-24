@@ -61,7 +61,7 @@ public class PotionEventHandler
             entity.motionZ = 0;
             if (entity.motionY > 0) entity.motionY = 0;
             entity.jumpMovementFactor = 0;
-            entity.setVelocity(0, entity.motionY, 0);
+            entity.velocityChanged = true;
         }
     }
     

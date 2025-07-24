@@ -3,6 +3,7 @@ package rlshenanigans.proxy;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
 import net.minecraft.client.model.*;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.Item;
 
 import net.minecraft.util.ResourceLocation;
@@ -10,6 +11,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
+import org.lwjgl.input.Keyboard;
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.RenderParasiteEntity;
 import rlshenanigans.client.render.RenderRLSModel;
@@ -17,7 +19,6 @@ import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.handlers.ModRegistry;
 import rlshenanigans.handlers.ParasiteMovementListener;
-import rlshenanigans.handlers.RideParasiteHandler;
 import rlshenanigans.handlers.TeleportParasiteHandler;
 import rlshenanigans.models.ModelExampleArmor;
 import rlshenanigans.util.ParasiteRegistry;
@@ -29,6 +30,9 @@ import static rlshenanigans.util.ParasiteRegistry.PARASITES;
 
 public class ClientProxy extends CommonProxy {
     
+    public static KeyBinding keyAscend;
+    public static KeyBinding keyDescend;
+    public static KeyBinding keyProjectile;
     private static final ModelExampleArmor exampleArmor = new ModelExampleArmor(1.0F);
     private static final ModelExampleArmor exampleArmorLegs = new ModelExampleArmor(0.5F);
     
@@ -69,15 +73,17 @@ public class ClientProxy extends CommonProxy {
         super.init();
         MinecraftForge.EVENT_BUS.register(ParticlePulseScheduler.class);
         MinecraftForge.EVENT_BUS.register(new ParasiteMovementListener());
-        ClientRegistry.registerKeyBinding(RideParasiteHandler.keyAscend);
-        ClientRegistry.registerKeyBinding(RideParasiteHandler.keyDescend);
-        ClientRegistry.registerKeyBinding(RideParasiteHandler.keyProjectile);
+        ClientRegistry.registerKeyBinding(keyAscend);
+        ClientRegistry.registerKeyBinding(keyDescend);
+        ClientRegistry.registerKeyBinding(keyProjectile);
         ClientRegistry.registerKeyBinding(TeleportParasiteHandler.keyTeleport);
     }
 
     @Override
     public void preInit() {
-        
+        keyAscend = new KeyBinding("key.rls.ascend", Keyboard.KEY_SPACE, "key.categories.rls");
+        keyDescend = new KeyBinding("key.rls.descend", Keyboard.KEY_X, "key.categories.rls");
+        keyProjectile = new KeyBinding("key.rls.projectile", Keyboard.KEY_R, "key.categories.rls");
         registerRenderers();
         // Register custom armor models
         exampleArmorModels.put(ModRegistry.exampleHelmet, exampleArmor);

@@ -1,8 +1,6 @@
 package rlshenanigans.util;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,7 +27,7 @@ public class TamedParasiteInfo {
         this.name = mob.hasCustomName() ? mob.getCustomNameTag() : mob.getName();
         this.mobClass = mob.getClass().asSubclass(EntityParasiteBase.class);
         this.skin = mob.getSkin();
-        this.strainId = I18n.format("entity." + EntityList.getEntityString(mob) + ".name");
+        this.strainId = "ggggg";  //bitch was crashing everything. gotta find a new way to display it later
         this.maxHealth = mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
         this.attackDamage = mob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
         this.armor = mob.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue();
