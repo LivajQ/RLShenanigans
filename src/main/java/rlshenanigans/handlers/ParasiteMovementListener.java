@@ -5,13 +5,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.RideParasitePacket;
 import rlshenanigans.proxy.ClientProxy;
 
+@Mod.EventBusSubscriber(modid = RLShenanigans.MODID, value = Side.CLIENT)
 public class ParasiteMovementListener {
     @SubscribeEvent
-    public void onInput(InputUpdateEvent event) {
+    public static void onInput(InputUpdateEvent event) {
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player == null || !player.isRiding()) return;
         

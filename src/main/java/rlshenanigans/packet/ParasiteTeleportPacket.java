@@ -55,9 +55,8 @@ public class ParasiteTeleportPacket implements IMessage {
                     if (info != null) break;
                 }
                 
-                if (info == null) {
-                    return;
-                }
+                if (info == null) return;
+                
                 
                 try {
                     for (WorldServer dim : server.worlds) {

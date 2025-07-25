@@ -15,6 +15,7 @@ public class RLSEntityHandler{
     public static void init(){
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "drjr"), EntityDrJr.class,
                 "drjr", drJrEntityID, RLShenanigans.instance, 64, 3, true);
+        EntityRegistry.registerEgg(new ResourceLocation(RLShenanigans.MODID, "drjr"), 0x00AA00, 0x005500);
         
         for (Biome biome : Biome.REGISTRY) {
             EntityRegistry.addSpawn(EntityDrJr.class, 5, 1, 1, EnumCreatureType.MONSTER, biome);

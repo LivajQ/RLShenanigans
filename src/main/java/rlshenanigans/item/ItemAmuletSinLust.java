@@ -85,10 +85,9 @@ public class ItemAmuletSinLust extends Item implements IBauble
     }
     
     private static int getAmplifier(float totalHealth){
-        if(totalHealth > 2000) return 5;
+        if(totalHealth > 2500) return 5;
         if(totalHealth > 1500) return 4;
-        if(totalHealth > 1000) return 3;
-        if(totalHealth > 600) return 3;
+        if(totalHealth > 800) return 3;
         if(totalHealth > 300) return 2;
         if(totalHealth > 100) return 1;
         return 0;

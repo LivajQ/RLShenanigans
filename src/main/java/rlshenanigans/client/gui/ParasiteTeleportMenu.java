@@ -18,6 +18,10 @@ import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class ParasiteTeleportMenu extends GuiScreen {
+    
+    private static final int TOP_MARGIN = 20;
+    private static final int BOTTOM_MARGIN = 20;
+    private static final int SLOT_HEIGHT = 24;
     private final List<TamedParasiteInfo> availableMobs;
     private GuiParasiteList list;
     
@@ -27,9 +31,6 @@ public class ParasiteTeleportMenu extends GuiScreen {
     
     @Override
     public void initGui() {
-        int top = 20;
-        int bottom = 20;
-        int slotHeight = 24;
         
         List<TamedParasiteInfo> reversedMobs = new ArrayList<>(availableMobs);
         Collections.reverse(reversedMobs);
@@ -37,9 +38,9 @@ public class ParasiteTeleportMenu extends GuiScreen {
                 this.mc,
                 this.width,
                 this.height,
-                top,
-                this.height - bottom,
-                slotHeight,
+                TOP_MARGIN,
+                this.height - BOTTOM_MARGIN,
+                SLOT_HEIGHT,
                 reversedMobs
         );
         this.list.registerScrollButtons(0, 1);
@@ -100,6 +101,12 @@ public class ParasiteTeleportMenu extends GuiScreen {
         protected void drawSlot(int index, int x, int y, int height, int mouseX, int mouseY, float partialTicks) {
             TamedParasiteInfo info = mobs.get(index);
             String label = info.name + " (" + info.strainId + ")";
+            
+            boolean isHovered = mouseX >= x && mouseX <= x + getListWidth() && mouseY >= y && mouseY <= y + height;
+            if (isHovered) {
+                drawRect(x, y, x + getListWidth(), y + height, 0x55FF6699);
+            }
+            
             mc.fontRenderer.drawString(label, x + 2, y + 2, 0xFFFFFF);
         }
         @Override

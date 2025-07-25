@@ -33,6 +33,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.RideParasitePacket;
 import rlshenanigans.util.ProjectileLauncher;
@@ -115,6 +117,7 @@ public class RideParasiteHandler {
     }
     
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player != null && player.isRiding() && player.getRidingEntity() instanceof EntityParasiteBase){

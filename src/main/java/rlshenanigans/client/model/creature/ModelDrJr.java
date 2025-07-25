@@ -6,13 +6,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelDrJr extends ModelBase {
-    public ModelRenderer body;
-    public ModelRenderer leftArm;
-    public ModelRenderer rightArm;
-    public ModelRenderer leftLeg;
-    public ModelRenderer rightLeg;
-    public ModelRenderer leftAntenna;
-    public ModelRenderer rightAntenna;
+    public final ModelRenderer body;
+    public final ModelRenderer leftArm;
+    public final ModelRenderer rightArm;
+    public final ModelRenderer leftLeg;
+    public final ModelRenderer rightLeg;
+    public final ModelRenderer leftAntenna;
+    public final ModelRenderer rightAntenna;
     
     public ModelDrJr() {
         this.textureWidth = 32;

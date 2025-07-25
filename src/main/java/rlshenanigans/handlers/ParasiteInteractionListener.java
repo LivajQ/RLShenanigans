@@ -20,6 +20,8 @@ public class ParasiteInteractionListener {
         EntityPlayer player = event.getEntityPlayer();
         Entity target = event.getTarget();
         
+        if(player.world.isRemote) return;
+        
         if (!(target instanceof EntityParasiteBase)) return;
         EntityParasiteBase parasite = (EntityParasiteBase) target;
         

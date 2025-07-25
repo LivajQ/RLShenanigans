@@ -1,8 +1,8 @@
 package rlshenanigans.client.render;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
-
 import com.dhanantry.scapeandrunparasites.entity.monster.adapted.EntityShycoAdapted;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -11,17 +11,15 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
-    
-    private final String parasiteName;
+    private final String parasiteNameLower;
     
     public RenderParasiteEntity(RenderManager manager, ModelBase model, float shadowSize, String parasiteName) {
         super(manager, model, shadowSize);
-        this.parasiteName = parasiteName;
+        this.parasiteNameLower = parasiteName.toLowerCase();
     }
-    
     @Override
     protected ResourceLocation getEntityTexture(EntityParasiteBase entity) {
-        String name = parasiteName.toLowerCase();
+        String name = parasiteNameLower;
         String folder = entity.hasCustomName() ? "thh" : "normal";
         
         String suffix = "";

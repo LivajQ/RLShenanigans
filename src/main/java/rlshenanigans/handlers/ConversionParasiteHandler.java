@@ -52,6 +52,9 @@ public class ConversionParasiteHandler
         EntityPlayer player = event.getEntityPlayer();
         
         ItemStack heldItem = player.getHeldItemMainhand();
+        
+        if (heldItem.isEmpty() || heldItem.getItem().getRegistryName() == null) return;
+        
         Set<ResourceLocation> validWands = new HashSet<>(Arrays.asList(
                 new ResourceLocation("srparasites", "itemevolve"),
                 new ResourceLocation("srparasites", "itemvariant"),

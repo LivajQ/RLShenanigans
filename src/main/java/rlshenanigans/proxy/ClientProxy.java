@@ -18,7 +18,6 @@ import rlshenanigans.client.render.RenderRLSModel;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.handlers.ModRegistry;
-import rlshenanigans.handlers.ParasiteMovementListener;
 import rlshenanigans.handlers.TeleportParasiteHandler;
 import rlshenanigans.models.ModelExampleArmor;
 import rlshenanigans.util.ParasiteRegistry;
@@ -30,9 +29,10 @@ import static rlshenanigans.util.ParasiteRegistry.PARASITES;
 
 public class ClientProxy extends CommonProxy {
     
-    public static KeyBinding keyAscend;
-    public static KeyBinding keyDescend;
-    public static KeyBinding keyProjectile;
+    public static final KeyBinding keyAscend = new KeyBinding("key.rls.ascend", Keyboard.KEY_SPACE, "key.categories.rls");
+    public static final KeyBinding keyDescend = new KeyBinding("key.rls.descend", Keyboard.KEY_X, "key.categories.rls");
+    public static final KeyBinding keyProjectile = new KeyBinding("key.rls.projectile", Keyboard.KEY_R, "key.categories.rls");
+    public static final KeyBinding keyTeleport = new KeyBinding("key.rls.teleport", Keyboard.KEY_N, "key.categories.rls");
     private static final ModelExampleArmor exampleArmor = new ModelExampleArmor(1.0F);
     private static final ModelExampleArmor exampleArmorLegs = new ModelExampleArmor(0.5F);
     
@@ -72,18 +72,14 @@ public class ClientProxy extends CommonProxy {
     public void init() {
         super.init();
         MinecraftForge.EVENT_BUS.register(ParticlePulseScheduler.class);
-        MinecraftForge.EVENT_BUS.register(new ParasiteMovementListener());
         ClientRegistry.registerKeyBinding(keyAscend);
         ClientRegistry.registerKeyBinding(keyDescend);
         ClientRegistry.registerKeyBinding(keyProjectile);
-        ClientRegistry.registerKeyBinding(TeleportParasiteHandler.keyTeleport);
+        ClientRegistry.registerKeyBinding(keyTeleport);
     }
 
     @Override
     public void preInit() {
-        keyAscend = new KeyBinding("key.rls.ascend", Keyboard.KEY_SPACE, "key.categories.rls");
-        keyDescend = new KeyBinding("key.rls.descend", Keyboard.KEY_X, "key.categories.rls");
-        keyProjectile = new KeyBinding("key.rls.projectile", Keyboard.KEY_R, "key.categories.rls");
         registerRenderers();
         // Register custom armor models
         exampleArmorModels.put(ModRegistry.exampleHelmet, exampleArmor);
