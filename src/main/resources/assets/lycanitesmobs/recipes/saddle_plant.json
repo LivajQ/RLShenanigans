@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "lycanitesmobs:saddle_plant",
+    "count": 1
+  },
+  "pattern": [
+    "MMM",
+    "MSM",
+    "NNN"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:saddle"
+    },
+    "M": {
+      "item": "minecraft:reeds"
+    },
+    "N": {
+      "item": "minecraft:paper"
+    }
+  }
+}

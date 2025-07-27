@@ -1,6 +1,6 @@
 package rlshenanigans.handlers;
 
-import net.minecraft.client.Minecraft;
+import com.github.alexthe666.iceandfire.core.ModItems;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.MobEffects;
@@ -30,6 +30,10 @@ public class CustomMobSpawnHandler {
                 EntityZombie strengthMain = (EntityZombie) event.getEntity();
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModRegistry.weaponZweihander));
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModRegistry.weaponZweihander));
+                strengthMain.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(ModItems.deathworm_white_helmet));
+                strengthMain.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(ModItems.deathworm_white_chestplate));
+                strengthMain.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(ModItems.deathworm_white_leggings));
+                strengthMain.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(ModItems.deathworm_white_boots));
                 strengthMain.addPotionEffect(new PotionEffect(MobEffects.SPEED, Integer.MAX_VALUE, 2));
                 strengthMain.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, Integer.MAX_VALUE, 0));
                 strengthMain.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(120.0D);

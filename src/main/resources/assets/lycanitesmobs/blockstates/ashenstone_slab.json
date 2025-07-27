@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom,variant=default": { "model": "lycanitesmobs:ashenstone_slab" },
+        "half=top,variant=default": { "model": "lycanitesmobs:ashenstone_slab_upper" }
+    }
+}

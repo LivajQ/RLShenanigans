@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "lycanitesmobs:explorers_risotto"
+  },
+  "ingredients": [
+    {
+      "item": "lycanitesmobs:cooked_joust_meat"
+    },
+    {
+      "item": "lycanitesmobs:cooked_yale_meat"
+    },
+    {
+      "item": "lycanitesmobs:cooked_ika_meat"
+    },
+    {
+      "item": "lycanitesmobs:cooked_concapede_meat"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

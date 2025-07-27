@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "lycanitesmobs:equipment_infuser"
+  },
+  "pattern": [
+    "LLL",
+    "LFL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:dye",
+      "data": 4
+    },
+    "F": {
+      "item": "lycanitesmobs:equipmentforge_lesser"
+    }
+  },
+  "type": "forge:ore_shaped"
+}

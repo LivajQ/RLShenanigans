@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "lycanitesmobs:bucketsharacid",
+    "count": 1
+  },
+  "ingredients": [
+    {
+      "item": "lycanitesmobs:bucketacid"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

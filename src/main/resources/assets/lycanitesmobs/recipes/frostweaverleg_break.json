@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "lycanitesmobs:frostboltcharge",
+    "count": 4
+  },
+  "ingredients": [
+	{
+      "item": "lycanitesmobs:frostweaverleg"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

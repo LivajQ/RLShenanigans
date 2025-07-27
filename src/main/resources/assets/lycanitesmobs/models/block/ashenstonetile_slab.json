@@ -1,0 +1,8 @@
+{
+	"parent": "block/half_slab",
+	"textures": {
+		"bottom": "lycanitesmobs:blocks/ashenstonetile",
+        "top": "lycanitesmobs:blocks/ashenstonetile",
+        "side": "lycanitesmobs:blocks/ashenstonetile"
+	}
+}

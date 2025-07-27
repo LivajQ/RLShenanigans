@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "lycanitesmobs:planttreat",
+    "count": 4
+  },
+  "pattern": [
+    " MM",
+    "BBM",
+    " MM"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:reeds"
+    },
+    "M": {
+      "type": "forge:ore_dict",
+      "ore": "listAllVegetables"
+    }
+  }
+}

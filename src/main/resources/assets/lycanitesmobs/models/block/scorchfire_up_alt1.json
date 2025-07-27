@@ -1,0 +1,7 @@
+{
+    "parent": "lycanitesmobs:block/scorchfire_up_alt",
+    "textures": {
+        "particle": "lycanitesmobs:blocks/scorchfire_layer_1",
+        "fire": "lycanitesmobs:blocks/scorchfire_layer_1"
+    }
+}

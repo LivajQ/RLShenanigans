@@ -1,0 +1,7 @@
+{
+    "parent": "lycanitesmobs:block/hellfire_floor",
+    "textures": {
+        "particle": "lycanitesmobs:blocks/hellfire_layer_1",
+        "fire": "lycanitesmobs:blocks/hellfire_layer_1"
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "lycanitesmobs:blood_chili"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "minecraft:dye",
+      "data": 3
+    },
+    {
+      "item": "lycanitesmobs:cooked_chupacabra_meat"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

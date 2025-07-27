@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y": { "model": "lycanitesmobs:streamstonepillar" },
+        "axis=z": { "model": "lycanitesmobs:streamstonepillar", "x": 90 },
+        "axis=x": { "model": "lycanitesmobs:streamstonepillar", "x": 90, "y": 90 }
+    }
+}

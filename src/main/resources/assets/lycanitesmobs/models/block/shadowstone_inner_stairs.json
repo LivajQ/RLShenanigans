@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "lycanitesmobs:blocks/shadowstone",
+        "top": "lycanitesmobs:blocks/shadowstone",
+        "side": "lycanitesmobs:blocks/shadowstone"
+    }
+}

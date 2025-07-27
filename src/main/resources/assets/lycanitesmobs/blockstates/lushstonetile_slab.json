@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom,variant=default": { "model": "lycanitesmobs:lushstonetile_slab" },
+        "half=top,variant=default": { "model": "lycanitesmobs:lushstonetile_slab_upper" }
+    }
+}

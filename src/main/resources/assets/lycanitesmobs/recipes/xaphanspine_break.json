@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "lycanitesmobs:acidsplashcharge",
+    "count": 4
+  },
+  "ingredients": [
+	{
+      "item": "lycanitesmobs:xaphanspine"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "lycanitesmobs:poopcharge",
+    "count": 4
+  },
+  "ingredients": [
+	{
+      "item": "lycanitesmobs:conbabutt"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

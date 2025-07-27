@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "minecraft:ender_pearl",
+    "count": 1
+  },
+  "ingredients": [
+	{
+      "item": "lycanitesmobs:grueclaw"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

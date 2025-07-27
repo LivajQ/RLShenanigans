@@ -1,0 +1,2217 @@
+lycanitesmobs.name=Lycanite's Mobs
+#
+# ========== Entites ==========
+entity.level=Nivel
+entity.health=Vida
+entity.experience=Exp.
+entity.reputation=Afecto
+entity.phase=fase
+entity.summoningportal.name=Portal de invocación
+entity.fear.name=Terror
+#
+#
+#
+# ========== Spawners ==========
+spawner.darkness.level1=Está muy oscuro, es probable que algo venga a comerte...
+spawner.darkness.level2=Puedes escuchar sonidos en la oscuridad... ¡Rápido, regresa a la luz!
+spawner.darkness.level3=¡Una criatura oscura ha surgido de las sombras!
+spawner.darkness.level1.back=Los sonidos parecen haberse detenido... por ahora...
+spawner.chaos.level1=Interrumpiste el equilibrio de la naturaleza, ¡ten cuidado!
+spawner.chaos.level2=¡Tus acciones destructivas sobre los elementales ha atraído energía caótica!
+spawner.chaos.level3=¡Se ha manifestado energía caótica en algo! ¡Ten cuidado!
+spawner.chaos.level1.back=El equilibrio parece restablecerse... Al menos por ahora...
+#
+#
+#
+# ========== Subspecies ==========
+# Common
+subspecies.normal=Normal
+# Uncommon:
+subspecies.ashen.name=Ceniza
+subspecies.dark.name=Oscuro
+subspecies.lux.name=Claro
+subspecies.verdant.name=Verdoso
+subspecies.scarlet.name=Escarlata
+subspecies.azure.name=Azulado
+subspecies.golden.name=Dorado
+subspecies.violet.name=Violeta
+subspecies.keppel.name=Turquesa
+subspecies.russet.name=Marrón
+#
+# Rare:
+subspecies.lunar.name=Lunar
+subspecies.ebon.name=Ébano
+subspecies.sacred.name=Sagrado
+subspecies.phosphorescent.name=Fosforescente
+subspecies.crimson.name=Carmesí
+subspecies.royal.name=Real
+subspecies.solar.name=Solar
+subspecies.mottled.name=Abigarrado
+subspecies.celestial.name=Celestial
+subspecies.umber.name=Ocre
+#
+# Skins:
+subspecies.moloch.name=Moloch
+subspecies.void.name=Vacío
+subspecies.sand.name=Arenoso
+#
+#
+#
+# ========== Items ==========
+item.horsearmormetal.name=Armadura de hierro para mascotas
+item.horsearmorgold.name=Armadura de oro para mascotas
+item.horsearmordiamond.name=Armadura de diamante para mascotas
+item.lycanitesmobs.charge=(carga)
+item.lycanitesmobs.charge.description=Un recurso lanzable cargado con energía elemental. Se puede usar para subir de nivel mascotas y equipo hecho de elementos. También se puede lanzar cuando te agachas o dispararlo con un dispensador.
+item.lycanitesmobs.charge.projectile=Proyectil:
+item.lycanitesmobs.charge.elements=Elementos:
+item.lycanitesmobs.charge.creature.invalid=Esta carga no coincide con los elementos de la criatura.
+#
+#
+#
+# ========== GUI ==========
+# Creative Tab names:
+itemGroup.lycanitesmobs.items=Lycanite's Mobs: objetos
+itemGroup.lycanitesmobs.blocks=Lycanite's Mobs: bloques
+itemGroup.lycanitesmobs.creatures=Lycanite's Mobs: criaturas
+itemGroup.lycanitesmobs.charges=Lycanite's Mobs: cargas
+itemGroup.lycanitesmobs.equipmentparts=Lycanite's Mobs: equipo
+#
+# Beastiary:
+gui.beastiary.name=Bestiario
+gui.beastiary.player.spirit=Tu espíritu
+gui.beastiary.player.focus=Maná de invocación
+#
+# Index:
+gui.beastiary.index.title=Índice
+gui.beastiary.index.description=¡Bienvenido al bestiario de Lycanite's Mobs! Aquí puedes buscar información de las criaturas que has conocido. Puedes administrar tus mascotas, monturas, familiares y súbditos. La traducción podría no parecerse mucho a la versión original. Traducción al español ofrecida por Nacho21.
+gui.beastiary.index.version=Versión
+gui.beastiary.index.version.newer=Nueva versión disponible
+gui.beastiary.index.changes=Últimos cambios
+gui.beastiary.index.changes.name=Nombre
+gui.beastiary.index.changes.new=Nuevas cosas
+gui.beastiary.index.changes.config=Cambios
+gui.beastiary.index.changes.major=Arreglos mayores
+gui.beastiary.index.changes.gameplay=Jugabilidad
+gui.beastiary.index.changes.balancing=Balance
+gui.beastiary.index.changes.minor=Arreglos menores
+#
+# Creatures:
+gui.beastiary.creatures=Criaturas
+gui.beastiary.creatures.empty.title=Sin criaturas
+gui.beastiary.creatures.empty.info=Actualmente no conociste ninguna criatura. Para conocer criaturas debes estar cerca, matar muchas de ellas o usar un mirador de almas.
+gui.beastiary.creatures.discovered=Criaturas descubiertas
+gui.beastiary.creatures.select=Selecciona un grupo y luego selecciona una criatura.
+gui.beastiary.website=Ver en el sitio web
+gui.beastiary.diet=Dieta
+gui.beastiary.summary=Resumen
+gui.beastiary.combat=Combate
+gui.beastiary.habitat=Hábitat
+gui.beastiary.biomes=Biomas
+gui.beastiary.biomes.none=Sin bioma específico
+gui.beastiary.drops=Botín
+gui.beastiary.unlockedat=Se desbloquea con
+gui.beastiary.tameable=Se puede domesticar con
+gui.beastiary.summonable=Se puede invocar como súbdito.
+gui.beastiary.mountable=Se puede montar.
+gui.beastiary.perchable=Puede posarse en tu hombro.
+#
+# Pets:
+gui.beastiary.pets=Mascotas
+gui.beastiary.mounts=Monturas
+gui.beastiary.familiars=Familiares
+gui.beastiary.pets.select=Selecciona una mascota del menú de la izquierda para administrarla.
+gui.beastiary.pets.empty.title=¡Sin mascotas ligadas al alma!
+gui.beastiary.pets.empty.info=No tienes mascotas ligadas a tu alma. Puedes unir una mascota a tu alma creando una piedra del alma y usándola en tu mascota. Las mascotas ligadas a tu alma se administran aquí, donde pueden ser ocultadas o invocadas. Estas mascotas reviven después de morir.
+#
+# Summoning:
+gui.beastiary.summoning=Invocación
+gui.beastiary.summoning.select=Selecciona un súbdito para invocar.
+gui.beastiary.summoning.empty.title=¡Sin criaturas invocables!
+gui.beastiary.summoning.empty.info=Aún no has descubierto una criatura invocable de rango 2. No todas las criaturas pueden ser invocadas, ¡sigue buscando!
+#
+# Elements:
+gui.beastiary.elements=Elementos
+gui.beastiary.elements.about=Una fuerza mágica llamada maná surge a lo largo de este universo. Esta fuerza se puede dividir en varios elementos mágicos. Cada elemento tiene su propio impacto en la realidad y reacciones a otros elementos. Las criaturas han evolucionado naturalmente para hacer uso de uno o más de estos elementos. Existen manifestaciones puras y vivientes de los 21 elementos disponibles.
+gui.beastiary.elements.buffs=Efectos positivos
+gui.beastiary.elements.debuffs=Efectos negativos
+#
+# Summoning Pedestal:
+gui.summoningpedestal.name=Pedestal de invocación
+#
+# Pet/Minion:
+gui.pet.actions=Acciones
+gui.pet.stance=Postura
+gui.pet.movement=Movimiento
+gui.pet.active=Activo
+gui.pet.summon=Invocar
+gui.pet.dismiss=Ocultar
+gui.pet.teleport=Llamar
+gui.pet.pvp=JCJ
+gui.pet.release=Liberar
+gui.pet.release.confirm=¿Estás seguro de que quieres liberar a esta mascota? Una vez liberada, la criatura desaparecerá para siempre y todos sus objetos se eliminarán.
+gui.pet.passive=Pasivo
+gui.pet.defensive=Defensivo
+gui.pet.assist=Ayudante
+gui.pet.aggressive=Agresivo
+gui.pet.follow=Seguir
+gui.pet.wander=Deambular
+gui.pet.sit=Quieto
+#
+# Mounts:
+gui.mount.controls=Presiona %controlA% para usar la habilidad y %controlB% para bajarte.
+#%controlA% will be replaced with the mount ability key and %controlB% with the dismount key, don't translate this!
+#
+# Equipment Forge:
+gui.equipmentforge.text.name=Nombre del equipo:
+gui.equipmentforge.button.construct=Construir
+gui.equipmentforge.button.deconstruct=Deconstruir
+gui.equipmentforge.info.empty=Inserta una pieza base de equipo para comenzar.
+gui.equipmentforge.warning.construct=¡Advertencia! Las piezas de nivel más alto que esta forja bajarán de nivel a la de la forja. ¿Continuar?
+gui.equipmentforge.warning.deconstruct=¡Advertencia! Deconstruir con piezas de mayor nivel que esta forja bajarán de nivel a la de la forja. ¿Continuar?
+gui.equipmentforge.error.construct=Algunas piezas tienen un nivel mínimo superior que la de esta forja y no se pueden usar.
+gui.equipmentforge.error.deconstruct=El equipo tiene partes de un nivel mínimo superior a las de esta forja y no se pueden usar.
+gui.equipmentforge.error.name=¡Debes nombrar tu nuevo equipo!
+#
+# Diets:
+diet.carnivore=carnívoro
+diet.piscivore=piscívoro
+diet.insectivore=insectívoro
+diet.herbivore=herbívoro
+diet.frugivore=frugívoro
+diet.fungivore=fungívoro
+diet.exudativore=mucívoro
+diet.detritivore=detritívoro
+diet.geovore=litóvoro
+diet.venevore=venenívoro
+#
+#
+#
+# ========== Messages ==========
+# Beastiary:
+message.beastiary.new=¡Descubriste a %creature% y ahora aparece en tu bestiario!
+message.beastiary.rank=¡Aprendiste mucho sobre %creature% y ahora tienes el rango de conocimiento nivel %rank%!
+message.beastiary.tameable=¡Ahora eres capaz de domesticar a %creature%!
+message.beastiary.summonable=¡Ahora puedes invocar a %creature% como un súbdito temporal con una vara de invocación!
+message.beastiary.summonable.colors=¡Ahora tienes variaciones de %creature% para invocar!
+message.beastiary.summonable.skins=¡Ahora tienes subespecies de %creature% para invocar!
+message.beastiary.known=Conocimiento de nivel %rank% de %creature% ya obtenido.
+message.beastiary.unknown=No hay nada que aprender sobre esta criatura.
+message.beastiary.study=conocimiento:
+message.beastiary.study.recharging=Debes esperar para volver a estudiar esta criatura.
+message.beastiary.study.cooldown=Tiempo de espera:
+message.beastiary.study.full=Conocimiento completado:
+#
+# Soulstone:
+message.soulstone.untamed=Solo funciona si la criatura ha sido domesticada.
+message.soulstone.invalid=Este tipo de criatura no es válida.
+message.soulstone.exists=Esta criatura ya está unida a tu alma.
+message.soulstone.pet.added=Tu %creature% se ha unido a tu alma, ¡ve al administrador de mascotas! ¡Recuerda que puedes subir de nivel a tu mascota con cargas!
+message.soulstone.mount.added=Tu %creature% se ha unido a tu alma, ¡ve al administrador de monturas! ¡Recuerda que puedes subir de nivel a tu montura con cargas!
+#
+# Soulkey:
+message.soulkey.disabled=Los altares están desactivados.
+message.soulkey.none=La llave de alma no puede localizar el altar.
+message.soulkey.invalid=La llave de alma intenta activar el altar mal construido y falla.
+message.soulkey.badlocation=La llave de alma casi activa el altar, pero parece que este es el lugar equivocado...
+message.soulkey.active=¡La llave de alma activa el altar!
+#
+# Soul Contract:
+message.soul_contract.invalid=Primero debes usar una piedra del alma y ahí podrás usar la magia del contrato.
+message.soul_contract.not_owner=La criatura no está ligada a ti. Primero haz que su dueño vincule el alma de la criatura a este contrato.
+message.soul_contract.wrong_target=Este contrato no está vinculado a esta criatura.
+message.soul_contract.owner_missing=El dueño del contrato debe estar presente.
+message.soul_contract.bound=El alma de la criatura se ha vinculado a este contrato, ahora puedes intercambiarlo con un nuevo dueño en donde debe usar el contrato en la misma criatura para reclamarlo.
+message.soul_contract.unbound=El alma de la criatura se ha desvinculado de este contrato.
+message.soul_contract.transferred=El alma de la criatura se ha transferido exitosamente.
+#
+# Pet:
+# %creature% will be replaced with the name of the tamed creature, don't translate this!
+message.pet.tamed=¡Ahora %creature% te quiere y es tu mascota! ¡Crea una piedra del alma para unir tu mascota a tu alma!
+message.pet.tamefail=¡No es suficiente y %creature% quiere más!
+message.pet.tamefail.knowledge=¡Ganaste conocimiento alimentando a %creature% y si llegas al nivel 2 será domesticable!
+message.pet.mount.baby=¡Parece que %creature% es demasiado pequeño para llevarte!
+#
+#
+#
+# ========== Commands ==========
+lyc.command.invalid=Argumentos inválidos.
+lyc.command.playeronly=Este comando solo puede ser usado por un jugador.
+lyc.command.debug.invalid=Argumentos inválidos, usa: /lm debug debugKey debugValue
+lyc.command.debug.set=Se actualizó %debug%.
+#
+# Spawners:
+lyc.command.spawners.invalid=Argumentos inválidos, usa: /lm spawners reload
+lyc.command.spawners.reload=El archivo de los generadores naturales se ha recargado.
+lyc.command.spawners.creative=Los generadores naturales para el modo creativo están %value% (true=activados y false=desactivados).
+lyc.command.spawners.test=Se forzó una generación natural de criaturas.
+lyc.command.spawners.test.unknown=Generador desconocido.
+#
+# Equipment:
+lyc.command.equipment.invalid=Argumentos inválidos, usa: /lm equipment reload
+lyc.command.equipment.reload=El archivo del equipo se ha recargado.
+#
+# Dungeons:
+lyc.command.dungeon.invalid=Argumentos inválidos, usa: /lm spawners reload
+lyc.command.dungeon.reload=El archivo de las mazmorras se ha recargado.
+lyc.command.dungeon.enable=Se activó la generación de mazmorras y se generarán en nuevas zonas.
+lyc.command.dungeon.disable=Se desactivó la generación de mazmorras y no se generarán en nuevas zonas.
+lyc.command.dungeon.locate=Mazmorra cercana:
+#
+# Creatures:
+lyc.command.creatures.invalid=Argumentos inválidos, usa: /lm creatures reload
+lyc.command.creatures.reload=Se recargaron las configuraciones en las criaturas.
+#
+# Beastiary:
+lyc.command.beastiary.invalid=Argumentos inválidos, usa: /lm beastiary add <nombre de la criatura en inglés> (/lm beastiary add chupacabra por ejemplo)
+lyc.command.beastiary.complete=Se añadieron todas las criaturas al bestiario.
+lyc.command.beastiary.add.invalid=Argumentos inválidos, usa: /lm beastiary add <nombre de la criatura en inglés> (/lm beastiary add chupacabra por ejemplo)
+lyc.command.beastiary.add.unknown=Criatura desconocida. Asegúrate de que el nombre esté en minúsculas y no tenga caracteres especiales.
+lyc.command.beastiary.clear=Se borraron todas las criaturas del bestiario.
+#
+# Mob Events:
+lyc.command.mobevent.invalid=Argumentos inválidos, usa: /lm mobevent start/stop/list/enable/disable
+lyc.command.mobevent.start.invalid=Argumentos inválidos, usa: /lm mobevent start <nombre del evento en inglés> (/lm mobevent start hellsfury por ejemplo)
+lyc.command.mobevent.start.unknown=Evento de criaturas desconocido. Para una lista con los nombres usa /lm mobevents list
+lyc.command.mobevent.start.noworld=No se ha encontrado una dimensión válida, por favor ingrese una dimensión válida.
+lyc.command.mobevent.start.conditions=El evento de criaturas no puede iniciar en esta localización.
+lyc.command.mobevent.start=Evento de crituras iniciado.
+lyc.command.mobevent.random=Se inició un evento de criaturas al azar.
+lyc.command.mobevent.stop=Todos los eventos de criaturas se han detenido.
+lyc.command.mobevent.list=Eventos de criaturas disponibles:
+lyc.command.mobevent.enable=Se activaron los eventos de criaturas.
+lyc.command.mobevent.disable=Se desactivaron los eventos de criaturas.
+lyc.command.mobevent.enable.random=Se activaron los eventos de criaturas al azar.
+lyc.command.mobevent.disable.random=Se desactivaron los eventos de criaturas al azar.
+lyc.command.mobevent.reload=El archivo de los eventos de criaturas se ha recargado.
+lyc.command.mobevent.creative=Los eventos de criaturas para el modo creativo están %value% (true=activados y false=desactivados).
+#
+#
+#
+# ========== System ==========
+lyc.version.newer=Estás usando Lycanite's Mobs {current}, pero hay una nueva versión {latest} disponible. ¡Se recomienda actualizar!
+#
+#
+#
+# ========== Common ==========
+common.yes=Sí
+common.no=No
+common.ok=Vale
+common.none=Ninguno
+common.holdshift=Mantén mayús (o shift) para más información.
+#
+#
+#
+# ========== Generic ==========
+generic.defense=Defensa
+generic.rangedSpeed=Velocidad de ataque a distancia
+#
+#
+#
+# ========== Stats ==========
+stat.spirit.name=Espíritu
+stat.spirit.description=Las mascotas y las monturas unidas a tu alma necesitan tu espíritu para estar activas. El coste de espíritu varía y se puede ver en la lista de mascotas o monturas. Si ocultas a tus criaturas o mueren, tu espíritu se recargará.
+stat.portal.name=Capacidad del portal
+stat.portal.description=Los pedestales de invocación solo pueden mantener una cantidad limitada de criaturas y no invocarán más hasta que desaparezcan o mueran.
+#
+#
+#
+# ========== Potion Effects ==========
+# Debuff:
+effect.burning=Fuego
+effect.paralysis=Parálisis
+effect.penetration=Penetración
+effect.recklessness=Imprudencia
+effect.rage=Ira
+effect.weight=Peso
+effect.fear=Miedo
+effect.decay=Decaimiento
+effect.insomnia=Insomnio
+effect.instability=Inestabilidad
+effect.bleed=Sangrado
+effect.lifeleak=Curador
+effect.plague=Plaga
+effect.aphagia=Afagia
+effect.smited=Alergia solar
+effect.smouldering=Combustión
+#
+# Buffs:
+effect.leech=Vampirismo
+effect.swiftswimming=Natación rápida
+effect.fallresist=Resistencia a caídas
+effect.rejuvenation=Revitalización
+effect.immunization=Inmunización
+effect.cleansed=Purificación
+effect.heataura=Aura de calor
+effect.staticaura=Aura paralizante
+effect.freezeaura=Aura de frío
+effect.envenom=Contaminación
+effect.repulsion=Repulsión
+#
+#
+#
+# ========== Key Bindings ==========
+key.mount.dismount=Desmontar montura y bajar mascota del hombro
+key.mount.descend=Descender con la montura
+key.mount.ability=Habilidad de la montura
+key.mount.inventory=Inventario de la montura
+key.index=Abrir índice del bestiario
+key.beastiary=Abrir bestiario
+key.pets=Abrir administrador de mascotas (recomendado)
+key.summoning=Abrir administrador de invocación
+key.minions=Selección de súbditos
+#
+#
+#
+# ========== Equipment ==========
+equipment.slottype=Tipo de parte:
+equipment.slot.base=base
+equipment.slot.head=cabeza
+equipment.slot.blade=filo
+equipment.slot.pike=pica
+equipment.slot.axe=hacha
+equipment.slot.jewel=joya
+equipment.slot.pommel=pomo
+equipment.harvest.type.pickaxe=pico
+equipment.harvest.type.axe=hacha
+equipment.harvest.type.shovel=pala
+equipment.harvest.type.sword=espada
+equipment.harvest.type.shears=tijeras
+equipment.harvest.type.hoe=azada
+equipment.harvest.shape.block=rompe en forma rectangular
+equipment.harvest.shape.random=rompe en formas al azar
+equipment.harvest.shape.cross=rompe en forma de cruz
+equipment.element=Elemento:
+equipment.level=Nivel:
+equipment.sharpness=Durabilidad:
+equipment.mana=Maná:
+equipment.item.repair=Este objeto se puede utilizar para reparar equipos.
+equipment.feature.slot=Permite:
+equipment.feature.damage=Daño por golpe:
+equipment.feature.damage.cooldown=Tiempo de espera:
+equipment.feature.damage.knockback=Retroceso:
+equipment.feature.damage.range=Rango:
+equipment.feature.damage.sweep=Área:
+equipment.feature.effect=Efectos:
+equipment.feature.effect.duration=Duración:
+equipment.feature.effect.strength=Fuerza:
+equipment.feature.harvest=Sirve como:
+equipment.feature.harvest.shape=Forma:
+equipment.feature.harvest.range=Rango:
+equipment.feature.summon=Invoca:
+equipment.feature.summon.chance=Probabilidad:
+equipment.feature.summon.count=Cantidad:
+equipment.feature.projectile=Proyectil:
+equipment.feature.projectile.trigger=Se activa:
+equipment.feature.projectile.trigger.hit=al golpear
+equipment.feature.projectile.trigger.primary=con el botón primario
+equipment.feature.projectile.trigger.secondary=con el botón secundario
+equipment.feature.projectile.trigger.hold=manteniendo el botón secundario
+equipment.feature.projectile.pattern=Patrón:
+equipment.feature.projectile.pattern.spread=en propagación
+equipment.feature.projectile.pattern.ring=en arco
+#
+#
+#
+# ========== Creatures ==========
+creature.stat.element=Elemento
+creature.stat.subspecies=Subespecies
+creature.stat.variant=Variante
+creature.stat.variants=Variantes
+creature.stat.cost=Coste de invocación
+creature.stat.spirit=Coste de espíritu
+creature.stat.focus=Coste de invocación
+creature.stat.respawning=Reviviendo
+creature.stat.knowledge=Rango de conocimiento
+creature.stat.base=Estadísticas base
+creature.stat.health=Vida
+creature.stat.defense=Defensa
+creature.stat.speed=Velocidad
+creature.stat.damage=Daño
+creature.stat.pierce=Daño base
+creature.stat.effect=Efecto
+creature.stat.level=nivel
+creature.stat.experience=Experiencia
+# ========================================================================
+tile.summoningpedestal.name=Pedestal de invocación
+tile.summoningpedestal.description=Este pedestal puede crear un portal de invocación constante que invocará al súbdito seleccionado. Requiere polvo de redstone o su bloque como combustible.
+#
+#
+# ========== Equipment Forges ==========
+tile.equipmentforge_lesser.name=Forja para equipo menor (nivel 1)
+tile.equipmentforge_lesser.description=Esta forja se usa para crear nuevo equipo a partir de partes del cuerpo de las criaturas de nivel 1 (las partes de nivel superior se degradarán si es posible).
+#
+tile.equipmentforge_greater.name=Forja para equipo superior (nivel 2)
+tile.equipmentforge_greater.description=Esta forja se usa para crear nuevo equipo a partir de partes del cuerpo de las criaturas de nivel 2 (las partes de nivel superior se degradarán si es posible).
+#
+tile.equipmentforge_master.name=Forja para equipo maestra (nivel 3)
+tile.equipmentforge_master.description=Esta forja se usa para crear nuevo equipo a partir de partes del cuerpo de las criaturas de nivel 3.
+#
+tile.equipment_infuser=Infusor para equipo
+tile.equipment_infuser.description=Sirve para subir de nivel partes individuales del cuerpo de las criaturas si coinciden en sus elementos. También sirve para tintar las partes.
+#
+tile.equipment_station=Estación para equipo
+tile.equipment_station.description=Sirve para reparar y restaurar el maná del equipo. Materiales como el cuarzo, hierro, huesos, entre otros, reparan y materiales como cargas restauran el maná.
+#
+#
+# ========== Special ==========
+tile.frostweb.name=Telaraña gélida
+tile.frostweb.description=Una telaraña gélida que se deshace.
+#
+tile.quickweb.name=Telaraña verde
+tile.quickweb.description=Una telaraña verde que no durará mucho.
+#
+tile.poisoncloud.name=Nube de veneno
+tile.poisoncloud.description=Una nube tóxica que aplica veneno.
+#
+tile.poopcloud.name=Nube de popó
+tile.poopcloud.description=¡Una nube apestosa que aplica lentitud y náuseas!
+#
+tile.frostcloud.name=Nube fría
+tile.frostcloud.description=Una nube fría que aplica lentitud y hambre.
+#
+#
+# ========== Fire ==========
+tile.scorchfire.name=Fuego abrasador
+tile.scorchfire.description=Un fuego encantado no tan caliente como el fuego normal que aplica penetración, aumentando el daño recibido.
+#
+tile.primefire.name=Fuego supremo
+tile.primefire.description=Fuego supremo con una temperatura muy alta, quema todo a su alrededor rápidamente y aplica combustión, quemaduras que ni el agua quitarán.
+#
+tile.doomfire.name=Fuego de la perdición
+tile.doomfire.description=Fuego maligno lleno de rabia demoníaca. Quema y se propaga más rápido que el fuego normal.
+#
+tile.hellfire.name=Fuego infernal
+tile.hellfire.description=Fuego maligno lleno de energía demoníaca. Arde por más tiempo, quema más lento y causa más daño que el fuego normal.
+#
+tile.icefire.name=Fuego helado
+tile.icefire.description=Fuego helado y mágico que daña y aplica lentitud.
+#
+tile.shadowfire.name=Fuego sombrío
+tile.shadowfire.description=Fuego sombrío que daña y aplica ceguera.
+#
+tile.frostfire.name=Fuego gélido
+tile.frostfire.description=Fuego gélido y mágico que daña y aplica lentitud. Puede generar elementales de escarcha.
+#
+tile.smitefire.name=Fuego sagrado
+tile.smitefire.description=Fuego sagrado que daña y aplica alergia solar, el cual te hace vulnerable a la luz del sol.
+#
+#
+# ========== Fluids ==========
+tile.moglava.name=Lava pura
+tile.moglava.description=Lava que fluye más rápido y es renovable como el agua. No genera criaturas.
+#
+tile.ooze.name=Cieno gélido
+tile.ooze.description=Líquido superfrío y letal que aplica lentitud.
+#
+#
+# ========== Vespid ==========
+tile.veswax.name=Cera de avispa
+tile.veswax.description=Una sustancia dura parecida a la arcilla para formar las paredes de las colmenas.
+#
+tile.propolis.name=Propóleo
+tile.propolis.description=Una sustancia dura parecida a la arcilla para formar los techos y suelos de las colmenas.
+# ========================================================================
+tile.soulcubedemonic.name=Cubo con almas demoníaco
+tile.soulcubedemonic.description=Una fuente de gran energía demoníaca esperando a ser desatada. Perfecta para atraer a...
+#
+tile.soulcubeaberrant.name=Cubo con almas aberrante
+tile.soulcubeaberrant.description=¿Una fuente extraña con tecnología alienígena desconocida y magia fluyendo dentro? Tal vez sea rico tocino...
+#
+tile.soulcubeundead.name=Cubo con almas no muerto
+tile.soulcubeundead.description=En su interior hay miles de almas atrapadas y retorcidas que esperan escapar...
+#
+tile.soulcubedesertic.name=Cubo con almas desértico
+tile.soulcubedesertic.description=Un extraño artefacto lleno de luz compleja, magia arcana y tierra.
+#
+tile.soulcubelushic.name=Cubo con almas selvático
+tile.soulcubelushic.description=Cristal encantado que brilla como la luz de la Luna.
+# ========================================================================
+tile.demonstonebrick_stairs.name=Escaleras de ladrillos de piedra demoníaca
+tile.demonstonebrick_stairs.description=Algunos dicen que los demonios mayores esclavizan a los demonios menores para construir templos malignos.
+#
+tile.demoncrystal.name=Lámpara demoníaca
+tile.demoncrystal.description=El símbolo actúa como una sala mientras que la energía demoníaca atrapada emite una luz malvada.
+#
+tile.demonstonechiseled.name=Ladrillos de piedra demoníaca cincelados
+tile.demonstonechiseled.description=Se desconoce por qué los demonios mayores exigen tal detalle para sus templos, ¿quizás sea un símbolo de estatus?
+#
+tile.demonstonebrick_wall.name=Pared de ladrillos de piedra demoníaca
+tile.demonstonebrick_wall.description=Algunos dicen que los demonios mayores esclavizan a los demonios menores para construir templos malignos.
+#
+tile.demonstone.name=Piedra demoníaca
+tile.demonstone.description=Piedra llena de esencia maligna de un gran demonio.
+#
+tile.demonstonebrick_slab.name=Losa de ladrillos de piedra demoníaca
+tile.demonstonebrick_slab.description=Algunos dicen que los demonios mayores esclavizan a los demonios menores para construir templos malignos.
+#
+tile.demonstone_stairs.name=Escaleras de piedra demoníaca
+tile.demonstone_stairs.description=Piedra llena de esencia maligna de un gran demonio.
+#
+tile.demonstone_slab.name=Losa de piedra demoníaca
+tile.demonstone_slab.description=Piedra llena de esencia maligna de un gran demonio.
+#
+tile.demonstonebrick_fence.name=Valla de ladrillos de piedra demoníaca
+tile.demonstonebrick_fence.description=Algunos dicen que los demonios mayores esclavizan a los demonios menores para construir templos malignos.
+#
+tile.demonstonepillar.name=Pilar de piedra demoníaca
+tile.demonstonepillar.description=Los templos demoníacos son grandes y, aunque estén cubiertos de sangre de los desafortunados, se ven majestuosos.
+#
+tile.demonstonetile_slab.name=Losa de azulejo de piedra demoníaca
+tile.demonstonetile_slab.description=¿Cómo puede algo tan maligno ser tan bello?
+#
+tile.demonstonetile.name=Azulejo de piedra demoníaca
+tile.demonstonetile.description=¿Cómo puede algo tan maligno ser tan bello?
+#
+tile.demonstone_slab_double.name=Losa de piedra demoníaca doble
+tile.demonstone_slab_double.description=Piedra llena de esencia maligna de un gran demonio.
+#
+tile.demonstonebrick.name=Ladrillos de piedra demoníaca
+tile.demonstonebrick.description=Algunos dicen que los demonios mayores esclavizan a los demonios menores para construir templos malignos.
+#
+tile.demonstonepolished.name=Piedra demoníaca pulida
+tile.demonstonepolished.description=Una vez pulida, parece sangre fresca.
+#
+tile.demonstonetile_stairs.name=Escaleras de azulejo de piedra demoníaca
+tile.demonstonetile_stairs.description=¿Cómo puede algo tan maligno ser tan bello?
+# ========================================================================
+tile.aberrantstonebrick_stairs.name=Escaleras de ladrillos aberrantes
+tile.aberrantstonebrick_stairs.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantcrystal.name=Lámpara aberrante
+tile.aberrantcrystal.description=The light emitted feels like it comes from another world...
+#
+tile.aberrantstonechiseled.name=Piedra aberrante cincelada
+tile.aberrantstonechiseled.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonebrick_wall.name=Pared de ladrillos de piedra aberrante
+tile.aberrantstonebrick_wall.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstone.name=Piedra aberrante
+tile.aberrantstone.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonebrick_slab.name=Losa de ladrillos de piedra aberrante
+tile.aberrantstonebrick_slab.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstone_stairs.name=Escaleras de piedra aberrante
+tile.aberrantstone_stairs.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstone_slab.name=Losa de piedra aberrante
+tile.aberrantstone_slab.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonebrick_fence.name=Valla de ladrillos de piedra aberrante
+tile.aberrantstonebrick_fence.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonepillar.name=Pilar de piedra aberrante
+tile.aberrantstonepillar.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonetile_slab.name=Losa de azulejo de piedra aberrante
+tile.aberrantstonetile_slab.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonetile.name=Azulejo de piedra aberrante
+tile.aberrantstonetile.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstone_slab_double.name=Losa de piedra aberrante doble
+tile.aberrantstone_slab_double.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonebrick.name=Ladrillos de piedra aberrante
+tile.aberrantstonebrick.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonepolished.name=Piedra aberrante pulida
+tile.aberrantstonepolished.description=Hay algo alienígena en estos bloques decorativos.
+#
+tile.aberrantstonetile_stairs.name=Escaleras de azulejo de piedra aberrante
+tile.aberrantstonetile_stairs.description=Hay algo alienígena en estos bloques decorativos.
+# ========================================================================
+tile.desertstonebrick_stairs.name=Escaleras de ladrillos de piedra desértica
+tile.desertstonebrick_stairs.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertcrystal.name=Lámpara desértica
+tile.desertcrystal.description=Lámpara encantada extraña que emite una luz mágica.
+#
+tile.desertstonechiseled.name=Piedra desértica cincelada
+tile.desertstonechiseled.description=Piedra desértica finamente decorada.
+#
+tile.desertstonebrick_wall.name=Pared de ladrillos de piedra desértica
+tile.desertstonebrick_wall.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstone.name=Piedra desértica
+tile.desertstone.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstonebrick_slab.name=Losa de ladrillos de peidra desértica
+tile.desertstonebrick_slab.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstone_stairs.name=Escaleras de piedra desértica
+tile.desertstone_stairs.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstone_slab.name=Losa de piedra desértica
+tile.desertstone_slab.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstonebrick_fence.name=Valla de ladrillos de piedra desértica
+tile.desertstonebrick_fence.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstonepillar.name=Pilar de piedra desértica
+tile.desertstonepillar.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstonetile_slab.name=Losa de azulejo de piedra desértica
+tile.desertstonetile_slab.description=Piedra desértica decorada utilizada para pavimentar los suelos de grandes monumentos.
+#
+tile.desertstonetile.name=Azulejo de piedra desértica
+tile.desertstonetile.description=Piedra desértica decorada utilizada para pavimentar los suelos de grandes monumentos.
+#
+tile.desertstone_slab_double.name=Losa de piedra desértica doble
+tile.desertstone_slab_double.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstonebrick.name=Ladrillos de piedra desértica
+tile.desertstonebrick.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstonepolished.name=Piedra desértica pulida
+tile.desertstonepolished.description=Una arenisca refinada utilizada para construir grandes monumentos del desierto.
+#
+tile.desertstonetile_stairs.name=Escaleras de azulejo de piedra desértica
+tile.desertstonetile_stairs.description=Piedra desértica decorada utilizada para pavimentar los suelos de grandes monumentos.
+# ========================================================================
+tile.lushstonebrick_stairs.name=Escaleras de ladrillos de piedra selvática
+tile.lushstonebrick_stairs.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushcrystal.name=Lámpara selvática
+tile.lushcrystal.description=El símbolo actúa como una protección y la energía exuberante atrapada se enfurece emitiendo una luz malvada.
+#
+tile.lushstonechiseled.name=Piedra selvática cincelada
+tile.lushstonechiseled.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonebrick_wall.name=Pared de ladrillos de piedra selvática
+tile.lushstonebrick_wall.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstone.name=Piedra selvática
+tile.lushstone.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonebrick_slab.name=Losa de ladrillos de piedra selvática
+tile.lushstonebrick_slab.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstone_stairs.name=Escaleras de piedra selvática
+tile.lushstone_stairs.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstone_slab.name=Losa de piedra selvática
+tile.lushstone_slab.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonebrick_fence.name=Valla de ladrillos de piedra selvática
+tile.lushstonebrick_fence.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonepillar.name=Pilar de piedra selvática
+tile.lushstonepillar.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonetile_slab.name=Losa de azulejo de piedra selvática
+tile.lushstonetile_slab.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonetile.name=Azulejo de piedra selvática
+tile.lushstonetile.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstone_slab_double.name=Losa de piedra selvática doble
+tile.lushstone_slab_double.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonebrick.name=Ladrillos de piedra selvática
+tile.lushstonebrick.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonepolished.name=Piedra selvática pulida
+tile.lushstonepolished.description=La esencia misma de la naturaleza recorre en esta piedra.
+#
+tile.lushstonetile_stairs.name=Escaleras de azulejo de piedra selvática
+tile.lushstonetile_stairs.description=La esencia misma de la naturaleza recorre en esta piedra.
+# ========================================================================
+#
+tile.shadowstonebrick_stairs.name=Escaleras de ladrillos de piedra sombría
+tile.shadowstonebrick_stairs.description=El espacio entre los ladrillos parece absorber la luz.
+#
+tile.shadowstonetile_stairs.name=Escaleras de azulejo de piedra sombría
+tile.shadowstonetile_stairs.description=Camina sobre la oscuridad y sonríe, lograrás grandes cosas.
+#
+tile.shadowstonebrick_fence.name=Valla de ladrillos de piedra sombría
+tile.shadowstonebrick_fence.description=El espacio entre los ladrillos parece absorber la luz.
+#
+tile.shadowcrystal.name=Lámpara sombría
+tile.shadowcrystal.description=A medida que la runa absorbe rápidamente la luz, se vuelve tan oscura que se vuelve brillante.
+#
+tile.shadowstone_slab_double.name=Losa de piedra sombría doble
+tile.shadowstone_slab_double.description=Piedra creada desde las mismas sombras.
+#
+tile.shadowstonechiseled.name=Piedra sombría cincelada
+tile.shadowstonechiseled.description=La manera más eficaz de cincelar piedra sombría es utilizar los huesos de tus víctimas.
+#
+tile.shadowstone.name=Piedra sombría
+tile.shadowstone.description=Piedra creada desde las mismas sombras.
+#
+tile.shadowstone_stairs.name=Escaleras de piedra sombría
+tile.shadowstone_stairs.description=Piedra creada desde las mismas sombras.
+#
+tile.shadowstone_slab.name=Losa de piedra sombría
+tile.shadowstone_slab.description=Piedra creada desde las mismas sombras.
+#
+tile.shadowstonetile.name=Azulejo de piedra sombría
+tile.shadowstonetile.description=Camina sobre la oscuridad y sonríe, lograrás grandes cosas.
+#
+tile.shadowstonebrick_slab.name=Losa de ladrillos de piedra sombría
+tile.shadowstonebrick_slab.description=El espacio entre los ladrillos parece absorber la luz.
+#
+tile.shadowstonepolished.name=Piedra sombría pulida
+tile.shadowstonepolished.description=Si bien se asocia con el miedo y la desesperación, las sombras son suaves y reconfortantes...
+#
+tile.shadowstonebrick.name=Ladrillos de piedra sombría
+tile.shadowstonebrick.description=El espacio entre los ladrillos parece absorber la luz.
+#
+tile.shadowstonepillar.name=Pilar de piedra sombría
+tile.shadowstonepillar.description=Deja que los que te rodean sean dominados mientras contemplan tu oscura majestad.
+#
+tile.shadowstonetile_slab.name=Losa de azulejo de piedra sombría
+tile.shadowstonetile_slab.description=Camina sobre la oscuridad y sonríe, lograrás grandes cosas.
+#
+tile.shadowstonebrick_wall.name=Pared de ladrillos de piedra sombría
+tile.shadowstonebrick_wall.description=El espacio entre los ladrillos parece absorber la luz.
+# ========================================================================
+tile.ashenstonebrick_stairs.name=Escaleras de ladrillos de piedra carbonizada
+tile.ashenstonebrick_stairs.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashencrystal.name=Lámpara carbonizada
+tile.ashencrystal.description=Un poderoso vínculo de lava y tierra mágica empoderan este cristal sin límites.
+#
+tile.ashenstonechiseled.name=Piedra carbonizada cincelada
+tile.ashenstonechiseled.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonebrick_wall.name=Pared de ladrillos de piedra carbonizada
+tile.ashenstonebrick_wall.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstone.name=Piedra carbonizada
+tile.ashenstone.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonebrick_slab.name=Losa de ladrillos de piedra carbonizada
+tile.ashenstonebrick_slab.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstone_stairs.name=Escaleras de piedra carbonizada
+tile.ashenstone_stairs.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstone_slab.name=Losa de piedra carbonizada
+tile.ashenstone_slab.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonebrick_fence.name=Valla de ladrillos de piedra carbonizada
+tile.ashenstonebrick_fence.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonepillar.name=Pilar de piedra carbonizada
+tile.ashenstonepillar.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonetile_slab.name=Losa de azulejo de piedra carbonizada
+tile.ashenstonetile_slab.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonetile.name=Azulejo de piedra carbonizada
+tile.ashenstonetile.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstone_slab_double.name=Losa de piedra carbonizada doble
+tile.ashenstone_slab_double.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonebrick.name=Ladrillos de piedra carbonizada
+tile.ashenstonebrick.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonepolished.name=Piedra carbonizada pulida
+tile.ashenstonepolished.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+#
+tile.ashenstonetile_stairs.name=Escaleras de azulejo de piedra carbonizada
+tile.ashenstonetile_stairs.description=Las fuerzas primordiales de la tierra y la lava surgen a través de esta piedra.
+# ========================================================================
+entity.abaia.name=Abaia
+entity.abaia.description=Anguilas agresivas que generan una corriente eléctrica a través de su cuerpo dañando a todo a su alrededor.
+entity.abaia.habitat=Estos animales son catádromos, lo que significa que son de aguas dulces y van a aguas saladas a reproducirse. Se pueden encontrar en la mayoría de lugares.
+entity.abaia.combat=Usan una corriente eléctrica causando parálisis a todo a su alrededor, también tienen una mordedura desagradable.
+# ========================================================================
+entity.abtu.name=Abtu
+entity.abtu.description=¡Grandes peces con enormes dientes! Es raro encontrar adultos ya que su naturaleza temeraria provoca que no vivan mucho.
+entity.abtu.habitat=Se encuentran en océanos de agua salada y playas.
+entity.abtu.combat=Una vez que abtu detecta a su presa, no se detendrá para devorarla, ¡incluso salen del agua desesperadamente! Los adultos son más reservados y más raros de ver, pero llamarán a los bebés para almorzar.
+# ========================================================================
+entity.aegis.name=Aegis
+entity.aegis.description=Elementales de orden encargados de hacer respetar la ley en las aldeas. No dejarán que ningún malechor se salga con la suya y será perseguido sin piedad.
+entity.aegis.habitat=Se manifiestan en áreas ricas con el elemento orden. Las aldeas crean comúnmente a estas criaturas.",
+    "entity.lycanitesmobs.aegis.combat": "Tienen dos modos: un modo defensivo en el que bloquearán la gran parte del daño con dos escudos giratorios, y el modo ofensivo en el que usarán cuatro cuchillas giratorias debilitando a los que se pasen de listos.
+# ========================================================================
+entity.afrit.name=Afrit
+entity.afrit.description=Diablillos de fuego muy malvados que están concentrados en la destrucción. Quemarán agresivamente el mundo que los rodea. Tenerlo como mascota garantiza resistencia ígnea.
+entity.afrit.habitat=Se encuentran tomando un baño en la lava.
+entity.afrit.combat=Atacan a distancia lanzando bolas de fuego abrasador, una combinación entre fuego y ácido que debilita las defensas de las víctimas.
+# ========================================================================
+entity.aglebemu.name=Aglebemu
+entity.aglebemu.description=Grandes ranas venenosas con una gran habilidad para nadar y saltar, ¡así como una increíble lengua larga y mortal!
+entity.aglebemu.habitat=Se encuentran en pantanos.
+entity.aglebemu.combat=Usan sus lenguas poderosas, largas y afiladas para atravesar a sus víctimas e inyectarles una sustancia de bacterias contagiosas.
+# ========================================================================
+entity.archvile.name=Apolión
+entity.archvile.description=Demonios maliciosos que gobiernan las áreas del Nether. Disfrutan el olor de la carne quemada de sus víctimas y disfrutan viendo a otros demonios destruir a sus víctimas.
+entity.archvile.habitat=Viven en las profundidades del Nether.
+entity.archvile.combat=Prefieren evitar el combate directo, en su lugar, potenciarán a otros demonios cercanos e intentarán quemar a sus víctimas con bolas de fuego de la perdición.
+# ========================================================================
+entity.argus.name=Argus
+entity.argus.description=Elementales de caos disruptivos que causarán estragos a su paso.
+entity.argus.habitat=Se manifiestan cuando hay una gran cantidad de caos en el área, esto puede ser causado por varias cosas, pero se forman generalmente en la destrucción de otros elementales que provoca una gran concentración de caos. También están presentes en el End y bosques distorsionados del Nether.
+entity.argus.combat=Se tornarán con un color violento y atacarán de cerca o de lejos con orbes de caos. Los orbes de caos tienen una trayectoria impredecible, pero si impactan provocarán inestabilidad, una poderosa maldición caótica que empuja hacia cualquier dirección.
+# ========================================================================
+entity.arisaur.name=Arisaurio
+entity.arisaur.description=Saurópodos gigantes cubiertos con plantas. Son reptiles pacíficos que pastan de los árboles o de sus propias espaldas, compartiendo una relación simbiótica.
+entity.arisaur.habitat=Se encuentran en bosques densos, pero también se pueden ver migrando a través de las llanuras.
+entity.arisaur.combat=Aunque sean de gran tamaño, son pacíficos.
+# ========================================================================
+entity.arix.name=Arix
+entity.arix.description=Diablillos traviesos de escarcha que están constantemente buscando comida.
+entity.arix.habitat=Se encuentran en biomas con temperaturas frías y tomando un baño en cieno gélido.
+entity.arix.combat=Lanzarán bolas de fuego helado, una forma de magia helada que se ve y se comporta como si fuera fuego, pero que congelan en lugar de quemar.
+# ========================================================================
+entity.asmodeus.name=Asmodeus
+entity.asmodeus.description=Asmodeus es conocido como la mente maestra detrás de cualquier forma de invasión demoníaca, incluso se le compara con Rahovart.
+entity.asmodeus.habitat=No aparece de forma natural. Se dice que se originó en los vastos lugares del Nether llamados purgatorios, ¡y también se dice que comenzó como un simple trite!
+entity.asmodeus.combat=Esta gran aberración malvada con gran tecnología tiene una enorme habilidad para saltar. Usará su enorme arma periódicamente para masacrar a sus objetivos y también estará acompañado con muchos trites que lo defenderán. Fase 1: Asmodeus lanzará anillos de estrellas malvadas. Fase 2: Asmodeus será defendido con un escudo ofrecido por astarots, estos deben ser derrotados para romper el escudo. Fase 3: Unos astarots intentarán curar a Asmodeus y se generarán grells.
+# ========================================================================
+entity.aspid.name=Áspid
+entity.aspid.description=Reptiles pacíficos con extraños crecimientos en la espalda. Les encantan los hongos y se pueden criar con ellos. Dejan un tóxico rastro de nubes de veneno por donde caminan, por lo que hay que tener cuidado.
+entity.aspid.habitat=Se encuentran en pantanos, bosques oscuros e islas con hongos gigantes debido a su amor por los hongos.
+entity.aspid.combat=Son pacíficos, pero sus nubes de veneno hacen que sean peligrosos y deban ser tratados con cuidado.
+# ========================================================================
+entity.astaroth.name=Astarot
+entity.astaroth.description=Parecen cerebros montados en tecnología demoníaca mantenida por trites. Si logras pasar por las armas de fuego, ¡los trites saldrán a cobrar venganza!
+entity.astaroth.habitat=Se dice que se originaron en lugares del Nether llamados purgatorios. Ahora están acechando en el Nether.
+entity.astaroth.combat=Disparan ráfagas de estrellas malvadas y si estás cerca atacarán cuerpo a cuerpo. Cuando mueren saldrán algunos trites sorpresas.
+# ========================================================================
+entity.balayang.name=Balayang
+entity.balayang.description=Murciélagos viciosos de un solo ojo y con colmillos mortales. Aman cazar criaturas pequeñas, ¡incluyéndote!
+entity.balayang.habitat=Se encuentran en los desiertos y mesas por la noche.
+entity.balayang.combat=Su mordedura te dejará sangrando y con ceguera.
+# ========================================================================
+entity.banshee.name=Banshee
+entity.banshee.description=Elementales de fase aterradores que pueden pasar a través de la realidad misma. Se les puede escuchar cantando y se dice que el elemental en realidad son esos grandes ojos y no el cadáver. Geonach y zephyr se pueden fusionar para crear un elemental de fase poderoso.
+entity.banshee.habitat=Se manifiestan en lugares misteriosos y abandonados como minas abandonadas y bosques oscuros.
+entity.banshee.combat=Atraviesan la materia y asustan a las almas de sus víctimas generando miedo, un efecto que hace que huyas de las entidades de tu alrededor.
+# ========================================================================
+entity.barghest.name=Barghest
+entity.barghest.description=Depredadores de las montañas capaces de dar grandes saltos. También son escaladores competentes, lo que significa que pueden ser monturas excepcionales para las montañas.
+entity.barghest.habitat=Estas bestias se encuentran en áreas montañosas y sabanas.
+entity.barghest.combat=Saltan sobre sus presas y las desgarran provocando sangrados.
+# ========================================================================
+entity.behemoth.name=Bégimo
+entity.behemoth.description=Monstruosidades demoníacas muy altas y fuertes muy empeñados en la destrucción.
+entity.behemoth.habitat=Se pueden encontrar en el Nether y también rondarán en portales al Nether si son lo suficientemente grandes.
+entity.behemoth.combat=Lanzan bolas de fuego infernal, un fuego verde creado al destrozar almas que puede causar wither y decaimiento.
+# ========================================================================
+entity.beholder.name=Naxiris
+entity.beholder.description=¡Grandes masas hostiles de ojos y tentáculos con un hambre eterna de energía mágica!
+entity.beholder.habitat=Aman los lugares altos, por lo que se encuentran en las montañas.
+entity.beholder.combat=Disparan de sus bocas grandes cargas de tormenta láser arcana, capaces de explotar al impactar y tener mortales láseres en varias direcciones.
+# ========================================================================
+entity.necrovore.name=Mascahuesos
+entity.necrovore.description=Terribles sabuesos no muertos que anhelan carne podrida, ¡aunque no dudarán en consumir la tuya también!
+entity.necrovore.habitat=Salen durante la noche oscura de una luna nueva y también habitan tierras malditas.
+entity.necrovore.combat=Estos sabuesos son rápidos e implacables con una mordedura perversa, pero no sobreviven si les llega la luz del sol.
+# ========================================================================
+entity.belph.name=Belfegor
+entity.belph.description=Demonios pequeños pero peligrosos con una mente centrada en matar y comer.
+entity.belph.habitat=Se pueden encontrar en el Nether y cerca de los portales al Nether.
+entity.belph.combat=Lanzan bolas de fuego de la perdición, fuego hecho de magia del Nether con un color rojo antinatural que produce decaimiento, un efecto que anula la regeneración.
+# ========================================================================
+entity.cacodemon.name=Malwrath
+entity.cacodemon.description=Grandes abominaciones flotantes que adoran cazar ghasts por sus deliciosas lágrimas. Pueden llegar a ser poderosas monturas.
+entity.cacodemon.habitat=Vuelan en los cielos ardientes del Nether.
+entity.cacodemon.combat=Escupen grandes cargas de explosión demoníaca liberando también chispas demoníacas en el trayecto. La explosión demoníaca son bolas de energía del Nether que causan wither y explotan.
+# ========================================================================
+entity.calpod.name=Calpod
+entity.calpod.description=¡Insectos desagradables similares a las termitas que llaman a más de su especie para acorralar a sus presas!
+entity.calpod.habitat=Se pueden encontrar en la maleza del bosque y salen por la noche.
+entity.calpod.combat=Tienen una mordedura desagradable, pero pueden y deben ser asesinados rápidamente, ya que llamarán a más de su especie para unirse a la fiesta.
+# ========================================================================
+entity.cephignis.name=Cefignis
+entity.cephignis.description=Grandes peces pacíficos que se han adaptado a las temperaturas extremas. Sus cuerpos están tan calientes como la lava. ¡Se pueden criar con carbón o carbón vegetal!
+entity.cephignis.habitat=Se pueden encontrar nadando en la lava y no podrán sobrevivir fuera de ella mucho tiempo.
+entity.cephignis.combat=Son pacíficos y dependen de su entorno para sobrevivir de los depredadores.
+# ========================================================================
+entity.chupacabra.name=Chupacabra
+entity.chupacabra.description=Criaturas horrorosas con una insaciable hambre de carne. Se pueden usar animales vivos para su crianza.
+entity.chupacabra.habitat=Suelen vivir bajo tierra en cuevas oscuras.
+entity.chupacabra.combat=Son bestias agresivas y rápidas con una mandíbula y garras afiladas, además de que al atacar también se curarán.
+# ========================================================================
+entity.cinder.name=Cinder
+entity.cinder.description=Elementales de fuego violentos que solo buscan quemar a otras criaturas de su alrededor.
+entity.cinder.habitat=Se manifiestan en el fuego puro, por lo que aparecerán con frecuencia en lugares con mucho fuego, sin embargo, no se manifiestan en otros tipos de fuegos impuros como el fuego abrasador o el fuego de la perdición.
+entity.cinder.combat=Atacarán como si fueran un lanzallamas de corta distancia, pero estas llamas son débiles como para propagar el fuego.
+# ========================================================================
+entity.clink.name=Clink
+entity.clink.description=Extraños diablillos que les crecen rápidamente cuchillas metálicas en sus brazos que pueden arrojar fácilmente.
+entity.clink.habitat=Se encuentran en los desiertos donde hay carne y minerales para comer.
+entity.clink.combat=Desprenden sus cuchillas a sus enemigos y les crecen de nuevo rápidamente.
+# ========================================================================
+entity.cockatrice.name=Cocatriz
+entity.cockatrice.description=¡Guivernos gigantes con un aspecto de gallo muy peligrosos!
+entity.cockatrice.habitat=Se encuentran en áreas tropicales como la jungla, ya que adoran las frutas, insectos grandes y todo lo que se mueva.
+entity.cockatrice.combat=Picotean a sus víctimas inyectando toxinas paralizantes y causando afagia. Se dice que da una sensación de estar convertido en piedra.
+# ========================================================================
+entity.conba.name=Conba
+entity.conba.description=¡Simios traviesos con una pasión por la popó!
+entity.conba.habitat=Se pueden encontrar en biomas tropicales como la jungla.
+entity.conba.combat=Les encanta arrojar sus popós pegajosas a las personas causando enfermedades, además de crear también una nube de popó capaz de causar lentitud y náuseas. Son vulnerables a ser infectados por una avispa reina.
+entity.conba.infected=Conba infectado
+# ========================================================================
+entity.concapede.name=Concapede
+entity.concapede.description=Escarabajos desagradables que se conectan entre sí. Las cabezas guían el camino y son las peligrosas.
+entity.concapede.habitat=Se encuentran en áreas tropicales como la jungla.
+entity.concapede.combat=Son hostiles por la noche y morderán causando veneno.
+# ========================================================================
+entity.concapedesegment.name=Segmento de concapede
+entity.concapedesegment.description=Escarabajos desagradables que se conectan entre sí. Los segmentos solos son inofensivos.
+entity.concapedesegment.habitat=Se encuentran en áreas tropicales como la jungla.
+entity.concapedesegment.combat=Los segmentos son inofensivos, pero las cabezas atacan en la noche.
+# ========================================================================
+entity.crusk.name=Crusk
+entity.crusk.description=Grandes gusanos de arena con un exoesqueleto grueso que los protege. Pueden ser grandes mascotas protectoras gracias a su gran protección.
+entity.crusk.habitat=Se pueden encontrar excavando en las arenas del desierto.
+entity.crusk.combat=Se pueden esconder en terrenos blandos como arena, hierva y tierra y saldrán para causar mordidas poderosas.
+# ========================================================================
+entity.cryptkeeper.name=Momia de la cripta
+entity.cryptkeeper.description=Cuerpos momificados con una protección contra la luz del sol. Odian a los zombis momificados.
+entity.cryptkeeper.habitat=Vagan por el desierto en la noche.
+entity.cryptkeeper.combat=Atacan cuerpo a cuerpo e infligen una bacteria que causa afagia.
+# ========================================================================
+entity.darkling.name=Darkling
+entity.darkling.description=¡Pequeños insectos sombríos que chupan la sangre de sus víctimas aferrándose a ellas!
+entity.darkling.habitat=Se pueden encontrar en áreas subterráneas oscuras.
+entity.darkling.combat=Se camuflan en la oscuridad, son muy agresivos y se aferrarán a sus víctimas para chuparles la sangre y curarse, por lo que deben ser eliminados rápidamente.
+# ========================================================================
+entity.dawon.name=Dawon
+entity.dawon.description=Felinos cristalinos. A veces raras gemas se encuentran en sus cuerpos.
+entity.dawon.habitat=Se pueden encontrar en la jungla.
+entity.dawon.combat=Se abalanzarán a sus presas dándoles afagia y lentitud.
+# ========================================================================
+entity.djinn.name=Zephyr
+entity.djinn.description=Elementales de aire soberbios que protegen los cielos de aquellos que no merecen estar allí, según ellos.
+entity.djinn.habitat=Se manifiestan en lo alto del cielo.
+entity.djinn.combat=Desatan letales anillos de torbellinos que infligen levitación, lo que puede garantizar una caída mortal.
+# ========================================================================
+entity.dweller.name=Ningen
+entity.dweller.description=Anfibios capaces de salir fuera del agua durante un tiempo, pero son lentos en la tierra. Pueden sobrevivir en la lluvia.
+entity.dweller.habitat=Se encuentran en las aguas de los pantanos, bosques oscuros y junglas.
+entity.dweller.combat=Atacan con sus garras venenosas. En el agua sobresalen, pero en la tierra son lentos.
+# ========================================================================
+entity.eechetik.name=Eechetik
+entity.eechetik.description=Elementales de veneno peligrosos repletos de plagas. Jengu y argus se pueden fusionar para crear un elemental de veneno poderoso.
+entity.eechetik.habitat=Se manifiesta en áreas con veneno y también pueden manifestarse de los hongos en la oscuridad.
+entity.eechetik.combat=Tienen brazos con aguijones que aplican plaga, un veneno que se esparce a las criaturas cercanas. Los objetos curativos serán necesarios.
+# ========================================================================
+entity.ent.name=Ent
+entity.ent.description=Protectores del bosque que atacarán cualquier cosa que sea considerada una amenaza para el bosque.
+entity.ent.habitat=Se pueden encontrar merodeando los bosques o cuando rompes árboles.
+entity.ent.combat=Se regeneran con el agua y drenarán la salud de sus enemigos para curarse. Las hachas son muy efectivas.
+# ========================================================================
+entity.epion.name=Epión
+entity.epion.description=Murciélagos gigantes sanguinarios. ¡Si entran en contacto con la luz del sol caerán y explotarán! Se pueden domesticar para que no exploten y para ser monturas voladoras.
+entity.epion.habitat=Salen en la luna llena.
+entity.epion.combat=Son capaces de lanzar sanguijuelas de sangre para robar vida y aplicar ceguera. Caen y explotan si les toca la luz del día.
+# ========================================================================
+entity.erepede.name=Erepede
+entity.erepede.description=Insectos grandes hechos de rocas salvajes, aman cazar joustes y más criaturas desafortunadas.
+entity.erepede.habitat=Se encuentran en terrenos cálidos y secos como desiertos y mesas.
+entity.erepede.combat=Lanzan bolas de barro que aplican afagia, fatiga minera y peso.
+# ========================================================================
+entity.ettin.name=Ettin
+entity.ettin.description=Monstruosidades de dos cabezas y con palos con el que destruirán lo que se interponga en su camino.
+entity.ettin.habitat=Viven en pantanos.
+entity.ettin.combat=Son algo lentos, pero golpearán fuerte con sus palos dando hambre. Si te acercas entrarán en pánico y destruirán bloques blandos como la tierra y la arena.
+# ========================================================================
+entity.eyewig.name=Eyewig
+entity.eyewig.description=Pueden trepar, andar por el agua, lanzar un rayo venenoso y atacar en la oscuridad.
+entity.eyewig.habitat=Se encuentran en pantanos, bosques oscuros y junglas.
+entity.eyewig.combat=Pueden atacar cuerpo a cuerpo y lanzar un rayo venenoso aplicando plaga. En la oscuridad son agresivos.
+# ========================================================================
+entity.fear.name=Terror
+entity.fear.description=Entidad de prueba. ¡Si ves esto entonces es un error!
+entity.fear.habitat=No.
+entity.fear.combat=Sí.
+# ========================================================================
+entity.feradon.name=Feradón
+entity.feradon.description=Depredadores con un rugido feroz y con un gran parecido a los leones.
+entity.feradon.habitat=Aparecen en las llanuras y sabanas.
+entity.feradon.combat=Estas bestias rugen aplicando debilidad y muerden con fuerza.
+# ========================================================================
+entity.frostweaver.name=Hielaraña
+entity.frostweaver.description=Arañas escupidoras de escarcha que lanzan telarañas gélidas molestas.
+entity.frostweaver.habitat=Se encuentran en áreas frías como taigas y lugares nevados.
+entity.frostweaver.combat=Escupen telerañas gélidas que aplican lentitud o colocan telarañas gélidas.
+# ========================================================================
+entity.geist.name=Espíritu
+entity.geist.description=No muertos deformes que se esconden en cuerpos de otros no muertos. Cuando su huésped muere, ¡saldrá para hacer un ataque sorpresa!
+entity.geist.habitat=Se esconden en otras criaturas no muertas, pero también buscan huéspedes en los bosques oscuros y en el End.
+entity.geist.combat=Atacan cuerpo a cuerpo aplicando ceguera. Cuando mueren, liberan fuego sombrío, un fuego de la sombras que no quema a su alrededor, pero daña aplicando ceguera y decaimiento.
+# ========================================================================
+entity.amalgalich.name=Amalgalich
+entity.amalgalich.description=Una poderosa sanguijuela que ha engullido tantas almas que se transformó en un monstruo y sucumbió en la locura.
+entity.amalgalich.habitat=No aparece de forma natural y no hay información de dónde salió.
+entity.amalgalich.combat=Es un no muerto colosal que bombardeará con sustancias espectrales aplicando muchos efectos oscuros que pueden llevar a una muerte segura. Su presencia dará decaimiento, efecto que disminuye los efectos curativos. \\nFase 1: Amalgalich invocará parcas y usará periódicamente un poderoso ataque que succionará todo lo de su alrededor capaz de matar instantáneamente. Si consume parcas se curará. \\nFase 2: Amalgalich dejará de consumir e invocará epiones y espíritus. Los espíritus crecerán hasta explotar colocando grandes zonas con fuego sombrío, pero si se matan epiones cerca pueden removerlos. Es recomendable despejar la zona para la siguiente fase. \\nFase 3: Volverá a consumir, pero esta vez lanzará hechizos darklings que invocan darklings en un corto periodo de tiempo. Si quedaron súbditos de la fase anterior, Amalgalich podría consumirlos y volver a la fase 2.
+# ========================================================================
+entity.geken.name=Geken
+entity.geken.description=Reptiles venenosos con grandes habilidades para saltar.
+entity.geken.habitat=Les gustan los lugares tropicales como junglas y también adoran los pantanos.
+entity.geken.combat=Saltan constantemente y rasguñan a una gran velocidad provocando sangrados.
+# ========================================================================
+entity.geonach.name=Geonach
+entity.geonach.description=Elementales de tierra brutales que asustan a los mineros desprevenidos.
+entity.geonach.habitat=Se manifiestan donde la tierra es fuerte, generalmente al romper minerales.
+entity.geonach.combat=Atacan con su brazo afilado o con su puño muy duro aplicando peso, un efecto que impide escapar usando saltos o hundiéndote en el agua para así atrapar fácilmente a sus víctimas. Los picos son muy efectivos.
+# ========================================================================
+entity.ghoul.name=Gul
+entity.ghoul.description=No muertos venenosos en descomposición más pequeños que los zombis promedios.
+entity.ghoul.habitat=Se encuentran en pantanos y bosques oscuro.
+entity.ghoul.combat=Atacan y causan plaga. Al ser no muertos, se queman con la luz del sol.
+# ========================================================================
+entity.gorger.name=Umibas
+entity.gorger.description=Enormes gusanos de lava que nadan en la lava fundida. Pueden sobrevivir en la tierra y se esconden en terrenos blandos. Tenerlo como mascota garantiza resistencia ígnea.
+entity.gorger.combat=Liberan cargas de magma por todas partes, por lo que pueden ser increíblemente mortales si no toleras la lava. Se pueden esconder en los terrenos.
+# ========================================================================
+entity.grell.name=Grell
+entity.grell.description=Extrañas criaturas retorcidas de carne que lanzan un ácido mortal.
+entity.grell.habitat=Habitan los lugares carmesíes del Nether.
+entity.grell.combat=Lanzan globos ácidos de lejos y de cerca muerden. Sueltan feromonas que atraen grigoris.
+# ========================================================================
+entity.grigori.name=Grigori
+entity.grigori.description=Albóndigas agresivas con unos dientes afilados que flotan en los cielos del Nether. Se sabe que viajan en grupos y cazan usando el gusto y el olfato.
+entity.grigori.habitat=Se encuentran flotando en los cielos del Nether.
+entity.grigori.combat=Son criaturas sencillas que se guían por el instinto. Sus dientes desgarradores hacen sangrar a sus víctimas. Si hay un grell cerca, serán atraídos por sus feromonas.
+# ========================================================================
+entity.gorgomite.name=Gorgomite
+entity.gorgomite.description=Pequeños escarabajos agresivos, pero también son cazados por muchas criaturas.
+entity.gorgomite.habitat=Se encuentran en la noche de los desiertos.
+entity.gorgomite.combat=Son pequeños y parecen débiles, pero pueden llamar a otros de su especie para unirse a la pelea, por lo de que deben ser matados rápidamente.
+# ========================================================================
+entity.grue.name=Grue
+entity.grue.description=Cuando está oscuro, ¡puede venir a comerte un grue! Es difícil verlos en la completa oscuridad. Cinder y argus se pueden fusionar para crear un elemental de sombra poderoso.
+entity.grue.habitat=Se manifiestan en lugares oscuros y generalmente en las profundidades. Si estás solo en la oscuridad irán a buscarte.
+entity.grue.combat=Atacan con sus garras causando ceguera y se teletransportan a la espalda de su víctima. En la oscuridad se hacen invisibles.
+# ========================================================================
+entity.gnekk.name=Gnekk
+entity.gnekk.description=Diablillos delgados y pálidos que no pueden volar, pero usan sus alas para inyectar sustancias venenosas.
+entity.gnekk.habitat=Se encuentran en cavernas oscuras de las profundidades.
+entity.gnekk.combat=Son rápidos, pueden trepar, planear y atacar cuerpo a cuerpo inyectando plaga con sus alas.
+# ========================================================================
+entity.herma.name=Herma
+entity.herma.description=Cangrejos gigantes que generalmente están solos, a menos que algo se les acerque.
+entity.herma.habitat=En encuentran en playas y en aguas saladas.
+entity.herma.combat=Atacan con sus fuertes pinzas.
+# ========================================================================
+entity.ignibus.name=Ignibus
+entity.ignibus.description=¡Gigantes dragones de fuego con garras, alas y el aliento más caliente de todos!
+entity.ignibus.habitat=Se encuentran en grandes lagos de lava, pero son raros.
+entity.ignibus.combat=Tienen muchísima vida y su aliento contiene fuego supremo, el fuego más caliente de todos y que aplica combustión.
+# ========================================================================
+entity.ika.name=Ika
+entity.ika.description=¡Una combinación entre un caracol, tortuga y marisco! Se pueden criar, pero no fuera del agua ya que no sobreviven.
+entity.ika.habitat=Se encuentran en océanos de agua salada y playas.
+entity.ika.combat=Son animales pacíficos.
+# ========================================================================
+entity.ioray.name=Ioray
+entity.ioray.description=Hermosas criaturas que nadan con gracia, pero son muy peligrosas. Preciosas gemas pueden ser encontradas en la espalda.
+entity.ioray.habitat=Se encuentran en océanos de agua salada.
+entity.ioray.combat=Lanzarán chorros de agua que aplican penetración, fatiga minera y afagia. Causan muchísimo daño, pero fuera del agua pierden parte de su gracia.
+# ========================================================================
+entity.jabberwock.name=Jabberwock
+entity.jabberwock.description=Ciervos feroces que literalmente destrozan a sus víctimas.
+entity.jabberwock.habitat=Se encuentran acechando en las montañas de noche.
+entity.jabberwock.combat=Tienen unas garras con forma de gancho que infligen peso, efecto mortal en las montañas por aumentar el daño de caída, aparte de disminuir el salto.
+# ========================================================================
+entity.jengu.name=Jengu
+entity.jengu.description=Elementales de agua conocidos por ser los protectores del agua pura. Atacarán lo que ellos consideren impuro, o sea a ti.
+entity.jengu.habitat=Se manifiestan en grandes zonas con agua en la oscuridad.
+entity.jengu.combat=Lanzan pulsos de agua que dan fatiga minera o crean agua al impactar en bloques.
+# ========================================================================
+entity.joust.name=Jouste
+entity.joust.description=Feroces insectos grandes que pisotean las dunas arenosas. A pesar de su apariencia, los joustes pueden ser criados con cactus verde y extractos de plantas similares.
+entity.joust.habitat=Se encuentran en desiertos y mecetas.
+entity.joust.combat=Son neutrales y reaccionarán al ser atacados, pero si un jouste alfa está presente, todos se volverán agresivos.
+# ========================================================================
+entity.joustalpha.name=Jouste alfa
+entity.joustalpha.description=Joustes líderes y más grandes que los joustes normales. Atacarán a otros alfas y comandarán a los joustes para el ataque.
+entity.joustalpha.habitat=Se encuentran en desiertos y mecetas.
+entity.joustalpha.combat=Son agresivos, rápidos y harán que otros joustes sean hostiles cuando solos no lo son.
+# ========================================================================
+entity.khalk.name=Khalk
+entity.khalk.description=Grandes reptiles de magma con una increíble defensa y una ofensiva mortal. ¡Al morir sus cuerpos se rompen dejando mucha lava!
+entity.khalk.habitat=Se pueden encontrar en los lagos de lava grandes de las profundidades.
+entity.khalk.combat=Son lentos, pero su ataque cuerpo a cuerpo inflige combustión y cuando mueren dejan lava temporal peligrosa.
+# ========================================================================
+entity.kobold.name=Kobold
+entity.kobold.description=Pequeños roedores ladrones que roban los objetos e incluso las antorchas colocadas. Matarlos hará que suelten sus objetos.
+entity.kobold.habitat=Se encuentran en llanuras en la noche.
+entity.kobold.combat=Suelen ser muy cazados, pero no son del todo inofensivos, ya que si ven que tienes la mitad de tu salud se aprovecharán.
+# ========================================================================
+entity.krake.name=Krake
+entity.krake.description=Aberraciones anfibias muy raras. Saborean el aire con la boca y solo se guían por vibraciones ya que son sordos y ciegos.
+entity.krake.habitat=Se encuentran en las profundidades del bosque y en ríos.
+entity.krake.combat=Son neutrales y rápidos tanto en la tierra como en el agua. Correr cerca de ellos los hace sentir amenazados y atacarán, pero te pierden rápidamente.
+# ========================================================================
+entity.lacedon.name=Lacedón
+entity.lacedon.description=Criaturas acuáticas humanoides llamativas que pueden salir del agua, pero no durarán mucho tiempo.
+entity.lacedon.habitat=Se encuentran en océanos de agua salada.
+entity.lacedon.combat=Atacarán cuerpo a cuerpo e infligirán peso para arrastrarte a las profundidades.
+# ========================================================================
+entity.lobber.name=Cherufe
+entity.lobber.description=Gólems poderosos de lava capaces de llenar zonas con lava.
+entity.lobber.habitat=Se encuentran en la lava.
+entity.lobber.combat=Dejan un rastro de fuego y lanzan cargas de magma que aplican combustión o colocan lava si impactan en bloques.
+# ========================================================================
+entity.lurker.name=Ostimien
+entity.lurker.description=Insectos que se mezclan con su entorno. Atacarán y verán cómo sus toxinas hacen su trabajo. Pueden ser mascotas de batalla muy útiles.
+entity.lurker.habitat=Se encuentran en bosques y pantanos.
+entity.lurker.combat=Atacarán y huirán. Sus mordeduras causan plaga e inestabilidad, efectos mortales que dificultan la supervivencia. Pueden trepar y a veces se camuflan haciéndose invisibles.
+# ========================================================================
+entity.maka.name=Maka
+entity.maka.description=Grandes herbívoros pacíficos. Se pueden criar con verduras y pueden ser fundamentales gracias a su carne y su cuero.
+entity.maka.habitat=Se encuentran en llanuras y sabanas.
+entity.maka.combat=Son pacíficos incluso si un alfa está presente, pero el alfa defenderá la familia si es necesario.
+# ========================================================================
+entity.makaalpha.name=Maka alfa
+entity.makaalpha.description=Son makas más grandes y capaces de pelear. Protegerán a la manada cuando sea necesario, por lo que la crianza de makas se hace más difícil con ellos cerca.
+entity.makaalpha.habitat=Se encuentran en llanuras y sabanas.
+entity.makaalpha.combat=Son neutrales, pero cuando deben defender a la manada, morderán infligiendo debilidad.
+# ========================================================================
+entity.maug.name=Maug
+entity.maug.description=Grandes osos árticos con cualidades de lobos.
+entity.maug.habitat=Se encuentran en lugares fríos como montañas nevadas y taigas.
+entity.maug.combat=Sus rugidos causarán lentitud y usarán sus mandíbulas.
+# ========================================================================
+entity.morock.name=Morock
+entity.morock.description=¡Guivernos agresivos sin la capacidad de disparar fuego, pero con unas fuertes mordidas!
+entity.morock.habitat=Acechan los cielos de las llanuras, pero por suerte son raros de encontrar.
+entity.morock.combat=Son rápidos y muerden muy fuerte infligiendo hambre y peso. Recomendable usar el tamaño en su contra.
+# ========================================================================
+entity.nymph.name=Ninfa
+entity.nymph.description=Elementales de hada fantásticos llenos de vida y energía curativa. Aunque no son agresivos directamente, pueden causar algunos problemas si se les provoca. Jengu y aegis se pueden fusionar para crear un elemental de hada poderoso.
+entity.nymph.habitat=Se manifiestan en donde abunda la vida, como flores en la luz del día.
+entity.nymph.combat=Curarán todo a su alrededor. Si se les provoca, se defenderán lanzando esencias de hada que causarán sangrado, un efecto que hace daño si te mueves.
+# ========================================================================
+entity.pinky.name=Kathoga
+entity.pinky.description=Demonios glotones que aman devorar seres vivos. Solo se pueden criar con animales vivos, lo cual hace difícil su crianza. También pueden ser monturas decentes para el Nether y mascotas mortales.
+entity.pinky.habitat=Están en el Nether buscando algo para comer.
+entity.pinky.combat=Son increíblemente agresivos y rápidos, llegando a ser de las criaturas más letales.
+# ========================================================================
+entity.pixen.name=Pixen
+entity.pixen.description=Pequeños diablillos molestos que engañan a sus presas con una falsa sensación de seguridad para finalmente atacar cuando estén en grupo.
+entity.pixen.habitat=Se encuentran deambulando en los bosques durante el día.
+entity.pixen.combat=Al principio parecen amistosos y sentirás efectos positivos, pero cuando hayan 3 o más empezarán a bombardearte con llamaradas engañosas capaces de dar efectos negativos.
+# ========================================================================
+entity.quetzodracl.name=Quetzodracl
+entity.quetzodracl.description=Poderosos guivernos voladores que todavía comparten similitud con sus ancestros dragones, los pterosaurios.
+entity.quetzodracl.habitat=Se pueden encontrar rara vez volando los océanos.
+entity.quetzodracl.combat=Morderán y agarrarán a sus presas para intentar tirarlas al mar con el efecto peso.
+# ========================================================================
+entity.quillbeast.name=Brucha
+entity.quillbeast.description=Grandes roedores con púas afiladas en la espalda. Están en constante amenaza y si no tienen otra opción, lanzarán un montón de púas.
+entity.quillbeast.habitat=Se encuentran en llanuras, bosques y sabanas.
+entity.quillbeast.combat=No querrán hacer daño, pero si son provocados, lanzarán grandes cantidades de púas que dejan sangrados.
+# ========================================================================
+entity.rahovart.name=Rahovart
+entity.rahovart.description=El señor del inframundo, su solo nombre causa miedo incluso en los corazones más malvados.
+entity.rahovart.habitat=Se dice que Rahovart es un bégimo muy viejo y poderoso que se originó en el inframundo.
+entity.rahovart.combat=Es un poderoso demonio con un cañón que lanza bolas de fuego infernal. Fase 1: Rahovart invocará belfegores que con el tiempo explotarán dándole a Rahovart un orbe de fuego infernal. Con 5 orbes de fuego infernal, Rahovart desatará una gran ola de fuego infernal que causa gran daño y elimina todo efecto positivo en el jugador. Fase 2: Rahovart generará bégimos y seguirá generando belfegores, pero estos ya no explotarán, sino que lo harán los bégimos. La ola de fuego infernal ahora gira alrededor de Rahovart y dura más. Fase 3: Rahovart creará orbes por su cuenta y barreras de fuego infernal, que no se moverán y limitarán la arena. Matar a los súbditos puede eliminar estas barreras.
+# ========================================================================
+entity.raiko.name=Raiko
+entity.raiko.description=Grandes aves marinas conocidas por sumergirse en el océano y agarrar a sus presas.
+entity.raiko.habitat=Se encuentran volando sobre los océanos en la noche.
+entity.raiko.combat=Cuando es de noche, recoge a sus presas con sus patas para intentar tirarlas con el efecto de peso, lo que significa una caída o un ahogamiento posiblemente letal si no se controla.
+# ========================================================================
+entity.reaper.name=Parca
+entity.reaper.description=Espíritus retorcidos que se alimentan de la muerte. ¡La muerte los atrae y a veces confunden a las personas que están durmiendo como muertas!
+entity.reaper.habitat=A veces aparecen con la muerte de una criatura o cuando intentas dormir.
+entity.reaper.combat=Pueden atravesar la materia y atacan a distancia con sustancias espectrales, capaces de infligir ceguera, wither y miedo.
+# ========================================================================
+entity.reiver.name=Reiver
+entity.reiver.description=Elementales de escarcha muy fríos que buscan congelar todo a su paso. Jengu y zephyr se pueden fusionar para crear un elemental de escarcha poderoso.
+entity.reiver.habitat=Se manifiestan en fuego gélido y merodean los cielos nocturnos de los biomas fríos.
+entity.reiver.combat=Lanzarán piedras de escarcha que dan lentitud.
+# ========================================================================
+entity.remobra.name=Remobra
+entity.remobra.description=Pequeños dragones voladores que escupen sustancias venenosas.
+entity.remobra.habitat=Se encuentran en pantanos y bosques oscuros.
+entity.remobra.combat=Atacan escupiendo sustancias venenosas infligiendo plaga o colocando una nube de veneno si chocan con bloques.
+# ========================================================================
+entity.roa.name=Roa
+entity.roa.description=¡Tiburones feroces que dominan el mar! Los valientes o tontos intentan tenerlos como monturas acuáticas.
+entity.roa.habitat=Se encuentran en océanos de agua salada.
+entity.roa.combat=Crean remolinos mortales a su alrededor atrayendo a sus presas hacia sus mortales fauces. Actuar rápido y preciso es necesario.
+# ========================================================================
+entity.roc.name=Roc
+entity.roc.description=Buscan desde el cielo presas en la noche con una cola que actúa como una pinza. Son populares cuando se trata de buscar monturas.
+entity.roc.habitat=Se encuentran comúnmente en llanuras y sabanas en la noche.
+entity.roc.combat=En la noche empezarán a buscar presas para agarrarlas con su cola para finalmente tirarlas y ver como caen. Si ven un creeper, intentarán agarrarlo y usarlo en contra de sus víctimas.
+# ========================================================================
+entity.salamander.name=Salamandra
+entity.salamander.description=Anfibios mortales que se han adaptado a temperaturas increíbles. ¡Son fascinantes monturas e incluso te protegen del fuego!
+entity.salamander.habitat=Viven en lagos de lava.
+entity.salamander.combat=Son muy rápidos en la lava y lentos fuera de esta. Sus mordiscos aplican combustión. Pese a la creencia popular, no les hace daño el agua.
+# ========================================================================
+entity.serpix.name=Serpix
+entity.serpix.description=Gusanos de escarcha notorios que excavan en la tierra congelada.
+entity.serpix.habitat=Se encuentran en áreas frías como las llanuras nevadas y en cieno gélido.
+entity.serpix.combat=Atacan lanzando cargas de ventisca ralentizando al enemigo, sin embargo, la ventisca no es lo suficientemente fuerte para colocar fuego gélido. A veces se esconden en los terrenos.
+# ========================================================================
+entity.shade.name=Silueta
+entity.shade.description=Grandes aberraciones serpentinas decrépitas que surgieron de las mismas sombras. Se encuentran en los lugares más oscuros del subterráneo.
+entity.shade.habitat=Se encuentran en los lugares más oscuros del subterráneo.
+entity.shade.combat=Son fuertes y emiten un aullido horrible que envía a todos los que se oponen a huir del miedo.
+# ========================================================================
+entity.shambler.name=Tambaleante
+entity.shambler.description=Criaturas arbustivas muy crecidas.
+entity.shambler.habitat=Se encuentran en bosques densos y en junglas.
+entity.shambler.combat=Son algo lentos, se curan con el agua y aplican veneno. Las hachas son más efectivas.
+# ========================================================================
+entity.silex.name=Sílex
+entity.silex.description=Hermosos peces con incrustaciones de lapislázuli. Se sabe que comen lapislázuli de otros y de formaciones minerales naturales.
+entity.silex.habitat=Se encuentran en lagos y ríos de agua dulce.
+entity.silex.combat=Son peces pacíficos.
+# ========================================================================
+entity.skylus.name=Skylus
+entity.skylus.description=Criaturas similares a los calamares que viven en conchas muy duras.
+entity.skylus.habitat=Se encuentran en océanos de agua salada.
+entity.skylus.combat=Agarra a sus presas y les tira tinta cegándolos. Sus conchas son muy resistentes y deben ser rompidas primero.
+# ========================================================================
+entity.spectre.name=Espectro
+entity.spectre.description=Elementales de vacío misteriosos que buscan descomponer la realidad en la nada misma. Aegis y argus se pueden fusionar para crear un elemental de vacío poderoso.
+entity.spectre.habitat=Se manifiestan cerca del vacío profundo bajo la tierra y en los cielos del End.
+entity.spectre.combat=Intentarán atraer a sus presas para atacar a corta distancia causando decaimiento, un efecto que bloquea la regeneración.
+# ========================================================================
+entity.spriggan.name=Spriggan
+entity.spriggan.description=Elementales de planta místicos que protegen la naturaleza de aquellos que la están amenazando. Jengu y geonach se pueden fusionar para crear un elemental de planta poderoso.
+entity.spriggan.habitat=Se manifiestan de vez en cuando en bosques y defenderán la vida vegetal de los cosechadores irrespetuosos.
+entity.spriggan.combat=Disparan poderosos láseres venenosos que aplican veneno y drenan la vida de sus víctimas para así curarse ellos.
+# ========================================================================
+entity.strider.name=Stryder
+entity.strider.description=Criaturas anfibias gigantes comparadas con el camarón. Se les teme por sus enormes tentáculos que usan como garras para atrapar y consumir a sus víctimas.
+entity.strider.habitat=Se encuentran en grandes lagos y ríos.
+entity.strider.combat=Son rápidos en el agua y pueden estar en la tierra sin problema. Su habilidad es atrapar con sus tentáculos gigantes y consumir a su víctima poco a poco aplicando fatiga minera y penetración.
+# ========================================================================
+entity.sutiramu.name=Sutiramu
+entity.sutiramu.description=Escorpiones gigantes del desierto con un gran aguijón.
+entity.sutiramu.habitat=Se encuentran vagando en desiertos y mesas.
+entity.sutiramu.combat=Usan sus fuertes pinzas y su aguijón inyectando un veneno que causa hambre y afagia.
+# ========================================================================
+entity.sylph.name=Sílfide
+entity.sylph.description=Elementales de cielo sagrados que maldicen a los que pequen en la tierra santa. Zephyr y aegis se pueden fusionar para crear un elemental de cielo poderoso.
+entity.sylph.habitat=Se manifiestan en lugares importantes de adoración como pirámides y templos.
+entity.sylph.combat=Son fuertes y liberarán ondas de cielo a su alrededor colocando fuego sagrado que causa alergia solar, un efecto que te hace vulnerable a la luz del sol.
+# ========================================================================
+entity.tarantula.name=Lycosa
+entity.tarantula.description=Arañas verdes saltarinas que dejan un rastro de telaraña verde muy pegajosa a su paso.
+entity.tarantula.habitat=Se encuentran en junglas y pantanos.
+entity.tarantula.combat=Saltan con frecuencia y tienen una mordedura venenosa que inyecta plaga, pero lo realmente molesto son sus telarañas verdes que dificultan su matanza.
+# ========================================================================
+entity.thresher.name=Trillador
+entity.thresher.description=Reptiles acuáticos gigantes majestuosos con un enorme apetito y poderosas aletas capaz de crear grandes remolinos para atraer a sus presas.
+entity.thresher.habitat=Se encuentran en agua dulce y agua salada.
+entity.thresher.combat=Poseen una mordedura potente causando fatiga minera y crean grandes remolinos que atraen a las presas cercanas para lanzarlas por los aires. Su ataque y salud hace que sean peligrosos.
+# ========================================================================
+entity.treant.name=Ent gigante
+entity.treant.description=Grandes guardianes del bosque parecidos a los ents, solo que son más grandes y fuertes.
+entity.treant.habitat=Se encuentran en los bosques densos, pero son raros.
+entity.treant.combat=Infligen veneno, poseen mucha salud, se curan con el agua y su debilidad son las hachas.
+# ========================================================================
+entity.tremor.name=Tremor
+entity.tremor.description=Elementales de temblor explosivos y destructivos. Geonach y argus se pueden fusionar para crear un elemental de temblor poderoso.
+entity.tremor.habitat=Se manifiestan en los sonidos fuertes generados por explosiones.
+entity.tremor.combat=Deben ser eliminados rápidamente porque atacan creando pequeñas explosiones destructivas y que aplican hambre.
+# ========================================================================
+entity.triffid.name=Trífido
+entity.triffid.description=¡Grandes plantas carnívoras! Son lentas, pero increíblemente venenosas
+entity.triffid.habitat=Se encuentran acechando en los pantanos debido a su humedad.
+entity.triffid.combat=Se arrastran muy lentamente, pero aplican plaga durante varios segundos por lo que hay que tener cuidado. En el agua se regeneran a una gran velocidad. Las hachas son más efectivas.
+# ========================================================================
+entity.tpumpkyn.name=Calabatza
+entity.tpumpkyn.description=Es como una calabaza...
+entity.tpumpkyn.habitat=A calabatza le gusta estar cerca de otras calabatzas...
+entity.tpumpkyn.combat=Tu alma... es sabrosa para una calabatza...
+# ========================================================================
+entity.trite.name=Trite
+entity.trite.description=Pequeñas y rápidas arañas que parecen un cerebro con patas.
+entity.trite.habitat=Se encuentran en el Nether y se dice que vienen de lugares llamados purgatorios.
+entity.trite.combat=Son muy débiles, pero pueden ser difíciles de golpear por su velocidad y tamaño. Muerden con sus colmillos aplicando wither.
+# ========================================================================
+entity.troll.name=Trol
+entity.troll.description=En el sol su piel es dura como la piedra, en la oscuridad se vuelven verdes y se pueden mover. Se sabe que son destructivos.
+entity.troll.habitat=Se encuentran viviendo en las montañas.
+entity.troll.combat=Lanzan explosiones rocosas que hacen un daño increíble y que también aplican peso y hambre. En el día tienen más defensa, no se mueven, son vulnerables a las picotas e invulnerables al fuego. En la oscuridad no tienen defensa, pueden moverse y son vulnerables al fuego. Si es necesario, destruirán bloques blandos.
+# ========================================================================
+entity.uvaraptor.name=Uvaraptor
+entity.uvaraptor.description=Aves rapaces coloridas con habilidades de salto y planeo impresionantes. Se pueden domesticar para ser monturas con un gran salto y casi el poder de vuelo.
+entity.uvaraptor.habitat=Se encuentran en junglas.
+entity.uvaraptor.combat=Saltan de vez en cuando y atacan a sus presas con mordiscos.
+# ========================================================================
+entity.vapula.name=Vapula
+entity.vapula.description=Elementales de arcano poderosos que encarcan la esencia de la estructura en sí misma. Geonach y aegis se pueden fusionar para crear un elemental de arcano poderoso.
+entity.vapula.habitat=Se manifiestan en fuentes de compresión y estructura, generalmente al romper piedras preciosas como diamantes.
+entity.vapula.combat=Atacan cuerpo a cuerpo o disparan fragmentos de cristal muy afilados de su espalda, pero tienen que recargarlos. Todos sus ataques infligen afagia, un efecto que no permite comer y usar algunos objetos.
+# ========================================================================
+entity.ventoraptor.name=Ventoraptor
+entity.ventoraptor.description=Aves rapaces muy veloces. Se pueden domesticar para ser de las monturas más rápidas conocidas.
+entity.ventoraptor.habitat=Se encuentran cazando en las llanuras.
+entity.ventoraptor.combat=Cazarán con una velocidad increíble y morderán a sus presas.
+# ========================================================================
+entity.vespid.name=Avispa
+entity.vespid.description=Véspidos gigantes invasoros con una picadura venenosa. En grupos o con una reina pueden fastidiar peligrosamente. Se sabe que construyen colmenas si hay una reina presente.
+entity.vespid.habitat=Viven en áreas tropicales como la jungla.
+entity.vespid.combat=Son débiles pero rápidas. Sus picaduras causan veneno.
+# ========================================================================
+entity.vespidqueen.name=Avispa reina
+entity.vespidqueen.description=Reinas protegidas por avispas menores. Harán que las demás avispas construyan colmenas. Se sabe que inyectan huevos a los conbas convirtiéndolos en nidos vivientes llenos de huevos que esperan eclosionar.
+entity.vespidqueen.habitat=Viven en áreas tropicales como la jungla.
+entity.vespidqueen.combat=Son más resistentes y poseen una picadura más fuerte que causa plaga y penetración. Si ven a un conba, lo infectarán y pondrán sus huevos, esto provoca que cuando el conba muera le salgan avispas bebés. Si ven otra reina se pelearán entre sí. Se le puede ofrecer comida para insectos, pero no serán tu mascota.
+# ========================================================================
+entity.volcan.name=Volcán
+entity.volcan.description=Elementales de lava ardientes y que derretirán todo a su paso. Cinder y geonach se pueden fusionar para crear un elemental de lava poderoso.
+entity.volcan.habitat=Se manifiestan en volúmenes de lava en el subterráneo.
+entity.volcan.combat=Derriten la roca de su alrededor y la transforman en lava, por lo que deben eliminarse rápidamente. Tienen un aura de calor y atacan cuerpo a cuerpo aplicando combustión, un efecto que es lo mismo que quemarse, pero que no se apaga con el agua (solo no hace daño).
+# ========================================================================
+entity.vorach.name=Vorach
+entity.vorach.description=Cazadores demoníacos mortales que acechan a sus presas hasta que se distraigan. Sus colas evolucionaron para transformarse en una tercera pata que usan para escalar.
+entity.vorach.habitat=Acechan en los rincones oscuros del Nether.
+entity.vorach.combat=Tienden a quedarse quietos si sienten que su presa los está observando. Cuando se distraigan o estén muy cerca, cazarán velozmente con poderosos ataques cuerpo a cuerpo que causan sangrados.
+# ========================================================================
+entity.warg.name=Huargo
+entity.warg.description=¡Grandes bestias parecidas a los lobos con una mordedura feroz! Se sabe que cazan en manada.
+entity.warg.habitat=Se encuentran deambulando en los bosques.
+entity.warg.combat=Se abalanzarán a las presas mordiendo vorazmente paralizando y desangrando a sus víctimas.
+# ========================================================================
+entity.wendigo.name=Wendigo
+entity.wendigo.description=¡Grandes no muertos conocidos por dejar un rastro de fuego gélido a su paso!
+entity.wendigo.habitat=Se encuentran en lugares fríos como llanuras nevadas y en el cieno gélido.
+entity.wendigo.combat=Lanzan cargas de tundra que aplican lentitud o colocan cieno gélido si chocan con un bloque. Dejan un rastro de fuego gélido capaz de invocar elementales de escarcha si no se controla.
+# ========================================================================
+entity.wildkin.name=Lechúcico
+entity.wildkin.description=Poderosos bípedos que se parecen a la combinación de un búho y un oso. Corren decentemente para su tamaño.
+entity.wildkin.habitat=Se encuentran en montañas y lugares fríos como las llanuras nevadas.
+entity.wildkin.combat=Su velocidad es decente y atacan con sus brazos infligiendo peso.
+# ========================================================================
+entity.wisp.name=Wisp
+entity.wisp.description=Elementales de luz brillantes que iluminan lo que les rodea. A veces se les puede ver jugando con una bola de luz. Cinder y aegis se pueden fusionar para crear un elemental de luz poderoso.
+entity.wisp.habitat=Se manifiestan directamente en la luz del sol.
+entity.wisp.combat=Si se les provoca, lanzarán una bola de luz muy dañina que hará que las víctimas brillen con luminiscencia. Cuando son dos o más, jugarán con una bola de luz, es mejor no cruzarse en el camino. Emiten un aura de luz que quema a los no muertos y hace que cualquier cosa brille más, aparte de también dar visión nocturna.
+# ========================================================================
+entity.wraamon.name=Wraamon
+entity.wraamon.description=Roedores cargados con energía caótica que emiten a través de sus espinas en la espalda. Muy pocas criaturas se atreven a atacar a estas peligrosas ratas.
+entity.wraamon.habitat=Viven en las profundidades. Se dice que viajan en pequeños portales caóticos que aparecen en cualquier parte, el lugar a donde conducen estos portales son un misterio.
+entity.wraamon.combat=Pueden llegar a ser una gran amenaza por su tamaño y mordedura que causa inestabilidad.
+# ========================================================================
+entity.wraith.name=Wraith
+entity.wraith.description=Elementales de infierno malvados que son un símbolo del dolor y el sufrimiento. Explotan al morir. Zephyr y argus se pueden fusionar para crear un elemental de infierno poderoso.
+entity.wraith.habitat=Se manifiestan en áreas con maldad concentrada como el Nether.
+entity.wraith.combat=Volarán a gran velocidad para torturar a sus víctimas. Son débiles, pero al morir explotan y eso puede ser un peligro.
+# ========================================================================
+entity.xaphan.name=Xaphan
+entity.xaphan.description=Elementales de ácido corrosivos que encarnan el aspecto de descomponerse y disolverse. Cinder y jengu se pueden fusionar para crear un elemental de ácido poderoso.
+entity.xaphan.habitat=Se manifiestan en el ácido y cuando se mezcla el agua y la lava.
+entity.xaphan.combat=Gotean constántemente ácido salpicante y lanzarán varias cantidades de este. El ácido salpicante aplica penetración, un efecto que debilita las defensas aumentando el daño recibido.
+# ========================================================================
+entity.yale.name=Yale
+entity.yale.description=Bestias esponjosas parecidas a las ovejas, aunque debajo de ese abrigo esconden la verdad... Sus cuernos en realidad son sus patas delanteras ya que las delanteras son muy pequeñas, pero tienen forma de gancho y las usan para cortar la hierba. Se pueden esquilar y criar con verduras.
+entity.yale.habitat=Se encuentran en las montañas.
+entity.yale.combat=Son criaturas pasivas como las ovejas.
+# ========================================================================
+entity.bobeko.name=Bobeko
+entity.bobeko.description=Grandes mamíferos helados que aman comer la vegetación de los lugares fríos. Se pueden criar con vegetales, pero se debe tener cuidado con las nubes frías que dejan a su paso. ¡La leche de bobeko es un manjar!
+entity.bobeko.habitat=Se encuentran en áreas con mucho frío como llanuras nevadas y taigas.
+entity.bobeko.combat=Son pacíficos, pero el rastro de nubes frías que dejan aplican lentitud y hambre.
+# ========================================================================
+entity.zephyr.name=Raidra
+entity.zephyr.description=Elementales de rayo feroces con un campo eléctrico a su alrededor. Cinder y zephyr se pueden fusionar para crear un elemental de rayo poderoso.
+entity.zephyr.habitat=Se manifiestan en las tormentas eléctrica y rara vez en las lluvias regulares.
+entity.zephyr.combat=Atacarán cuerpo a cuerpo con unos filos y usarán un aura de electricidad que daña todo a su alrededor causando parálisis, un efecto que imposibilita saltar y dificulta moverse.
+# ========================================================================
+entity.zoataur.name=Zoataur
+entity.zoataur.description=Dragones increíblemente resistentes y defensivos. Aunque no puedan volar, usan sus alas densas para bloquear ataques enemigos.
+entity.zoataur.habitat=Se encuentran vagando rara vez en las llanuras y desiertos.
+entity.zoataur.combat=Son resistentes y golpearán con fuerza. Usarán sus alas para defenderse y negar el daño, cuando esto pase, no podrán atacar.
+# ========================================================================
+creaturetype.spawn=Generar
+creaturetype.beast.name=Bestia
+creaturetype.avian.name=Ave
+creaturetype.amphibian.name=Anfibio
+creaturetype.reptile.name=Reptil
+creaturetype.insect.name=Insecto
+creaturetype.arachnid.name=Arácnido
+creaturetype.plant.name=Planta
+creaturetype.aquatic.name=Acuático
+creaturetype.aberration.name=Aberración
+creaturetype.undead.name=No muerto
+creaturetype.anthronian.name=Antropomorfo
+creaturetype.imp.name=Diablillo
+creaturetype.demon.name=Demonio
+creaturetype.angel.name=Ángel
+creaturetype.elemental.name=Elemental
+creaturetype.dragon.name=Dragón
+creaturetype.worm.name=Gusano
+creaturetype.golem.name=Gólem
+# ========================================================================
+death.attack.ooze=%1$s se congeló hasta morir en cieno gélido
+death.attack.acid=%1$s se disolvió dolorosamente en ácido
+# ========================================================================
+# Effect names must also be included in the base en_US.lang for now.
+# Debuffs
+effect.poison.description=Causa daño con el tiempo, sin embargo, el efecto no puede matarte.
+#
+effect.levitation.description=Causa que flotes lentamente hacia arriba, cuando el efecto se acabe, te caerás.
+#
+effect.glowing.description=Causa que brilles y se te pueda detectar fácilmente.
+#
+effect.wither.description=Causa daño con el tiempo que puede llegar a matarte.
+#
+effect.weakness.description=Reduce el daño infligido.
+#
+effect.hunger.description=Incrementa la velocidad del hambre.
+#
+effect.blindness.description=Reduce la visión y evita que puedas correr.
+#
+effect.mining_fatigue=Fatiga minera
+effect.mining_fatigue.description=Reduce la velocidad de las herramientas y la velocidad de ataque.
+#
+effect.slowness=Lentitud
+effect.slowness.description=Reduce la velocidad de movimiento.
+#
+effect.burning=Fuego
+effect.burning.description=Causa daño con el tiempo que puede matarte. Se extingue con el agua.
+#
+effect.paralysis=Parálisis
+effect.paralysis.description=Reduce drásticamente la velocidad de movimiento y evita que puedas saltar.
+#
+effect.penetration=Penetración
+effect.penetration.description=Debilita las defensas incrementando el daño recibido.
+#
+effect.recklessness=Imprudencia
+effect.recklessness.description=Debilita las defensas, pero incrementa el daño infligido.
+#
+effect.rage=Ira
+effect.rage.description=Hace que pierdas la cabeza y ataques todo a tu alrededor.
+#
+effect.weight=Peso
+effect.weight.description=Aumenta la velocidad de caída, reduce el alcance del salto y te hundes en el agua.
+#
+effect.fear=Miedo
+effect.fear.description=Hace que pierdas la cabeza y te alejes de todo a tu alrededor.
+#
+effect.decay=Decaimiento
+effect.decay.description=Anula los medios de regeneración.
+#
+effect.insomnia=Insomnio
+effect.insomnia.description=Hace que no puedas dormir.
+#
+effect.instability=Inestabilidad
+effect.instability.description=Te empuja en cualquier dirección aleatoriamente.
+#
+effect.lifeleak=Curador
+effect.lifeleak.description=Causa que en vez de causar daño cures en su lugar.
+#
+effect.bleed=Sangrado
+effect.bleed.description=Hace daño si te mueves.
+#
+effect.plague=Plaga
+effect.plague.description=Añade veneno adicional y esparce el mismo efecto a los de tu alrededor envenenándolos también.
+#
+effect.aphagia=Afagia
+effect.aphagia.description=Causa que no puedas comer y usar algunos objetos.
+#
+effect.repulsion=Repulsión
+effect.repulsion.description=Causa que los atacantes sean empujados y evita que seas agarrado.
+#
+effect.smited=Alergia solar
+effect.smited.description=Causa que la luz del sol te queme.
+#
+effect.smouldering=Combustión
+effect.smouldering.description=Añade quemaduras por fuego. El agua puede prevenir las quemaduras, pero no el efecto.
+#
+#
+# Buffs
+effect.resistance.description=Reduce el daño recibido.
+#
+effect.saturation.description=Disminuye la velocidad para tener hambre.
+#
+effect.regeneration.description=Causa que te cures con el tiempo.
+#
+effect.absorption.description=Añade corazones adicionales no renovables.
+#
+effect.invisibility.description=Te hace invisible reduciendo la detección de los enemigos.
+#
+effect.water_breathing=Respiración acuática
+effect.water_breathing.description=Permite respirar bajo el agua.
+#
+effect.jump_boost=Supersalto
+effect.jump_boost.description=Incrementa la altura del salto, pero no previene daño de caída.
+#
+effect.speed=Velocidad
+effect.speed.description=Incrementa la velocidad de movimiento.
+#
+effect.strength=Fuerza
+effect.strength.description=Incrementa el daño infligido.
+#
+effect.haste=Apuro minero
+effect.haste.description=Incrementa la velocidad de las herramientas y la velocicad de ataque.
+#
+effect.fire_resistance=Resistencia ígnea
+effect.fire_resistance.description=Previene cualquier tipo de quemadura.
+#
+effect.night_vision=Visión nocturna
+effect.night_vision.description=Incrementa la visibilidad en lugares oscuros.
+#
+effect.leech=Vampirismo
+effect.leech.description=Roba vida cuando haces daño.
+#
+effect.swiftswimming=Natación rápida
+effect.swiftswimming.description=Incrementa la velocidad para nadar.
+#
+effect.fallresist=Resistencia a caídas
+effect.fallresist.description=Previene el daño de caída.
+#
+effect.rejuvenation=Revitalización
+effect.rejuvenation.description=Potencia los medios de curación.
+#
+effect.immunization=Inmunización
+effect.immunization.description=Remueve y garantiza inmunidad a veneno, hambre, debilidad, náusea y parálisis.
+#
+effect.cleansed=Purificación
+effect.cleansed.description=Remueve y garantiza inmunidad a wither, mala suerte, miedo e insomnio.
+#
+effect.heataura=Aura de calor
+effect.heataura.description=Prende fuego a los enemigos cercanos.
+#
+effect.staticaura=Aura paralizante
+effect.staticaura.description=Paraliza a los enemigos cercanos.
+#
+effect.freezeaura=Aura de frío
+effect.freezeaura.description=Ralentiza a los enemigos cercanos.
+#
+effect.envenom=Contaminación
+effect.envenom.description=Añade veneno a los ataques.
+# ========================================================================
+element.xeno.name=Xeno
+element.xeno.description=Un superelemento inestable que convierte la materia regular en magia xeno al contacto, pero es muy inestable y se descompone rápidamente en magia del caos.
+#
+element.coda.name=Coda
+element.coda.description=Un superelemento que puede reorganizar el orden de los eventos y acelerar y ralentizar el tiempo de manera eficiente.
+#
+element.bose.name=Bose
+element.bose.description=Un superelemento que es un conjunto de moléculas muy compactas que son tan densas que actúan como una partícula casi indestructible.
+#
+element.mote.name=Mote
+element.mote.description=Un superelemento de desintegración, convierte las cosas en polvo infinitamente fino.
+#
+element.murati.name=Murati
+element.murati.description=Un superelemento que es una forma de agua con una propiedad de agitación, actúa como un superfluido, por lo que se ondula indefinidamente y se agita alrededor de las cosas.
+#
+element.glasma.name=Glasma
+element.glasma.description=Un superelemento que es una sustancia extremadamente caliente forjada con dos cristales de fuego (forjados por los soles gemelos de la extensión sobrenatural), fluye hacia arriba y quema todo lo que toca.
+#
+element.fire.name=Fuego
+element.fire.description=Un elemento base que representa el plasma y la energía bruta. Se puede fusionar con otros elementos base para crear ácido, lava, rayo, luz y sombra.
+#
+element.water.name=Agua
+element.water.description=Un elemento base que representa los fluidos, especialmente el agua misma. Se puede fusionar con otros elementos base para crear ácido, planta, escarcha, hada y veneno.
+#
+element.earth.name=Tierra
+element.earth.description=Un elemento base que representa la forma sólida, desde la tierra hasta las rocas, los cristales e incluso el metal o el hueso. Se puede fusionar con otros elementos base para crear lava, planta, fase, arcano y temblor.
+#
+element.air.name=Aire
+element.air.description=Un elemento base que representa el gas, pero que a menudo se conoce solo por su capacidad para controlar el flujo del viento. Se puede fusionar con otros elementos base para crear rayo, escarcha, fase, infierno y cielo.
+#
+element.order.name=Orden
+element.order.description=Un elemento base que representa la secuencia y el equilibrio, si bien estos son conceptos muy hipotéticos, el orden tiene una presencia muy física en los universos mágicos con una forma básica que es la fuerza bruta. Se puede fusionar con otros elementos base para crear luz, hada, arcano, cielo y vacío.
+#
+element.chaos.name=Caos
+element.chaos.description=Un elemento base que representa la entropía, el crecimiento y la destrucción. Se puede fusionar con otros elementos base para crear sombra, veneno, temblor, infierno y vacío.
+#
+element.acid.name=Ácido
+element.acid.description=Un elemento compuesto que representa la corrosión y el consumo físico, pero que se puede expandir a una amplia gama de productos químicos y también a las sustancias base. El ácido se crea fusionando el fuego y el agua, ya que incorpora las propiedades energéticas del fuego y las propiedades fluidas basadas en sustancias del agua.
+#
+element.lava.name=Lava
+element.lava.description=Un elemento compuesto que representa el calor, mientras que el fuego tiene que ver con el plasma y la energía, la lava trata del almacenamiento de energía y los efectos del calor. La lava se crea fusionando el fuego y la tierra, ya que incorpora el aspecto energético del fuego y el aspecto de masa densa de la tierra.
+#
+element.lightning.name=Rayo
+element.lightning.description=Un elemento compuesto que representa la corriente eléctrica y la energía. El rayo se crea fusionando el fuego y el aire, ya que incorpora los aspectos de energía y plasma del fuego con los aspectos fluidos del aire.
+#
+element.light.name=Luz
+element.light.description=Un elemento compuesto que representa la radiación, convirtiéndola en una fuerza muy peligrosa, ya que puede variar desde el espectro de luz visible que da nombre al elemento hasta los rangos de radiación más letales que pueden causar daños graves. La luz se crea fusionando el fuego y el orden, ya que incorpora el aspecto energético del fuego y el refinamiento del orden.
+#
+element.shadow.name=Sombra
+element.shadow.description=Un elemento compuesto que representa la oscuridad como una fuerza que detiene la radiación o la generación de energía. La sombra se crea fusionando el fuego y el caos, ya que incorpora el aspecto energético del fuego que luego es invertido en una fuerza que va en contra de la creación de energía y la cancela gracias al caos.
+#
+element.arbour.name=Planta
+element.arbour.description=Un elemento compuesto que representa el crecimiento y la naturaleza, basándose estrechamente en las plantas que hacen un uso intensivo de este elemento. La planta se crea fusionando el agua y la tierra, ya que incorpora la forma fluida del agua con la presencia sólida de la tierra.
+#
+element.frost.name=Escarcha
+element.frost.description=Un elemento compuesto que representa el frío, que repele cualquier forma de calor. La escarcha se crea fusionando el agua y el aire, ya que incorpora el fluido natural del agua y el flujo de enfriamiento del aire.
+#
+element.fae.name=Hada
+element.fae.description=Un elemento compuesto que representa la vida y la adaptación. La hada se crea fusionando el agua y el orden, ya que incorpora el fluido natural del agua y la estructura del orden.
+#
+element.poison.name=Veneno
+element.poison.description=Un elemento compuesto que representa las sustancias químicas como venenos, así como narcóticos y también medicinas, pero también puede adoptar muchas otras formas, como el aceite. El veneno se crea fusionando el agua y el caos, ya que incorpora una forma fluida alterable del agua y el efecto manipulador del caos.
+#
+element.phase.name=Fase
+element.phase.description=Un elemento compuesto que representa el cambio de fase o la realidad espiritual, un espacio superpuesto con el mundo físico. La fase se crea fusionando la tierra y el aire, ya que incorpora la forma sólida de la tierra y lo no sólido del aire.
+#
+element.arcane.name=Arcano
+element.arcane.description=Un elemento compuesto que representa la gravitación, el magnetismo, la vinculación, la compresión y la estructura artificial. El arcano se crea fusionando la tierra y el orden, ya que incorpora la sólida presencia física de la tierra y la estructura y leyes del orden.
+#
+element.quake.name=Temblor
+element.quake.description=Un elemento compuesto que representa la vibración, el sonido, la combustión y la destrucción. El temblor se crea fusionando la tierra y el caos, ya que incorpora la forma sólida de la tierra que luego es destruida por el caos.
+#
+element.aether.name=Cielo
+element.aether.description=Un elemento compuesto que representa la pureza, la divinidad, la fe y la adoración. El cielo se crea fusionando el aire y el orden, ya que incorpora el aspecto fluido del aire y la estructura y leyes del orden.
+#
+element.nether.name=Infierno
+element.nether.description=Un elemento compuesto que representa la corrupción, el demonismo, el deseo y la rebelión. El infierno se crea fusionando el aire y el caos, ya que incorpora el aspecto fluido del aire que luego es convertido en corrupción gracias al caos.
+#
+element.void.name=Vacío
+element.void.description=Un elemento compuesto que representa la nada y la eliminación. El vacío se crea fusionando el orden y el caos, ya que incorpora la estructura y la consistencia del orden que es cancelada con la entropía y la aleatoriedad del caos.
+# ========================================================================
+item.equipment.description=
+item.equipmentpart.description=Puedes despedazar esta pieza para obtener cargas elementales útiles o usarla para armar equipos poderosos en una forja para equipo.
+#
+item.woodenrod.name=Vara de madera
+item.woodenhilt.name=Guarda de madera para espadas
+item.woodenpaxel.name=Filo de madera
+item.equipment.name=Equipo armado
+item.ironrod.name=Vara de hierro
+item.ironhilt.name=Guarda de hierro para espadas
+item.ironpaxel.name=Filo de hierro
+item.ironpikejoint.name=Cabeza de hierro para picas
+item.ironaxehead.name=Cabeza de hierro para hachas
+item.goldscepterhead.name=Cabeza de oro para cetros
+item.bansheeeye.name=Ojo de banshee
+item.sylphwing.name=Ala de sílfide
+item.grueclaw.name=Garra de grue
+item.geonachspear.name=Pica de geonach
+item.remobrawing.name=Ala de remobra
+item.astarothclaw.name=Garra de astarot
+item.sutiramustinger.name=Aguijón de sutiramu
+item.wendigoantler.name=Cuerno de wendigo
+item.clinkscythe.name=Guadaña de clink
+item.vespidstinger.name=Aguijón de avispa
+item.argustail.name=Cola de argus
+item.wargskull.name=Cabeza de huargo
+item.zephyrcloud.name=Nube de zephyr
+item.ventoraptorskull.name=Cráneo de ventoraptor
+item.uvaraptorskull.name=Cráneo de uvaraptor
+item.darklingskull.name=Cabeza de darkling
+item.entarm.name=Brazo de ent
+item.wraithskull.name=Cráneo de wraith
+item.sprigganroot.name=Raíz de spriggan
+item.sprigganheart.name=Corazón de spriggan
+item.xaphanspine.name=Columna vertebral de xaphan
+item.cinderblade.name=Filo de cinder
+item.raidrablade.name=Filo de raidra
+item.geonachfist.name=Puño de geonach
+item.spectretendril.name=Zarcillo de espectro
+item.vapulacrystal.name=Cristal de vapula
+item.reiverhorns.name=Cuernos de reiver
+item.eechetikarm.name=Brazo de eechetik
+item.gammasphere.name=Esfera gamma de wisp
+item.apollyonclaw.name=Garra de apolión
+item.behemophethand.name=Mano de bégimo
+item.naxiriseye.name=Ojo de naxiris
+item.belphegorarm.name=Brazo de belfegor
+item.malwratheye.name=Ojo de malwrath
+item.conbabutt.name=Culo de conba
+item.epionwing.name=Ala de epión
+item.eyewigeye.name=Ojo de eyewig
+item.frostweaverleg.name=Pata de hielaraña
+item.ioraystinger.name=Aguijón de ioray
+item.lacedonhead.name=Cabeza de lacedón
+item.bruchaquill.name=Púa de brucha
+item.reaperclaw.name=Garra de parca
+item.serpixmandible.name=Mandíbula de serpix
+item.wildkinarm.name=Brazo de lechúcico
+item.cherufecore.name=Núcleo de cherufe
+item.stryderheart.name=Corazón de stryder
+item.afritlung.name=Pulmón de afrit
+item.arixbrain.name=Cerebro de arix
+item.erepededrill.name=Taladro de erepede
+item.ettinclub.name=Garrote de ettin
+# ========================================================================
+item.raw_arisaur_meat.name=Carne de arisaurio cruda
+item.raw_arisaur_meat.description=Tiene un sabor similar al filete. Su sabor te dejará sin palabras.
+#
+item.cooked_joust_meat.name=Carne de jouste asada
+item.cooked_joust_meat.description=Tiene un sabor similar al pollo. ¡Energía para el día a día!
+#
+item.amber_cake.name=Pastel de ámbar
+item.amber_cake.description=¡Un trozo de pastel lleno de azúcar!
+#
+item.raw_silex_meat.name=Carne de sílex cruda
+item.raw_silex_meat.description=Tiene un sabor similar al pescado. Tiene algunos huesos afilados y penetrantes.
+#
+item.devil_lasagna.name=Lasaña del diablo
+item.devil_lasagna.description=¡Una deliciosa pasta carnosa llena de fuerza demoníaca!
+#
+item.raw_pinky_meat.name=Carne de kathoga cruda
+item.raw_pinky_meat.description=Tiene un sabor similar a la chuleta. Su energía demoníaca sigue presente y debe ser limpiada con el fuego.
+#
+item.raw_yale_meat.name=Carne de yale cruda
+item.raw_yale_meat.description=Tiene un sabor similar al cordero. Te hará sentir algo cansado.
+#
+item.cooked_cephignis_meat.name=Carne de cefignis asada
+item.cooked_cephignis_meat.description=Tiene un sabor similar al pescado. ¡Ya venía asada para que no seas asado!
+#
+item.battle_burrito.name=Burrito de batalla
+item.battle_burrito.description=¡Una fusión poderosa de carnes muy sabrosas! Fuerza, resistencia, absorción, revitalización y regeneración.
+#
+item.raw_concapede_meat.name=Carne de concapede cruda
+item.raw_concapede_meat.description=Tiene un sabor similar al conejo. Digerirla puede ser algo lento.
+#
+item.cooked_yale_meat.name=Carne de yale cocinada
+item.cooked_yale_meat.description=Tiene un sabor similar al cordero. ¡Apresúrate para devorarla!
+#
+item.peaks_kebab.name=Brocheta del monte
+item.peaks_kebab.description=¡Es la comida de las montañas favorita de los mineros!
+#
+item.lapis_fish_and_chips.name=Pescado de lapislázuli con papas fritas
+item.lapis_fish_and_chips.description=¡La gracia de un sílex te acompañará en el mar!
+#
+item.cooked_pinky_meat.name=Carne de kathoga asada
+item.cooked_pinky_meat.description=Tiene un sabor similar a la chuleta. ¡Sin males del Nether, solo fuerza demoníaca!
+#
+item.bulwark_burger.name=Hamburguesa voluminosa
+item.bulwark_burger.description=¡La gran defensa de maka es gruesa y engordante!
+#
+item.explorers_risotto.name=Risotto para exploradores
+item.explorers_risotto.description=¡Un plato poderoso para explorar el mundo! Velocidad, apuro minero, respiración, supersalto, gracia del delfín y resistencia a caídas.
+#
+item.paleo_salad.name=Ensalada paleolítica
+item.paleo_salad.description=¡La ensalada más saludable, capaz de revivir tu salud!
+#
+item.blood_chili.name=Chile de sangre
+item.blood_chili.description=¡Chile picante que empodera al consumidor y lo transforma en un sediento de sangre!
+#
+item.raw_ika_meat.name=Carne de ika cruda
+item.raw_ika_meat.description=Tiene un sabor similar al pescado. Puedes comerla, pero reposa antes de bañarte.
+#
+item.seashell_maki.name=Sushi de caracol marino
+item.seashell_maki.description=¡Sabor a mar y listo para llevar a la playa!
+#
+item.cooked_chupacabra_meat.name=Carne de chupacabra asada
+item.cooked_chupacabra_meat.description=Tiene un sabor similar al filete. ¡Los chupacabras son deliciosos si te gusta la sangre!
+#
+item.searing_taco.name=Taco ardiente
+item.searing_taco.description=¡La adaptación a la lava es posible!
+#
+item.moss_pie.name=Pastel de musgo
+item.moss_pie.description=¡Pastel de carne y musgo con muchas proteínas!
+#
+item.cooked_aspid_meat.name=Carne de áspid asada
+item.cooked_aspid_meat.description=Tiene un sabor similar al filete. ¡Se desmorona en la boca y te hace sentir bien!
+#
+item.cooked_bobeko_meat.name=Carne de bobeko asada
+item.cooked_bobeko_meat.description=Tiene un sabor similar a la chuleta. ¡La defensa contra el frío de los bobekos es increíble!
+#
+item.raw_chupacabra_meat.name=Carne de chupacabra cruda
+item.raw_chupacabra_meat.description=Tiene un sabor similar al filete. Un recuerdo de unas criaturas terroríficas.
+#
+item.raw_maka_meat.name=Carne de maka cruda
+item.raw_maka_meat.description=Tiene un sabor similar a la chuleta. Carne grande, pero cruda es floja.
+#
+item.raw_aspid_meat.name=Carne de áspid cruda
+item.raw_aspid_meat.description=Tiene un sabor similar al filete. Viene de reptiles venenosos.
+#
+item.cooked_silex_meat.name=Carne de sílex asada
+item.cooked_silex_meat.description=Tiene un sabor similar al pescado. ¡Refrescante como el agua!
+#
+item.raw_bobeko_meat.name=Carne de bobeko cruda
+item.raw_bobeko_meat.description=Tiene un sabor similar a la chuleta. Todavía sigue fría.
+#
+item.cooked_concapede_meat.name=Carne de concapede asada
+item.cooked_concapede_meat.description=Tiene un sabor similar al pollo. ¡Se siente lo ligera que es!
+#
+item.cooked_arisaur_meat.name=Carne de arisaurio asada
+item.cooked_arisaur_meat.description=Tiene un sabor similar al filete. ¡Una bendición de la naturaleza!
+#
+item.raw_joust_meat.name=Carne de jouste cruda
+item.raw_joust_meat.description=Tiene un sabor similar al pollo. Huele a pata, eso no puede ser bueno.
+#
+item.pale_soup.name=Sopa pálida
+item.pale_soup.description=¡Una sopa de leche para una mayor defensa contra el ambiente!
+#
+item.cooked_maka_meat.name=Carne de maka asada
+item.cooked_maka_meat.description=Tiene un sabor similar a la chuleta. ¡Ahora sí sentirás la protección de las makas!
+#
+item.tropical_curry.name=Curri tropical
+item.tropical_curry.description=¡Un sabor exótico para lugares difíciles de explorar!
+#
+item.cooked_ika_meat.name=Carne de ika asada
+item.cooked_ika_meat.description=Tiene un sabor similar al pescado. ¡Carne del mar con esencia marina!
+#
+item.raw_krake_meat.name=Carne de krake cruda
+item.raw_krake_meat.description=Tiene un sabor similar al conejo. Se sigue moviendo violentamente, puede desgarrarte.
+#
+item.cooked_krake_meat.name=Carne de krake asada
+item.cooked_krake_meat.description=Tiene un sabor similar al conejo. ¡Sus vibraciones ahora son relajantes!
+#
+item.caecilian_ramen.name=Ramen de gusanos
+item.caecilian_ramen.description=¡Los fideos parecen moverse y estar vivos!
+#
+# ========================================================================
+item.soulgazer.name=Mirador de almas
+item.soulgazer.description=Úsalo para tener más oportunidades de conocer a las criaturas y mejorar tu bestiario.
+#
+item.soul_contract.name=Contrato del alma
+item.soul_contract.description=Este contrato sirve para transferir mascotas a otros dueños. El dueño de una mascota primero debe usar este contrato con su mascota, luego entregarle el contrato a un nuevo dueño, el nuevo dueño debe usar el contrato sobre la criatura y se transferirá al nuevo dueño.
+item.lycanitesmobs.soul_contract.bound=Criatura:
+item.lycanitesmobs.soul_contract.owner=Dueño:
+item.lycanitesmobs.soul_contract.offline=El dueño no está presente.
+item.lycanitesmobs.soul_contract.released=La criatura unida a este contrato ha sido liberada, este contrato es nulo.
+#
+item.mobtoken.name=Ficha de criatura
+item.mobtoken.description=Objeto cosmético que se utiliza para mostrar modelos de criaturas como iconos de logros y más.
+#
+item.wraithsigil.name=Sello de wraith
+item.wraithsigil.description=Un wraith preservado que fluye con magia Nether. Al manejar esto, ¡puedes desatar la furia del elemental de infierno!
+#
+#
+# ========== Consumables ==========
+item.immunizer.name=Immunizador
+item.immunizer.description=Una poción especial que da inmunización contra el veneno, hambre, debilidad, náuseas y parálisis.
+#
+item.cleansingcrystal.name=Cristal purificador
+item.cleansingcrystal.description=Un cristal mágico imbuido con energía espiritual contra wither, mala suerte, insomnio y miedo.
+#
+item.geistliver.name=Hígado sombrío
+item.geistliver.description=Tiene un olor muy fuerte... Coloca fuego sombrío con esto.
+#
+item.frostyfur.name=Pelaje frío
+item.frostyfur.description=Coloca una nube fría tan fría como la nieve.
+#
+item.poisongland.name=Glándula venenosa
+item.poisongland.description=Coloca una nube de veneno.
+#
+item.bucketooze.name=Cubeta con cieno gélido
+item.bucketooze.description=Un balde con líquido superfrío y letal que aplica lentitud.
+#
+item.bucketrabbitooze.name=Cubeta con cieno gélido puro
+item.bucketrabbitooze.description=Un balde con cieno gélido renovable como el agua. No genera criaturas.
+#
+item.bucketmoglava.name=Cubeta con lava pura
+item.bucketmoglava.description=Un balde con lava que fluye más rápido y es renovable como el agua. No genera criaturas.
+#
+item.bucketacid.name=Cubeta con ácido
+item.bucketacid.description=Un balde con líquido tóxico y letal que aplica penetración.
+#
+item.bucketsharacid.name=Cubeta con ácido puro
+item.bucketsharacid.description=Un balde con ácido renovable como el agua. No genera criaturas y no destruye los objetos.
+#
+item.bucketpoison.name=Cubeta con veneno
+item.bucketpoison.description=Un balde con líquido dañino que aplica plaga.
+#
+item.bucketvesspoison.name=Cubeta con veneno puro
+item.bucketvesspoison.description=Un balde con veneno renovable como el agua. No genera criaturas.
+#
+#
+item.bucketveshoney.name=Cubeta con miel de avispa
+item.bucketveshoney.description=Un balde con líquido dulce y extremadamente pegajoso que se encuentra en las colmenas de las avispas.
+#
+# ========== Seasonal ==========
+item.halloweentreat.name=Canasta de Halloween
+item.halloweentreat.description=¡¿Dulce o travesura?!
+item.halloweentreat.good=¡Dulces! ¡Qué suerte!
+item.halloweentreat.bad=¡Ja, ja, ja, ja, ja! ¡Travesura!
+#
+item.wintergift.name=Regalo de Navidad
+item.wintergift.description=¡Feliz Navidad! ¡Ábrelo y mira lo que hay dentro!
+item.wintergift.good=¡Abres tu regalo y es una agradable sorpresa!
+item.wintergift.bad=¡Oh, no! ¡Es un regalo de dolor, miseria y pesadillas!
+#
+item.wintergiftlarge.name=Regalo de Navidad grande
+item.wintergiftlarge.description=¡Es hora de abrir tus grandes regalos! Ignora el chirrido que hace la caja, no es nada...
+item.wintergiftlarge.bad=¡Ja, ja, ja, ja, ja, ja, ja! ¡Jo, jo, jo, jo, jo! Aaah. ¡Felices fiestas!
+#
+#
+# ========== Keys ==========
+item.soulkey.name=Llave de alma
+item.soulkey.description=Úsala para activar un altar de invocación para llamar a una criatura rara o activar un evento de jefe.
+#
+item.soulkeydiamond.name=Llave de alma de diamante
+item.soulkeydiamond.description=¡Una llave de alma más poderosa capaz de invocar jefes más poderosos!
+#
+item.soulkeyemerald.name=Llave de alma de esmeralda
+item.soulkeyemerald.description=¡Una llave de alma más poderosa capaz de invocar jefes más poderosos!
+#
+#
+# ========== Soulstones ==========
+item.soulstone.name=Piedra del alma
+item.soulstone.description=Úsala en tu mascota para unirla a tu alma. Una mascota unida a tu alma te permite invocarla y ocultarla cuando quieras, aparte de que puede revivir después de la muerte.
+#
+item.soulstone_aberration.name=Piedra con alma de aberración
+item.soulstone_aberration.description=Un alma misteriosa de un aberrante vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_angel.name=Piedra con alma de ángel
+item.soulstone_angel.description=No hay criaturas ángeles implementadas todavía...
+#
+item.soulstone_aquatic.name=Piedra con alma de acuático
+item.soulstone_aquatic.description=Un alma elegante de un acuático vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_avian.name=Piedra con alma de ave
+item.soulstone_avian.description=Un alma veloz de un ave vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_beast.name=Piedra con alma de bestia
+item.soulstone_beast.description=Un alma cruel de una bestia vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_anthronian.name=Piedra con alma de antropomorfo
+item.soulstone_anthronian.description=Un alma poderosa de un antropomorfo vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_demon.name=Piedra con alma de demonio
+item.soulstone_demon.description=Un alma malvada de un demonio vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_dragon.name=Piedra con alma de dragón
+item.soulstone_dragon.description=Un alma orgullosa de un dragón vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_elemental.name=Piedra con alma de elemental
+item.soulstone_elemental.description=Un alma mágica de un elemental vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_imp.name=Piedra con alma de diablillo
+item.soulstone_imp.description=Un alma traviesa de un diablillo vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_plant.name=Piedra con alma de planta
+item.soulstone_plant.description=Un alma floreciente de una planta vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_undead.name=Piedra con alma de no muerto
+item.soulstone_undead.description=Un alma incansable de un no muerto vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_worm.name=Piedra con alma de gusano
+item.soulstone_worm.description=Un alma implacable de un gusano vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_amphibian.name=Piedra con alma de anfibio
+item.soulstone_amphibian.description=Un alma extraña de un acuático vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_arachnid.name=Piedra con alma de arácnido
+item.soulstone_arachnid.description=Un alma retorcida de un arácnido vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_insect.name=Piedra con alma de insecto
+item.soulstone_insect.description=Un alma horripilante de un insecto vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_reptile.name=Piedra con alma de reptil
+item.soulstone_reptile.description=Un alma majestuosa de un reptil vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_golem.name=Piedra con alma de gólem
+item.soulstone_golem.description=Un alma mecánica de un gólem vive en el interior de esta piedra. ¡Libérala para que sea tu mascota!
+#
+item.soulstone_slime.name=Piedra con alma de slime
+item.soulstone_slime.description=No hay criaturas slimes implementadas todavía!...
+#
+# ========================================================================
+# ========== Summoning Staves ==========
+item.summoningstaff.name=Vara de invocación
+item.summoningstaff.description=Invoca súbditos para que cumplan tus órdenes durante 1 minuto. La vara creará un portal que irá drenando tu maná de invocación dependiendo del coste del súbdito (el maná está arriba de la barra de hambre).
+#
+item.stablesummoningstaff.name=Vara de invocación estable
+item.stablesummoningstaff.description=Consume mucho más maná de invocación para invocar súbditos durante 3 minutos.
+#
+item.bloodsummoningstaff.name=Vara de invocación sangrienta
+item.bloodsummoningstaff.description=Consume la mitad del maná de invocación y algunos corazones para invocar súbditos durante 1 minuto.
+#
+item.savagesummoningstaff.name=Vara de invocación salvaje
+item.savagesummoningstaff.description=Invoca el doble de súbditos con la mitad de salud cada uno durante 1 minuto.
+#
+item.sturdysummoningstaff.name=Vara de invocación robusta
+item.sturdysummoningstaff.description=Consume más maná de invocación para invocar súbditos durante 2 minutos.
+#
+# ========================================================================
+item.aberrationtreat.name=Comida para aberraciones
+item.aberrationtreat.description=Si le das esto a algunas aberraciones se podrían volver amistosas contigo.
+#
+item.angeltreat.name=Comida para ángeles
+item.angeltreat.description=No hay criaturas ángeles implementadas todavía...
+#
+item.aquatictreat.name=Comida para acuáticos
+item.aquatictreat.description=Si le das esto a algunos acuáticos se podrían volver amistosos contigo.
+#
+item.amphibiantreat.name=Comida para anfibios
+item.amphibiantreat.description=Si le das esto a algunos anfibios se podrían volver amistosos contigo.
+#
+item.aviantreat.name=Comida para aves
+item.aviantreat.description=Si le das esto a algunas aves se podrían volver amistosas contigo.
+#
+item.beasttreat.name=Comida para bestias
+item.beasttreat.description=Si le das esto a algunas bestias se podrían volver amistosas contigo.
+#
+item.anthroniantreat.name=Comida para antropomorfos
+item.anthroniantreat.description=Si le das esto a algunos antropomorfos se podrían volver amistosos contigo.
+#
+item.demontreat.name=Comida para demonios
+item.demontreat.description=Si le das esto a algunos demonios podrían considerar no devorarte.
+#
+item.dragontreat.name=Comida para dragones
+item.dragontreat.description=Comida hecha con finas gemas, ¡a los dragones les encantan los tesoros!
+#
+item.elementaltreat.name=Comida para elementales
+item.elementaltreat.description=Solo para modo creativo. En realidad no puedes domesticar elementales con esto...
+#
+item.imptreat.name=Comida para diablillos
+item.imptreat.description=Aunque los diablillos sean unos rebeldes, algunos no se pueden resistir a esto.
+#
+item.planttreat.name=Comida para plantas
+item.planttreat.description=Si le das esto a algunas plantas se podrían volver amistosas contigo.
+#
+item.undeadtreat.name=Comida para no muertos
+item.undeadtreat.description=Si le das esto a algunos no muertos se podrían volver amistosos contigo.
+#
+item.wormtreat.name=Comida para gusanos
+item.wormtreat.description=Si le das esto a algunos gusanos se podrían volver amistosos contigo.
+#
+item.arachnidtreat.name=Comida para arácnidos
+item.arachnidtreat.description=Si le das esto a algunos arácnidos se podrían volver amistosos contigo.
+#
+item.insecttreat.name=Comida para insectos
+item.insecttreat.description=Si le das esto a algunos insectos se podrían volver amistosos contigo.
+#
+item.reptiletreat.name=Comida para reptiles
+item.reptiletreat.description=Si le das esto a algunos reptiles se podrían volver amistosos contigo.
+#
+item.golemtreat.name=Comida para gólems
+item.golemtreat.description=Si le das esto a algunos gólems se podrían volver amistosos contigo.
+#
+item.slimetreat.name=Comida para slimes
+item.slimetreat.description=No hay criaturas slimes implementadas todavía...
+# ========================================================================
+item.saddle_aberration.name=Montura para aberraciones
+item.saddle_aberration.description=Una silla de montar adaptada para las criaturas más desconocidas.
+#
+item.saddle_angel.name=Montura para ángeles
+item.saddle_angel.description=No hay criaturas ángeles implementadas todavía.
+#
+item.saddle_aquatic.name=Montura para acuáticos
+item.saddle_aquatic.description=Una silla de montar adaptada para inmersiones profundas.
+#
+item.saddle_amphibian.name=Montura para anfibios
+item.saddle_amphibian.description=Una silla de montar adaptada para criaturas resbaladizas y exposiciones a diversos fluidos.
+#
+item.saddle_arachnid.name=Montura para arácnidos
+item.saddle_arachnid.description=Una silla de montar adaptada para criaturas de 8 o más patas.
+#	
+item.saddle_insect.name=Montura para insectos
+item.saddle_insect.description=Una silla de montar ligera con mecanismos de montaje modulares.
+#	
+item.saddle_avian.name=Montura para aves
+item.saddle_avian.description=Una silla de montar aerodinámica adaptada para vuelos y muy amigable con las plumas.
+#
+item.saddle_beast.name=Montura para bestias
+item.saddle_beast.description=Una silla de montar resistente con correas ajustadas pero cómodas.
+#
+item.saddle_reptile.name=Montura para reptiles
+item.saddle_reptile.description=Una silla de montar con acolchado térmico especializado.
+#	
+item.saddle_anthronian.name=Montura para antropomorfos
+item.saddle_anthronian.description=Una silla de montar ideal para bípedos, aunque parece más una mochila o un portabebés.
+#
+item.saddle_demon.name=Montura para demonios
+item.saddle_demon.description=Una silla de montar con encantamientos malvados para los seres más demoníacos.
+#
+item.saddle_dragon.name=Montura para dragones
+item.saddle_dragon.description=Una silla de montar cubierta con joyas encantadas digna para un poderoso dragón.
+#
+item.saddle_elemental.name=Montura para elementales
+item.saddle_elemental.description=Silla de montar solo para modo creativo. En realidad no puedes montar elementales con esto.
+#
+item.saddle_imp.name=Montura para diablillos
+item.saddle_imp.description=Una silla de montar extraña en forma de mochila con varias correas pequeñas.
+#
+item.saddle_plant.name=Montura para plantas
+item.saddle_plant.description=Una silla de montar fabricada con materiales respetuosos para las plantas.
+#
+item.saddle_undead.name=Montura para no muertos
+item.saddle_undead.description=Una silla de montar con encantamientos diseñados para reprimir y controlar espíritus.
+#
+item.saddle_worm.name=Montura para gusanos
+item.saddle_worm.description=Una sila de montar con accesorios anchos para las monturas más largas y retorcidas.
+#
+item.saddle_golem.name=Montura para gólems
+item.saddle_golem.description=Made from the finest machine parts, those golem creatures seem to like that.
+#
+item.saddle_slime.name=Montura para slimes
+item.saddle_slime.description=No hay criaturas slimes implementadas todavía...
+# ========================================================================
+# %event% will be replaced with the name of the event, don't translate this!
+event.started=¡El evento %event% ha comenzado!
+event.extended=¡El evento %event% ha sido extendido!
+event.finished=¡El evento %event% ha acabado y ya no genera criaturas!
+event.boss.started=¡%event% ha sido llamado!
+event.boss.extended=¡%event% está viniendo!
+event.boss.finished=¡%event% ha llegado!
+event.boss.phase=fase
+boss.block.protection.place=La presencia de un ser poderoso te impide colocar este bloque...
+boss.block.protection.break=La presencia de un ser poderoso te impide destruir este bloque...
+boss.damage.protection.range=Ese ser es demasiado poderoso para ser dañado desde esta distancia...
+#
+# ========== Event Names ==========
+mobevent.aberrant_assimilation.name=Asimilación Aberrante
+mobevent.amalgalich.name=Amalgalich
+mobevent.arachnophobia.name=Aracnofobia
+mobevent.asmodeus.name=Asmodeus
+mobevent.bamstorm.name=Bamstorm
+mobevent.blackplague.name=Peste Negra
+mobevent.bladeflurry.name=Ráfaga de Cuchillas
+mobevent.boulderdash.name=Pelea Rocosa
+mobevent.cinderfall.name=Descenso de los Cinders
+mobevent.dragonsroar.name=Rugidos de Dragones
+mobevent.eruption.name=Erupción
+mobevent.halloween.name=Feliz Halloween
+mobevent.hellsfury.name=Furia del Infierno
+mobevent.marchofthegorgomites.name=Marcha de los Gorgomites
+mobevent.poopparty.name=Fiesta de Popó
+mobevent.primalfury.name=Furia Primitiva
+mobevent.rahovart.name=Rahovart
+mobevent.raptorrampage.name=Cazería Aviaria
+mobevent.reptileruckus.name=Alboroto de Reptiles
+mobevent.roasting.name=Tu Cabeza Rostizándose en Fuego de Cinder
+mobevent.rootriot.name=Alboroto de Raíces
+mobevent.rudolph.name=Rodolfo el Reno Sangriento
+mobevent.saltytree.name=Árbol Salado
+mobevent.satanclaws.name=Garras de Satán
+mobevent.seastorm.name=Tormenta Marina
+mobevent.shadowgames.name=Juegos con Sombras
+mobevent.sharknado.name=Tiburnado
+mobevent.subzero.name=Bajo Cero
+mobevent.theswarm.name=El Enjambre
+mobevent.tsunami.name=Tsunami
+mobevent.windstorm.name=Tormenta de Viento
+mobevent.wingedvenom.name=Veneno Alado
+mobevent.wintersgrasp.name=Resfrío Invernal
+# ========================================================================
+entity.whirlwind=Torbellino
+entity.lightball=Bola de luz
+entity.mudshot=Bola de barro
+entity.crystalshard=Fragmento de cristal
+entity.magma=Magma
+entity.frostbolt=Piedra de escarcha
+entity.tundra=Tundra
+entity.spectralbolt=Sustancia espectral
+entity.venomshot=Sustancia venenosa
+entity.boulderblast=Explosión rocosa
+entity.icefireball=Bola de fuego helado
+entity.hellfireball=Bola de fuego infernal
+entity.quill=Púa
+entity.scorchfireball=Bola de fuego abrasador
+entity.throwingscythe=Cuchilla lanzable
+entity.tricksterflare=Llamarada engañosa
+entity.demonicblast=Explosión demoníaca
+entity.demonicspark=Chispa demoníaca
+entity.bloodleech=Sanguijuela de sangre
+entity.acidsplash=Ácido salpicante
+entity.acidglob=Globo de ácido
+entity.lobdarklings=Hechizo darkling
+entity.faebolt=Esencia de hada
+entity.frostweb=Telaraña gélida
+entity.chaosorb=Orbe de caos
+entity.poisonray=Rayo venenoso
+entity.ember=Llama
+entity.blizzard=Ventisca
+entity.doomfireball=Bola de fuego de la perdición
+entity.waterjet=Chorro de agua
+entity.poop=Popó
+entity.lifedrain=Drenaje de vida
+entity.devilstar=Estrella malvada
+entity.aquapulse=Pulso de agua
+entity.arcanelaserstorm=Tormenta láser arcana
+entity.aetherwave=Onda de cielo
+entity.summoningseed=Semilla invocadora
+entity.primeember=Llama suprema
+entity.smitefireball=Bola de fuego solar

@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "lycanitesmobs:equipment_station"
+  },
+  "ingredients": [
+    {
+      "item": "lycanitesmobs:equipmentforge_lesser"
+    },
+    {
+      "item": "minecraft:crafting_table"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

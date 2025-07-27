@@ -2,6 +2,7 @@ package rlshenanigans.proxy;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
+import com.lycanitesmobs.client.model.creature.ModelRahovart;
 import net.minecraft.client.model.*;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.Item;
@@ -17,8 +18,8 @@ import rlshenanigans.client.render.RenderParasiteEntity;
 import rlshenanigans.client.render.RenderRLSModel;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.creature.EntityDrJr;
+import rlshenanigans.entity.creature.EntityRahovartTamed;
 import rlshenanigans.handlers.ModRegistry;
-import rlshenanigans.handlers.TeleportParasiteHandler;
 import rlshenanigans.models.ModelExampleArmor;
 import rlshenanigans.util.ParasiteRegistry;
 
@@ -64,6 +65,12 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityDrJr.class, manager ->
                 new RenderRLSModel<>(manager, new ModelDrJr(), 0.5F,
                         new ResourceLocation("rlshenanigans", "textures/entity/creature/drjr.png")
+                )
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityRahovartTamed.class, manager ->
+                new RenderRLSModel<>(manager, new ModelRahovart(), 0.5F,
+                        new ResourceLocation("rlshenanigans", "textures/entity/creature/rahovarttamed.png")  //maybe sth custom later idk
                 )
         );
     }

@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "lycanitesmobs:scorchfireballcharge",
+    "count": 4
+  },
+  "ingredients": [
+	{
+      "item": "lycanitesmobs:afritlung"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

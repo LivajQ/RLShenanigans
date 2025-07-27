@@ -1,0 +1,7 @@
+{
+    "parent": "lycanitesmobs:block/primefire_floor",
+    "textures": {
+        "particle": "lycanitesmobs:blocks/primefire_layer_0",
+        "fire": "lycanitesmobs:blocks/primefire_layer_0"
+    }
+}

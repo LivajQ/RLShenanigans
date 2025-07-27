@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "lycanitesmobs:cooked_joust_meat"
+  },
+  "ingredients": [
+    {
+      "item": "lycanitesmobs:amber_cake"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

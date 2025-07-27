@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "lycanitesmobs:items/spawns/imp",
+		"layer1": "lycanitesmobs:items/spawns/imp_overlay"
+	}
+}

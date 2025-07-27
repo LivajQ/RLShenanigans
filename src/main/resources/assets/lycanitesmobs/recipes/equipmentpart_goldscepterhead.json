@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "lycanitesmobs:goldscepterhead"
+  },
+  "pattern": [
+    " I ",
+    "IHI",
+    " I "
+  ],
+  "key": {
+    "H": {
+      "item": "lycanitesmobs:woodenhilt"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "type": "forge:ore_shaped"
+}

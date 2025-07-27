@@ -1,0 +1,33 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "forge:fluid",
+		"transform": "forge:default-item"
+	},
+	"variants": {
+		"ooze": [
+			{ "custom": { "fluid": "ooze" } }
+		],
+		"rabbitooze": [
+			{ "custom": { "fluid": "rabbitooze" } }
+		],
+		"moglava": [
+			{ "custom": { "fluid": "moglava" } }
+		],
+		"acid": [
+			{ "custom": { "fluid": "acid" } }
+		],
+		"sharacid": [
+			{ "custom": { "fluid": "sharacid" } }
+		],
+		"poison": [
+			{ "custom": { "fluid": "poison" } }
+		],
+		"veshoney": [
+			{ "custom": { "fluid": "veshoney" } }
+		],
+		"vesspoison": [
+			{ "custom": { "fluid": "vesspoison" } }
+		]
+	}
+}

@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "lycanitesmobs:cooked_pinky_meat"
+  },
+  "ingredients": [
+    {
+      "item": "lycanitesmobs:devil_lasagna"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

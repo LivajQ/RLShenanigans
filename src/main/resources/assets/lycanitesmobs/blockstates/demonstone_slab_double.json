@@ -1,0 +1,7 @@
+{
+	"variants": {
+        "axis=y": { "model": "lycanitesmobs:demonstone_slab_double" },
+        "axis=z": { "model": "lycanitesmobs:demonstone_slab_double", "x": 90 },
+        "axis=x": { "model": "lycanitesmobs:demonstone_slab_double", "x": 90, "y": 90 }
+	}
+}

@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "lycanitesmobs:soul_contract"
+  },
+  "ingredients": [
+    {
+      "item": "lycanitesmobs:soul_contract"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

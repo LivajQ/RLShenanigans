@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "lycanitesmobs:soulcubedemonic"
+  },
+  "pattern": [
+    "BBB",
+    "BSB",
+    "BBB"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "lycanitesmobs:soulstone_demon"
+    },
+    "B": {
+      "item": "lycanitesmobs:demonstone"
+    }
+  }
+}

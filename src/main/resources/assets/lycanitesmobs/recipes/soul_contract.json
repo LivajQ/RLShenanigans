@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "lycanitesmobs:soul_contract"
+  },
+  "ingredients": [
+    {
+      "item": "lycanitesmobs:soulgazer"
+    },
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

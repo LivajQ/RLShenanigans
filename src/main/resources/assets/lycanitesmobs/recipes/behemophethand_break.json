@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "lycanitesmobs:hellfireballcharge",
+    "count": 4
+  },
+  "ingredients": [
+	{
+      "item": "lycanitesmobs:behemophethand"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

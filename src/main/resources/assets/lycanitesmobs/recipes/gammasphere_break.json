@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "lycanitesmobs:lightballcharge",
+    "count": 4
+  },
+  "ingredients": [
+	{
+      "item": "lycanitesmobs:gammasphere"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}
