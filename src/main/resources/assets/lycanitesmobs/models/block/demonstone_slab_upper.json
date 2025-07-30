@@ -1,8 +1,0 @@
-{
-	"parent": "block/upper_slab",
-	"textures": {
-		"bottom": "lycanitesmobs:blocks/demonstonepolished",
-        "top": "lycanitesmobs:blocks/demonstonepolished",
-        "side": "lycanitesmobs:blocks/demonstoneslab"
-	}
-}

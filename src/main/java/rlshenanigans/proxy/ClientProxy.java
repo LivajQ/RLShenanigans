@@ -2,6 +2,8 @@ package rlshenanigans.proxy;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
+import com.lycanitesmobs.client.model.creature.ModelAmalgalich;
+import com.lycanitesmobs.client.model.creature.ModelAsmodeus;
 import com.lycanitesmobs.client.model.creature.ModelRahovart;
 import net.minecraft.client.model.*;
 import net.minecraft.client.settings.KeyBinding;
@@ -17,6 +19,8 @@ import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.RenderParasiteEntity;
 import rlshenanigans.client.render.RenderRLSModel;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
+import rlshenanigans.entity.creature.EntityAmalgalichTamed;
+import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
 import rlshenanigans.handlers.ModRegistry;
@@ -70,7 +74,19 @@ public class ClientProxy extends CommonProxy {
         
         RenderingRegistry.registerEntityRenderingHandler(EntityRahovartTamed.class, manager ->
                 new RenderRLSModel<>(manager, new ModelRahovart(), 0.5F,
-                        new ResourceLocation("rlshenanigans", "textures/entity/creature/rahovarttamed.png")  //maybe sth custom later idk
+                        new ResourceLocation("lycanitesmobs", "textures/entity/rahovart.png")  //maybe sth custom later idk
+                )
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityAmalgalichTamed.class, manager ->
+                new RenderRLSModel<>(manager, new ModelAmalgalich(), 0.5F,
+                        new ResourceLocation("lycanitesmobs", "textures/entity/amalgalich.png")
+                )
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityAsmodeusTamed.class, manager ->
+                new RenderRLSModel<>(manager, new ModelAsmodeus(), 0.5F,
+                        new ResourceLocation("lycanitesmobs", "textures/entity/asmodeus.png")
                 )
         );
     }

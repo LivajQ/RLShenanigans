@@ -1,11 +1,11 @@
 {
-    "name": "rahovarttamed",
-    "creatureType": "demon",
+    "name": "asmodeustamed",
+    "creatureType": "aberration",
     "groups": [
         "predator"
     ],
-    "entityClass": "rlshenanigans.entity.creature.EntityRahovartTamed",
-    "modelClass": "com.lycanitesmobs.client.model.creature.ModelRahovart",
+    "entityClass": "rlshenanigans.entity.creature.EntityAsmodeusTamed",
+    "modelClass": "com.lycanitesmobs.client.model.creature.ModelAsmodeus",
     "loadDefault": true,
     "enabled": true,
     "spawning": {
@@ -15,12 +15,12 @@
         "dimensionIds": [
             -1
         ],
-        "dimensionListType": "blacklist",
+        "dimensionListType": "whitelist",
         "ignoreBiome": false,
         "biomeTags": [
             "nether"
         ],
-        "spawnWeight": 4,
+        "spawnWeight": 1,
         "dungeonWeight": 0,
         "spawnAreaLimit": 5,
         "spawnGroupMin": 1,
@@ -28,53 +28,53 @@
         "spawnsInLight": false,
         "spawnsInDark": true,
         "worldDayMin": -1,
-        "despawnNatural": true,
+        "despawnNatural": false,
         "despawnForced": false
     },
-    "width": 35.0,
-    "height": 250.0,
+    "width": 20.0,
+    "height": 210.0,
     "experience": 10,
     "health": 500,
     "defense": 2,
     "armor": 0,
-    "speed": 30,
-    "damage": 30,
+    "speed": 32,
+    "damage": 15,
     "attackSpeed": 1,
-    "rangedSpeed": 1,
+    "rangedSpeed": 8,
     "effectDuration": 5,
     "effectAmplifier": 0,
     "pierce": 2,
     "sight": 32,
-    "knockbackResistance": 0.5,
+    "knockbackResistance": 1,
     "bagSize": 20,
-    "tamingReputation": 500,
-    "eggBackColor": "#000000",
-    "eggForeColor": "#FF0000",
+    "eggBackColor": "#222222",
+    "eggForeColor": "#997700",
+    "boss": false,
     "subspecies": [
         {
             "index": 0,
             "variants": [
                 {
                     "index": 1,
-                    "name": "ashen",
+                    "name": "verdant",
                     "type": "uncommon"
                 },
                 {
                     "index": 2,
-                    "name": "dark",
+                    "name": "azure",
                     "type": "uncommon"
                 }
             ]
         }
     ],
-    "elements": [
-        "nether",
-        "quake"
-    ],
+    "element": "nether",
     "diets": [
         "carnivore",
         "piscivore",
-        "insectivore"
+        "insectivore",
+        "herbivore",
+        "frugivore",
+        "fungivore"
     ],
     "peaceful": false,
     "summonable": false,
@@ -82,7 +82,15 @@
     "mountable": true,
     "summonCost": 3,
     "dungeonLevel": 1,
-    "drops": [],
+    "bossNearbyRange": 120,
+    "drops": [
+        {
+            "item": "minecraft:redstone",
+            "minAmount": 20,
+            "maxAmount": 50,
+            "chance": 1
+        }
+    ],
     "sizeScale": 0.1,
     "hitboxScale": 0.1
 }

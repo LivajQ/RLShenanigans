@@ -1,6 +1,5 @@
 package rlshenanigans;
 
-import com.lycanitesmobs.core.info.ModInfo;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -20,7 +19,6 @@ public class RLShenanigans
     public static final String VERSION = "0.1";
     public static final String NAME = "RLShenanigans";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static ModInfo rlModInfo;
     
     @SidedProxy(clientSide = "rlshenanigans.proxy.ClientProxy", serverSide = "rlshenanigans.proxy.CommonProxy")
     public static CommonProxy PROXY;

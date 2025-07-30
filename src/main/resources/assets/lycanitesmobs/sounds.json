@@ -616,6 +616,30 @@
         "category": "hostile",
         "sounds": [{"name": "lycanitesmobs:entity/rahovart/phase", "stream": false}]
     },
+	"entity.rahovarttamed.say": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/rahovart/say", "stream": false}]
+    },
+    "entity.rahovarttamed.hurt": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/rahovart/hurt", "stream": false}]
+    },
+    "entity.rahovarttamed.death": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/rahovart/death", "stream": false}]
+    },
+    "entity.rahovarttamed.attack": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/rahovart/attack", "stream": false}]
+    },
+    "entity.rahovarttamed.step": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/rahovart/step", "stream": false}]
+    },
+    "entity.rahovarttamed.phase": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/rahovart/phase", "stream": false}]
+    },
     "entity.asmodeus.say": {
         "category": "hostile",
         "sounds": [{"name": "lycanitesmobs:entity/asmodeus/say", "stream": false}]
@@ -641,6 +665,34 @@
         "sounds": [{"name": "lycanitesmobs:entity/asmodeus/jump", "stream": false}]
     },
     "entity.asmodeus.phase": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/asmodeus/phase", "stream": false}]
+    },
+	"entity.asmodeustamed.say": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/asmodeus/say", "stream": false}]
+    },
+    "entity.asmodeustamed.hurt": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/asmodeus/hurt", "stream": false}]
+    },
+    "entity.asmodeustamed.death": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/asmodeus/death", "stream": false}]
+    },
+    "entity.asmodeustamed.attack": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/asmodeus/attack", "stream": false}]
+    },
+    "entity.asmodeustamed.step": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/asmodeus/step", "stream": false}]
+    },
+    "entity.asmodeustamed.jump": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/asmodeus/jump", "stream": false}]
+    },
+    "entity.asmodeustamed.phase": {
         "category": "hostile",
         "sounds": [{"name": "lycanitesmobs:entity/asmodeus/phase", "stream": false}]
     },
@@ -3437,6 +3489,30 @@
         "sounds": [{"name": "lycanitesmobs:entity/amalgalich/step", "stream": false}]
     },
     "entity.amalgalich.phase": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/amalgalich/phase", "stream": false}]
+    },
+	"entity.amalgalichtamed.say": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/amalgalich/say", "stream": false}]
+    },
+    "entity.amalgalichtamed.hurt": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/amalgalich/hurt", "stream": false}]
+    },
+    "entity.amalgalichtamed.death": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/amalgalich/death", "stream": false}]
+    },
+    "entity.amalgalichtamed.attack": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/amalgalich/attack", "stream": false}]
+    },
+    "entity.amalgalichtamed.step": {
+        "category": "hostile",
+        "sounds": [{"name": "lycanitesmobs:entity/amalgalich/step", "stream": false}]
+    },
+    "entity.amalgalichtamed.phase": {
         "category": "hostile",
         "sounds": [{"name": "lycanitesmobs:entity/amalgalich/phase", "stream": false}]
     },

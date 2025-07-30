@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lycanitesmobs:blocks/lushstonebrick",
-        "top": "lycanitesmobs:blocks/lushstonebrick",
-        "side": "lycanitesmobs:blocks/lushstonebrick"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "lycanitesmobs:blocks/equipmentforge_greater_top",
-        "front": "lycanitesmobs:blocks/equipmentforge_greater_front",
-        "side": "lycanitesmobs:blocks/equipmentforge_greater_side"
-    }
-}

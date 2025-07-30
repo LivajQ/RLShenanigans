@@ -1,8 +1,0 @@
-{
-	"parent": "block/half_slab",
-	"textures": {
-		"bottom": "lycanitesmobs:blocks/streamstonepolished",
-        "top": "lycanitesmobs:blocks/streamstonepolished",
-        "side": "lycanitesmobs:blocks/streamstoneslab"
-	}
-}

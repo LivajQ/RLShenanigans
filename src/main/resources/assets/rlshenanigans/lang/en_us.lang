@@ -12,13 +12,20 @@ tipped_arrow.effect.Stagger=Arrow of §8Stagger
 item.spartanweaponry:proj_tipped.Stagger=Arrow of §8Stagger
 effects.rlshenanigans.Stagger=§8Stagger
 description.effects.rlshenanigans.Stagger=Renders affected entity unable to move or react.
+
 item.amulet_sin_lust.name=§d§oLust Pendant
 item.amulet_sin_lust.tooltip.0=§fThis pendant resonates with the §d§ofreaky §r§fessence.
 item.amulet_sin_lust.tooltip.1=§9Grants sinful buff (+damage, +armor) when around multiple entities.
+
 item.spartanweaponry:weapon_zweihander.name=§c§lZweihander
 tooltip.rlshenanigans:reach=§aZweihander
 tooltip.rlshenanigans:reach.desc=Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.
+
 entity.drjr.name=Dr. Jr.
+entity.amalgalichtamed.name=Mini Amalgalich
+entity.rahovarttamed.name=Mini Rahovart
+entity.asmodeustamed.name=Mini Asmodeus
+
 key.categories.rls=RLShenanigans
 key.rls.ascend=Ascend
 key.rls.descend=Descend

@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lycanitesmobs:blocks/aberrantstone",
-        "top": "lycanitesmobs:blocks/aberrantstone",
-        "side": "lycanitesmobs:blocks/aberrantstone"
-    }
-}

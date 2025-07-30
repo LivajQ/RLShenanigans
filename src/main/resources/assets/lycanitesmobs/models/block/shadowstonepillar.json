@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "lycanitesmobs:blocks/shadowstonepillar_top",
-        "side": "lycanitesmobs:blocks/shadowstonepillar"
-    }
-}

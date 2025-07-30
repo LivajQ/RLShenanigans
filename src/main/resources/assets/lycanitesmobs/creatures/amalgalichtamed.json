@@ -1,26 +1,22 @@
 {
-    "name": "rahovarttamed",
-    "creatureType": "demon",
+    "name": "amalgalichtamed",
+    "creatureType": "undead",
     "groups": [
         "predator"
     ],
-    "entityClass": "rlshenanigans.entity.creature.EntityRahovartTamed",
-    "modelClass": "com.lycanitesmobs.client.model.creature.ModelRahovart",
+    "entityClass": "rlshenanigans.entity.creature.EntityAmalgalichTamed",
+    "modelClass": "rlshenanigans.client.model.creature.ModelAmalgalichTamed",
     "loadDefault": true,
     "enabled": true,
     "spawning": {
         "enabled": true,
         "spawners": [],
         "disableSubspecies": false,
-        "dimensionIds": [
-            -1
-        ],
+        "dimensionIds": [],
         "dimensionListType": "blacklist",
         "ignoreBiome": false,
-        "biomeTags": [
-            "nether"
-        ],
-        "spawnWeight": 4,
+        "biomeTags": [],
+        "spawnWeight": 1,
         "dungeonWeight": 0,
         "spawnAreaLimit": 5,
         "spawnGroupMin": 1,
@@ -28,40 +24,40 @@
         "spawnsInLight": false,
         "spawnsInDark": true,
         "worldDayMin": -1,
-        "despawnNatural": true,
+        "despawnNatural": false,
         "despawnForced": false
     },
-    "width": 35.0,
-    "height": 250.0,
+    "width": 18.0,
+    "height": 240.0,
     "experience": 10,
     "health": 500,
     "defense": 2,
     "armor": 0,
-    "speed": 30,
-    "damage": 30,
+    "speed": 64,
+    "damage": 20,
     "attackSpeed": 1,
     "rangedSpeed": 1,
     "effectDuration": 5,
     "effectAmplifier": 0,
     "pierce": 2,
     "sight": 32,
-    "knockbackResistance": 0.5,
+    "knockbackResistance": 1,
     "bagSize": 20,
-    "tamingReputation": 500,
-    "eggBackColor": "#000000",
-    "eggForeColor": "#FF0000",
+    "eggBackColor": "#340101",
+    "eggForeColor": "#960000",
+    "boss": false,
     "subspecies": [
         {
             "index": 0,
             "variants": [
                 {
                     "index": 1,
-                    "name": "ashen",
+                    "name": "russet",
                     "type": "uncommon"
                 },
                 {
                     "index": 2,
-                    "name": "dark",
+                    "name": "ashen",
                     "type": "uncommon"
                 }
             ]
@@ -69,20 +65,33 @@
     ],
     "elements": [
         "nether",
-        "quake"
+        "phase",
+        "shadow"
     ],
     "diets": [
         "carnivore",
         "piscivore",
-        "insectivore"
+        "insectivore",
+        "herbivore",
+        "frugivore",
+        "fungivore",
+        "detritivore"
     ],
     "peaceful": false,
     "summonable": false,
     "tameable": true,
     "mountable": true,
-    "summonCost": 3,
+    "summonCost": 4,
     "dungeonLevel": 1,
-    "drops": [],
+    "bossNearbyRange": 60,
+    "drops": [
+        {
+            "item": "minecraft:bone",
+            "minAmount": 20,
+            "maxAmount": 50,
+            "chance": 1
+        }
+    ],
     "sizeScale": 0.1,
     "hitboxScale": 0.1
 }
