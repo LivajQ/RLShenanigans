@@ -1,6 +1,6 @@
 {
     "name": "amalgalichtamed",
-    "creatureType": "undead",
+    "creatureType": "miniamalgalich",
     "groups": [
         "predator"
     ],

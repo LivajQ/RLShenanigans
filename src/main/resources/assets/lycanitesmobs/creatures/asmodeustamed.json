@@ -1,6 +1,6 @@
 {
     "name": "asmodeustamed",
-    "creatureType": "aberration",
+    "creatureType": "miniasmodeus",
     "groups": [
         "predator"
     ],

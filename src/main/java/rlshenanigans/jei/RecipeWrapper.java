@@ -10,12 +10,12 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class ExampleRecipeWrapper implements ICraftingRecipeWrapper {
+public class RecipeWrapper implements ICraftingRecipeWrapper {
 
     private final List<ItemStack> inputs;
     private final ItemStack output;
 
-    public ExampleRecipeWrapper() {
+    public RecipeWrapper() {
         ItemStack catalystStack = new ItemStack(Items.WATER_BUCKET);
         ItemStack reactantStack = new ItemStack(Blocks.DIRT);
         ItemStack outputStack = new ItemStack(Blocks.GRASS);

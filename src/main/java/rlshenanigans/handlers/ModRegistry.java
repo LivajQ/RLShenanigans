@@ -17,9 +17,10 @@ import rlshenanigans.RLShenanigans;
 import rlshenanigans.item.ItemAmuletSinLust;
 import rlshenanigans.item.ItemExampleArmor;
 import rlshenanigans.item.ItemWeaponZweihander;
+import rlshenanigans.potion.PotionDragonBad;
+import rlshenanigans.potion.PotionGolemBad;
 import rlshenanigans.potion.PotionPookie;
 import rlshenanigans.potion.PotionStagger;
-import rlshenanigans.recipe.RecipeExample;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ModRegistry {
@@ -31,11 +32,14 @@ public class ModRegistry {
         public static Item exampleLeggings = new ItemExampleArmor("example_leggings", EXAMPLE_ARMOR, 2, EntityEquipmentSlot.LEGS);
         public static Item exampleBoots = new ItemExampleArmor("example_boots", EXAMPLE_ARMOR, 1, EntityEquipmentSlot.FEET);
 
+        
         public static PotionType pookiePotion = new PotionType("Pookie", new PotionEffect(PotionPookie.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Pookie"));
         public static PotionType staggerPotion = new PotionType("Stagger", new PotionEffect(PotionStagger.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Stagger"));
+        public static PotionType dragonBadPotion = new PotionType("DragonBad", new PotionEffect(PotionDragonBad.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "DragonBad"));
+        public static PotionType golemBadPotion = new PotionType("GolemBad", new PotionEffect(PotionGolemBad.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "GolemBad"));
+        
         
         public static Item sinPendantLust = new ItemAmuletSinLust();
-        
         public static Item weaponZweihander = new ItemWeaponZweihander("weapon_zweihander");
         
         public static void init() {
@@ -55,19 +59,23 @@ public class ModRegistry {
 
         @SubscribeEvent
         public static void registerRecipeEvent(RegistryEvent.Register<IRecipe> event) {
-                event.getRegistry().register(new RecipeExample().setRegistryName(new ResourceLocation(RLShenanigans.MODID, "example")));
+                //event.getRegistry().register(new RecipeZweihander().setRegistryName(new ResourceLocation(RLShenanigans.MODID, "zweihander")));
         }
 
         @SubscribeEvent
         public static void registerPotionEvent(RegistryEvent.Register<Potion> event) {
                 event.getRegistry().register(PotionPookie.INSTANCE);
                 event.getRegistry().register(PotionStagger.INSTANCE);
+                event.getRegistry().register(PotionDragonBad.INSTANCE);
+                event.getRegistry().register(PotionGolemBad.INSTANCE);
         }
 
         @SubscribeEvent
         public static void registerPotionTypeEvent(RegistryEvent.Register<PotionType> event) {
                 event.getRegistry().register(pookiePotion);
                 event.getRegistry().register(staggerPotion);
+                event.getRegistry().register(dragonBadPotion);
+                event.getRegistry().register(golemBadPotion);
                 //PotionHelper.addMix(PotionTypes.THICK, Items.DIAMOND, ModRegistry.pookiePotion);
         }
 }

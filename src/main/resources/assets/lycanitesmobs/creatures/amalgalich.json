@@ -173,6 +173,20 @@
             "maxAmount": 3,
             "chance": 1,
             "bonusAmount": false
+        },
+		{
+            "item": "lycanitesmobs:soulstone_miniamalgalich",
+            "minAmount": 1,
+            "maxAmount": 1,
+            "chance": 1,
+            "bonusAmount": false
+        },
+		{
+            "item": "lycanitesmobs:saddle_miniamalgalich",
+            "minAmount": 1,
+            "maxAmount": 1,
+            "chance": 1,
+            "bonusAmount": false
         }
     ],
     "sizeScale": 1,

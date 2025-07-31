@@ -10,6 +10,6 @@ public class JeiPlugin implements IModPlugin {
 
     @Override
     public void register(IModRegistry registry) {
-        registry.addRecipes(ExampleRecipeMaker.getExampleRecipe(), VanillaRecipeCategoryUid.CRAFTING);
+        registry.addRecipes(RecipeMaker.getRecipe(), VanillaRecipeCategoryUid.CRAFTING);
     }
 }

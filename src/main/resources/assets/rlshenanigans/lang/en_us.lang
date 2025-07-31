@@ -5,6 +5,7 @@ tipped_arrow.effect.Pookie=Arrow of §d§oPookie
 item.spartanweaponry:proj_tipped.Pookie=Arrow of §d§oPookie
 effects.rlshenanigans.Pookie=§d§oPookie :3
 description.effects.rlshenanigans.Pookie=Makes nearby parasites §d§ofreaky.
+
 potion.effect.Stagger=Potion of §8Stagger
 splash_potion.effect.Stagger=Splash Potion of §8Stagger
 lingering_potion.effect.Stagger=Lingering Potion of §8Stagger
@@ -12,6 +13,23 @@ tipped_arrow.effect.Stagger=Arrow of §8Stagger
 item.spartanweaponry:proj_tipped.Stagger=Arrow of §8Stagger
 effects.rlshenanigans.Stagger=§8Stagger
 description.effects.rlshenanigans.Stagger=Renders affected entity unable to move or react.
+
+potion.effect.DragonBad=Did I just catch you wearing dragon dragon >:(
+splash_potion.effect.DragonBad=Did I just catc
+h you wearing dragon dragon >:(
+lingering_potion.effect.DragonBad=Did I just catch you wearing dragon armor >:(
+tipped_arrow.effect.DragonBad=Did I just catch you wearing dragon armor >:(
+item.spartanweaponry:proj_tipped.DragonBad=Did I just catch you wearing dragon armor >:(
+effects.rlshenanigans.DragonBad=Did I just catch you wearing dragon armor >:(
+description.effects.rlshenanigans.DragonBad=Did I just catch you wearing dragon armor >:(
+
+potion.effect.GolemBad=Did I just catch you wearing golem armor >:(
+splash_potion.effect.GolemBad=Did I just catch you wearing golem armor >:(
+lingering_potion.effect.GolemBad=Did I just catch you wearing golem armor >:(
+tipped_arrow.effect.GolemBad=Did I just catch you wearing golem armor >:(
+item.spartanweaponry:proj_tipped.GolemBad=Did I just catch you wearing golem armor >:(
+effects.rlshenanigans.GolemBad=Did I just catch you wearing golem armor >:(
+description.effects.rlshenanigans.GolemBad=Did I just catch you wearing golem armor >:(
 
 item.amulet_sin_lust.name=§d§oLust Pendant
 item.amulet_sin_lust.tooltip.0=§fThis pendant resonates with the §d§ofreaky §r§fessence.
@@ -23,8 +41,32 @@ tooltip.rlshenanigans:reach.desc=Combines heavy weight and reach with ergonomic 
 
 entity.drjr.name=Dr. Jr.
 entity.amalgalichtamed.name=Mini Amalgalich
+entity.amalgalichtamed.description=Miniature version of Amalgalich but no less deadly, especially when it does the succy succy.
 entity.rahovarttamed.name=Mini Rahovart
+entity.rahovarttamed.description=Miniature version of Rahovart. Loves sniping and spamming hellfire walls.
 entity.asmodeustamed.name=Mini Asmodeus
+entity.asmodeustamed.description=Miniature version of Asmodeus capable of teleporting and jumping to the sky. Might also power up if it feels like it.
+creaturetype.miniamalgalich.name=Miniboss
+creaturetype.minirahovart.name=Miniboss
+creaturetype.miniasmodeus.name=Miniboss
+item.saddle_miniamalgalich.name=Mini Amalgalich Saddle
+item.saddle_miniamalgalich.description=Put it on your Amalgalich to ride it and summon an army of darklings.
+item.saddle_minirahovart.name=Mini Rahovart Saddle
+item.saddle_minirahovart.description=Put it on your Rahovart to ride it and unleash deadly waves of hellfire.
+item.saddle_miniasmodeus.name=Mini Asmodeus Saddle
+item.saddle_miniasmodeus.description=Put it on your Asmodeus to ride it and abuse teleportation.
+item.miniamalgalichtreat.name=Mini Amalgalich Treat
+item.miniamalgalichtreat.description=Hello, I am not obtainable
+item.minirahovarttreat.name=Mini Rahovart Treat
+item.minirahovarttreat.description=Hello, I am not obtainable
+item.miniasmodeustreat.name=Mini Asmodeus Treat
+item.miniasmodeustreat.description=Hello, I am not obtainable
+item.soulstone_miniamalgalich.name=Mini Amalgalich Soulstone
+item.soulstone_miniamalgalich.description=Use it to summon your own miniature Amalgalich with pocket void and an army of darklings.
+item.soulstone_minirahovart.name=Mini Rahovart Soulstone
+item.soulstone_minirahovart.description=Use it to summon your own miniature Rahovart wielding the power of hellfire.
+item.soulstone_miniasmodeus.name=Mini Asmodeus Soulstone
+item.soulstone_miniasmodeus.description=Use it to summon your own miniature Asmodeus. Nothing like teleportation and OP buffs.
 
 key.categories.rls=RLShenanigans
 key.rls.ascend=Ascend

@@ -76,6 +76,8 @@ dependencies {
 	implementation fg.deobf("libs:SpartanWeaponry:${spartanweaponry_version}")
 	
 	implementation fg.deobf("libs:IceandFire:${iceandfire_version}")
+	
+	implementation fg.deobf("libs:VariedCommodities:${variedcommodities_version}")
 }
 
 mixin {

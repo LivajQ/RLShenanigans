@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  I",
+    "DI ",
+    "HD "
+  ],
+  "key": {
+    "I": {
+      "item": "variedcommodities:ingot_steel"
+    },
+    "H": {
+      "item": "spartanweaponry:material",
+      "data": 0
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "rlshenanigans:weapon_zweihander",
+    "count": 1
+  }
+}

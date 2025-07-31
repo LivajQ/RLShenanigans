@@ -169,6 +169,20 @@
             "minAmount": 1,
             "maxAmount": 1,
             "chance": 1
+        },
+		{
+            "item": "lycanitesmobs:soulstone_miniasmodeus",
+            "minAmount": 1,
+            "maxAmount": 1,
+            "chance": 1,
+            "bonusAmount": false
+        },
+		{
+            "item": "lycanitesmobs:saddle_miniasmodeus",
+            "minAmount": 1,
+            "maxAmount": 1,
+            "chance": 1,
+            "bonusAmount": false
         }
     ],
     "sizeScale": 1,
