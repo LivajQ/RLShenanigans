@@ -1,7 +1,6 @@
 package rlshenanigans.client.render;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
-import com.dhanantry.scapeandrunparasites.entity.monster.adapted.EntityShycoAdapted;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,6 +8,8 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 
 import net.minecraft.util.ResourceLocation;
+import rlshenanigans.handlers.ForgeConfigHandler;
+import rlshenanigans.mixin.vanilla.EntityMixin;
 
 public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
     private final String parasiteNameLower;
@@ -21,6 +22,7 @@ public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
     protected ResourceLocation getEntityTexture(EntityParasiteBase entity) {
         String name = parasiteNameLower;
         String folder = entity.hasCustomName() ? "thh" : "normal";
+        if(!ForgeConfigHandler.client.thhEnabled) folder = "normal";
         
         String suffix = "";
         switch (entity.getSkin()) {
@@ -41,8 +43,9 @@ public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
     
     @Override
     protected void preRenderCallback(EntityParasiteBase entity, float partialTickTime) {
-        if (entity instanceof EntityShycoAdapted) {
-            GlStateManager.scale(0.4F, 0.4F, 0.4F); // test shrink
-        }
+        if (!entity.hasCustomName()) return;
+        float sizeMultiplier = entity.getEntityData().getFloat("SizeMultiplier");
+        if(sizeMultiplier < 0.25F) sizeMultiplier = 1.0F;
+        GlStateManager.scale(sizeMultiplier, sizeMultiplier, sizeMultiplier);
     }
 }

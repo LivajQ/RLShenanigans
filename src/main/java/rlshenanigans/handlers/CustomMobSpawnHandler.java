@@ -24,6 +24,8 @@ public class CustomMobSpawnHandler {
        
         if (event.getSpawner() != null) return;
         
+        if(!ForgeConfigHandler.server.customMobsEnabled) return;
+        
         if ((event.getEntity() instanceof EntityZombie)) {
             if(rollChance(10))
             {

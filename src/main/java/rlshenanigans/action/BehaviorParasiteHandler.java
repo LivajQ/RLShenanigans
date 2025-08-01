@@ -2,10 +2,12 @@ package rlshenanigans.action;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -13,17 +15,19 @@ import rlshenanigans.entity.ai.ParasiteEntityAIFollowOwner;
 import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.util.ParasiteDropList;
+import rlshenanigans.util.SizeMultiplierHelper;
+import rlshenanigans.util.TamedParasiteRegistry;
 
 public class BehaviorParasiteHandler {
     
-    public static void execute(EntityParasiteBase parasite, ParasiteCommand command, EntityPlayer player) {
+    public static void execute(EntityParasiteBase parasite, ParasiteCommand command, EntityPlayer player, float resizeValue) {
         switch (command) {
             case FOLLOW:
                 parasite.tasks.addTask(6, new ParasiteEntityAIFollowOwner(parasite, 2.0D, 10.0F, 2.0F));
                 parasite.getEntityData().setBoolean("Waiting", false);
                 player.sendStatusMessage(new TextComponentString("Your §dPookie §fis following."), true);
                 break;
-            
+                
             case ROAM:
                 parasite.getNavigator().clearPath();
                 parasite.tasks.taskEntries.removeIf(entry ->
@@ -34,6 +38,28 @@ public class BehaviorParasiteHandler {
             
             case RIDE:
                 player.startRiding(parasite, true);
+                break;
+                
+            case RIDEREVERSE:
+                break;
+                
+            case RESIZE:
+                float baseWidth = parasite.getEntityData().getFloat("BaseWidth");
+                float baseHeight = parasite.getEntityData().getFloat("BaseHeight");
+                float sizeMultiplier = resizeValue;
+                if(sizeMultiplier < 0.25F || sizeMultiplier > 8.0F) sizeMultiplier = 1.0F;
+                
+                if (player instanceof EntityPlayerMP) {
+                    SizeMultiplierHelper.resizeEntity(parasite.getEntityWorld(), parasite.getEntityId(), (EntityPlayerMP) player,
+                            sizeMultiplier,baseWidth, baseHeight, true);
+                }
+                
+                MinecraftServer server = parasite.getServer();
+                server.addScheduledTask(() -> {
+                    TamedParasiteRegistry.untrack(parasite.getUniqueID());
+                    TamedParasiteRegistry.track(parasite, player);
+                });
+                
                 break;
             
             case SMOOCH:

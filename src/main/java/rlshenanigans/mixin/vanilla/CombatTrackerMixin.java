@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.util.ParasiteDeathMessages;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public abstract class CombatTrackerMixin {
     
     @Inject(method = "getDeathMessage", at = @At("HEAD"), cancellable = true)
     private void overrideDeathMessageForParasites(CallbackInfoReturnable<ITextComponent> cir) {
+        if(!ForgeConfigHandler.client.parasiteDeathMessagesEnabled) return;
+        
         List<CombatEntry> entries = getCombatEntries();
         if (entries.isEmpty()) return;
         

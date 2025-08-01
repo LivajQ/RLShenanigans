@@ -12,6 +12,9 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import rlshenanigans.handlers.RLSPacketHandler;
+import rlshenanigans.mixin.vanilla.EntityMixin;
+import rlshenanigans.util.SizeMultiplierHelper;
 import rlshenanigans.util.TamedParasiteInfo;
 import rlshenanigans.util.TamedParasiteRegistry;
 
@@ -86,6 +89,19 @@ public class ParasiteTeleportPacket implements IMessage {
                     newMob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(info.attackDamage);
                     newMob.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(info.armor);
                     newMob.setHealth((float) info.maxHealth);
+                    newMob.getEntityData().setFloat("BaseWidth", info.baseWidth);
+                    newMob.getEntityData().setFloat("BaseHeight", info.baseHeight);
+                    if(info.sizeMultiplier < 0.25F) newMob.getEntityData().setFloat("SizeMultiplier", 0.25F);
+                    else if(info.sizeMultiplier > 8.0F) newMob.getEntityData().setFloat("SizeMultiplier", 8.0F);
+                    else newMob.getEntityData().setFloat("SizeMultiplier", info.sizeMultiplier);
+                    float baseWidth = newMob.getEntityData().getFloat("BaseWidth");
+                    float baseHeight = newMob.getEntityData().getFloat("BaseHeight");
+                    float sizeMultiplier = newMob.getEntityData().getFloat("SizeMultiplier");
+                    
+                    if (player instanceof EntityPlayerMP) {
+                        SizeMultiplierHelper.resizeEntity(newMob.getEntityWorld(), newMob.getEntityId(), (EntityPlayerMP) player,
+                                sizeMultiplier,baseWidth, baseHeight, true);
+                    }
                     
                     TamedParasiteRegistry.track(newMob, player);
                     

@@ -9,10 +9,24 @@ import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.packet.ParasiteCommandPacket;
 
 @SideOnly(Side.CLIENT)
-public class ParasiteContextMenu extends GuiScreen
-{
+public class ParasiteContextMenu extends GuiScreen {
     
     private final int parasiteEntityId;
+    private static final int BUTTON_WIDTH = 120;
+    private static final int BUTTON_HEIGHT = 20;
+    private static final int H_GAP = 10;
+    private static final int V_GAP = 8;
+    
+    private static final String[] LABELS = new String[] {
+            "Follow",
+            "Roam",
+            "Ride",
+            "Ride (Reverse)",
+            "Resize",
+            "Smooch",
+            "Ask For Drops",
+            "Spontaneously Combust"
+    };
     
     public ParasiteContextMenu(int parasiteEntityId) {
         this.parasiteEntityId = parasiteEntityId;
@@ -20,20 +34,41 @@ public class ParasiteContextMenu extends GuiScreen
     
     @Override
     public void initGui() {
-        int centerX = this.width / 2;
-        int centerY = this.height / 2;
-        
         this.buttonList.clear();
-        this.buttonList.add(new GuiButton(0, centerX - 50, centerY - 100, 120, 20, "Follow"));
-        this.buttonList.add(new GuiButton(1, centerX - 50, centerY - 70, 120, 20, "Roam"));
-        this.buttonList.add(new GuiButton(2, centerX - 50, centerY - 40, 120, 20, "Ride"));
-        this.buttonList.add(new GuiButton(3, centerX - 50, centerY - 10, 120, 20, "Smooch"));
-        this.buttonList.add(new GuiButton(4, centerX - 50, centerY + 20, 120, 20, "Ask For Drops"));
-        this.buttonList.add(new GuiButton(5, centerX - 50, centerY + 50, 120, 20, "Spontaneously Combust"));
+        
+        int totalButtons = LABELS.length;
+        int perColumn = (totalButtons + 1) / 2;
+        
+        int neededHeight = perColumn * BUTTON_HEIGHT + (perColumn - 1) * V_GAP;
+        
+        int maxAllowedHeight = this.height - 40;
+        int effectiveVGap = V_GAP;
+        if (neededHeight > maxAllowedHeight) {
+            effectiveVGap = Math.max(2, (maxAllowedHeight - perColumn * BUTTON_HEIGHT) / Math.max(1, perColumn - 1));
+            neededHeight = perColumn * BUTTON_HEIGHT + (perColumn - 1) * effectiveVGap;
+        }
+        
+        int startY = (this.height - neededHeight) / 2;
+        int col0X = (this.width / 2) - BUTTON_WIDTH - (H_GAP / 2);
+        int col1X = (this.width / 2) + (H_GAP / 2);
+        
+        for (int i = 0; i < totalButtons; i++) {
+            int column = i / perColumn;
+            int row = i % perColumn;
+            int x = (column == 0) ? col0X : col1X;
+            int y = startY + row * (BUTTON_HEIGHT + effectiveVGap);
+            this.buttonList.add(new GuiButton(i, x, y, BUTTON_WIDTH, BUTTON_HEIGHT, LABELS[i]));
+        }
     }
     
     @Override
     protected void actionPerformed(GuiButton button) {
+        if (button.id < 0 || button.id >= ParasiteCommand.values().length) return;
+        if (LABELS[button.id].equals("Resize")) {
+            this.mc.displayGuiScreen(new ParasiteResizeMenu(this.parasiteEntityId, this));
+            return;
+        }
+        
         ParasiteCommand command = ParasiteCommand.values()[button.id];
         RLSPacketHandler.INSTANCE.sendToServer(new ParasiteCommandPacket(parasiteEntityId, command));
         this.mc.displayGuiScreen(null);

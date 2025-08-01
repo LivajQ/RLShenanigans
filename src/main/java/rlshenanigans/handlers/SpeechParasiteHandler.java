@@ -24,6 +24,8 @@ public class SpeechParasiteHandler {
         
         if (!entity.hasCustomName()) return;
         
+        if(!ForgeConfigHandler.client.parasiteSpeechEnabled) return;
+        
         if (entity.ticksExisted % 1200 != 0) return;
         
         if (rand.nextFloat() < 0.5f) {

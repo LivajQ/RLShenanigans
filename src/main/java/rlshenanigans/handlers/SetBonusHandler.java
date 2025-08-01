@@ -22,34 +22,51 @@ public class SetBonusHandler
     {
         if (event.phase != TickEvent.Phase.END || event.player.world.isRemote) return;
         
+        boolean goodBonus = ForgeConfigHandler.server.setBonusEnabled;
+        boolean badBonus = ForgeConfigHandler.server.setBonusEnabled;
+        
         EntityPlayer player = event.player;
         
         if (player.ticksExisted % 20 != 0) return;
         
-        ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-        ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-        ItemStack legs = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
-        ItemStack boots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
         
-        boolean wearingSentient = (head.getItem() == SRPItems.armor_helmetSentient || head.getItem() == SRPItems.armor_helmet) &&
-                (chest.getItem() == SRPItems.armor_chestSentient || chest.getItem() == SRPItems.armor_chest) &&
-                (legs.getItem() == SRPItems.armor_pantsSentient || legs.getItem() == SRPItems.armor_pants) &&
-                (boots.getItem() == SRPItems.armor_bootsSentient || boots.getItem() == SRPItems.armor_boots);
+        //########## GOOD BONUSES ##########
         
-        if (wearingSentient) {
-            player.addPotionEffect(new PotionEffect(PotionPookie.INSTANCE, 40, 0, true, true));
+        if(ForgeConfigHandler.server.setBonusEnabled)
+        {
+            ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+            ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+            ItemStack legs = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
+            ItemStack boots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
+            
+            boolean wearingSentient = (head.getItem() == SRPItems.armor_helmetSentient || head.getItem() == SRPItems.armor_helmet) &&
+                    (chest.getItem() == SRPItems.armor_chestSentient || chest.getItem() == SRPItems.armor_chest) &&
+                    (legs.getItem() == SRPItems.armor_pantsSentient || legs.getItem() == SRPItems.armor_pants) &&
+                    (boots.getItem() == SRPItems.armor_bootsSentient || boots.getItem() == SRPItems.armor_boots);
+            
+            if (wearingSentient)
+            {
+                player.addPotionEffect(new PotionEffect(PotionPookie.INSTANCE, 40, 0, true, true));
+            }
         }
         
-        boolean wearingDragon = dragonDetector(player);
-        if (wearingDragon) {
-            player.addPotionEffect(new PotionEffect(PotionDragonBad.INSTANCE, 40, 0, true, true));
-        }
         
-        boolean wearingGolem = golemDetector(player);
-        if (wearingGolem) {
-            player.addPotionEffect(new PotionEffect(PotionGolemBad.INSTANCE, 40, 0, true, true));
-        }
+        //########## BAD BONUSES ##########
         
+        if(ForgeConfigHandler.server.badArmorDebuffsEnabled)
+        {
+            boolean wearingDragon = dragonDetector(player);
+            if (wearingDragon)
+            {
+                player.addPotionEffect(new PotionEffect(PotionDragonBad.INSTANCE, 40, 0, true, true));
+            }
+            
+            boolean wearingGolem = golemDetector(player);
+            if (wearingGolem)
+            {
+                player.addPotionEffect(new PotionEffect(PotionGolemBad.INSTANCE, 40, 0, true, true));
+            }
+        }
     }
     
     public static boolean dragonDetector(EntityPlayer player) {

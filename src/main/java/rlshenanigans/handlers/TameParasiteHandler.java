@@ -12,31 +12,36 @@ import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.ParasiteEntityAIFollowOwner;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtByTarget;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtTarget;
 import rlshenanigans.mixin.vanilla.EntityLivingBaseMixin;
+import rlshenanigans.mixin.vanilla.EntityMixin;
 import rlshenanigans.packet.OpenParasiteGuiPacket;
 import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.util.ParasiteNames;
+import rlshenanigans.util.SizeMultiplierHelper;
 import rlshenanigans.util.TamedParasiteRegistry;
 
 import java.util.List;
@@ -53,9 +58,11 @@ public class TameParasiteHandler
         Entity target = event.getTarget();
         World world = player.world;
         
+        if(!ForgeConfigHandler.server.parasiteTamingEnabled) return;
         if (!(target instanceof EntityParasiteBase)) return;  //not enough apparently? apples still consumed for normal mobs
         EntityParasiteBase parasite = (EntityParasiteBase) target;
         
+       /*
         if (stack.getItem() == Items.GOLDEN_APPLE && stack.getMetadata() == 0)
         {
             if (!player.capabilities.isCreativeMode)
@@ -69,10 +76,15 @@ public class TameParasiteHandler
             
             event.setCanceled(true);
         }
+        */
         
         if (world.isRemote || parasite.getEntityData().getBoolean("Tamed")) return;
         
-        if (stack.getItem() == Items.GOLDEN_APPLE && stack.getMetadata() == 1)
+        ResourceLocation rl = new ResourceLocation(ForgeConfigHandler.server.parasiteTamingItem);
+        Item item = ForgeRegistries.ITEMS.getValue(rl);
+        int meta = ForgeConfigHandler.server.parasiteTamingItemMetadata;
+        
+        if (stack.getItem() == item && stack.getMetadata() == meta)
         {
             if (!player.capabilities.isCreativeMode)
             {
@@ -93,12 +105,13 @@ public class TameParasiteHandler
                 parasite.getEntityData().setBoolean("parasitedespawn", false);
                 parasite.getEntityData().setBoolean("ParasiteDespawn", false);
                 parasite.getEntityData().setBoolean("AllowConverting", false);
+                parasite.getEntityData().setFloat("BaseWidth", ((EntityMixin) parasite).getWidth());
+                parasite.getEntityData().setFloat("BaseHeight", ((EntityMixin) parasite).getHeight());
+                parasite.getEntityData().setFloat("SizeMultiplier", 1.0F);
                 
                 TamedParasiteRegistry.track(parasite, player);
- 
-                if (!world.isRemote) {
-                    RLSPacketHandler.INSTANCE.sendTo(new OpenParasiteGuiPacket(parasite.getEntityId()), (EntityPlayerMP) player);
-                }
+                
+                RLSPacketHandler.INSTANCE.sendTo(new OpenParasiteGuiPacket(parasite.getEntityId()), (EntityPlayerMP) player);
                 
                 parasite.targetTasks.addTask(1, new ParasiteEntityAIOwnerHurtByTarget(parasite));
                 parasite.targetTasks.addTask(2, new ParasiteEntityAIOwnerHurtTarget(parasite));
@@ -109,8 +122,15 @@ public class TameParasiteHandler
                 world.playSound(null, parasite.getPosition(), SoundEvents.ENTITY_CAT_PURR, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                 
                 RLSPacketHandler.INSTANCE.sendToAll(
-                        new ParticlePulsePacket(parasite, EnumParticleTypes.HEART, 100, 30)
-                );
+                        new ParticlePulsePacket(parasite, EnumParticleTypes.HEART, 100, 30));
+                
+                float sizeMultiplier = parasite.getEntityData().getFloat("SizeMultiplier");
+                float baseWidth = parasite.getEntityData().getFloat("BaseWidth");
+                float baseHeight = parasite.getEntityData().getFloat("BaseHeight");
+                if (player instanceof EntityPlayerMP) {
+                    SizeMultiplierHelper.resizeEntity(parasite.getEntityWorld(), parasite.getEntityId(), (EntityPlayerMP) player,
+                            sizeMultiplier,baseWidth, baseHeight, true);
+                }
             }
             else
             {
@@ -152,6 +172,7 @@ public class TameParasiteHandler
         
         EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
         if (!parasite.getEntityData().getBoolean("Tamed")) return;
+        if (ForgeConfigHandler.server.parasiteDeathResummonEnabled) return;
         
         TamedParasiteRegistry.untrack(parasite.getUniqueID());
         
@@ -167,6 +188,7 @@ public class TameParasiteHandler
         if (!(event.getEntityLiving() instanceof EntityParasiteBase)) return;
         
         EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
+        
         if (parasite.getEntityData().getBoolean("Tamed") && !parasite.getEntityData().getBoolean("PersistenceRequired"))
             parasite.getEntityData().setBoolean("PersistenceRequired", true);
         
@@ -200,6 +222,16 @@ public class TameParasiteHandler
             String name = entry.action.getClass().getSimpleName().toLowerCase();
             return name.contains("flightatt");
         });
+        parasite.targetTasks.taskEntries.removeIf(entry ->
+        {
+            String name = entry.action.getClass().getSimpleName().toLowerCase();
+            return name.contains("parasitefollow");
+        });
+        parasite.targetTasks.taskEntries.removeIf(entry ->
+        {
+            String name = entry.action.getClass().getSimpleName().toLowerCase();
+            return name.contains("blocklight");
+        });
         
         EntityLivingBase attackTarget = parasite.getAttackTarget();
         EntityLivingBase revengeTarget = parasite.getRevengeTarget();
@@ -221,7 +253,7 @@ public class TameParasiteHandler
         
         if (!hasFollowTask(parasite) && !parasite.getEntityData().getBoolean("Waiting"))
         {
-            parasite.tasks.addTask(6, new ParasiteEntityAIFollowOwner(parasite, 2.0D, 10.0F, 2.0F));
+            parasite.tasks.addTask(3, new ParasiteEntityAIFollowOwner(parasite, 2.0D, 10.0F, 2.0F));
         }
         
         if (parasite.getRevengeTarget() != null && parasite.getRevengeTarget().equals(parasite)) {
@@ -242,7 +274,31 @@ public class TameParasiteHandler
     }
     
     @SubscribeEvent
-    public static void onEntityJoinWorld(EntityJoinWorldEvent event) { //curse you charge attacks
+    public static void onStartTracking(PlayerEvent.StartTracking event) {
+        Entity target = event.getTarget();
+        EntityPlayer player = event.getEntityPlayer();
+        
+        if (!(player instanceof EntityPlayerMP)) return;
+        
+        if (target instanceof EntityParasiteBase) {
+            EntityParasiteBase parasite = (EntityParasiteBase) target;
+            
+            if (parasite.getEntityData().getBoolean("Tamed")) {
+                float sizeMultiplier = parasite.getEntityData().getFloat("SizeMultiplier");
+                float baseWidth = parasite.getEntityData().getFloat("BaseWidth");
+                float baseHeight = parasite.getEntityData().getFloat("BaseHeight");
+                if (player instanceof EntityPlayerMP) {
+                    SizeMultiplierHelper.resizeEntity(parasite.getEntityWorld(), parasite.getEntityId(), (EntityPlayerMP) player,
+                            sizeMultiplier,baseWidth, baseHeight, false);
+                }
+            }
+        }
+    }
+    
+    @SubscribeEvent
+    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
+        if (event.getWorld().isRemote) return;
+        
         Entity entity = event.getEntity();
         
         if (entity instanceof EntityDamage) {

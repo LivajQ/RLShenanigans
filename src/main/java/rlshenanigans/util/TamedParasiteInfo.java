@@ -1,9 +1,14 @@
 package rlshenanigans.util;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 
 import java.util.UUID;
 
@@ -17,20 +22,25 @@ public class TamedParasiteInfo {
     public final double attackDamage;
     public final double armor;
     public final String strainId;
+    public final float baseWidth;
+    public final float baseHeight;
+    public final float sizeMultiplier;
     
     public TamedParasiteInfo(EntityParasiteBase mob, EntityPlayer owner) {
         NBTTagCompound tag = new NBTTagCompound();
         mob.writeToNBT(tag);
-        
         this.mobUUID = mob.getUniqueID();
         this.ownerId = owner.getUniqueID();
         this.name = mob.hasCustomName() ? mob.getCustomNameTag() : mob.getName();
         this.mobClass = mob.getClass().asSubclass(EntityParasiteBase.class);
         this.skin = mob.getSkin();
-        this.strainId = "ggggg";  //bitch was crashing everything. gotta find a new way to display it later
+        this.strainId = getBaseEntityName(mob);
         this.maxHealth = mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
         this.attackDamage = mob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
         this.armor = mob.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue();
+        this.baseWidth = mob.getEntityData().getFloat("BaseWidth");
+        this.baseHeight = mob.getEntityData().getFloat("BaseHeight");
+        this.sizeMultiplier = mob.getEntityData().getFloat("SizeMultiplier");
     }
     
     public NBTTagCompound toNBT() {
@@ -44,6 +54,9 @@ public class TamedParasiteInfo {
         tag.setDouble("AttackDamage", attackDamage);
         tag.setDouble("Armor", armor);
         tag.setString("StrainID", strainId);
+        tag.setFloat("BaseWidth", baseWidth);
+        tag.setFloat("BaseHeight", baseHeight);
+        tag.setFloat("SizeMultiplier", sizeMultiplier);
         return tag;
     }
     
@@ -58,7 +71,10 @@ public class TamedParasiteInfo {
             double health = tag.getDouble("MaxHealth");
             double damage = tag.getDouble("AttackDamage");
             double armor = tag.getDouble("Armor");
-            return new TamedParasiteInfo(mobUUID, ownerId, name, strainId, raw.asSubclass(EntityParasiteBase.class), skin, health, damage, armor);
+            float baseWidth = tag.getFloat("BaseWidth");
+            float baseHeight = tag.getFloat("BaseHeight");
+            float sizeMultiplier = tag.getFloat("SizeMultiplier");
+            return new TamedParasiteInfo(mobUUID, ownerId, name, strainId, raw.asSubclass(EntityParasiteBase.class), skin, health, damage, armor, baseWidth, baseHeight, sizeMultiplier);
         } catch (Exception e) {
             System.err.println("[TamedParasiteInfo] Load failed: " + e.getMessage());
             return null;
@@ -75,8 +91,12 @@ public class TamedParasiteInfo {
         this.maxHealth = 0;
         this.attackDamage = 0;
         this.armor = 0;
+        this.baseWidth = 0;
+        this.baseHeight = 0;
+        this.sizeMultiplier = 0;
     }
-    public TamedParasiteInfo(UUID mobUUID, UUID ownerId, String name, String strainId, Class<? extends EntityParasiteBase> mobClass, int skin, double maxHealth, double attackDamage, double armor) {
+    public TamedParasiteInfo(UUID mobUUID, UUID ownerId, String name, String strainId, Class<? extends EntityParasiteBase> mobClass, int skin,
+                             double maxHealth, double attackDamage, double armor, float baseWidth, float baseHeight, float sizeMultiplier) {
         this.mobUUID = mobUUID;
         this.ownerId = ownerId;
         this.name = name;
@@ -86,5 +106,20 @@ public class TamedParasiteInfo {
         this.maxHealth = maxHealth;
         this.attackDamage = attackDamage;
         this.armor = armor;
+        this.baseWidth = baseWidth;
+        this.baseHeight = baseHeight;
+        this.sizeMultiplier = sizeMultiplier;
+    }
+    
+    private static String getBaseEntityName(EntityLivingBase mob) {
+        ResourceLocation key = EntityList.getKey(mob);
+        if (key != null) {
+            String translationKey = "entity." + key.getNamespace() + "." + key.getPath() + ".name";
+            ITextComponent comp = new TextComponentTranslation(translationKey);
+            return comp.getUnformattedText();
+        } else {
+            String simple = mob.getClass().getSimpleName();
+            return simple.replaceAll("Entity", "").replaceAll("([a-z])([A-Z])", "$1 $2").trim();
+        }
     }
 }

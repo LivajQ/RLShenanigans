@@ -19,7 +19,7 @@ public class RLSEntityHandler
         
         for (Biome biome : Biome.REGISTRY)
         {
-            EntityRegistry.addSpawn(EntityDrJr.class, 5, 1, 1, EnumCreatureType.MONSTER, biome);
+            if(ForgeConfigHandler.server.drJrEnabled) EntityRegistry.addSpawn(EntityDrJr.class, 5, 1, 1, EnumCreatureType.MONSTER, biome);
         }
     }
 }

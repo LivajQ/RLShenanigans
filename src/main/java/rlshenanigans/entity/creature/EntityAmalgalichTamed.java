@@ -59,7 +59,7 @@ public class EntityAmalgalichTamed extends RideableCreatureEntity {
         this.consumptionAttack = (new ForceGoal(this)).setRange(64.0F).setCooldown(consumptionCooldown).setDuration(this.consumptionDuration).setWindUp(this.consumptionWindUp).setForce(-0.75F).setPhase(0).setDismount(true);
         this.tasks.addTask(this.nextIdleGoalIndex, this.consumptionAttack);
         
-        this.auraGoal = (new EffectAuraGoal(this)).setRange(1.0F).setCooldown(consumptionCooldown).setDuration(this.consumptionDuration).setTickRate(5).setDamageAmount(1000.0F).setCheckSight(false).setTargetTypes((byte)(TARGET_TYPES.ALLY.id | TARGET_TYPES.ENEMY.id));
+        this.auraGoal = (new EffectAuraGoal(this)).setRange(1.0F).setCooldown(consumptionCooldown).setDuration(this.consumptionDuration).setTickRate(1).setDamageAmount(2.0F).setCheckSight(false).setTargetTypes((byte)(TARGET_TYPES.ALLY.id | TARGET_TYPES.ENEMY.id));
         this.tasks.addTask(this.nextIdleGoalIndex, this.auraGoal);
         
         this.tasks.addTask(this.nextCombatGoalIndex++, new AttackMeleeGoal(this));
