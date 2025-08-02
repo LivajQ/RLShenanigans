@@ -12,8 +12,6 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import rlshenanigans.handlers.RLSPacketHandler;
-import rlshenanigans.mixin.vanilla.EntityMixin;
 import rlshenanigans.util.SizeMultiplierHelper;
 import rlshenanigans.util.TamedParasiteInfo;
 import rlshenanigans.util.TamedParasiteRegistry;
@@ -94,6 +92,8 @@ public class ParasiteTeleportPacket implements IMessage {
                     if(info.sizeMultiplier < 0.25F) newMob.getEntityData().setFloat("SizeMultiplier", 0.25F);
                     else if(info.sizeMultiplier > 8.0F) newMob.getEntityData().setFloat("SizeMultiplier", 8.0F);
                     else newMob.getEntityData().setFloat("SizeMultiplier", info.sizeMultiplier);
+                    newMob.getEntityData().setLong("LastDropTime", info.lastDropTime);
+                    
                     float baseWidth = newMob.getEntityData().getFloat("BaseWidth");
                     float baseHeight = newMob.getEntityData().getFloat("BaseHeight");
                     float sizeMultiplier = newMob.getEntityData().getFloat("SizeMultiplier");

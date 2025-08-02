@@ -25,6 +25,7 @@ public class TamedParasiteInfo {
     public final float baseWidth;
     public final float baseHeight;
     public final float sizeMultiplier;
+    public final long lastDropTime;
     
     public TamedParasiteInfo(EntityParasiteBase mob, EntityPlayer owner) {
         NBTTagCompound tag = new NBTTagCompound();
@@ -41,6 +42,7 @@ public class TamedParasiteInfo {
         this.baseWidth = mob.getEntityData().getFloat("BaseWidth");
         this.baseHeight = mob.getEntityData().getFloat("BaseHeight");
         this.sizeMultiplier = mob.getEntityData().getFloat("SizeMultiplier");
+        this.lastDropTime = mob.getEntityData().getLong("LastDropTime");
     }
     
     public NBTTagCompound toNBT() {
@@ -57,6 +59,7 @@ public class TamedParasiteInfo {
         tag.setFloat("BaseWidth", baseWidth);
         tag.setFloat("BaseHeight", baseHeight);
         tag.setFloat("SizeMultiplier", sizeMultiplier);
+        tag.setLong("LastDropTime", lastDropTime);
         return tag;
     }
     
@@ -74,7 +77,8 @@ public class TamedParasiteInfo {
             float baseWidth = tag.getFloat("BaseWidth");
             float baseHeight = tag.getFloat("BaseHeight");
             float sizeMultiplier = tag.getFloat("SizeMultiplier");
-            return new TamedParasiteInfo(mobUUID, ownerId, name, strainId, raw.asSubclass(EntityParasiteBase.class), skin, health, damage, armor, baseWidth, baseHeight, sizeMultiplier);
+            long lastDropTime = tag.getLong("LastDropTime");
+            return new TamedParasiteInfo(mobUUID, ownerId, name, strainId, raw.asSubclass(EntityParasiteBase.class), skin, health, damage, armor, baseWidth, baseHeight, sizeMultiplier, lastDropTime);
         } catch (Exception e) {
             System.err.println("[TamedParasiteInfo] Load failed: " + e.getMessage());
             return null;
@@ -94,9 +98,10 @@ public class TamedParasiteInfo {
         this.baseWidth = 0;
         this.baseHeight = 0;
         this.sizeMultiplier = 0;
+        this.lastDropTime = 0;
     }
     public TamedParasiteInfo(UUID mobUUID, UUID ownerId, String name, String strainId, Class<? extends EntityParasiteBase> mobClass, int skin,
-                             double maxHealth, double attackDamage, double armor, float baseWidth, float baseHeight, float sizeMultiplier) {
+                             double maxHealth, double attackDamage, double armor, float baseWidth, float baseHeight, float sizeMultiplier, long lastDropTime) {
         this.mobUUID = mobUUID;
         this.ownerId = ownerId;
         this.name = name;
@@ -109,6 +114,7 @@ public class TamedParasiteInfo {
         this.baseWidth = baseWidth;
         this.baseHeight = baseHeight;
         this.sizeMultiplier = sizeMultiplier;
+        this.lastDropTime = lastDropTime;
     }
     
     private static String getBaseEntityName(EntityLivingBase mob) {

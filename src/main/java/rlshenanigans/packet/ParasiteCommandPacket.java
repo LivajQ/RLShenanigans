@@ -49,11 +49,9 @@ public class ParasiteCommandPacket implements IMessage {
         @Override
         public IMessage onMessage(ParasiteCommandPacket msg, MessageContext ctx) {
             EntityPlayerMP player = ctx.getServerHandler().player;
-            
             player.getServerWorld().addScheduledTask(() -> {
                 Entity entity = player.world.getEntityByID(msg.entityId);
                 if (entity instanceof EntityParasiteBase) {
-                    System.out.println("Resize value received: " + msg.resizeValue);
                     BehaviorParasiteHandler.execute((EntityParasiteBase) entity, msg.command, player, msg.resizeValue);
                 }
             });

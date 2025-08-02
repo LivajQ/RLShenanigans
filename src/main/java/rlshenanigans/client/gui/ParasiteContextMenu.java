@@ -20,6 +20,7 @@ public class ParasiteContextMenu extends GuiScreen {
     private static final String[] LABELS = new String[] {
             "Follow",
             "Roam",
+            "Give Item",
             "Ride",
             "Ride (Reverse)",
             "Resize",

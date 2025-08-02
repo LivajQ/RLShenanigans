@@ -25,8 +25,12 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketSetPassengers;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -120,6 +124,13 @@ public class RideParasiteHandler {
     @SideOnly(Side.CLIENT)
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         EntityPlayerSP player = Minecraft.getMinecraft().player;
+        
+        if (player != null && !player.getPassengers().isEmpty())
+        {
+            player.eyeHeight = 1.2F;
+            return;
+        }
+        
         if (player != null && player.isRiding() && player.getRidingEntity() instanceof EntityParasiteBase){
             if (player.getRidingEntity() instanceof EntityInfDragonE) player.eyeHeight = 3.5F;
             if (player.getRidingEntity() instanceof EntityCrux) player.eyeHeight = 2.5F;
@@ -185,6 +196,24 @@ public class RideParasiteHandler {
                     parasite.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED)
                             .setBaseValue(originalSpeeds.remove(id));
                 }
+            }
+        }
+    }
+    
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (event.side != Side.SERVER) return;
+        
+        EntityPlayer player = event.player;
+        
+        if (player.isSneaking() && !player.getPassengers().isEmpty()) {
+            for (Entity passenger : player.getPassengers()) {
+                passenger.dismountRidingEntity();
+            }
+            
+            if (player instanceof EntityPlayerMP) {
+                ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetPassengers(player));
             }
         }
     }

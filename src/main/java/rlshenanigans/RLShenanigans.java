@@ -1,5 +1,6 @@
 package rlshenanigans;
 
+import com.charles445.rltweaker.config.ModConfig;
 import com.lycanitesmobs.core.info.CreatureConfig;
 import com.lycanitesmobs.core.info.CreatureManager;
 import com.lycanitesmobs.core.info.CreatureSpawnConfig;
@@ -57,5 +58,7 @@ public class RLShenanigans
         config.soulboundDimensionListWhitelist = false;
         config.summonDimensionList = new int[0];
         config.summonDimensionListWhitelist = false;
+        
+        ModConfig.server.srparasites.parasitesDimensionBlacklistEnabled = false;
     }
 }

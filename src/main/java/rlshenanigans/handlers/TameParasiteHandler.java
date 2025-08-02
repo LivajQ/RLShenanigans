@@ -10,6 +10,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -211,6 +212,17 @@ public class TameParasiteHandler
         
         EntityPlayer owner = parasite.world.getPlayerEntityByUUID(ownerId);
         if (owner == null) return;
+        
+        if(parasite.ticksExisted % 20 == 0) {
+            List<EntityMob> hostiles = parasite.world.getEntitiesWithinAABB(EntityMob.class, parasite.getEntityBoundingBox().grow(24));
+            for (EntityMob mob : hostiles) {
+                if (mob.getAttackTarget() == owner) {
+                    if(mob instanceof EntityParasiteBase) continue;
+                    if(parasite.getAttackTarget() != mob) parasite.setAttackTarget(mob);
+                    break;
+                }
+            }
+        }
         
         parasite.targetTasks.taskEntries.removeIf(entry ->
         {

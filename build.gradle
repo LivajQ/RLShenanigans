@@ -78,6 +78,8 @@ dependencies {
 	implementation fg.deobf("libs:IceandFire:${iceandfire_version}")
 	
 	implementation fg.deobf("libs:VariedCommodities:${variedcommodities_version}")
+	
+	implementation fg.deobf("libs:RLTweaker:${rltweaker_version}")
 }
 
 mixin {
