@@ -7,7 +7,6 @@ import com.lycanitesmobs.client.model.creature.ModelAsmodeus;
 import com.lycanitesmobs.client.model.creature.ModelRahovart;
 import net.minecraft.client.model.*;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.item.Item;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,12 +22,7 @@ import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
-import rlshenanigans.handlers.ModRegistry;
-import rlshenanigans.models.ModelExampleArmor;
 import rlshenanigans.util.ParasiteRegistry;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static rlshenanigans.util.ParasiteRegistry.PARASITES;
 
@@ -38,11 +32,7 @@ public class ClientProxy extends CommonProxy {
     public static final KeyBinding keyDescend = new KeyBinding("key.rls.descend", Keyboard.KEY_X, "key.categories.rls");
     public static final KeyBinding keyProjectile = new KeyBinding("key.rls.projectile", Keyboard.KEY_R, "key.categories.rls");
     public static final KeyBinding keyTeleport = new KeyBinding("key.rls.teleport", Keyboard.KEY_N, "key.categories.rls");
-    private static final ModelExampleArmor exampleArmor = new ModelExampleArmor(1.0F);
-    private static final ModelExampleArmor exampleArmorLegs = new ModelExampleArmor(0.5F);
-    
-    private static final Map<Item, ModelBiped> exampleArmorModels = new HashMap<>();
-    
+
     @Override
     public void registerRenderers() {
         for (ParasiteRegistry mob : PARASITES) {
@@ -104,16 +94,5 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         registerRenderers();
-        // Register custom armor models
-        exampleArmorModels.put(ModRegistry.exampleHelmet, exampleArmor);
-        exampleArmorModels.put(ModRegistry.exampleChestplate, exampleArmor);
-        exampleArmorModels.put(ModRegistry.exampleLeggings, exampleArmorLegs);
-        exampleArmorModels.put(ModRegistry.exampleBoots, exampleArmor);
-    }
-    
-    
-    @Override
-    public Map<Item, ModelBiped> getExampleArmor() {
-        return exampleArmorModels;
     }
 }

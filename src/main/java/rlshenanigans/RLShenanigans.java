@@ -15,9 +15,19 @@ import org.apache.logging.log4j.Logger;
 import rlshenanigans.handlers.*;
 import rlshenanigans.proxy.CommonProxy;
 
-@Mod(modid = RLShenanigans.MODID, version = RLShenanigans.VERSION, name = RLShenanigans.NAME,
-        dependencies = "required-after:fermiumbooter;required-after:srparasites;required-after:bountifulbaubles;required-after:baubles;" +
-                "required-after:spartanweaponry;required-after:iceandfire;required-after:lycanitesmobs;required-after:variedcommodities")
+@Mod(
+        modid = RLShenanigans.MODID,
+        version = RLShenanigans.VERSION,
+        name = RLShenanigans.NAME,
+        dependencies = "required-after:fermiumbooter;" +
+                "required-after:srparasites;" +
+                "required-after:bountifulbaubles;" +
+                "required-after:baubles;" +
+                "required-after:spartanweaponry;" +
+                "required-after:iceandfire;" +
+                "required-after:lycanitesmobs;" +
+                "required-after:variedcommodities"
+)
 public class RLShenanigans
 {
     public static final String MODID = "rlshenanigans";
