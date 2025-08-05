@@ -1,21 +1,16 @@
 package rlshenanigans.handlers;
 
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.item.ItemAmuletSinLust;
-import rlshenanigans.item.ItemExampleArmor;
 import rlshenanigans.item.ItemWeaponZweihander;
 import rlshenanigans.potion.PotionDragonBad;
 import rlshenanigans.potion.PotionGolemBad;
@@ -24,15 +19,7 @@ import rlshenanigans.potion.PotionStagger;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ModRegistry {
-        
-        public static ItemArmor.ArmorMaterial EXAMPLE_ARMOR = EnumHelper.addArmorMaterial("example_armor", RLShenanigans.MODID + ":example_armor", 26, new int[]{2,4,6,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
-        public static Item exampleHelmet = new ItemExampleArmor("example_helmet", EXAMPLE_ARMOR, 2, EntityEquipmentSlot.HEAD);
-        public static Item exampleChestplate = new ItemExampleArmor("example_chestplate", EXAMPLE_ARMOR, 1, EntityEquipmentSlot.CHEST);
-        public static Item exampleLeggings = new ItemExampleArmor("example_leggings", EXAMPLE_ARMOR, 2, EntityEquipmentSlot.LEGS);
-        public static Item exampleBoots = new ItemExampleArmor("example_boots", EXAMPLE_ARMOR, 1, EntityEquipmentSlot.FEET);
-
-        
         public static PotionType pookiePotion = new PotionType("Pookie", new PotionEffect(PotionPookie.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Pookie"));
         public static PotionType staggerPotion = new PotionType("Stagger", new PotionEffect(PotionStagger.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Stagger"));
         public static PotionType dragonBadPotion = new PotionType("DragonBad", new PotionEffect(PotionDragonBad.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "DragonBad"));
@@ -48,10 +35,6 @@ public class ModRegistry {
         @SubscribeEvent
         public static void registerItemEvent(RegistryEvent.Register<Item> event) {
                 event.getRegistry().registerAll(
-                        //exampleHelmet,
-                        //exampleChestplate,
-                        //exampleLeggings,
-                        //exampleBoots,
                         sinPendantLust,
                         weaponZweihander
                 );
