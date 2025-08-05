@@ -25,12 +25,9 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketSetPassengers;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -150,7 +147,7 @@ public class RideParasiteHandler {
             if (player.getRidingEntity() instanceof EntityOronco) player.eyeHeight = 5.5F;
             if (player.getRidingEntity() instanceof EntityTerla) player.eyeHeight = 10.0F;
         }
-        else if (player != null && !player.isRiding()) player.eyeHeight = 1.62F;
+        else if (player != null && !player.isRiding()) player.getDefaultEyeHeight();
     }
     
     @SubscribeEvent

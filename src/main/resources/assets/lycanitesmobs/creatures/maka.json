@@ -4,7 +4,7 @@
     "groups": [
         "animal"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityMaka",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityMaka",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelMaka",
     "loadDefault": true,
     "enabled": true,
@@ -79,8 +79,8 @@
     "peaceful": true,
     "farmable": true,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 0,
     "drops": [

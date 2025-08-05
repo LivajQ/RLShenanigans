@@ -4,7 +4,7 @@
     "groups": [
         "mystic"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityNymph",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityNymph",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelNymph",
     "loadDefault": true,
     "enabled": true,
@@ -68,8 +68,8 @@
     "element": "fae",
     "peaceful": true,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 4,
     "dungeonLevel": 1,
     "drops": [

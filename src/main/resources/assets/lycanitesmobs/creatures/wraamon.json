@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityWraamon",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityWraamon",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelWraamon",
     "loadDefault": true,
     "enabled": true,
@@ -77,10 +77,10 @@
         "fungivore"
     ],
     "peaceful": false,
-    "summonable": true,
-    "tameable": false,
-    "mountable": false,
-    "perchable": true,
+    "summonable": false,
+    "tameable": true,
+    "mountable": true,
+    "perchable": false,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

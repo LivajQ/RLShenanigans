@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityWraith",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityWraith",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelWraith",
     "loadDefault": true,
     "enabled": true,
@@ -69,8 +69,8 @@
     "element": "nether",
     "peaceful": false,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

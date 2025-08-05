@@ -4,7 +4,7 @@
     "groups": [
         "critter"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityKobold",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityKobold",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelKobold",
     "loadDefault": true,
     "enabled": true,
@@ -84,10 +84,10 @@
         "fungivore"
     ],
     "peaceful": false,
-    "summonable": true,
-    "tameable": false,
-    "mountable": false,
-    "perchable": true,
+    "summonable": false,
+    "tameable": true,
+    "mountable": true,
+    "perchable": false,
     "summonCost": 2,
     "dungeonLevel": 0,
     "drops": [

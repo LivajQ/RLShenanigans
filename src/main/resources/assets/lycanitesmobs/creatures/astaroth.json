@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityAstaroth",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityAstaroth",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelAstaroth",
     "loadDefault": true,
     "enabled": true,
@@ -113,9 +113,9 @@
         "fungivore"
     ],
     "peaceful": false,
-    "summonable": true,
-    "tameable": false,
-    "mountable": false,
+    "summonable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 3,
     "dungeonLevel": 3,
     "drops": [

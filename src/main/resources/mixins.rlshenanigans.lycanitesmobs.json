@@ -6,7 +6,9 @@
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "mixins": [
-    "UtilitiesMixin"
+    "UtilitiesMixin",
+	"TameableCreatureEntityMixin",
+	"AltarInfoLunarGrueMixin"
   ],
   "injectors": {
     "maxShiftBy": 10

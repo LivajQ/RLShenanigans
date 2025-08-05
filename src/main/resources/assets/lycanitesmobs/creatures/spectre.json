@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntitySpectre",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntitySpectre",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelSpectre",
     "loadDefault": true,
     "enabled": true,
@@ -69,8 +69,8 @@
     "element": "void",
     "peaceful": false,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

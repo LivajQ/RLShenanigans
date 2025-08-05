@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityEechetik",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityEechetik",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelEechetik",
     "loadDefault": true,
     "enabled": true,
@@ -65,8 +65,8 @@
     "element": "poison",
     "peaceful": false,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

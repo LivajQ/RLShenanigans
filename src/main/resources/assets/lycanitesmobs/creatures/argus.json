@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityArgus",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityArgus",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelArgus",
     "loadDefault": true,
     "enabled": true,
@@ -68,9 +68,9 @@
     ],
     "element": "chaos",
     "peaceful": false,
-    "summonable": true,
-    "tameable": false,
-    "mountable": false,
+    "summonable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

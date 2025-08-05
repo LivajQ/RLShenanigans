@@ -4,7 +4,7 @@
 	"groups": [
 		"monster"
 	],
-	"entityClass": "com.lycanitesmobs.core.entity.creature.EntityTrite",
+	"entityClass": "rlshenanigans.entity.lycaniterideable.EntityTrite",
 	"modelClass": "com.lycanitesmobs.client.model.creature.ModelTrite",
 	"loadDefault": true,
 	"enabled": true,
@@ -98,10 +98,10 @@
 		"insectivore"
 	],
 	"peaceful": false,
-	"summonable": true,
-	"tameable": false,
-	"mountable": false,
-	"perchable": true,
+	"summonable": false,
+	"tameable": true,
+	"mountable": true,
+	"perchable": false,
 	"summonCost": 2,
 	"dungeonLevel": 1,
 	"drops": [

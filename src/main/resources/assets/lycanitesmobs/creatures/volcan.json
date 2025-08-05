@@ -4,7 +4,7 @@
     "groups": [
         "inferno"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityVolcan",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityVolcan",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelVolcan",
     "loadDefault": true,
     "enabled": true,
@@ -69,8 +69,8 @@
     "element": "lava",
     "peaceful": false,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

@@ -5,7 +5,7 @@
         "predator",
         "dark"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityDarkling",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityDarkling",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelDarkling",
     "loadDefault": true,
     "enabled": true,
@@ -74,8 +74,8 @@
     "peaceful": false,
     "summonable": false,
     "tameable": true,
-    "mountable": false,
-    "perchable": true,
+    "mountable": true,
+    "perchable": false,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

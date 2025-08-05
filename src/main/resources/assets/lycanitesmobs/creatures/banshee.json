@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityBanshee",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityBanshee",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelBanshee",
     "loadDefault": true,
     "enabled": true,
@@ -70,8 +70,8 @@
     "element": "phase",
     "peaceful": false,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [

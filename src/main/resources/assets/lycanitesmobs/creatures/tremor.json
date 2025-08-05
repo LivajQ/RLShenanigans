@@ -4,7 +4,7 @@
     "groups": [
         "monster"
     ],
-    "entityClass": "com.lycanitesmobs.core.entity.creature.EntityTremor",
+    "entityClass": "rlshenanigans.entity.lycaniterideable.EntityTremor",
     "modelClass": "com.lycanitesmobs.client.model.creature.ModelTremor",
     "loadDefault": true,
     "enabled": true,
@@ -65,8 +65,8 @@
     "element": "quake",
     "peaceful": false,
     "summonable": false,
-    "tameable": false,
-    "mountable": false,
+    "tameable": true,
+    "mountable": true,
     "summonCost": 2,
     "dungeonLevel": 1,
     "drops": [
