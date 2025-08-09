@@ -42,7 +42,7 @@ public class TameableCreatureEntityMixin {
     public void injectTame(EntityPlayer player, CallbackInfoReturnable<Boolean> cir) {
         TameableCreatureEntity creature = (TameableCreatureEntity)(Object)this;
         
-        boolean isBossKobold = (creature instanceof EntityKobold) && creature.isBoss();
+        boolean isBossKobold = creature instanceof EntityKobold && creature.isBoss();
         
         if (creature.isTamed()) return;
         if(isBossKobold) {

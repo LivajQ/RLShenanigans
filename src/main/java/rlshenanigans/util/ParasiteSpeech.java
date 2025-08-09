@@ -18,7 +18,14 @@ public class ParasiteSpeech {
             "Can we go kill something?",
             "Your skin is so squishy. Like, best squishy. Top-tier squishy (っ˘ω˘ς )",
             "Nice armor. Can I break it?",
-            "Evasion bad"
+            "Evasion bad",
+            "You’re my favorite host. Don’t tell the others",
+            "Can we hold hands while tearing everything apart?",
+            "Can you hear it? It's the call of the thighs",
+            "That village looked peaceful. Let’s fix that",
+            "Iframes? What iframes?",
+            "You should try some beckon biomass, top tier yummy",
+            "It's assimilatin' time"
     );
     
     public static String getRandomQuote() {

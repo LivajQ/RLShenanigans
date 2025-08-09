@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 
 import net.minecraft.util.ResourceLocation;
 import rlshenanigans.handlers.ForgeConfigHandler;
-import rlshenanigans.mixin.vanilla.EntityMixin;
 
 public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
     private final String parasiteNameLower;

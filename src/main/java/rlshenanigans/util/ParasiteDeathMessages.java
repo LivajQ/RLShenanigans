@@ -33,59 +33,74 @@ public class ParasiteDeathMessages {
     static {
         DEATH_MESSAGES.put(ParasiteTrait.LARGE, Arrays.asList(
                 "{{victim}} was stepped on by {{parasite}}",
-                "{{victim}} got squished like a bug by {{parasite}}"
+                "{{victim}} got squished like a bug by {{parasite}}",
+                "{{victim}} was flattened by {{parasite}}"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.FLYING, Arrays.asList(
                 "{{victim}} experienced aerial assault thanks to {{parasite}}",
-                "{{victim}} took a flight to heaven with {{parasite}}"
+                "{{victim}} took a flight to heaven with {{parasite}}",
+                "{{parasite}} dive-bombed {{victim}} into oblivion",
+                "{{victim}} got caught in a mid-air tango with {{parasite}}"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.THIGHS, Arrays.asList(
                 "{{victim}} suffocated in {{parasite}} thighs",
-                "{{victim}} got too comfortable in {{parasite}} thighs"
+                "{{victim}} got too comfortable in {{parasite}} thighs",
+                "{{parasite}} weaponized leg day against {{victim}}",
+                "{{victim}} underestimated the gravitational pull of {{parasite}} thighs"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.GENERIC, Arrays.asList(
                 "{{victim}} got clapped by {{parasite}}",
                 "{{parasite}} took a bit too much liking to {{victim}}",
                 "{{victim}} was punched into assimilation by {{parasite}}",
-                "{{victim}} submitted to {{parasite}}"
+                "{{victim}} submitted to {{parasite}}",
+                "{{parasite}} whispered sweet nothings before ending {{victim}}",
+                "{{victim}} was casually erased by {{parasite}}"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.HUGGER, Arrays.asList(
                 "{{victim}} was hugged too hard by {{parasite}}",
                 "{{victim}} ended up in {{parasite}} embrace",
                 "{{parasite}} offered {{victim}} a friendly hug",
-                "{{parasite}} gently hugged {{victim}} out of existence"
+                "{{parasite}} gently hugged {{victim}} out of existence",
+                "{{parasite}} snuggled {{victim}} into the afterlife"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.DOGGO, Arrays.asList(
                 "{{victim}} was licked to death by {{parasite}}",
                 "{{parasite}} got too excited while playing with {{victim}}",
-                "{{parasite}} fetched a bone. The bone from {{victim}} body"
+                "{{parasite}} fetched a bone. The bone from {{victim}} body",
+                "{{parasite}} mistook {{victim}} for a chew toy"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.GAPING, Arrays.asList(
                 "{{victim}} was eaten by {{parasite}}",
                 "{{victim}} learned the definition of vore with {{parasite}}",
-                "{{victim}} became {{parasite}} snack"
+                "{{victim}} became {{parasite}} snack",
+                "{{victim}} took a one-way trip into {{parasite}} mouth"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.SMALL, Arrays.asList(
                 "{{victim}} was tickled to death by {{parasite}}",
                 "{{victim}} tripped on {{parasite}} and died",
-                "{{parasite}} cuteness was too much for {{victim}} to handle"
+                "{{parasite}} cuteness was too much for {{victim}} to handle",
+                "{{victim}} was nibbled into nonexistence by {{parasite}}"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.BOOMER, Arrays.asList(
                 "{{victim}} was blown (up) by {{parasite}}",
-                "{{victim}} went boom because of {{parasite}}"
+                "{{victim}} went boom because of {{parasite}}",
+                "{{parasite}} exploded with love for {{victim}}",
+                "{{victim}} mistook {{parasite}} for a firecracker"
         ));
         
         DEATH_MESSAGES.put(ParasiteTrait.SPIDER, Arrays.asList(
                 "{{victim}} and {{parasite}} had a beautiful webbing",
-                "{{victim}} ended in {{parasite}} web"
+                "{{victim}} ended in {{parasite}} web",
+                "{{parasite}} spun {{victim}} into a bedtime cocoon",
+                "{{victim}} got tangled in {{parasite}} silk"
         ));
     }
     

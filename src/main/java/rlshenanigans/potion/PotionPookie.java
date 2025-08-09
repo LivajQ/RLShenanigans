@@ -14,8 +14,7 @@ import java.util.List;
 public class PotionPookie extends PotionBase {
     
     public static final PotionPookie INSTANCE = new PotionPookie();
-    public static final double EFFECT_RADIUS = 32.0D;
-    public static final double EFFECT_RADIUS_SQ = EFFECT_RADIUS * EFFECT_RADIUS;
+    public static final double EFFECT_RADIUS = 48.0D;
     
     public PotionPookie() {
         super("Pookie", false, 0xFFC0CB);

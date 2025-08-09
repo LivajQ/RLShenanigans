@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "lycanitesmobs:elementaltreat",
+    "count": 4
+  },
+  "pattern": [
+    " GE",
+    "BBD",
+    " GE"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+	"E": {
+      "item": "minecraft:emerald"
+    },
+	"G": {
+      "item": "minecraft:gold_ingot"
+    }
+  }
+}

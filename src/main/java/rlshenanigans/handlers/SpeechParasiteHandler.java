@@ -14,7 +14,7 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID, value = Side.CLIENT)
 public class SpeechParasiteHandler {
     
-    private static final Random rand = new Random();
+    private static final Random RAND = new Random();
     
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
@@ -24,12 +24,12 @@ public class SpeechParasiteHandler {
         
         if (!entity.hasCustomName()) return;
         
-        if(!ForgeConfigHandler.client.parasiteSpeechEnabled) return;
+        if (!ForgeConfigHandler.client.parasiteSpeechEnabled) return;
         
         if (entity.ticksExisted % 1200 != 0) return;
         
-        if (rand.nextFloat() < 0.5f) {
-            SpeechHelper.trySpeak(entity, ParasiteSpeech.getRandomQuote(), 120);
+        if (RAND.nextFloat() < 0.5f) {
+            SpeechHelper.trySpeak(entity, ParasiteSpeech.getRandomQuote(), 240);
         }
     }
 }

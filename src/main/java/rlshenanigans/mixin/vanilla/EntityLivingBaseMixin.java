@@ -11,4 +11,3 @@ public interface EntityLivingBaseMixin
     @Invoker("dropLoot")
     void invokeDropLoot(boolean wasRecentlyHit, int lootingLevel, DamageSource source);
 }
-

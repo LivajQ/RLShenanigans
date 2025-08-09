@@ -49,6 +49,7 @@ import static rlshenanigans.util.ParasiteRegistry.RANGED_PARASITES;
 public class RideParasiteHandler {
     private static final Map<UUID, Double> originalSpeeds = new HashMap<>();
     private static final Map<UUID, Long> attackCooldowns = new HashMap<>();
+    private static boolean eyeHeightChanged = false;
     
     public static class Handler implements IMessageHandler<RideParasitePacket, IMessage> {
         @Override
@@ -122,9 +123,11 @@ public class RideParasiteHandler {
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         
+        
         if (player != null && !player.getPassengers().isEmpty())
         {
-            player.eyeHeight = 1.2F;
+            player.eyeHeight = player.getDefaultEyeHeight() - 0.42F;
+            eyeHeightChanged = true;
             return;
         }
         
@@ -143,11 +146,15 @@ public class RideParasiteHandler {
             if (player.getRidingEntity() instanceof EntityJinjo) player.eyeHeight = 6.5F;
             if (player.getRidingEntity() instanceof EntityPheon) player.eyeHeight = 10.0F;
             if (player.getRidingEntity() instanceof EntityVesta) player.eyeHeight = 4.0F;
-            if (player.getRidingEntity() instanceof EntityPheon) player.eyeHeight = 4.0F;
             if (player.getRidingEntity() instanceof EntityOronco) player.eyeHeight = 5.5F;
             if (player.getRidingEntity() instanceof EntityTerla) player.eyeHeight = 10.0F;
+            eyeHeightChanged = true;
+            return;
         }
-        else if (player != null && !player.isRiding()) player.getDefaultEyeHeight();
+        if (player != null && eyeHeightChanged) {
+            player.eyeHeight = player.getDefaultEyeHeight();
+            eyeHeightChanged = false;
+        }
     }
     
     @SubscribeEvent
