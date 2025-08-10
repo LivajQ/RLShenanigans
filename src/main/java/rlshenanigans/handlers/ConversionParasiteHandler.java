@@ -2,18 +2,23 @@ package rlshenanigans.handlers;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPPreeminent;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
+import com.dhanantry.scapeandrunparasites.entity.monster.crude.EntityLesh;
 import com.dhanantry.scapeandrunparasites.entity.monster.pure.preeminent.EntityFlam;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
+import rlshenanigans.util.ParasiteEvolutionRegistry;
+import rlshenanigans.util.TamedParasiteRegistry;
 
 import java.util.*;
 
@@ -21,13 +26,6 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ConversionParasiteHandler
 {
-    static boolean canEvolve = false;
-    static boolean tagTamed = false;
-    static boolean tagPersistence = false;
-    static boolean tagDespawn = true;
-    static boolean tagDespawn2 = true;
-    static UUID tagOwner = null;
-    
     @SubscribeEvent
     public static void onStruckByLightning(EntityStruckByLightningEvent event)
     {
@@ -35,10 +33,9 @@ public class ConversionParasiteHandler
         
         if (entity instanceof EntityParasiteBase)
         {
-            boolean named = entity.hasCustomName();
-            boolean allowed = entity.getEntityData().getBoolean("AllowConverting");
+            boolean tamed = entity.getEntityData().getBoolean("Tamed");
             
-            if (named && !allowed)
+            if (tamed)
             {
                 event.setCanceled(true);
             }
@@ -48,6 +45,9 @@ public class ConversionParasiteHandler
     @SubscribeEvent
     public static void onInteractWithParasite(PlayerInteractEvent.EntityInteract event)
     {
+        if(event.getWorld().isRemote) return;
+        if (event.getHand() != EnumHand.MAIN_HAND) return;
+       
         Entity target = event.getTarget();
         EntityPlayer player = event.getEntityPlayer();
         
@@ -65,40 +65,24 @@ public class ConversionParasiteHandler
         if (target instanceof EntityParasiteBase && validWands.contains(heldItem.getItem().getRegistryName()))
         {
             EntityParasiteBase parasite = (EntityParasiteBase) target;
-            NBTTagCompound tag = parasite.getEntityData();
+            ResourceLocation itemId = heldItem.getItem().getRegistryName();
             
-            tag.setBoolean("AllowConverting", true);
-            tagTamed = tag.getBoolean("Tamed");
-            tagPersistence = tag.getBoolean("PersistenceRequired");
-            tagDespawn = tag.getBoolean("parasitedespawn");
-            tagDespawn2 = tag.getBoolean("ParasiteDespawn");
-            tagOwner = tag.getUniqueId("OwnerUUID");
-            canEvolve = true;
+            if(!parasite.getEntityData().getBoolean("Tamed")) return;
+            
+            if (itemId.equals(new ResourceLocation("srparasites", "itemevolve"))) {
+                evolve(parasite, player, player.getEntityWorld());
+                event.setCanceled(true);
+            } else if (itemId.equals(new ResourceLocation("srparasites", "itemdevolve"))) {
+                devolve(parasite, player, player.getEntityWorld());
+                event.setCanceled(true);
+            }
+            
         }
     }
     
     @SubscribeEvent
     public static void onEvolvedParasiteJoin(EntityJoinWorldEvent event)
     {
-        Entity entity = event.getEntity();
-        if (entity instanceof EntityParasiteBase && canEvolve && entity.hasCustomName())
-        {
-            EntityParasiteBase evolved = (EntityParasiteBase) entity;
-            evolved.getEntityData().setBoolean("Tamed", tagTamed);
-            evolved.getEntityData().setBoolean("PersistenceRequired", tagPersistence);
-            evolved.enablePersistence();
-            evolved.getEntityData().setBoolean("parasitedespawn", tagDespawn);
-            evolved.getEntityData().setBoolean("ParasiteDespawn", tagDespawn2);
-            evolved.getEntityData().setUniqueId("OwnerUUID", tagOwner);
-            
-            tagTamed = false;
-            tagOwner = null;
-            tagPersistence = false;
-            tagDespawn = true;
-            tagDespawn2 = true;
-            canEvolve = false;
-        }
-        
         if (event.getEntity() instanceof EntityFlam) {
             EntityFlam flam = (EntityFlam) event.getEntity();
             
@@ -118,5 +102,72 @@ public class ConversionParasiteHandler
                 }
             }
         }
+    }
+    
+    private static void evolve(EntityParasiteBase oldParasite, EntityPlayer player, World world) {
+        for (ParasiteEvolutionRegistry entry : ParasiteEvolutionRegistry.EVOLUTIONS) {
+            if (entry.inferiorClassName.isInstance(oldParasite)) {
+                try {
+                    EntityParasiteBase newParasite = (EntityParasiteBase) entry.superiorClassName
+                            .getConstructor(World.class)
+                            .newInstance(oldParasite.world);
+                    
+                    transformParasite(oldParasite, newParasite, player, world);
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
+        }
+    }
+    
+    private static void devolve(EntityParasiteBase oldParasite, EntityPlayer player, World world) {
+        for (ParasiteEvolutionRegistry entry : ParasiteEvolutionRegistry.EVOLUTIONS) {
+            if (entry.superiorClassName.isInstance(oldParasite)) {
+                try {
+                    EntityParasiteBase newParasite = (EntityParasiteBase) entry.inferiorClassName
+                            .getConstructor(World.class)
+                            .newInstance(oldParasite.world);
+                    
+                    transformParasite(oldParasite, newParasite, player, world);
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
+        }
+        
+        try {
+            if (oldParasite instanceof EntityLesh) {
+                oldParasite.setDead();
+                TamedParasiteRegistry.untrack(oldParasite.getUniqueID());
+                return;
+            }
+            
+            EntityParasiteBase fallback = new EntityLesh(world);
+            transformParasite(oldParasite, fallback, player, world);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private static void transformParasite(EntityParasiteBase oldParasite, EntityParasiteBase newParasite, EntityPlayer player, World world) {
+        newParasite.setLocationAndAngles(oldParasite.posX, oldParasite.posY, oldParasite.posZ,
+                oldParasite.rotationYaw, oldParasite.rotationPitch);
+        
+        TameParasiteHandler.setTags(newParasite, player, world);
+        
+        if (oldParasite.hasCustomName()) {
+            newParasite.setCustomNameTag(oldParasite.getCustomNameTag());
+            newParasite.setAlwaysRenderNameTag(oldParasite.getAlwaysRenderNameTag());
+        }
+        
+        world.spawnEntity(newParasite);
+        oldParasite.setDead();
+        
+        TamedParasiteRegistry.track(newParasite, player);
+        TamedParasiteRegistry.untrack(oldParasite.getUniqueID());
     }
 }

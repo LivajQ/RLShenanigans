@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rlshenanigans.handlers.*;
 import rlshenanigans.proxy.CommonProxy;
+import rlshenanigans.util.TameableMiscWhitelist;
 
 @Mod(
         modid = RLShenanigans.MODID,
@@ -70,5 +71,7 @@ public class RLShenanigans
         config.summonDimensionListWhitelist = false;
         
         ModConfig.server.srparasites.parasitesDimensionBlacklistEnabled = false;
+        
+        TameableMiscWhitelist.load(ForgeConfigHandler.server.tameableMiscEntries);
     }
 }

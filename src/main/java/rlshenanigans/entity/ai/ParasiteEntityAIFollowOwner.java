@@ -33,6 +33,7 @@ public class ParasiteEntityAIFollowOwner extends EntityAIBase
         if (ownerId == null) return false;
         
         if (parasite.getAttackTarget() != null) return false;
+        if (parasite.getRevengeTarget() != null) return false;
         
         owner = world.getPlayerEntityByUUID(ownerId);
         if (owner == null) return false;

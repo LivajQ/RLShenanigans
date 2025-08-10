@@ -25,6 +25,10 @@ public class RLShenanigansPlugin implements IFMLLoadingPlugin {
 		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.lycanitesmobs.json", () ->
 				Loader.isModLoaded("lycanitesmobs")
 		);
+		
+		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.srparasites.json", () ->
+				Loader.isModLoaded("srparasites")
+		);
 	}
 
 	@Override

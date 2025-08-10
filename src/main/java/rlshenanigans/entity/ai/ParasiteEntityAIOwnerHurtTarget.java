@@ -1,6 +1,5 @@
 package rlshenanigans.entity.ai;
 
-
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
@@ -24,14 +23,13 @@ public class ParasiteEntityAIOwnerHurtTarget extends EntityAITarget
         EntityLivingBase owner = getOwner();
         if (owner == null) return false;
         
-        EntityLivingBase attacker = owner.getRevengeTarget();
-        if (attacker == null) return false;
+        target = owner.getRevengeTarget();
+        if (target == null) return false;
  
-        if (attacker != null && attacker.equals(parasite)) return false;
-        if (attacker != null && attacker.equals(getOwner())) return false;
-        if (attacker != null && attacker instanceof EntityParasiteBase) return false;
+        if (target.equals(parasite)) return false;
+        if (target.equals(getOwner())) return false;
+        if (target instanceof EntityParasiteBase) return false;
         
-        this.target = attacker;
         return true;
     }
     

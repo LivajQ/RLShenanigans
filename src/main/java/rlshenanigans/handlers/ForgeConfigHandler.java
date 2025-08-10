@@ -7,6 +7,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Config(modid = RLShenanigans.MODID)
 public class ForgeConfigHandler {
 	
@@ -21,50 +24,64 @@ public class ForgeConfigHandler {
 	public static class ServerConfig {
 
 		@Config.Comment("Set to false to disable parasite taming (monster)")
-		@Config.Name("01 - Parasite Taming")
+		@Config.Name("Parasite Taming")
 		public boolean parasiteTamingEnabled = true;
 		
 		@Config.Comment("Which item should be used for taming parasites")
-		@Config.Name("02 - Parasite Taming Item")
+		@Config.Name("Parasite Taming Item")
 		public String parasiteTamingItem = "minecraft:golden_apple";
 		
 		@Config.Comment({"Use if an item has metadata (e.g. golden apple 0 = normal, 1 = enchanted), otherwise leave at 0"})
-		@Config.Name("03 - Parasite Taming Item Metadata")
+		@Config.Name("Parasite Taming Item Metadata")
 		public int parasiteTamingItemMetadata = 1;
 		
 		@Config.Comment({"Set to true to allow resummoning of tamed parasites after death"})
-		@Config.Name("04 - Permanent Tamed Parasites")
+		@Config.Name("Parasites Permanent Taming")
 		public boolean parasiteDeathResummonEnabled = false;
 		
 		@Config.Comment("Set to false to disable set bonus effects for armor sets")
-		@Config.Name("04 - Set Bonuses")
+		@Config.Name("Armor Set Buffs")
 		public boolean setBonusEnabled = true;
 		
 		@Config.Comment("Set to false to disable debuffs for bad armor (if you don't know what this means you already failed)")
-		@Config.Name("05 - Bad Armor Debuffs >:|")
+		@Config.Name("Armor Set Debuffs")
 		public boolean badArmorDebuffsEnabled = true;
 		
 		@Config.Comment("Set to false to disable custom mob spawning")
-		@Config.Name("06 - Custom Mobs")
+		@Config.Name("Custom Mobs")
 		public boolean customMobsEnabled = true;
 		
 		@Config.Comment("Dr. Jr.")
 		@Config.Name("Dr. Jr.")
 		public boolean drJrEnabled = true;
+		
+		@Config.Comment("Set to false to disable misc mob taming")
+		@Config.Name("Tameable Misc Enabled")
+		public boolean miscTamingEnabled = true;
+		
+		@Config.Comment({"List of mobs that should be made tameable. Use it for non-parasites and non-lycanites. This feature is terrifyingly janky",
+				"Pattern: MobID;Item;Item Metadata",
+				"Example: iceandfire:seaserpent;minecraft:fish;2"})
+		@Config.Name("Tameable Misc Whitelist")
+		public String[] tameableMiscEntries = new String[] {
+				"iceandfire:seaserpent;minecraft:fish;2",
+				"iceandfire:gorgon;minecraft:fermented_spider_eye;0",
+				"iceandfire:if_hydra;lycanitesmobs:poisongland;0"
+		};
 	}
 
 	public static class ClientConfig {
 
 		@Config.Comment("Set to false to disable THH textures for parasites (even bigger monster)")
-		@Config.Name("01 - THH Textures")
+		@Config.Name("Parasite THH Textures")
 		public boolean thhEnabled = true;
 		
 		@Config.Comment("Set to false to stop parasites from talking when tamed")
-		@Config.Name("02 - Parasite Speech")
+		@Config.Name("Parasite Speech")
 		public boolean parasiteSpeechEnabled = true;
 		
 		@Config.Comment("Set to false to disable custom parasite death messages")
-		@Config.Name("03 - Parasite Death Messages")
+		@Config.Name("Parasite Death Messages")
 		public boolean parasiteDeathMessagesEnabled = true;
 	}
 

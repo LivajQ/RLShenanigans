@@ -4,7 +4,6 @@ import com.dhanantry.scapeandrunparasites.entity.EntityDamage;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITasks;
@@ -17,10 +16,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
@@ -80,6 +76,7 @@ public class TameParasiteHandler
         */
         
         if (world.isRemote || parasite.getEntityData().getBoolean("Tamed")) return;
+        if (event.getHand() != EnumHand.MAIN_HAND) return;
         
         ResourceLocation rl = new ResourceLocation(ForgeConfigHandler.server.parasiteTamingItem);
         Item item = ForgeRegistries.ITEMS.getValue(rl);
@@ -94,21 +91,7 @@ public class TameParasiteHandler
             
             if (world.rand.nextInt(3) == 0)
             {
-                parasite.getEntityData().setBoolean("Tamed", true);
-                parasite.getEntityData().setBoolean("Waiting", false);
-                parasite.getEntityData().setUniqueId("OwnerUUID", player.getUniqueID());
-                parasite.setAttackTarget(null);
-                String chosenName = ParasiteNames.getRandomName(world.rand);
-                parasite.setCustomNameTag(chosenName);
-                parasite.setAlwaysRenderNameTag(true);
-                parasite.getEntityData().setBoolean("PersistenceRequired", true);
-                ((EntityLiving)target).enablePersistence();
-                parasite.getEntityData().setBoolean("parasitedespawn", false);
-                parasite.getEntityData().setBoolean("ParasiteDespawn", false);
-                parasite.getEntityData().setBoolean("AllowConverting", false);
-                parasite.getEntityData().setFloat("BaseWidth", ((EntityMixin) parasite).getWidth());
-                parasite.getEntityData().setFloat("BaseHeight", ((EntityMixin) parasite).getHeight());
-                parasite.getEntityData().setFloat("SizeMultiplier", 1.0F);
+                setTags(parasite, player, world);
                 
                 TamedParasiteRegistry.track(parasite, player);
                 
@@ -220,6 +203,25 @@ public class TameParasiteHandler
                     if(mob instanceof EntityParasiteBase) continue;
                     if(parasite.getAttackTarget() != mob) parasite.setAttackTarget(mob);
                     break;
+                }
+            }
+            
+            if (!parasite.getEntityData().getBoolean("Waiting")) {
+                double dx = parasite.posX - owner.posX;
+                double dz = parasite.posZ - owner.posZ;
+                double distanceSq = dx * dx + dz * dz;
+                
+                if (distanceSq > 32 * 32)
+                {
+                    for (EntityAITasks.EntityAITaskEntry entry : parasite.tasks.taskEntries)
+                    {
+                        entry.action.resetTask();
+                    }
+                    parasite.setAttackTarget(null);
+                    parasite.setRevengeTarget(null);
+                    parasite.getNavigator().clearPath();
+                    parasite.tasks.onUpdateTasks();
+                    parasite.setLocationAndAngles(owner.posX + 1.0, owner.posY, owner.posZ + 1.0, owner.rotationYaw, owner.rotationPitch);
                 }
             }
         }
@@ -372,5 +374,22 @@ public class TameParasiteHandler
         if (instance != null && instance.getModifier(uuid) != null) {
             instance.removeModifier(uuid);
         }
+    }
+    
+    public static void setTags(EntityParasiteBase parasite, EntityPlayer player, World world) {
+        parasite.getEntityData().setBoolean("Tamed", true);
+        parasite.getEntityData().setBoolean("Waiting", false);
+        parasite.getEntityData().setUniqueId("OwnerUUID", player.getUniqueID());
+        parasite.setAttackTarget(null);
+        String chosenName = ParasiteNames.getRandomName(world.rand);
+        parasite.setCustomNameTag(chosenName);
+        parasite.setAlwaysRenderNameTag(true);
+        parasite.getEntityData().setBoolean("PersistenceRequired", true);
+        parasite.enablePersistence();
+        parasite.getEntityData().setBoolean("parasitedespawn", false);
+        parasite.getEntityData().setBoolean("BlockConverting", true);
+        parasite.getEntityData().setFloat("BaseWidth", ((EntityMixin) parasite).getWidth());
+        parasite.getEntityData().setFloat("BaseHeight", ((EntityMixin) parasite).getHeight());
+        parasite.getEntityData().setFloat("SizeMultiplier", 1.0F);
     }
 }
