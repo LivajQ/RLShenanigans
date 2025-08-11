@@ -28,14 +28,15 @@ public class MiscEntityAIOwnerHurtByTarget extends EntityAITarget
         if(attacker == null) return false;
         int revengeTimer = owner.getLastAttackedEntityTime();
         
-        UUID attackerOwnerId = attacker.getEntityData().getUniqueId("OwnerUUID");
-        if (attackerOwnerId == null) return false;
+        if (attacker.getEntityData().hasUniqueId("OwnerUUID")) {
+            UUID attackerOwnerId = attacker.getEntityData().getUniqueId("OwnerUUID");
+            if (attackerOwnerId.equals(getOwner().getUniqueID())) return false;
+        }
         
         if (attacker.equals(mob)) return false;
         if (attacker.equals(getOwner())) return false;
-        if (attackerOwnerId.equals(getOwner().getUniqueID())) return false;
         
-        return attacker != null && revengeTimer != mob.getRevengeTimer();
+        return revengeTimer != mob.getRevengeTimer();
     }
     
     @Override

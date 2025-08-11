@@ -27,11 +27,16 @@ public class ParasiteEntityAIOwnerHurtByTarget extends EntityAITarget
         if(attacker == null) return false;
         int revengeTimer = owner.getLastAttackedEntityTime();
         
+        if (attacker.getEntityData().hasUniqueId("OwnerUUID")) {
+            UUID attackerOwnerId = attacker.getEntityData().getUniqueId("OwnerUUID");
+            if (attackerOwnerId.equals(getOwner().getUniqueID())) return false;
+        }
+        
         if (attacker.equals(parasite)) return false;
         if (attacker.equals(getOwner())) return false;
         if (attacker instanceof EntityParasiteBase) return false;
         
-        return attacker != null && revengeTimer != parasite.getRevengeTimer();
+        return revengeTimer != parasite.getRevengeTimer();
     }
     
     @Override

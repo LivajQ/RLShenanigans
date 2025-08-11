@@ -27,12 +27,13 @@ public class MiscEntityAIOwnerHurtTarget extends EntityAITarget
         target = owner.getRevengeTarget();
         if (target == null) return false;
         
-        UUID targetOwnerId = target.getEntityData().getUniqueId("OwnerUUID");
-        if(targetOwnerId == null) return false;
+        if (target.getEntityData().hasUniqueId("OwnerUUID")) {
+            UUID targetOwnerId = target.getEntityData().getUniqueId("OwnerUUID");
+            if (targetOwnerId.equals(getOwner().getUniqueID())) return false;
+        }
         
         if (target.equals(mob)) return false;
         if (target.equals(getOwner())) return false;
-        if (targetOwnerId.equals(getOwner().getUniqueID())) return false;
         
         return true;
     }

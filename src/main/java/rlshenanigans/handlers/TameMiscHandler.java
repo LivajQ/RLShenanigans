@@ -69,7 +69,7 @@ public class TameMiscHandler
                         creature.getNavigator().clearPath();
                         creature.tasks.taskEntries.removeIf(entry ->
                                 entry.action instanceof MiscEntityAIFollowOwner);
-                        player.sendStatusMessage(new TextComponentString(name + " is now waiting"), true);
+                        player.sendStatusMessage(new TextComponentString(name + " is now roaming"), true);
                     }
                     creature.getEntityData().setBoolean("Waiting", !isWaiting);
                     event.setCanceled(true);

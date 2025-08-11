@@ -25,6 +25,11 @@ public class ParasiteEntityAIOwnerHurtTarget extends EntityAITarget
         
         target = owner.getRevengeTarget();
         if (target == null) return false;
+        
+        if (target.getEntityData().hasUniqueId("OwnerUUID")) {
+            UUID targetOwnerId = target.getEntityData().getUniqueId("OwnerUUID");
+            if (targetOwnerId.equals(getOwner().getUniqueID())) return false;
+        }
  
         if (target.equals(parasite)) return false;
         if (target.equals(getOwner())) return false;
