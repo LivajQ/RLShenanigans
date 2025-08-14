@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.item.ItemAmuletSinLust;
+import rlshenanigans.item.ItemPocketPetHolderEmpty;
+import rlshenanigans.item.ItemPocketPetHolderFilled;
 import rlshenanigans.item.ItemWeaponZweihander;
 import rlshenanigans.potion.PotionDragonBad;
 import rlshenanigans.potion.PotionGolemBad;
@@ -28,6 +30,8 @@ public class ModRegistry {
         
         public static Item sinPendantLust = new ItemAmuletSinLust();
         public static Item weaponZweihander = new ItemWeaponZweihander("weapon_zweihander");
+        public static Item pocketPetHolderEmpty = new ItemPocketPetHolderEmpty();
+        public static Item pocketPetHolderFilled = new ItemPocketPetHolderFilled();
         
         public static void init() {
         }
@@ -36,7 +40,9 @@ public class ModRegistry {
         public static void registerItemEvent(RegistryEvent.Register<Item> event) {
                 event.getRegistry().registerAll(
                         sinPendantLust,
-                        weaponZweihander
+                        weaponZweihander,
+                        pocketPetHolderEmpty,
+                        pocketPetHolderFilled
                 );
         }
 

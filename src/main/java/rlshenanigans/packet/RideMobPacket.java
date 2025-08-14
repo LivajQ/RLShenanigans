@@ -3,7 +3,7 @@ package rlshenanigans.packet;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public class RideParasitePacket implements IMessage {
+public class RideMobPacket implements IMessage {
     public float forward;
     public float strafe;
     public boolean jump;
@@ -12,10 +12,10 @@ public class RideParasitePacket implements IMessage {
     public boolean descend;
     public boolean projectile;
     
-    public RideParasitePacket() {
+    public RideMobPacket() {
     }
     
-    public RideParasitePacket(float forward, float strafe, boolean jump, boolean sprinting, boolean ascend, boolean descend, boolean projectile) {
+    public RideMobPacket(float forward, float strafe, boolean jump, boolean sprinting, boolean ascend, boolean descend, boolean projectile) {
         this.forward = forward;
         this.strafe = strafe;
         this.jump = jump;

@@ -8,7 +8,6 @@ import com.dhanantry.scapeandrunparasites.entity.monster.infected.EntityInfDrago
 import com.dhanantry.scapeandrunparasites.entity.monster.pure.preeminent.EntityFlam;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
