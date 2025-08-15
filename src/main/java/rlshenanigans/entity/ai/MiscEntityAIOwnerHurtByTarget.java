@@ -30,7 +30,7 @@ public class MiscEntityAIOwnerHurtByTarget extends EntityAITarget
         
         if (attacker.getEntityData().hasUniqueId("OwnerUUID")) {
             UUID attackerOwnerId = attacker.getEntityData().getUniqueId("OwnerUUID");
-            if (attackerOwnerId.equals(getOwner().getUniqueID())) return false;
+            if (attackerOwnerId.equals(owner.getUniqueID())) return false;
         }
         
         if (attacker.equals(mob)) return false;

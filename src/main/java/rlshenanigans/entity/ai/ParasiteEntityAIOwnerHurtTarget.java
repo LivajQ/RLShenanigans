@@ -3,6 +3,7 @@ package rlshenanigans.entity.ai;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 import java.util.UUID;
 
@@ -28,12 +29,12 @@ public class ParasiteEntityAIOwnerHurtTarget extends EntityAITarget
         
         if (target.getEntityData().hasUniqueId("OwnerUUID")) {
             UUID targetOwnerId = target.getEntityData().getUniqueId("OwnerUUID");
-            if (targetOwnerId.equals(getOwner().getUniqueID())) return false;
+            if (targetOwnerId.equals(owner.getUniqueID())) return false;
         }
  
         if (target.equals(parasite)) return false;
         if (target.equals(getOwner())) return false;
-        if (target instanceof EntityParasiteBase) return false;
+        if (target instanceof EntityParasiteBase && !ForgeConfigHandler.server.parasiteOnParasiteViolence) return false;
         
         return true;
     }

@@ -6,7 +6,8 @@
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "mixins": [
-    "ParasiteEventEntityMixin"
+    "ParasiteEventEntityMixin",
+    "EntityParasiteBaseMixin"
   ],
   "injectors": {
     "maxShiftBy": 10

@@ -23,6 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.ModRegistry;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class ItemAmuletSinLust extends Item implements IBauble
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         for (int i = 0; i < 10; i++) {
             String key = getTranslationKey() + ".tooltip." + i;
             String line = I18n.format(key);

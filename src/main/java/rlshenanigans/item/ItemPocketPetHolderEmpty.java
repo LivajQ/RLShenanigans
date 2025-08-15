@@ -1,5 +1,7 @@
 package rlshenanigans.item;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -11,8 +13,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.ModRegistry;
+
+import java.util.List;
 
 public class ItemPocketPetHolderEmpty extends Item {
     
@@ -20,6 +26,20 @@ public class ItemPocketPetHolderEmpty extends Item {
         this.setMaxStackSize(16);
         this.setTranslationKey("pocket_pet_holder_empty");
         this.setRegistryName(RLShenanigans.MODID, "pocket_pet_holder_empty");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        for (int i = 0; i < 10; i++) {
+            String key = getTranslationKey() + ".tooltip." + i;
+            String line = I18n.format(key);
+            if (!line.equals(key)) {
+                tooltip.add(line);
+            } else {
+                break;
+            }
+        }
     }
     
     @Override
@@ -74,7 +94,7 @@ public class ItemPocketPetHolderEmpty extends Item {
         filledHolder.setTagCompound(filledTag);
         
         if (!player.world.isRemote) {
-            if (stack.getCount() == 1) {
+            if (stack.getCount() == 1 && !player.capabilities.isCreativeMode) {
                 NBTTagCompound stackTag = stack.getTagCompound();
                 if (stackTag == null) stackTag = new NBTTagCompound();
                 

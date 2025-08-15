@@ -35,6 +35,10 @@ item.amulet_sin_lust.name=§d§oLust Pendant
 item.amulet_sin_lust.tooltip.0=§fThis pendant resonates with the §d§ofreaky §r§fessence.
 item.amulet_sin_lust.tooltip.1=§9Grants sinful buff (+damage, +armor) when around multiple entities.
 
+item.pocket_pet_holder_filled.name=Pocket Pet Holder (Filled)
+item.pocket_pet_holder_empty.name=Pocket Pet Holder
+item.pocket_pet_holder_empty.tooltip.0=§6Used to safely store and transport your pets. Only works on mobs from the tameable misc whitelist.
+
 item.spartanweaponry:weapon_zweihander.name=§c§lZweihander
 tooltip.rlshenanigans:reach=§aZweihander
 tooltip.rlshenanigans:reach.desc=Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.

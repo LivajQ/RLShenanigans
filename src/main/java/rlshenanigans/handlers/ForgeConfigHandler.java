@@ -7,9 +7,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Config(modid = RLShenanigans.MODID)
 public class ForgeConfigHandler {
 	
@@ -38,6 +35,10 @@ public class ForgeConfigHandler {
 		@Config.Comment({"Set to true to allow resummoning of tamed parasites after death"})
 		@Config.Name("Parasites Permanent Taming")
 		public boolean parasiteDeathResummonEnabled = false;
+		
+		@Config.Comment({"Set to true to let tamed parasites attack untamed ones. Not a reliable feature as they're often unable to damage each other"})
+		@Config.Name("Parasite on Parasite Violence")
+		public boolean parasiteOnParasiteViolence = false;
 		
 		@Config.Comment("Set to false to disable set bonus effects for armor sets")
 		@Config.Name("Armor Set Buffs")

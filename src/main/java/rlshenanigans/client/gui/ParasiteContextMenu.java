@@ -26,7 +26,8 @@ public class ParasiteContextMenu extends GuiScreen {
             "Resize",
             "Smooch",
             "Ask For Drops",
-            "Spontaneously Combust"
+            "Spontaneously Combust",
+            "Despawn"
     };
     
     public ParasiteContextMenu(int parasiteEntityId) {

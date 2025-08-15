@@ -9,7 +9,8 @@ public enum ParasiteCommand {
     RESIZE("Resize your §dPookie"),
     SMOOCH("Kissy kissy"),
     ASKFORDROP("Ask your §dPookie §ffor items"),
-    SELF_DESTRUCT("Trigger obliteration of everything and anything");
+    SELF_DESTRUCT("Trigger obliteration of everything and anything"),
+    DESPAWN("Despawn your §dPookie");
     
     private final String description;
     

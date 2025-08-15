@@ -244,9 +244,32 @@ public class TameMiscHandler
         EntityLivingBase attackTarget = mob.getAttackTarget();
         EntityLivingBase revengeTarget = mob.getRevengeTarget();
         
-        if (attackTarget != null && attackTarget.equals(owner)) mob.setAttackTarget(null);
+        boolean attackOwnedByPlayer = false;
+        boolean revengeOwnedByPlayer = false;
         
-        if (revengeTarget != null && revengeTarget.equals(owner)) mob.setRevengeTarget(null);
+        if (attackTarget != null) {
+            NBTTagCompound attackTargetData = attackTarget.getEntityData();
+            if (attackTargetData.hasUniqueId("OwnerUUID")) {
+                UUID ownerUUID = attackTargetData.getUniqueId("OwnerUUID");
+                attackOwnedByPlayer = ownerUUID.equals(owner.getUniqueID());
+            }
+        }
+        
+        if (revengeTarget != null) {
+            NBTTagCompound revengeTargetData = revengeTarget.getEntityData();
+            if (revengeTargetData.hasUniqueId("OwnerUUID")) {
+                UUID ownerUUID = revengeTargetData.getUniqueId("OwnerUUID");
+                revengeOwnedByPlayer = ownerUUID.equals(owner.getUniqueID());
+            }
+        }
+        
+        if (attackTarget != null && (attackTarget.equals(owner) || attackOwnedByPlayer)) {
+            mob.setAttackTarget(null);
+        }
+        
+        if (revengeTarget != null && (revengeTarget.equals(owner) || revengeOwnedByPlayer)) {
+            mob.setRevengeTarget(null);
+        }
         
         
         if (!hasLoyaltyTasks(mob) && mob instanceof EntityCreature)
@@ -284,15 +307,21 @@ public class TameMiscHandler
     public static void onLivingAttack(LivingAttackEvent event) {
         EntityLivingBase target = event.getEntityLiving();
         Entity attacker = event.getSource().getTrueSource();
+        if(attacker == null) return;
         
-        if (attacker instanceof EntityLiving && target instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) target;
-            EntityLiving mob = (EntityLiving) attacker;
-            NBTTagCompound data = mob.getEntityData();
-            
-            if (data.hasUniqueId("OwnerUUID") && data.getUniqueId("OwnerUUID").equals(player.getUniqueID())) {
-                event.setCanceled(true);
-            }
+        NBTTagCompound data = attacker.getEntityData();
+        NBTTagCompound targetData = target.getEntityData();
+        
+        if (!data.hasUniqueId("OwnerUUID")) return;
+        if (!data.getBoolean("MiscTamed")) return;
+        
+        if(target instanceof EntityPlayer) {
+            if (data.getUniqueId("OwnerUUID").equals(target.getUniqueID())) event.setCanceled(true);
+        }
+        
+        else {
+            if (!targetData.hasUniqueId("OwnerUUID")) return;
+            if (data.getUniqueId("OwnerUUID").equals(targetData.getUniqueId("OwnerUUID"))) event.setCanceled(true);
         }
     }
 

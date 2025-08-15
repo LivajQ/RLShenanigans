@@ -1,6 +1,5 @@
 package rlshenanigans.handlers;
 
-import com.dhanantry.scapeandrunparasites.entity.EntityDamage;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
 import net.minecraft.entity.Entity;
@@ -20,7 +19,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -157,6 +155,7 @@ public class TameParasiteHandler
         EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
         if (!parasite.getEntityData().getBoolean("Tamed")) return;
         if (ForgeConfigHandler.server.parasiteDeathResummonEnabled) return;
+        if (parasite.getEntityData().getBoolean("SafeDespawn")) return;
         
         TamedParasiteRegistry.untrack(parasite.getUniqueID());
         
@@ -250,14 +249,32 @@ public class TameParasiteHandler
         EntityLivingBase attackTarget = parasite.getAttackTarget();
         EntityLivingBase revengeTarget = parasite.getRevengeTarget();
         
-        if (attackTarget != null && (attackTarget.equals(owner)
-                || attackTarget instanceof EntityParasiteBase)) {
-            parasite.setAttackTarget(null);
+        boolean attackOwnedByPlayer = false;
+        boolean revengeOwnedByPlayer = false;
+        
+        if (attackTarget != null) {
+            NBTTagCompound attackTargetData = attackTarget.getEntityData();
+            if (attackTargetData.hasUniqueId("OwnerUUID")) {
+                UUID ownerUUID = attackTargetData.getUniqueId("OwnerUUID");
+                attackOwnedByPlayer = ownerUUID.equals(owner.getUniqueID());
+            }
         }
-        if (revengeTarget != null && (revengeTarget.equals(owner)
-                || revengeTarget instanceof EntityParasiteBase)) {
-            parasite.setRevengeTarget(null);
+        
+        if (revengeTarget != null) {
+            NBTTagCompound revengeTargetData = revengeTarget.getEntityData();
+            if (revengeTargetData.hasUniqueId("OwnerUUID")) {
+                UUID ownerUUID = revengeTargetData.getUniqueId("OwnerUUID");
+                revengeOwnedByPlayer = ownerUUID.equals(owner.getUniqueID());
+            }
         }
+        
+        boolean canAttackParasites = ForgeConfigHandler.server.parasiteOnParasiteViolence;
+        
+        if(attackTarget instanceof EntityParasiteBase && !canAttackParasites) parasite.setAttackTarget(null);
+        if(revengeTarget instanceof EntityParasiteBase && !canAttackParasites) parasite.setRevengeTarget(null);
+        if (attackTarget != null && (attackTarget.equals(owner) || attackOwnedByPlayer)) parasite.setAttackTarget(null);
+        if (revengeTarget != null && (revengeTarget.equals(owner) || revengeOwnedByPlayer)) parasite.setRevengeTarget(null);
+        
         
         if (!hasLoyaltyTasks(parasite))
         {
@@ -310,46 +327,29 @@ public class TameParasiteHandler
     }
     
     @SubscribeEvent
-    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
-        if (event.getWorld().isRemote) return;
+    public static void onLivingAttack(LivingAttackEvent event)
+    {
+        if (event.getEntityLiving().world.isRemote) return;
         
-        Entity entity = event.getEntity();
-        
-        if (entity instanceof EntityDamage) {
-            EntityDamage damage = (EntityDamage) entity;
-            
-            List<EntityParasiteBase> nearbyParasites = entity.world.getEntitiesWithinAABB(
-                    EntityParasiteBase.class,
-                    entity.getEntityBoundingBox().grow(2.0)
-            );
-            
-            for (EntityParasiteBase parasite : nearbyParasites) {
-                UUID ownerUUID = parasite.getEntityData().getUniqueId("OwnerUUID");
-                
-                if (ownerUUID != null && parasite.isBeingRidden()) {
-                    Entity rider = parasite.getPassengers().get(0);
-                    if (rider instanceof EntityPlayer && ((EntityPlayer) rider).getUniqueID().equals(ownerUUID)) {
-                        event.setCanceled(true);
-                        return;
-                    }
-                }
-            }
-        }
-    }
-    
-    @SubscribeEvent
-    public static void onLivingAttack(LivingAttackEvent event) {
         EntityLivingBase target = event.getEntityLiving();
         Entity attacker = event.getSource().getTrueSource();
+        if (!(attacker instanceof EntityParasiteBase)) return;
         
-        if (attacker instanceof EntityParasiteBase && target instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) target;
-            EntityParasiteBase parasite = (EntityParasiteBase) attacker;
-            NBTTagCompound data = parasite.getEntityData();
-            
-            if (data.hasUniqueId("OwnerUUID") && data.getUniqueId("OwnerUUID").equals(player.getUniqueID())) {
+        NBTTagCompound attackerData = attacker.getEntityData();
+        NBTTagCompound targetData = target.getEntityData();
+        
+        if (!attackerData.hasUniqueId("OwnerUUID")) return;
+        
+        if (target instanceof EntityPlayer) {
+            if (attackerData.getUniqueId("OwnerUUID").equals(target.getUniqueID())) {
                 event.setCanceled(true);
             }
+        }
+        
+        else {
+            if (!targetData.hasUniqueId("OwnerUUID")) return;
+            if (attackerData.getUniqueId("OwnerUUID").equals(targetData.getUniqueId("OwnerUUID")))
+                event.setCanceled(true);
         }
     }
 

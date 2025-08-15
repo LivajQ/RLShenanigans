@@ -130,6 +130,11 @@ public class BehaviorParasiteHandler {
                 
                 world.createExplosion(parasite, x, y, z, 200.0F, true);
                 break;
+            
+            case DESPAWN:
+                parasite.getEntityData().setBoolean("SafeDespawn", true);
+                parasite.setDead();
+                break;
         }
     }
 }
