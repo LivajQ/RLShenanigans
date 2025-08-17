@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rlshenanigans:items/pocket_pet_holder_filled"
+  }
+}

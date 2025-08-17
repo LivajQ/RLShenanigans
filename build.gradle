@@ -67,9 +67,9 @@ dependencies {
     implementation fg.deobf("curse.maven:varied-commodities-${variedcommodities_version}")
     implementation fg.deobf("curse.maven:rltweaker2-${rltweaker_version}")
     implementation fg.deobf("curse.maven:llibrary-${llibrary_version}")
+    implementation fg.deobf("curse.maven:jei-${jei_version}")
 
     implementation fg.deobf("libs:SRParasites:${srparasites_version}")
-
 }
 
 mixin {

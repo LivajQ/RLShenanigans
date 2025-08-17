@@ -25,6 +25,8 @@ public abstract class EntityParasiteBaseMixin {
         UUID targetUUID = target.getUniqueID();
         UUID targetOwnerUUID = null;
         
+        if (targetUUID == null) return;
+        
         NBTTagCompound targetNbt = target.getEntityData();
         
         if (targetNbt.hasUniqueId("OwnerUUID")) targetOwnerUUID = targetNbt.getUniqueId("OwnerUUID");

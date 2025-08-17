@@ -210,35 +210,14 @@ public class TameMiscHandler
             }
         }
         
-        mob.targetTasks.taskEntries.removeIf(entry ->
-        {
+        mob.targetTasks.taskEntries.removeIf(entry -> {
             String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("near");
-        });
-        mob.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("flightatt");
-        });
-        mob.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("blocklight");
-        });
-        mob.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("stareatt");
-        });
-        mob.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("watchclo");
-        });
-        mob.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("fleesun");
+            return name.contains("near")
+                    || name.contains("flightatt")
+                    || name.contains("blocklight")
+                    || name.contains("stareatt")
+                    || name.contains("watchclo")
+                    || name.contains("fleesun");
         });
         
         EntityLivingBase attackTarget = mob.getAttackTarget();

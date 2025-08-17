@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "rlshenanigans.mixin.jei",
+  "refmap": "mixins.rlshenanigans.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "mixins": [
+    "ConfigMixin"
+  ],
+  "injectors": {
+    "maxShiftBy": 10
+  }
+}

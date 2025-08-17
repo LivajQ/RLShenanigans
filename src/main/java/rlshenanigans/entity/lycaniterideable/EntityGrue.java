@@ -149,8 +149,25 @@ public class EntityGrue extends RideableCreatureEntity implements IMob
     
     @Override
     public void riderEffects(EntityLivingBase rider) {
-        rider.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 105, 0));
-        this.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 105, 0));
+    
+    }
+    
+    @Override
+    public void mountAbility(Entity rider) {
+        if (!this.getEntityWorld().isRemote && !this.abilityToggled && rider instanceof EntityLivingBase) {
+            if (this.getStamina() >= this.getStaminaCost()) {
+                this.applyStaminaCost();
+                EntityLivingBase riderLiving = (EntityLivingBase) rider;
+                riderLiving.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 3600, 0));
+                this.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 3600, 0));
+                this.playAttackSound();
+            }
+        }
+    }
+    
+    @Override
+    public float getStaminaCost() {
+        return 100.0F;
     }
     
     @Override

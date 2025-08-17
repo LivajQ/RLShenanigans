@@ -1,6 +1,5 @@
 package rlshenanigans.handlers;
 
-
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -177,7 +176,7 @@ public class RideMobHandler extends RibeMobUtils {
                 EntityLiving mount = (EntityLiving) mob;
                 if(!isValidMob(mount)) return;
                 
-                double speed = msg.sprinting ? 1.4D : 0.25D;
+                double speed = msg.sprinting ? 1.4D : 0.4D;
                 float yaw = player.rotationYaw;
                 
                 double motionX = (-Math.sin(Math.toRadians(yaw)) * msg.forward + Math.cos(Math.toRadians(yaw)) * msg.strafe) * speed;

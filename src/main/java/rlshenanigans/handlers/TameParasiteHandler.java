@@ -225,25 +225,12 @@ public class TameParasiteHandler
             }
         }
         
-        parasite.targetTasks.taskEntries.removeIf(entry ->
-        {
+        parasite.targetTasks.taskEntries.removeIf(entry -> {
             String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("near");
-        });
-        parasite.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("flightatt");
-        });
-        parasite.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("parasitefollow");
-        });
-        parasite.targetTasks.taskEntries.removeIf(entry ->
-        {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("blocklight");
+            return name.contains("near")
+                    || name.contains("flightatt")
+                    || name.contains("parasitefollow")
+                    || name.contains("blocklight");
         });
         
         EntityLivingBase attackTarget = parasite.getAttackTarget();

@@ -4,6 +4,7 @@ import com.charles445.rltweaker.config.ModConfig;
 import com.lycanitesmobs.core.info.CreatureConfig;
 import com.lycanitesmobs.core.info.CreatureManager;
 import com.lycanitesmobs.core.info.CreatureSpawnConfig;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -27,7 +28,8 @@ import rlshenanigans.util.TameableMiscWhitelist;
                 "required-after:spartanweaponry;" +
                 "required-after:iceandfire;" +
                 "required-after:lycanitesmobs;" +
-                "required-after:variedcommodities"
+                "required-after:variedcommodities;" +
+                "required-after:jei"
 )
 public class RLShenanigans
 {
@@ -73,5 +75,10 @@ public class RLShenanigans
         ModConfig.server.srparasites.parasitesDimensionBlacklistEnabled = false;
         
         TameableMiscWhitelist.load(ForgeConfigHandler.server.tameableMiscEntries);
+        
+        RLSRecipeHandler.bypassCraftTweaker(
+                new ResourceLocation("lycanitesmobs", "saddle_elemental"),
+                new ResourceLocation("rlshenanigans", "recipes/saddle_elemental.json")
+        );
     }
 }
