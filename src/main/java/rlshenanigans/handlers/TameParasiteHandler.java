@@ -53,7 +53,7 @@ public class TameParasiteHandler
         Entity target = event.getTarget();
         World world = player.world;
         
-        if(!ForgeConfigHandler.server.parasiteTamingEnabled) return;
+        if(!ForgeConfigHandler.parasite.parasiteTamingEnabled) return;
         if (!(target instanceof EntityParasiteBase)) return;  //not enough apparently? apples still consumed for normal mobs
         EntityParasiteBase parasite = (EntityParasiteBase) target;
         
@@ -76,9 +76,9 @@ public class TameParasiteHandler
         if (world.isRemote || parasite.getEntityData().getBoolean("Tamed")) return;
         if (event.getHand() != EnumHand.MAIN_HAND) return;
         
-        ResourceLocation rl = new ResourceLocation(ForgeConfigHandler.server.parasiteTamingItem);
+        ResourceLocation rl = new ResourceLocation(ForgeConfigHandler.parasite.parasiteTamingItem);
         Item item = ForgeRegistries.ITEMS.getValue(rl);
-        int meta = ForgeConfigHandler.server.parasiteTamingItemMetadata;
+        int meta = ForgeConfigHandler.parasite.parasiteTamingItemMetadata;
         
         if (stack.getItem() == item && stack.getMetadata() == meta)
         {
@@ -154,7 +154,7 @@ public class TameParasiteHandler
         
         EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
         if (!parasite.getEntityData().getBoolean("Tamed")) return;
-        if (ForgeConfigHandler.server.parasiteDeathResummonEnabled) return;
+        if (ForgeConfigHandler.parasite.parasiteDeathResummonEnabled) return;
         if (parasite.getEntityData().getBoolean("SafeDespawn")) return;
         
         TamedParasiteRegistry.untrack(parasite.getUniqueID());
@@ -255,7 +255,7 @@ public class TameParasiteHandler
             }
         }
         
-        boolean canAttackParasites = ForgeConfigHandler.server.parasiteOnParasiteViolence;
+        boolean canAttackParasites = ForgeConfigHandler.parasite.parasiteOnParasiteViolence;
         
         if(attackTarget instanceof EntityParasiteBase && !canAttackParasites) parasite.setAttackTarget(null);
         if(revengeTarget instanceof EntityParasiteBase && !canAttackParasites) parasite.setRevengeTarget(null);

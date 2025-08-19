@@ -1,7 +1,7 @@
 package rlshenanigans.handlers;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPStationaryArchitect;
-import net.minecraft.entity.EntityLiving;
+import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,16 +15,14 @@ public class MiscParasiteHandler
 {
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
-        if (!(event.getEntity() instanceof EntityLiving)) return;
-        
         if (event.getWorld().provider.getDimension() != 0) return;
+        if(!(event.getEntity() instanceof EntityParasiteBase)) return;
+        EntityParasiteBase parasite = (EntityParasiteBase) event.getEntity();
         
-        EntityLiving entity = (EntityLiving) event.getEntity();
-        
-        if (entity instanceof EntityPStationaryArchitect) {
-            List<EntityPlayer> nearbyPlayers = entity.world.getEntitiesWithinAABB(
+        if (parasite instanceof EntityPStationaryArchitect) {
+            List<EntityPlayer> nearbyPlayers = parasite.world.getEntitiesWithinAABB(
                     EntityPlayer.class,
-                    entity.getEntityBoundingBox().grow(10.0D, 3.0D, 10.0D)
+                    parasite.getEntityBoundingBox().grow(10.0D, 3.0D, 10.0D)
             );
             
             if (nearbyPlayers.isEmpty()) {

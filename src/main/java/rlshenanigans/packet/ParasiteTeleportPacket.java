@@ -78,7 +78,6 @@ public class ParasiteTeleportPacket implements IMessage {
                     newMob.getEntityData().setBoolean("Tamed", true);
                     newMob.getEntityData().setBoolean("PersistenceRequired", true);
                     newMob.getEntityData().setBoolean("parasitedespawn", false);
-                    newMob.getEntityData().setBoolean("ParasiteDespawn", false);
                     newMob.getEntityData().setBoolean("AllowConverting", false);
                     newMob.getEntityData().setBoolean("Waiting", false);
                     newMob.setSkin(info.skin);

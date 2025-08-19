@@ -34,7 +34,7 @@ public class ParasiteEntityAIOwnerHurtTarget extends EntityAITarget
  
         if (target.equals(parasite)) return false;
         if (target.equals(getOwner())) return false;
-        if (target instanceof EntityParasiteBase && !ForgeConfigHandler.server.parasiteOnParasiteViolence) return false;
+        if (target instanceof EntityParasiteBase && !ForgeConfigHandler.parasite.parasiteOnParasiteViolence) return false;
         
         return true;
     }

@@ -8,18 +8,31 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 
 @Config(modid = RLShenanigans.MODID)
-public class ForgeConfigHandler {
+public class ForgeConfigHandler
+{
 	
-	@Config.Comment("Server-Side Options")
-	@Config.Name("Server Options")
-	public static final ServerConfig server = new ServerConfig();
-
 	@Config.Comment("Client-Side Options")
 	@Config.Name("Client Options")
 	public static final ClientConfig client = new ClientConfig();
-
-	public static class ServerConfig {
-
+	
+	@Config.Comment("Parasite-related settings")
+	@Config.Name("Parasite Settings")
+	public static final ParasiteConfig parasite = new ParasiteConfig();
+	
+	@Config.Comment("Spawn odds for custom mobs")
+	@Config.Name("Custom Mobs Spawn Chance")
+	public static final CustomMobSpawnConfig customMobSpawn = new CustomMobSpawnConfig();
+	
+	@Config.Comment("Misc options")
+	@Config.Name("Misc")
+	public static final MiscConfig misc = new MiscConfig();
+	
+	
+	
+	
+	
+	public static class ParasiteConfig {
+		
 		@Config.Comment("Set to false to disable parasite taming (monster)")
 		@Config.Name("Parasite Taming")
 		public boolean parasiteTamingEnabled = true;
@@ -39,6 +52,36 @@ public class ForgeConfigHandler {
 		@Config.Comment({"Set to true to let tamed parasites attack untamed ones. Not a reliable feature as they're often unable to damage each other"})
 		@Config.Name("Parasite on Parasite Violence")
 		public boolean parasiteOnParasiteViolence = false;
+	}
+	
+	
+	
+	
+	
+	public static class CustomMobSpawnConfig {
+		
+		@Config.Comment("% chance for 'Strength Main' to spawn")
+		@Config.Name("Strength Main")
+		public double strengthMainSpawnChance = 1.0F;
+		
+		@Config.Comment("% chance for 'I Lost My Hive :<' to spawn")
+		@Config.Name("I Lost My Hive :<")
+		public double lostMyHiveChance = 1.0F;
+		
+		@Config.Comment("% chance for 'COLUMN' to spawn")
+		@Config.Name("COLUMN")
+		public double columnChance = 1.0F;
+		
+		@Config.Comment("% chance for 'Freakyberian' to spawn")
+		@Config.Name("Freakyberian")
+		public double freakyberianChance = 5.0F;
+	}
+	
+	
+	
+	
+	
+	public static class MiscConfig {
 		
 		@Config.Comment("Set to false to disable set bonus effects for armor sets")
 		@Config.Name("Armor Set Buffs")
@@ -47,10 +90,6 @@ public class ForgeConfigHandler {
 		@Config.Comment("Set to false to disable debuffs for bad armor (if you don't know what this means you already failed)")
 		@Config.Name("Armor Set Debuffs")
 		public boolean badArmorDebuffsEnabled = true;
-		
-		@Config.Comment("Set to false to disable custom mob spawning")
-		@Config.Name("Custom Mobs")
-		public boolean customMobsEnabled = true;
 		
 		@Config.Comment("Dr. Jr.")
 		@Config.Name("Dr. Jr.")
@@ -64,17 +103,21 @@ public class ForgeConfigHandler {
 				"Pattern: MobID;Item;Item Metadata",
 				"Example: iceandfire:seaserpent;minecraft:fish;2"})
 		@Config.Name("Tameable Misc Whitelist")
-		public String[] tameableMiscEntries = new String[] {
+		public String[] tameableMiscEntries = new String[]{
 				"iceandfire:seaserpent;minecraft:fish;2",
 				"iceandfire:gorgon;minecraft:fermented_spider_eye;0",
 				"iceandfire:if_hydra;lycanitesmobs:poisongland;0"
 		};
 	}
+	
+	
 
+	
+	
 	public static class ClientConfig {
 
 		@Config.Comment("Set to false to disable THH textures for parasites (even bigger monster)")
-		@Config.Name("Parasite THH Textures")
+		@Config.Name("Tamed Parasite THH Textures")
 		public boolean thhEnabled = true;
 		
 		@Config.Comment("Set to false to stop parasites from talking when tamed")
@@ -86,6 +129,10 @@ public class ForgeConfigHandler {
 		public boolean parasiteDeathMessagesEnabled = true;
 	}
 
+	
+	
+	
+	
 	@Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 	private static class EventHandler{
 

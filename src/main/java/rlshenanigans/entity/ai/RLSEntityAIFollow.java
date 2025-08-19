@@ -7,7 +7,7 @@ import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.math.Vec3d;
 
-public class ParasiteEntityAIFollow extends EntityAIBase {
+public class RLSEntityAIFollow extends EntityAIBase {
     private final EntityCreature follower;
     private final EntityPlayer targetPlayer;
     private final double speed;
@@ -17,7 +17,7 @@ public class ParasiteEntityAIFollow extends EntityAIBase {
     private int timeToRecalcPath;
     private float oldWaterCost;
     
-    public ParasiteEntityAIFollow(EntityCreature follower, EntityPlayer targetPlayer, double speed, float stopDistance, float areaSize) {
+    public RLSEntityAIFollow(EntityCreature follower, EntityPlayer targetPlayer, double speed, float stopDistance, float areaSize) {
         this.follower = follower;
         this.targetPlayer = targetPlayer;
         this.speed = speed;

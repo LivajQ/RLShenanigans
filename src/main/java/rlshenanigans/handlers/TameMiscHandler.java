@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
@@ -43,7 +44,7 @@ public class TameMiscHandler
         Entity target = event.getTarget();
         World world = player.world;
         
-        if (!ForgeConfigHandler.server.miscTamingEnabled) return;
+        if (!ForgeConfigHandler.misc.miscTamingEnabled) return;
         if (!(target instanceof EntityLiving)) return;
         
         EntityLiving mob = (EntityLiving) target;
@@ -279,6 +280,11 @@ public class TameMiscHandler
             if (target.getEntityData().getBoolean("MiscTamed")) {
                 mob.setRevengeTarget(null);
             }
+        }
+        
+        Potion cothEffect = ForgeRegistries.POTIONS.getValue(new ResourceLocation("srparasites", "coth"));
+        if (cothEffect != null && mob.isPotionActive(cothEffect)) {
+            mob.removePotionEffect(cothEffect);
         }
     }
     

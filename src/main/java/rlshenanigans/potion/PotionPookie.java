@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.*;
 
 import java.util.HashMap;
@@ -21,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber
 public class PotionPookie extends PotionBase {
     
     public static final PotionPookie INSTANCE = new PotionPookie();
@@ -66,12 +66,12 @@ public class PotionPookie extends PotionBase {
             });
             
             boolean hasFollowTask = parasite.tasks.taskEntries.stream().anyMatch(entry ->
-                    entry.action instanceof ParasiteEntityAIFollow
+                    entry.action instanceof RLSEntityAIFollow
             );
             
            if(!hasFollowTask)
            {
-               parasite.tasks.addTask(6, new ParasiteEntityAIFollow(parasite, player, 1.0D, 2.0F, 12.0F));
+               parasite.tasks.addTask(6, new RLSEntityAIFollow(parasite, player, 1.0D, 2.0F, 12.0F));
            }
             
             if (parasite.getAttackTarget() == player || parasite.getRevengeTarget() == player) {
@@ -86,44 +86,47 @@ public class PotionPookie extends PotionBase {
         }
     }
     
-    @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        EntityPlayer player = event.player;
-        if (player.world.isRemote) return;
-        
-        UUID id = player.getUniqueID();
-        boolean pookieCurrentlyActive = player.isPotionActive(PotionPookie.INSTANCE);
-        boolean pookiePreviouslyActive = hadPookieEffect.getOrDefault(id, false);
-        
-        if (pookiePreviouslyActive && !pookieCurrentlyActive) {
-            AxisAlignedBB box = player.getEntityBoundingBox().grow(48.0D);
-            List<EntityParasiteBase> parasites = player.world.getEntitiesWithinAABB(EntityParasiteBase.class, box);
+    @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
+    static class Handler {
+        @SubscribeEvent
+        public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+            EntityPlayer player = event.player;
+            if (player.world.isRemote) return;
             
-            for (EntityParasiteBase parasite : parasites) {
-                NBTTagCompound tag = parasite.getEntityData();
-                parasite.tasks.taskEntries.removeIf(entry ->
-                        entry.action.getClass().getSimpleName().toLowerCase().contains("follow"));
-                if (tag.getBoolean("PookieAffected")) tag.setBoolean("PookieAffected", false);
+            UUID id = player.getUniqueID();
+            boolean pookieCurrentlyActive = player.isPotionActive(PotionPookie.INSTANCE);
+            boolean pookiePreviouslyActive = hadPookieEffect.getOrDefault(id, false);
+            
+            if (pookiePreviouslyActive && !pookieCurrentlyActive) {
+                AxisAlignedBB box = player.getEntityBoundingBox().grow(48.0D);
+                List<EntityParasiteBase> parasites = player.world.getEntitiesWithinAABB(EntityParasiteBase.class, box);
+                
+                for (EntityParasiteBase parasite : parasites) {
+                    NBTTagCompound tag = parasite.getEntityData();
+                    parasite.tasks.taskEntries.removeIf(entry ->
+                            entry.action.getClass().getSimpleName().toLowerCase().contains("follow"));
+                    if (tag.getBoolean("PookieAffected")) tag.setBoolean("PookieAffected", false);
+                }
             }
+            hadPookieEffect.put(id, pookieCurrentlyActive);
         }
-        hadPookieEffect.put(id, pookieCurrentlyActive);
-    }
-    
-    @SubscribeEvent
-    public static void onLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        hadPookieEffect.remove(event.player.getUniqueID());
-    }
-    
-    @SubscribeEvent
-    public static void onLivingDrops(LivingDropsEvent event) {
-        Entity entity = event.getEntity();
         
-        if (entity instanceof EntityParasiteBase) {
-            NBTTagCompound nbt = entity.getEntityData();
+        @SubscribeEvent
+        public static void onLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+            hadPookieEffect.remove(event.player.getUniqueID());
+        }
+        
+        @SubscribeEvent
+        public static void onLivingDrops(LivingDropsEvent event) {
+            Entity entity = event.getEntity();
             
-            if (nbt.getBoolean("DropsGone")) {
-                event.getDrops().clear();
-                event.setCanceled(true);
+            if (entity instanceof EntityParasiteBase) {
+                NBTTagCompound nbt = entity.getEntityData();
+                
+                if (nbt.getBoolean("DropsGone")) {
+                    event.getDrops().clear();
+                    event.setCanceled(true);
+                }
             }
         }
     }

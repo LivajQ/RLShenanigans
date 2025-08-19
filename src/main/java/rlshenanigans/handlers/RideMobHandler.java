@@ -20,11 +20,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.RideMobPacket;
 import rlshenanigans.proxy.ClientProxy;
 import rlshenanigans.util.RibeMobUtils;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class RideMobHandler extends RibeMobUtils {
     
     private static boolean eyeHeightChanged = false;

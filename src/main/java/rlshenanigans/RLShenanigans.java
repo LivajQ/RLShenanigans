@@ -74,7 +74,7 @@ public class RLShenanigans
         
         ModConfig.server.srparasites.parasitesDimensionBlacklistEnabled = false;
         
-        TameableMiscWhitelist.load(ForgeConfigHandler.server.tameableMiscEntries);
+        TameableMiscWhitelist.load(ForgeConfigHandler.misc.tameableMiscEntries);
         
         RLSRecipeHandler.bypassCraftTweaker(
                 new ResourceLocation("lycanitesmobs", "saddle_elemental"),

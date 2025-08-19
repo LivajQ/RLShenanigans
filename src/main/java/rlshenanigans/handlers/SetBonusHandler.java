@@ -22,9 +22,6 @@ public class SetBonusHandler
     {
         if (event.phase != TickEvent.Phase.END || event.player.world.isRemote) return;
         
-        boolean goodBonus = ForgeConfigHandler.server.setBonusEnabled;
-        boolean badBonus = ForgeConfigHandler.server.setBonusEnabled;
-        
         EntityPlayer player = event.player;
         
         if (player.ticksExisted % 20 != 0) return;
@@ -32,7 +29,7 @@ public class SetBonusHandler
         
         //########## GOOD BONUSES ##########
         
-        if(ForgeConfigHandler.server.setBonusEnabled)
+        if(ForgeConfigHandler.misc.setBonusEnabled)
         {
             ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
             ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
@@ -53,7 +50,7 @@ public class SetBonusHandler
         
         //########## BAD BONUSES ##########
         
-        if(ForgeConfigHandler.server.badArmorDebuffsEnabled)
+        if(ForgeConfigHandler.misc.badArmorDebuffsEnabled)
         {
             boolean wearingDragon = dragonDetector(player);
             if (wearingDragon)
