@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.util.TamedParasiteInfo;
 import rlshenanigans.util.TamedParasiteRegistry;
 
@@ -21,9 +22,11 @@ public class ParasiteRequestTPListPacket implements IMessage
         @Override
         public IMessage onMessage(ParasiteRequestTPListPacket message, MessageContext ctx) {
             EntityPlayerMP player = ctx.getServerHandler().player;
-            
-            List<TamedParasiteInfo> infos = TamedParasiteRegistry.getOwnedBy(player.getUniqueID());
-            return new ParasiteShowTPListPacket(infos);
+            player.getServerWorld().addScheduledTask(() -> {
+                List<TamedParasiteInfo> infos = TamedParasiteRegistry.getOwnedBy(player.getUniqueID());
+                RLSPacketHandler.INSTANCE.sendTo(new ParasiteShowTPListPacket(infos), player);
+            });
+            return null;
         }
     }
 }

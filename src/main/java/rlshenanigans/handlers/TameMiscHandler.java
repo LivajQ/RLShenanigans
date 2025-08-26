@@ -1,5 +1,6 @@
 package rlshenanigans.handlers;
 
+import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAITasks;
 
@@ -17,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
+import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -34,11 +36,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
-public class TameMiscHandler
-{
+public class TameMiscHandler {
     @SubscribeEvent
-    public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event)
-    {
+    public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = event.getItemStack();
         Entity target = event.getTarget();
@@ -56,11 +56,11 @@ public class TameMiscHandler
             EntityCreature creature = (EntityCreature) mob;
             UUID ownerId = creature.getEntityData().getUniqueId("OwnerUUID");
             
-            if (ownerId != null && ownerId.equals(player.getUniqueID())) {
-                if (stack.isEmpty()) {
+            if (player.isSneaking()) {
+                if (ownerId != null && ownerId.equals(player.getUniqueID())) {
                     String name = creature.getDisplayName().getFormattedText();
                     boolean isWaiting = creature.getEntityData().getBoolean("Waiting");
-                   
+                    
                     if (isWaiting) {
                         creature.tasks.addTask(1, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
                         player.sendStatusMessage(new TextComponentString(name + " is now following"), true);
@@ -76,6 +76,7 @@ public class TameMiscHandler
                     event.setCanceled(true);
                 }
             }
+            else player.startRiding(creature, true);
         }
         
         if(mob.getEntityData().getBoolean("MiscTamed")) return;
@@ -83,23 +84,17 @@ public class TameMiscHandler
         ResourceLocation mobRL = EntityList.getKey(mob);
         if (mobRL == null) return;
         
-        for (TameableMiscWhitelist.Entry entry : TameableMiscWhitelist.getEntries())
-        {
+        for (TameableMiscWhitelist.Entry entry : TameableMiscWhitelist.getEntries()) {
             if (!entry.mobId.equals(mobRL.toString())) continue;
             
             ResourceLocation itemRL = new ResourceLocation(entry.itemId);
             Item whitelistItem = ForgeRegistries.ITEMS.getValue(itemRL);
             if (whitelistItem == null) continue;
             
-            if (stack.getItem() == whitelistItem && stack.getMetadata() == entry.metadata)
-            {
-                if (!player.capabilities.isCreativeMode)
-                {
-                    stack.shrink(1);
-                }
+            if (stack.getItem() == whitelistItem && stack.getMetadata() == entry.metadata) {
+                if (!player.capabilities.isCreativeMode) stack.shrink(1);
                 
-                if (world.rand.nextInt(3) == 0)
-                {
+                if (world.rand.nextInt(3) == 0) {
                     mob.getEntityData().setBoolean("MiscTamed", true);
                     mob.getEntityData().setBoolean("Waiting", false);
                     mob.getEntityData().setUniqueId("OwnerUUID", player.getUniqueID());
@@ -107,8 +102,7 @@ public class TameMiscHandler
                     mob.enablePersistence();
                     mob.getEntityData().setBoolean("PersistenceRequired", true);
                     
-                    if (mob instanceof EntityCreature)
-                    {
+                    if (mob instanceof EntityCreature) {
                         EntityCreature creature = (EntityCreature) mob;
                         creature.targetTasks.addTask(1, new MiscEntityAIOwnerHurtByTarget(creature));
                         creature.targetTasks.addTask(1, new MiscEntityAIOwnerHurtTarget(creature));
@@ -196,10 +190,8 @@ public class TameMiscHandler
                 double dz = mob.posZ - owner.posZ;
                 double distanceSq = dx * dx + dz * dz;
                 
-                if (distanceSq > 32 * 32)
-                {
-                    for (EntityAITasks.EntityAITaskEntry entry : mob.tasks.taskEntries)
-                    {
+                if (distanceSq > 32 * 32) {
+                    for (EntityAITasks.EntityAITaskEntry entry : mob.tasks.taskEntries) {
                         entry.action.resetTask();
                     }
                     mob.setAttackTarget(null);
@@ -307,6 +299,15 @@ public class TameMiscHandler
         else {
             if (!targetData.hasUniqueId("OwnerUUID")) return;
             if (data.getUniqueId("OwnerUUID").equals(targetData.getUniqueId("OwnerUUID"))) event.setCanceled(true);
+        }
+    }
+    
+    @SubscribeEvent
+    public static void onMount(EntityMountEvent event) {
+        Entity entity = event.getEntityBeingMounted();
+        if (!entity.getEntityData().getBoolean("MiscTamed")) return;
+        if (event.isDismounting() && entity.isInWater() && !event.getEntityMounting().isSneaking()) {
+            event.setCanceled(true);
         }
     }
 

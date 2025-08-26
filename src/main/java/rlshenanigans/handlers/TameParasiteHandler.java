@@ -19,6 +19,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
+import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -305,10 +306,8 @@ public class TameParasiteHandler
                 float sizeMultiplier = parasite.getEntityData().getFloat("SizeMultiplier");
                 float baseWidth = parasite.getEntityData().getFloat("BaseWidth");
                 float baseHeight = parasite.getEntityData().getFloat("BaseHeight");
-                if (player instanceof EntityPlayerMP) {
-                    SizeMultiplierHelper.resizeEntity(parasite.getEntityWorld(), parasite.getEntityId(), (EntityPlayerMP) player,
-                            sizeMultiplier,baseWidth, baseHeight, false);
-                }
+                SizeMultiplierHelper.resizeEntity(parasite.getEntityWorld(), parasite.getEntityId(), (EntityPlayerMP) player,
+                        sizeMultiplier,baseWidth, baseHeight, false);
             }
         }
     }
@@ -337,6 +336,15 @@ public class TameParasiteHandler
             if (!targetData.hasUniqueId("OwnerUUID")) return;
             if (attackerData.getUniqueId("OwnerUUID").equals(targetData.getUniqueId("OwnerUUID")))
                 event.setCanceled(true);
+        }
+    }
+    
+    @SubscribeEvent
+    public static void onMount(EntityMountEvent event) {
+        Entity entity = event.getEntityBeingMounted();
+        if(!(entity instanceof EntityParasiteBase) || !entity.getEntityData().getBoolean("Tamed")) return;
+        if (event.isDismounting() && entity.isInWater() && !event.getEntityMounting().isSneaking()) {
+            event.setCanceled(true);
         }
     }
 
@@ -374,7 +382,6 @@ public class TameParasiteHandler
         parasite.getEntityData().setBoolean("PersistenceRequired", true);
         parasite.enablePersistence();
         parasite.getEntityData().setBoolean("parasitedespawn", false);
-        parasite.getEntityData().setBoolean("BlockConverting", true);
         parasite.getEntityData().setFloat("BaseWidth", ((EntityMixin) parasite).getWidth());
         parasite.getEntityData().setFloat("BaseHeight", ((EntityMixin) parasite).getHeight());
         parasite.getEntityData().setFloat("SizeMultiplier", 1.0F);

@@ -211,7 +211,17 @@ public class RideMobHandler extends RibeMobUtils {
                         mount.velocityChanged = true;
                     }
                 }
-            
+                
+                else {
+                    if (msg.ascend && mount.isInWater()) {
+                        mount.motionY = 0.5D;
+                        mount.velocityChanged = true;
+                    }
+                    if (msg.descend && mount.isInWater()) {
+                        mount.motionY = -0.4D;
+                        mount.velocityChanged = true;
+                    }
+                }
             });
             return null;
         }

@@ -1,11 +1,18 @@
 package rlshenanigans.handlers;
 
+import cursedflames.bountifulbaubles.item.ModItems;
+import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.brewing.BrewingRecipe;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -65,6 +72,15 @@ public class ModRegistry {
                 event.getRegistry().register(staggerPotion);
                 event.getRegistry().register(dragonBadPotion);
                 event.getRegistry().register(golemBadPotion);
-                //PotionHelper.addMix(PotionTypes.THICK, Items.DIAMOND, ModRegistry.pookiePotion);
+                
+                BrewingRecipeRegistry.addRecipe(new BrewingRecipe(
+                        new ItemStack(ModItems.potionWormhole),
+                        new ItemStack(Items.CHORUS_FRUIT),
+                        new ItemStack(ModItems.potionRecall)));
+                
+                BrewingRecipeRegistry.addRecipe(new BrewingRecipe(
+                        new ItemStack(ModItems.potionRecall),
+                        new ItemStack(Items.CHORUS_FRUIT),
+                        new ItemStack(ModItems.potionWormhole)));
         }
 }

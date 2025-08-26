@@ -1,15 +1,12 @@
 package rlshenanigans.handlers;
 
-import akka.japi.Effect;
 import com.dhanantry.scapeandrunparasites.entity.monster.inborn.EntityMudo;
 import com.dhanantry.scapeandrunparasites.entity.monster.primitive.EntityNogla;
 import com.github.alexthe666.iceandfire.core.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIFollow;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -142,6 +139,7 @@ public class CustomMobHandler {
         event.setCanceled(true);
         if (freakyberian.getEntityData().getBoolean("FreakyberianTriggered")) return;
         freakyberian.getEntityData().setBoolean("FreakyberianTriggered", true);
+        if (freakyberian.getGrowingAge() < 0) freakyberian.setGrowingAge(0);
         
         EntityPlayer player = event.getEntityPlayer();
         BlockPos center = freakyberian.getPosition();
@@ -184,13 +182,10 @@ public class CustomMobHandler {
         
         Potion lovePotion = ForgeRegistries.POTIONS.getValue(new ResourceLocation("switchbow", "love"));
         
-        if (lovePotion != null) {
-            freakyberian.addPotionEffect(new PotionEffect(lovePotion, 1200, 0));
-            player.addPotionEffect(new PotionEffect(lovePotion, 1200, 0));
-        } else {
-            RLSPacketHandler.INSTANCE.sendToAll(new ParticlePulsePacket(freakyberian, EnumParticleTypes.HEART, 1200, 15));
-            RLSPacketHandler.INSTANCE.sendToAll(new ParticlePulsePacket(player, EnumParticleTypes.HEART, 1200, 15));
-        }
+        RLSPacketHandler.INSTANCE.sendToAll(new ParticlePulsePacket(freakyberian, EnumParticleTypes.HEART, 1200, 15));
+        
+        if (lovePotion != null) player.addPotionEffect(new PotionEffect(lovePotion, 1200, 0));
+        else RLSPacketHandler.INSTANCE.sendToAll(new ParticlePulsePacket(player, EnumParticleTypes.HEART, 1200, 15));
         
         freakyberian.tasks.addTask(1, new RLSEntityAIFollow(freakyberian, player, 1.0D, 2.0F, 12.0F));
     }
