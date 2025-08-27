@@ -33,6 +33,10 @@ public class RLShenanigansPlugin implements IFMLLoadingPlugin {
 		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.jei.json", () ->
 				Loader.isModLoaded("jei")
 		);
+		
+		FermiumRegistryAPI.enqueueMixin(true, "mixins.rlshenanigans.bettersurvival.json", () ->
+				Loader.isModLoaded("mujmajnkraftsbettersurvival")
+		);
 	}
 
 	@Override

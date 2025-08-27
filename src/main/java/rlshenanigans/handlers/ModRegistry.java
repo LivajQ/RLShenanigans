@@ -21,18 +21,16 @@ import rlshenanigans.item.ItemAmuletSinLust;
 import rlshenanigans.item.ItemPocketPetHolderEmpty;
 import rlshenanigans.item.ItemPocketPetHolderFilled;
 import rlshenanigans.item.ItemWeaponZweihander;
-import rlshenanigans.potion.PotionDragonBad;
-import rlshenanigans.potion.PotionGolemBad;
-import rlshenanigans.potion.PotionPookie;
-import rlshenanigans.potion.PotionStagger;
+import rlshenanigans.potion.*;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ModRegistry {
 
         public static PotionType pookiePotion = new PotionType("Pookie", new PotionEffect(PotionPookie.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Pookie"));
-        public static PotionType staggerPotion = new PotionType("Stagger", new PotionEffect(PotionStagger.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Stagger"));
-        public static PotionType dragonBadPotion = new PotionType("DragonBad", new PotionEffect(PotionDragonBad.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "DragonBad"));
-        public static PotionType golemBadPotion = new PotionType("GolemBad", new PotionEffect(PotionGolemBad.INSTANCE, 1)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "GolemBad"));
+        public static PotionType staggerPotion = new PotionType("Stagger", new PotionEffect(PotionStagger.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Stagger"));
+        public static PotionType dragonBadPotion = new PotionType("DragonBad", new PotionEffect(PotionDragonBad.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "DragonBad"));
+        public static PotionType golemBadPotion = new PotionType("GolemBad", new PotionEffect(PotionGolemBad.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "GolemBad"));
+        public static PotionType bloodthirstyPotion = new PotionType("Bloodthirsty", new PotionEffect(PotionBloodthirsty.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Bloodthirsty"));
         
         
         public static Item sinPendantLust = new ItemAmuletSinLust();
@@ -64,6 +62,7 @@ public class ModRegistry {
                 event.getRegistry().register(PotionStagger.INSTANCE);
                 event.getRegistry().register(PotionDragonBad.INSTANCE);
                 event.getRegistry().register(PotionGolemBad.INSTANCE);
+                event.getRegistry().register(PotionBloodthirsty.INSTANCE);
         }
 
         @SubscribeEvent
@@ -72,6 +71,7 @@ public class ModRegistry {
                 event.getRegistry().register(staggerPotion);
                 event.getRegistry().register(dragonBadPotion);
                 event.getRegistry().register(golemBadPotion);
+                event.getRegistry().register(bloodthirstyPotion);
                 
                 BrewingRecipeRegistry.addRecipe(new BrewingRecipe(
                         new ItemStack(ModItems.potionWormhole),

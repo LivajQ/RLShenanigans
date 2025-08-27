@@ -1,16 +1,12 @@
 {
   "required": true,
-  "package": "rlshenanigans.mixin.vanilla",
+  "package": "rlshenanigans.mixin.bettersurvival",
   "refmap": "mixins.rlshenanigans.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "mixins": [
-    "EntityLivingBaseMixin",
-    "EntityLivingMixin",
-    "EntityMixin",
-    "CombatTrackerMixin",
-	"AbstractSkeletonMixin"
+    "EnchantmentVampirismMixin"
   ],
   "injectors": {
     "maxShiftBy": 10

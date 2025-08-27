@@ -1,10 +1,5 @@
 package rlshenanigans;
 
-import com.charles445.rltweaker.config.ModConfig;
-import com.lycanitesmobs.core.info.CreatureConfig;
-import com.lycanitesmobs.core.info.CreatureManager;
-import com.lycanitesmobs.core.info.CreatureSpawnConfig;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -15,7 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rlshenanigans.handlers.*;
 import rlshenanigans.proxy.CommonProxy;
-import rlshenanigans.util.TameableMiscWhitelist;
 
 @Mod(
         modid = RLShenanigans.MODID,
@@ -29,7 +23,8 @@ import rlshenanigans.util.TameableMiscWhitelist;
                 "required-after:iceandfire;" +
                 "required-after:lycanitesmobs;" +
                 "required-after:variedcommodities;" +
-                "required-after:jei"
+                "required-after:jei;" +
+                "required-after:mujmajnkraftsbettersurvival"
 )
 public class RLShenanigans
 {
@@ -45,40 +40,22 @@ public class RLShenanigans
     public static RLShenanigans instance;
     
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
+        RLShenanigans.PROXY.preInit();
         ModRegistry.init();
         RLSEntityHandler.init();
         RLSSoundHandler.init();
-        RLShenanigans.PROXY.preInit();
     }
     
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         RLShenanigans.PROXY.init();
         RLSPacketHandler.init();
     }
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        CreatureSpawnConfig spawnConfig = CreatureManager.getInstance().spawnConfig;
-        CreatureConfig config = CreatureManager.getInstance().config;
-
-        spawnConfig.dimensionList = new int[0];
-        spawnConfig.dimensionListWhitelist = false;
-        config.soulboundDimensionList = new int[0];
-        config.soulboundDimensionListWhitelist = false;
-        config.summonDimensionList = new int[0];
-        config.summonDimensionListWhitelist = false;
-        
-        ModConfig.server.srparasites.parasitesDimensionBlacklistEnabled = false;
-        
-        TameableMiscWhitelist.load(ForgeConfigHandler.misc.tameableMiscEntries);
-        
-        RLSRecipeHandler.bypassCraftTweaker(
-                new ResourceLocation("lycanitesmobs", "saddle_elemental"),
-                new ResourceLocation("rlshenanigans", "recipes/saddle_elemental.json")
-        );
+        RLShenanigans.PROXY.postInit();
+        RLSRecipeHandler.init();
     }
 }

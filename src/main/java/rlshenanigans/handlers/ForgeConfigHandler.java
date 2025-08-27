@@ -62,7 +62,7 @@ public class ForgeConfigHandler
 		
 		@Config.Comment("% chance for 'Strength Main' to spawn")
 		@Config.Name("Strength Main")
-		public double strengthMainSpawnChance = 1.0D;
+		public double strengthMainChance = 1.0D;
 		
 		@Config.Comment("% chance for 'I Lost My Hive :<' to spawn")
 		@Config.Name("I Lost My Hive :<")
@@ -75,6 +75,10 @@ public class ForgeConfigHandler
 		@Config.Comment("% chance for 'Freakyberian' to spawn")
 		@Config.Name("Freakyberian")
 		public double freakyberianChance = 5.0D;
+		
+		@Config.Comment("% chance for 'Heisenberg' to spawn")
+		@Config.Name("Heisenberg")
+		public double heisenbergChance = 1.0D;
 	}
 	
 	

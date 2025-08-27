@@ -13,15 +13,23 @@ import java.io.InputStreamReader;
 
 public class RLSRecipeHandler {
     
-    public static void bypassCraftTweaker(ResourceLocation id, ResourceLocation file) {
+    public static void init() {
+        bypassCraftTweaker(
+                new ResourceLocation("lycanitesmobs", "saddle_elemental"),
+                "/assets/rlshenanigans/recipes/saddle_elemental.json"
+        );
+    }
+    
+    private static void bypassCraftTweaker(ResourceLocation id, String path) {
         if (ForgeRegistries.RECIPES.containsKey(id)) {
-            System.out.println("Recipe already registered: " + id);
+            System.err.println("Recipe already registered: " + id);
             return;
         }
         
-        InputStream stream = RLSRecipeHandler.class.getResourceAsStream("/assets/rlshenanigans/recipes/saddle_elemental.json");
+        InputStream stream = RLSRecipeHandler.class.getResourceAsStream(path);
         if (stream == null) {
-            throw new RuntimeException("Recipe file not found: " + file);
+            System.err.println("Recipe file not found: " + path);
+            return;
         }
         
         JsonObject json = new JsonParser().parse(new InputStreamReader(stream)).getAsJsonObject();

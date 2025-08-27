@@ -14,9 +14,16 @@ item.spartanweaponry:proj_tipped.Stagger=Arrow of §8Stagger
 effects.rlshenanigans.Stagger=§8Stagger
 description.effects.rlshenanigans.Stagger=Renders affected entity unable to move or react.
 
+potion.effect.Bloodthirsty=Potion of §4Bloodthirsty
+splash_potion.effect.Bloodthirsty=Splash Potion of §4Bloodthirsty
+lingering_potion.effect.Bloodthirsty=Lingering Potion of §4Bloodthirsty
+tipped_arrow.effect.Bloodthirsty=Arrow of §4Bloodthirsty
+item.spartanweaponry:proj_tipped.Bloodthirsty=Arrow of §4Bloodthirsty
+effects.rlshenanigans.Bloodthirsty=§4Bloodthirsty
+description.effects.rlshenanigans.Bloodthirsty=Unleashes the primal lust for blood, increasing speed, damage, and granting healing from attacks.
+
 potion.effect.DragonBad=Did I just catch you wearing dragon dragon >:(
-splash_potion.effect.DragonBad=Did I just catc
-h you wearing dragon dragon >:(
+splash_potion.effect.DragonBad=Did I just catch you wearing dragon dragon >:(
 lingering_potion.effect.DragonBad=Did I just catch you wearing dragon armor >:(
 tipped_arrow.effect.DragonBad=Did I just catch you wearing dragon armor >:(
 item.spartanweaponry:proj_tipped.DragonBad=Did I just catch you wearing dragon armor >:(

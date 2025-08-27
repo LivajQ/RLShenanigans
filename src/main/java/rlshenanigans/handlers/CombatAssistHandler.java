@@ -1,22 +1,17 @@
 package rlshenanigans.handlers;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
-import com.lycanitesmobs.core.entity.BaseCreatureEntity;
 import com.lycanitesmobs.core.entity.creature.EntityDarkling;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
+import rlshenanigans.potion.PotionPookie;
 
 import java.util.List;
 
@@ -24,27 +19,33 @@ import java.util.List;
 public class CombatAssistHandler {
     
     @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event)
-    {
+    public static void onLivingHurt(LivingHurtEvent event) {
         DamageSource source = event.getSource();
-        Entity attacker = source.getTrueSource();
+        if (!(source.getTrueSource() instanceof EntityLivingBase)) return;
         EntityLivingBase target = event.getEntityLiving();
+        EntityLivingBase attacker = (EntityLivingBase) source.getTrueSource();
         
-        if (!(attacker instanceof EntityPlayer) || target instanceof EntityParasiteBase) return;
-        
-        EntityPlayer player = (EntityPlayer) attacker;
-        World world = player.world;
-        if (world.isRemote) return;
+        EntityPlayer player;
+        EntityLivingBase entity;
+        if (attacker instanceof EntityPlayer && !(target instanceof EntityParasiteBase)) {
+            player = (EntityPlayer) attacker;
+            entity = target;
+        }
+        else if (!(attacker instanceof EntityParasiteBase) && target instanceof EntityPlayer) {
+            player = (EntityPlayer) target;
+            entity = attacker;
+        }
+        else return;
+        if (player.world.isRemote) return;
+        if (player.getActivePotionEffect(PotionPookie.INSTANCE) == null) return;
         
         List<EntityParasiteBase> parasites = player.world.getEntitiesWithinAABB(EntityParasiteBase.class,
-                player.getEntityBoundingBox().grow(32.0D),
-                p -> p != null && !p.isDead && p.getAttackTarget() == null &&
+                player.getEntityBoundingBox().grow(24.0D),
+                p -> p != null && !p.isDead && p.getAttackTarget() != entity && !p.getEntityData().getBoolean("Tamed") &&
                         p.getEntityData().getBoolean("PookieAffected") && !p.isBeingRidden());
         
         for (EntityParasiteBase parasite : parasites) {
-            parasite.setAttackTarget(target);
-            player.world.playSound(null, parasite.getPosition(),
-                    SoundEvents.ENTITY_ZOMBIE_INFECT, SoundCategory.HOSTILE, 0.4F, 1.5F);
+            parasite.setAttackTarget(entity);
         }
     }
     

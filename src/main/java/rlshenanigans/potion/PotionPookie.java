@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -59,12 +60,6 @@ public class PotionPookie extends PotionBase {
                 return name.contains("near");
             });
             
-            parasite.targetTasks.taskEntries.removeIf(entry ->
-            {
-                String name = entry.action.getClass().getSimpleName().toLowerCase();  //comment out to enable retaliation
-                return name.contains("hurt");
-            });
-            
             boolean hasFollowTask = parasite.tasks.taskEntries.stream().anyMatch(entry ->
                     entry.action instanceof RLSEntityAIFollow
             );
@@ -109,6 +104,15 @@ public class PotionPookie extends PotionBase {
                 }
             }
             hadPookieEffect.put(id, pookieCurrentlyActive);
+        }
+        
+        @SubscribeEvent
+        public static void onSetAttackTarget(LivingSetAttackTargetEvent event) {
+            if (!(event.getEntityLiving() instanceof EntityParasiteBase)) return;
+            EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
+            EntityLivingBase target = event.getTarget();
+            if (target == null || target.getActivePotionEffect(PotionPookie.INSTANCE) == null) return;
+            parasite.setAttackTarget(null);
         }
         
         @SubscribeEvent

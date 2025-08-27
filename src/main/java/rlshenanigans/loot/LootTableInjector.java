@@ -19,14 +19,15 @@ public class LootTableInjector {
     
     private static final ResourceLocation SIMPLE_DUNGEON = new ResourceLocation("minecraft", "chests/simple_dungeon");
     private static final ResourceLocation NETHER_BRIDGE = new ResourceLocation("minecraft", "chests/nether_bridge");
+    
     private static final Item LUST_PENDANT = ModRegistry.sinPendantLust;
     
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent event) {
         ResourceLocation name = event.getName();
         
-        if (name.equals(SIMPLE_DUNGEON)) addTable(LUST_PENDANT, 1, 0, 0.03F, "rlshenanigans_pendant_simple", event);
-        if (name.equals(NETHER_BRIDGE)) addTable(LUST_PENDANT, 1, 0, 0.05F, "rlshenanigans_pendant_simple", event);
+        if (name.equals(SIMPLE_DUNGEON)) addTable(LUST_PENDANT, 1, 0, 0.03F, "rlshenanigans_lust_pendant_simple", event);
+        if (name.equals(NETHER_BRIDGE)) addTable(LUST_PENDANT, 1, 0, 0.05F, "rlshenanigans_lust_pendant_simple", event);
     }
     
     private static void addTable(Item item, int weightIn, int qualityIn, float chanceIn, String entryName, LootTableLoadEvent event) {

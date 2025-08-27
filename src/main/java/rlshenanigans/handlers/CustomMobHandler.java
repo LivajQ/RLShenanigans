@@ -4,6 +4,7 @@ import com.dhanantry.scapeandrunparasites.entity.monster.inborn.EntityMudo;
 import com.dhanantry.scapeandrunparasites.entity.monster.primitive.EntityNogla;
 import com.github.alexthe666.iceandfire.core.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -13,7 +14,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
@@ -30,6 +33,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.RLSEntityAIFollow;
 import rlshenanigans.packet.ParticlePulsePacket;
+import rlshenanigans.potion.PotionBloodthirsty;
 
 import static rlshenanigans.handlers.ForgeConfigHandler.customMobSpawn;
 
@@ -43,18 +47,16 @@ public class CustomMobHandler {
     @SubscribeEvent
     public static void onSpecialSpawn(LivingSpawnEvent.SpecialSpawn event) {
         if (event.getWorld().isRemote) return;
-       
         if (event.getSpawner() != null) return;
-        
         Entity entity = event.getEntity();
-        
         if (entity.getEntityData().getBoolean("RLSCustomChecked")) return;
         
         if (entity instanceof EntityZombie) {
             entity.getEntityData().setBoolean("RLSCustomChecked", true);
             
-            if(rollChance(customMobSpawn.strengthMainSpawnChance)) {
-                EntityZombie strengthMain = (EntityZombie) event.getEntity();
+            if(rollChance(customMobSpawn.strengthMainChance)) {
+                EntityZombie strengthMain = (EntityZombie) entity;
+                
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModRegistry.weaponZweihander));
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModRegistry.weaponZweihander));
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(ModItems.deathworm_white_helmet));
@@ -67,6 +69,47 @@ public class CustomMobHandler {
                 strengthMain.setHealth(strengthMain.getMaxHealth());
                 strengthMain.setCustomNameTag("§c§lSTRENGTH MAIN");
                 strengthMain.enablePersistence();
+                strengthMain.getEntityData().setBoolean("RLSCustomMob", true);
+                return;
+            }
+        }
+        
+        if (entity instanceof EntitySkeleton) {
+            entity.getEntityData().setBoolean("RLSCustomChecked", true);
+            
+            if(rollChance(customMobSpawn.heisenbergChance)) {
+                EntitySkeleton heisenberg = (EntitySkeleton) entity;
+                Item daggerItem = Item.REGISTRY.getObject(new ResourceLocation("mujmajnkraftsbettersurvival", "itemicedragonbonedagger"));
+                Item tearsItem = Item.REGISTRY.getObject(new ResourceLocation("defiledlands", "tears_shulker"));
+                Item hatItem = Item.REGISTRY.getObject(new ResourceLocation("classyhats", "hat"));
+                Enchantment vampirism = Enchantment.REGISTRY.getObject(new ResourceLocation("mujmajnkraftsbettersurvival", "vampirism"));
+                if (daggerItem == null || tearsItem == null || vampirism == null || hatItem == null) return;
+                ItemStack daggerStack = new ItemStack(daggerItem);
+                ItemStack tearsStack = new ItemStack(tearsItem);
+                ItemStack hatStack = new ItemStack(hatItem);
+                daggerStack.addEnchantment(vampirism, 3);
+                
+                NBTTagCompound tag = hatStack.getTagCompound();
+                if (tag == null) {
+                    tag = new NBTTagCompound();
+                    hatStack.setTagCompound(tag);
+                }
+                tag.setString("hat", "bowler");
+                
+                heisenberg.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, daggerStack);
+                heisenberg.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, tearsStack);
+                heisenberg.setItemStackToSlot(EntityEquipmentSlot.HEAD, hatStack);
+                heisenberg.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(ModItems.sheep_chestplate));
+                heisenberg.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(ModItems.sheep_leggings));
+                heisenberg.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(ModItems.sheep_boots));
+                heisenberg.addPotionEffect(new PotionEffect(MobEffects.SPEED, Integer.MAX_VALUE, 1));
+                heisenberg.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, Integer.MAX_VALUE, 0));
+                heisenberg.addPotionEffect(new PotionEffect(PotionBloodthirsty.INSTANCE, Integer.MAX_VALUE, 2));
+                heisenberg.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D);
+                heisenberg.setHealth(heisenberg.getMaxHealth());
+                heisenberg.setCustomNameTag("§e§oHeisenberg");
+                heisenberg.enablePersistence();
+                heisenberg.getEntityData().setBoolean("RLSCustomMob", true);
                 return;
             }
         }
@@ -83,6 +126,7 @@ public class CustomMobHandler {
                 reeker.getEntityData().setBoolean("parasitedespawn", false);
                 
                 entity.setDead();
+                reeker.getEntityData().setBoolean("RLSCustomMob", true);
                 return;
             }
         }
@@ -103,6 +147,7 @@ public class CustomMobHandler {
                     
                     rupter.startRiding(base, true);
                     base = rupter;
+                    rupter.getEntityData().setBoolean("RLSCustomMob", true);
                 }
 
                 return;
@@ -126,6 +171,7 @@ public class CustomMobHandler {
             if (rollChance(customMobSpawn.freakyberianChance)) {
                 villager.setCustomNameTag("Freakyberian");
                 villager.getEntityData().setBoolean("IsFreakyberian", true);
+                villager.getEntityData().setBoolean("RLSCustomMob", true);
             }
         }
     }

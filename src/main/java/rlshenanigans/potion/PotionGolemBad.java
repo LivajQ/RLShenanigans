@@ -31,11 +31,11 @@ public class PotionGolemBad extends PotionBase {
         living.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 40, 2, true, true));
         living.addPotionEffect(new PotionEffect(MobEffects.POISON, 40, 15, true, true));
         living.addPotionEffect(new PotionEffect(MobEffects.UNLUCK, 40, 99, true, true));
-        addPotionCoreEffect(living, "brokenshield", 40, 0, true, true);
+        addPotionCoreEffect(living, "broken_magic_shield", 40, 0, true, true);
         addPotionCoreEffect(living, "perplexity", 40, 0, true, true);
-        addPotionCoreEffect(living, "corrosion", 40, 1, true, true);
+        addPotionCoreEffect(living, "rust", 40, 1, true, true);
         addPotionCoreEffect(living, "weight", 40, 2, true, true);
-        addPotionCoreEffect(living, "spinning", 40, 0, true, true);
+        addPotionCoreEffect(living, "spin", 40, 0, true, true);
     }
     
     public static void addPotionCoreEffect(EntityLivingBase living, String effectId, int duration, int amplifier, boolean ambient, boolean showParticles) {
