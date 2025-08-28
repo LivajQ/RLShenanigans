@@ -85,3 +85,12 @@ key.rls.ascend=Ascend
 key.rls.descend=Descend
 key.rls.projectile=Projectile Attack
 key.rls.teleport=Teleport Menu
+
+tile.painting_template_parasite_1.name=§d§oFreaky §r§fPainting #1
+tile.painting_template_parasite_2.name=§d§oFreaky §r§fPainting #2
+tile.painting_template_parasite_3.name=§d§oFreaky §r§fPainting #3
+tile.painting_template_parasite_4.name=§d§oFreaky §r§fPainting #4
+tile.painting_template_parasite_1.tooltip.1=Freaky tooltip 1
+tile.painting_template_parasite_2.tooltip.1=Freaky tooltip 2
+tile.painting_template_parasite_3.tooltip.1=Freaky tooltip 3
+tile.painting_template_parasite_4.tooltip.1=Freaky tooltip 4

@@ -14,17 +14,21 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import org.lwjgl.input.Keyboard;
+
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.RenderParasiteEntity;
 import rlshenanigans.client.render.RenderRLSModel;
+import rlshenanigans.client.render.RenderRLSTileEntity;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
+import rlshenanigans.tileentity.TileEntityPaintingTemplate;
 import rlshenanigans.util.ParasiteRegistry;
 
 import static rlshenanigans.util.ParasiteRegistry.PARASITES;
+
 
 public class ClientProxy extends CommonProxy {
     
@@ -32,7 +36,8 @@ public class ClientProxy extends CommonProxy {
     public static final KeyBinding keyDescend = new KeyBinding("key.rls.descend", Keyboard.KEY_X, "key.categories.rls");
     public static final KeyBinding keyProjectile = new KeyBinding("key.rls.projectile", Keyboard.KEY_R, "key.categories.rls");
     public static final KeyBinding keyTeleport = new KeyBinding("key.rls.teleport", Keyboard.KEY_N, "key.categories.rls");
-
+    
+    @SuppressWarnings("unchecked")
     @Override
     public void registerRenderers() {
         for (ParasiteRegistry mob : PARASITES) {
@@ -53,8 +58,9 @@ public class ClientProxy extends CommonProxy {
             } catch (Exception e) {
                 System.err.println("Renderer failed for: " + mob.name + " → " + e.getMessage());
             }
-            
         }
+        
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPaintingTemplate.class, new RenderRLSTileEntity());
         
         RenderingRegistry.registerEntityRenderingHandler(EntityDrJr.class, manager ->
                 new RenderRLSModel<>(manager, new ModelDrJr(), 0.5F,
