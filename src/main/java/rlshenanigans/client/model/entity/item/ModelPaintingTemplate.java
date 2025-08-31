@@ -1,4 +1,4 @@
-package rlshenanigans.client.model.block;
+package rlshenanigans.client.model.entity.item;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;

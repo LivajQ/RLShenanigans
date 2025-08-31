@@ -6,11 +6,10 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import rlshenanigans.client.model.block.ModelPaintingTemplate;
+import rlshenanigans.client.model.entity.item.ModelPaintingTemplate;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 
-public class RenderRLSEntityItem<T extends Entity> extends Render<T>
-{
+public class RenderRLSEntityItem<T extends Entity> extends Render<T> {
     private final ModelPaintingTemplate paintingTemplate = new ModelPaintingTemplate();
     private static final ResourceLocation PAINTING_WOOD = new ResourceLocation("rlshenanigans", "textures/entity/item/painting_template_wood.png");
     private static final float SCALE_BASE = 0.0625F;

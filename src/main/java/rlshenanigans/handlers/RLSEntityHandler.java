@@ -1,17 +1,25 @@
 package rlshenanigans.handlers;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.item.ItemPaintingSpawner;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class RLSEntityHandler
@@ -28,6 +36,8 @@ public class RLSEntityHandler
             {"textures/entity/item/painting_template_parasite5", 1, "parasite_5"},
             {"textures/entity/item/painting_template_animated/grueshake/painting_template_grueshake", 79, "grueshake"}
     };
+    
+    public static final Map<String, ItemPaintingSpawner> PAINTING_ITEMS = new HashMap<>();
     
     public static void init() {
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "drjr"), EntityDrJr.class,
@@ -53,6 +63,16 @@ public class RLSEntityHandler
             item.setRegistryName(new ResourceLocation(RLShenanigans.MODID, "painting_" + suffix));
             item.setTranslationKey("painting_" + suffix);
             event.getRegistry().register(item);
+            PAINTING_ITEMS.put(suffix, item);
+        }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void registerModels(ModelRegistryEvent event) {
+        for (ItemPaintingSpawner item : RLSEntityHandler.PAINTING_ITEMS.values()) {
+            ModelLoader.setCustomModelResourceLocation(item, 0,
+                    new ModelResourceLocation(RLShenanigans.MODID + ":painting_template", "inventory"));
         }
     }
 }

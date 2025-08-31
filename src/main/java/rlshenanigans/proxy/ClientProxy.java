@@ -18,6 +18,7 @@ import org.lwjgl.input.Keyboard;
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.RenderParasiteEntity;
 import rlshenanigans.client.render.RenderRLSEntityItem;
+import rlshenanigans.client.render.RenderRLSItemPainting;
 import rlshenanigans.client.render.RenderRLSModel;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
@@ -25,10 +26,11 @@ import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
+import rlshenanigans.handlers.RLSEntityHandler;
+import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.util.ParasiteRegistry;
 
 import static rlshenanigans.util.ParasiteRegistry.PARASITES;
-
 
 public class ClientProxy extends CommonProxy {
     
@@ -95,10 +97,14 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerKeyBinding(keyDescend);
         ClientRegistry.registerKeyBinding(keyProjectile);
         ClientRegistry.registerKeyBinding(keyTeleport);
+        for (ItemPaintingSpawner item : RLSEntityHandler.PAINTING_ITEMS.values()) {
+            item.setTileEntityItemStackRenderer(new RenderRLSItemPainting());
+        }
     }
 
     @Override
     public void preInit() {
+        super.preInit();
         registerRenderers();
     }
 }
