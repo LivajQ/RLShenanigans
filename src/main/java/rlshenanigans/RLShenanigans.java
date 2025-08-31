@@ -45,7 +45,6 @@ public class RLShenanigans
         ModRegistry.init();
         RLSEntityHandler.init();
         RLSSoundHandler.init();
-        RLSBlockHandler.init();
     }
     
     @Mod.EventHandler

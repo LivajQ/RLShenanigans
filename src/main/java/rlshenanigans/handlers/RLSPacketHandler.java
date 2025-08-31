@@ -21,5 +21,7 @@ public class RLSPacketHandler {
         INSTANCE.registerMessage(ParasiteRequestTPListPacket.Handler.class, ParasiteRequestTPListPacket.class, id++, Side.SERVER);
         INSTANCE.registerMessage(SizeMultiplierPacket.Handler.class, SizeMultiplierPacket.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(ParasiteSpeakPacket.Handler.class, ParasiteSpeakPacket.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(PaintingResizePacket.Handler.class, PaintingResizePacket.class, id++, Side.SERVER);
+        INSTANCE.registerMessage(PaintingSizeSyncPacket.Handler.class, PaintingSizeSyncPacket.class, id++, Side.CLIENT);
     }
 }

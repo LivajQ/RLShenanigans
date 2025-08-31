@@ -64,7 +64,6 @@ public class ParasiteResizeMenu extends GuiScreen
     
     @Override
     protected void actionPerformed(GuiButton button) {
-        System.out.println("I start");
         if (button.id == 1) {
             float value = Math.round(resizeSlider.getSliderValue()) / 100.0F;
             RLSPacketHandler.INSTANCE.sendToServer(new ParasiteCommandPacket(parasiteEntityId, ParasiteCommand.RESIZE, value));

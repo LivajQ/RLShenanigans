@@ -8,7 +8,7 @@
   "url": "https://www.curseforge.com/members/LivajQ/projects",
   "updateUrl": "",
   "authorList": ${mod_author},
-  "credits": "Lycanite (Richard Nicholson) - some assets from Lycanite's Mobs are included in this mod to support the modified registry system. \nDhanantry - Scape and Run:Parasites' mob textures used in the custom renderer. \nAll original assets remain credited to their respective authors.",
+  "credits": "Lycanite (Richard Nicholson) - some assets from Lycanite's Mobs are included in this mod to support the modified registry system. \nDhanantry - Scape and Run:Parasites' mob textures used in the custom renderer. \nMysticnight1400 - amazing parasite art. \nAll original assets remain credited to their respective authors.",
   "logoFile": "",
   "dependencies": []
 }

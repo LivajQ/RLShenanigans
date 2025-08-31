@@ -17,14 +17,14 @@ import org.lwjgl.input.Keyboard;
 
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.RenderParasiteEntity;
+import rlshenanigans.client.render.RenderRLSEntityItem;
 import rlshenanigans.client.render.RenderRLSModel;
-import rlshenanigans.client.render.RenderRLSTileEntity;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
-import rlshenanigans.tileentity.TileEntityPaintingTemplate;
+import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.util.ParasiteRegistry;
 
 import static rlshenanigans.util.ParasiteRegistry.PARASITES;
@@ -60,7 +60,7 @@ public class ClientProxy extends CommonProxy {
             }
         }
         
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPaintingTemplate.class, new RenderRLSTileEntity());
+        RenderingRegistry.registerEntityRenderingHandler(EntityPaintingTemplate.class, RenderRLSEntityItem::new);
         
         RenderingRegistry.registerEntityRenderingHandler(EntityDrJr.class, manager ->
                 new RenderRLSModel<>(manager, new ModelDrJr(), 0.5F,
