@@ -3,6 +3,7 @@ package rlshenanigans.handlers;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITasks;
@@ -197,8 +198,8 @@ public class TameParasiteHandler
         if (owner == null) return;
         
         if(parasite.ticksExisted % 20 == 0) {
-            List<EntityMob> hostiles = parasite.world.getEntitiesWithinAABB(EntityMob.class, parasite.getEntityBoundingBox().grow(24));
-            for (EntityMob mob : hostiles) {
+            List<EntityLiving> hostiles = parasite.world.getEntitiesWithinAABB(EntityLiving.class, parasite.getEntityBoundingBox().grow(24));
+            for (EntityLiving mob : hostiles) {
                 if (mob.getAttackTarget() == owner) {
                     if(mob instanceof EntityParasiteBase) continue;
                     if(parasite.getAttackTarget() != mob) parasite.setAttackTarget(mob);
@@ -226,12 +227,16 @@ public class TameParasiteHandler
             }
         }
         
+        parasite.tasks.taskEntries.removeIf(entry -> {
+            String name = entry.action.getClass().getName().toLowerCase();
+            return name.contains("flightatt")
+                    || name.contains("blocklight")
+                    || name.contains("parasitefollow");
+        });
+        
         parasite.targetTasks.taskEntries.removeIf(entry -> {
-            String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("near")
-                    || name.contains("flightatt")
-                    || name.contains("parasitefollow")
-                    || name.contains("blocklight");
+            String name = entry.action.getClass().getName().toLowerCase();
+            return name.contains("nearestatt");
         });
         
         EntityLivingBase attackTarget = parasite.getAttackTarget();

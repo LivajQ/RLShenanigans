@@ -1,5 +1,6 @@
 package rlshenanigans.entity.ai;
 
+import com.github.alexthe666.iceandfire.entity.EntityGorgon;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
@@ -31,6 +32,8 @@ public class MiscEntityAIOwnerHurtTarget extends EntityAITarget
             UUID targetOwnerId = target.getEntityData().getUniqueId("OwnerUUID");
             if (targetOwnerId.equals(owner.getUniqueID())) return false;
         }
+        
+        if (EntityGorgon.isStoneMob(target)) return false;
         
         if (target.equals(mob)) return false;
         if (target.equals(getOwner())) return false;

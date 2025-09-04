@@ -1,9 +1,10 @@
 package rlshenanigans.handlers;
 
+import com.github.alexthe666.iceandfire.entity.EntityGorgon;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAITasks;
 
-import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -109,26 +110,10 @@ public class TameMiscHandler {
                         creature.tasks.taskEntries.removeIf(taskEntry ->
                                 taskEntry.action.getClass().getSimpleName().toLowerCase().contains("follow"));
                         creature.tasks.addTask(1, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
-                        
                     }
                     RLSPacketHandler.INSTANCE.sendToAll(
                             new ParticlePulsePacket(mob, EnumParticleTypes.HEART, 100, 30));
                 }
-                event.setCanceled(true);
-            }
-        }
-    }
-    
-    @SubscribeEvent
-    public void onSetTarget(LivingSetAttackTargetEvent event) {
-        EntityLivingBase mob = event.getEntityLiving();
-        EntityLivingBase target = event.getTarget();
-        
-        if (!mob.getEntityData().getBoolean("MiscTamed")) return;
-        
-        if (target != null) {
-            UUID ownerUUID = mob.getEntityData().getUniqueId("OwnerUUID");
-            if (ownerUUID != null && ownerUUID.equals(target.getUniqueID())) {
                 event.setCanceled(true);
             }
         }
@@ -176,8 +161,8 @@ public class TameMiscHandler {
         if (owner == null) return;
         
         if(mob.ticksExisted % 20 == 0) {
-            List<EntityMob> hostiles = mob.world.getEntitiesWithinAABB(EntityMob.class, mob.getEntityBoundingBox().grow(24));
-            for (EntityMob hostileMob : hostiles) {
+            List<EntityLiving> hostiles = mob.world.getEntitiesWithinAABB(EntityLiving.class, mob.getEntityBoundingBox().grow(24));
+            for (EntityLiving hostileMob : hostiles) {
                 if (hostileMob.getAttackTarget() == owner) {
                     if (mob.getAttackTarget() != hostileMob) mob.setAttackTarget(hostileMob);
                     break;
@@ -202,14 +187,18 @@ public class TameMiscHandler {
             }
         }
         
-        mob.targetTasks.taskEntries.removeIf(entry -> {
+        mob.tasks.taskEntries.removeIf(entry -> {
             String name = entry.action.getClass().getSimpleName().toLowerCase();
-            return name.contains("near")
-                    || name.contains("flightatt")
+            return name.contains("flightatt")
                     || name.contains("blocklight")
                     || name.contains("stareatt")
-                    || name.contains("watchclo")
-                    || name.contains("fleesun");
+                    || name.contains("fleesun")
+                    || (mob instanceof EntityGorgon && entry.action instanceof EntityAIWatchClosest);
+        });
+        
+        mob.targetTasks.taskEntries.removeIf(entry -> {
+            String name = entry.action.getClass().getSimpleName().toLowerCase();
+            return name.contains("nearestatt");
         });
         
         EntityLivingBase attackTarget = mob.getAttackTarget();
