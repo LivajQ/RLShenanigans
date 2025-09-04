@@ -2,13 +2,11 @@ package rlshenanigans.handlers;
 
 import cursedflames.bountifulbaubles.item.ModItems;
 import net.minecraft.init.Items;
-import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.brewing.BrewingRecipe;
@@ -17,23 +15,21 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.item.ItemAmuletSinLust;
-import rlshenanigans.item.ItemPocketPetHolderEmpty;
-import rlshenanigans.item.ItemPocketPetHolderFilled;
-import rlshenanigans.item.ItemWeaponZweihander;
+import rlshenanigans.item.*;
 import rlshenanigans.potion.*;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ModRegistry {
 
         public static PotionType pookiePotion = new PotionType("Pookie", new PotionEffect(PotionPookie.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Pookie"));
-        public static PotionType staggerPotion = new PotionType("Stagger", new PotionEffect(PotionStagger.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Stagger"));
-        public static PotionType dragonBadPotion = new PotionType("DragonBad", new PotionEffect(PotionDragonBad.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "DragonBad"));
-        public static PotionType golemBadPotion = new PotionType("GolemBad", new PotionEffect(PotionGolemBad.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "GolemBad"));
-        public static PotionType bloodthirstyPotion = new PotionType("Bloodthirsty", new PotionEffect(PotionBloodthirsty.INSTANCE, 100)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Bloodthirsty"));
+        public static PotionType staggerPotion = new PotionType("Stagger", new PotionEffect(PotionStagger.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Stagger"));
+        public static PotionType dragonBadPotion = new PotionType("DragonBad", new PotionEffect(PotionDragonBad.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "DragonBad"));
+        public static PotionType golemBadPotion = new PotionType("GolemBad", new PotionEffect(PotionGolemBad.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "GolemBad"));
+        public static PotionType bloodthirstyPotion = new PotionType("Bloodthirsty", new PotionEffect(PotionBloodthirsty.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Bloodthirsty"));
         
         
         public static Item sinPendantLust = new ItemAmuletSinLust();
+        public static Item trinketFixedHeart = new ItemTrinketFixedHeart();
         public static Item weaponZweihander = new ItemWeaponZweihander("weapon_zweihander");
         public static Item pocketPetHolderEmpty = new ItemPocketPetHolderEmpty();
         public static Item pocketPetHolderFilled = new ItemPocketPetHolderFilled();
@@ -47,7 +43,8 @@ public class ModRegistry {
                         sinPendantLust,
                         weaponZweihander,
                         pocketPetHolderEmpty,
-                        pocketPetHolderFilled
+                        pocketPetHolderFilled,
+                        trinketFixedHeart
                 );
         }
 

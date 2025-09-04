@@ -10,7 +10,8 @@
     "EntityLivingMixin",
     "EntityMixin",
     "CombatTrackerMixin",
-	"AbstractSkeletonMixin"
+	"AbstractSkeletonMixin",
+	"GuiMainMenuMixin"
   ],
   "injectors": {
     "maxShiftBy": 10

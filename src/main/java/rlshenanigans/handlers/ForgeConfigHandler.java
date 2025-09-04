@@ -8,8 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 
 @Config(modid = RLShenanigans.MODID)
-public class ForgeConfigHandler
-{
+public class ForgeConfigHandler {
 	
 	@Config.Comment("Client-Side Options")
 	@Config.Name("Client Options")
@@ -62,22 +61,27 @@ public class ForgeConfigHandler
 		
 		@Config.Comment("% chance for 'Strength Main' to spawn")
 		@Config.Name("Strength Main")
+		@Config.RangeDouble(min = 0.0D, max = 100.0D)
 		public double strengthMainChance = 1.0D;
 		
 		@Config.Comment("% chance for 'I Lost My Hive :<' to spawn")
 		@Config.Name("I Lost My Hive :<")
+		@Config.RangeDouble(min = 0.0D, max = 100.0D)
 		public double lostMyHiveChance = 1.0D;
 		
 		@Config.Comment("% chance for 'COLUMN' to spawn")
 		@Config.Name("COLUMN")
+		@Config.RangeDouble(min = 0.0D, max = 100.0D)
 		public double columnChance = 1.0D;
 		
 		@Config.Comment("% chance for 'Freakyberian' to spawn")
 		@Config.Name("Freakyberian")
+		@Config.RangeDouble(min = 0.0D, max = 100.0D)
 		public double freakyberianChance = 5.0D;
 		
 		@Config.Comment("% chance for 'Heisenberg' to spawn")
 		@Config.Name("Heisenberg")
+		@Config.RangeDouble(min = 0.0D, max = 100.0D)
 		public double heisenbergChance = 1.0D;
 	}
 	
@@ -110,7 +114,8 @@ public class ForgeConfigHandler
 		public String[] tameableMiscEntries = new String[]{
 				"iceandfire:seaserpent;minecraft:fish;2",
 				"iceandfire:gorgon;minecraft:fermented_spider_eye;0",
-				"iceandfire:if_hydra;lycanitesmobs:poisongland;0"
+				"iceandfire:if_hydra;lycanitesmobs:poisongland;0",
+				"battletowers:golem;minecraft:tnt;0"
 		};
 	}
 	
@@ -131,6 +136,11 @@ public class ForgeConfigHandler
 		@Config.Comment("Set to false to disable custom parasite death messages")
 		@Config.Name("Parasite Death Messages")
 		public boolean parasiteDeathMessagesEnabled = true;
+		
+		@Config.Comment("Chance to display alternative splash text in the main menu")
+		@Config.Name("Alternative Splash Text Chance")
+		@Config.RangeDouble(min = 0.0D, max = 100.0D)
+		public double splashTextChance = 25.0D;
 	}
 
 	

@@ -5,7 +5,6 @@ import com.lycanitesmobs.core.entity.RapidFireProjectileEntity;
 import com.lycanitesmobs.core.entity.RideableCreatureEntity;
 import com.lycanitesmobs.core.entity.creature.EntityAsmodeus;
 import com.lycanitesmobs.core.entity.creature.EntityCacodemon;
-import com.lycanitesmobs.core.entity.creature.EntityTrite;
 import com.lycanitesmobs.core.entity.goals.actions.AttackMeleeGoal;
 import com.lycanitesmobs.core.entity.goals.actions.AttackRangedGoal;
 import com.lycanitesmobs.core.entity.projectile.EntityHellShield;
