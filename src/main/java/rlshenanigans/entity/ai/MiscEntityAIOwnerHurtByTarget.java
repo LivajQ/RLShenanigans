@@ -17,6 +17,7 @@ public class MiscEntityAIOwnerHurtByTarget extends EntityAITarget
         this.setMutexBits(1);
     }
     
+    
     @Override
     public boolean shouldExecute() {
         if (!mob.getEntityData().getBoolean("MiscTamed")) return false;

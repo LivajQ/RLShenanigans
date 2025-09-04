@@ -64,7 +64,7 @@ public class MiscEntityAIFollowOwner extends EntityAIBase
         double horizontalDistanceSq = dx * dx + dz * dz;
         
         if (horizontalDistanceSq > 576.0D){
-            mob.setLocationAndAngles(owner.posX + 1.0, owner.posY, owner.posZ + 1.0, owner.rotationYaw, owner.rotationPitch);
+            mob.setLocationAndAngles(owner.posX, owner.posY, owner.posZ, owner.rotationYaw, owner.rotationPitch);
         }
     }
 }

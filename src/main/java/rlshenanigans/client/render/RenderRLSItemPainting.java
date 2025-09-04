@@ -15,7 +15,7 @@ import rlshenanigans.client.model.entity.item.ModelPaintingTemplate;
 import rlshenanigans.item.ItemPaintingSpawner;
 
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
+@Mod.EventBusSubscriber(modid = RLShenanigans.MODID, value = Side.CLIENT)
 public class RenderRLSItemPainting extends TileEntityItemStackRenderer {
     private final ModelPaintingTemplate model = new ModelPaintingTemplate();
     private static final ResourceLocation PAINTING_WOOD = new ResourceLocation("rlshenanigans", "textures/entity/item/painting_template_wood.png");

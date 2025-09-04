@@ -221,7 +221,7 @@ public class TameParasiteHandler
                     parasite.setRevengeTarget(null);
                     parasite.getNavigator().clearPath();
                     parasite.tasks.onUpdateTasks();
-                    parasite.setLocationAndAngles(owner.posX + 1.0, owner.posY, owner.posZ + 1.0, owner.rotationYaw, owner.rotationPitch);
+                    parasite.setLocationAndAngles(owner.posX, owner.posY, owner.posZ, owner.rotationYaw, owner.rotationPitch);
                 }
             }
         }

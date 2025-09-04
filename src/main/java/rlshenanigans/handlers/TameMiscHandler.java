@@ -1,6 +1,5 @@
 package rlshenanigans.handlers;
 
-import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAITasks;
 
@@ -198,7 +197,7 @@ public class TameMiscHandler {
                     mob.setRevengeTarget(null);
                     mob.getNavigator().clearPath();
                     mob.tasks.onUpdateTasks();
-                    mob.setLocationAndAngles(owner.posX + 1.0, owner.posY, owner.posZ + 1.0, owner.rotationYaw, owner.rotationPitch);
+                    mob.setLocationAndAngles(owner.posX, owner.posY, owner.posZ, owner.rotationYaw, owner.rotationPitch);
                 }
             }
         }

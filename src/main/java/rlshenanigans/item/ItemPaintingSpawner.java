@@ -4,6 +4,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
@@ -19,10 +20,12 @@ import java.util.List;
 public class ItemPaintingSpawner extends Item {
     private final String texture;
     private final int frames;
+    private final String suffix;
     
-    public ItemPaintingSpawner(String texture, int frames) {
+    public ItemPaintingSpawner(String texture, int frames, String suffix) {
         this.texture = texture;
         this.frames = frames;
+        this.suffix = suffix;
         this.setMaxStackSize(1);
         this.setCreativeTab(CreativeTabs.DECORATIONS);
     }
@@ -37,7 +40,6 @@ public class ItemPaintingSpawner extends Item {
         }
     }
     
-    @SideOnly(Side.CLIENT)
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
         return true;
@@ -46,7 +48,7 @@ public class ItemPaintingSpawner extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         if (!world.isRemote) {
-            RayTraceResult result = player.rayTrace(5.0D, 1.0F);
+            RayTraceResult result = this.rayTrace(world, player, false);
             if (result == null || result.typeOfHit != RayTraceResult.Type.BLOCK) {
                 return new ActionResult<>(EnumActionResult.FAIL, player.getHeldItem(hand));
             }
@@ -62,9 +64,11 @@ public class ItemPaintingSpawner extends Item {
             EnumFacing facing = player.getHorizontalFacing().getOpposite();
             
             EntityPaintingTemplate entity = new EntityPaintingTemplate(
-                    world, x, y, z, this.texture, this.frames, 1, 1, facing
+                    world, x, y, z, this.texture, this.frames, this.suffix, facing
             );
             world.spawnEntity(entity);
+            world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            if (!player.capabilities.isCreativeMode) player.setHeldItem(hand, ItemStack.EMPTY);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }

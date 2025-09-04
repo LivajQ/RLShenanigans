@@ -11,8 +11,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
@@ -34,7 +32,9 @@ public class RLSEntityHandler
             {"textures/entity/item/painting_template_parasite3", 1, "parasite_3"},
             {"textures/entity/item/painting_template_parasite4", 1, "parasite_4"},
             {"textures/entity/item/painting_template_parasite5", 1, "parasite_5"},
-            {"textures/entity/item/painting_template_animated/grueshake/painting_template_grueshake", 79, "grueshake"}
+            {"textures/entity/item/painting_template_animated/grueshake/painting_template_grueshake", 79, "grueshake"},
+            {"textures/entity/item/painting_template_animated/gruenod/painting_template_gruenod", 63, "gruenod"},
+            {"textures/entity/item/painting_template_animated/lgruenod/painting_template_lgruenod", 63, "lgruenod"}
     };
     
     public static final Map<String, ItemPaintingSpawner> PAINTING_ITEMS = new HashMap<>();
@@ -54,12 +54,12 @@ public class RLSEntityHandler
     
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        for (int i = 0; i < PAINTING_INFO.length; i++) {
-            String texture = (String) PAINTING_INFO[i][0];
-            int frames = (Integer) PAINTING_INFO[i][1];
-            String suffix = (String) PAINTING_INFO[i][2];
+        for (Object[] objects : PAINTING_INFO) {
+            String texture = (String) objects[0];
+            int frames = (Integer) objects[1];
+            String suffix = (String) objects[2];
             
-            ItemPaintingSpawner item = new ItemPaintingSpawner(texture, frames);
+            ItemPaintingSpawner item = new ItemPaintingSpawner(texture, frames, suffix);
             item.setRegistryName(new ResourceLocation(RLShenanigans.MODID, "painting_" + suffix));
             item.setTranslationKey("painting_" + suffix);
             event.getRegistry().register(item);
@@ -67,7 +67,6 @@ public class RLSEntityHandler
         }
     }
     
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         for (ItemPaintingSpawner item : RLSEntityHandler.PAINTING_ITEMS.values()) {

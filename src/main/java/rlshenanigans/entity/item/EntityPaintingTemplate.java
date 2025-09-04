@@ -4,10 +4,10 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -16,14 +16,16 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.client.gui.PaintingResizeMenu;
+import rlshenanigans.handlers.RLSEntityHandler;
+import rlshenanigans.item.ItemPaintingSpawner;
 
-public class EntityPaintingTemplate extends Entity implements IEntityAdditionalSpawnData
-{
+public class EntityPaintingTemplate extends Entity implements IEntityAdditionalSpawnData {
     
     private EnumFacing facing = EnumFacing.NORTH;
     private String texture;
     private int frames = 1;
     private int currentFrame = 1;
+    private String suffix = "";
     private int width = 1;
     private int height = 1;
     
@@ -32,13 +34,12 @@ public class EntityPaintingTemplate extends Entity implements IEntityAdditionalS
         this.setSize(1.0F, 1.0F);
     }
     
-    public EntityPaintingTemplate(World world, double x, double y, double z, String texture, int frames, int width, int height, EnumFacing facing) {
+    public EntityPaintingTemplate(World world, double x, double y, double z, String texture, int frames, String suffix, EnumFacing facing) {
         this(world);
         this.setPosition(x, y, z);
         this.texture = texture;
         this.frames = frames;
-        this.width = width;
-        this.height = height;
+        this.suffix = suffix;
         this.facing = facing;
     }
     
@@ -50,6 +51,7 @@ public class EntityPaintingTemplate extends Entity implements IEntityAdditionalS
         texture = compound.getString("Texture");
         frames = compound.getInteger("Frames");
         currentFrame = compound.getInteger("CurrentFrame");
+        suffix = compound.getString("Suffix");
         width = compound.getInteger("Width");
         height = compound.getInteger("Height");
         facing = EnumFacing.byIndex(compound.getInteger("Facing"));
@@ -60,6 +62,7 @@ public class EntityPaintingTemplate extends Entity implements IEntityAdditionalS
         compound.setString("Texture", texture);
         compound.setInteger("Frames", frames);
         compound.setInteger("CurrentFrame", currentFrame);
+        compound.setString("Suffix", suffix);
         compound.setInteger("Width", width);
         compound.setInteger("Height", height);
         compound.setInteger("Facing", facing.getIndex());
@@ -73,6 +76,7 @@ public class EntityPaintingTemplate extends Entity implements IEntityAdditionalS
         buffer.writeInt(frames);
         buffer.writeInt(currentFrame);
         ByteBufUtils.writeUTF8String(buffer, texture);
+        ByteBufUtils.writeUTF8String(buffer, suffix);
     }
     
     @Override
@@ -83,6 +87,7 @@ public class EntityPaintingTemplate extends Entity implements IEntityAdditionalS
         frames = buffer.readInt();
         currentFrame = buffer.readInt();
         texture = ByteBufUtils.readUTF8String(buffer);
+        suffix = ByteBufUtils.readUTF8String(buffer);
     }
     
     @SideOnly(Side.CLIENT)
@@ -162,6 +167,33 @@ public class EntityPaintingTemplate extends Entity implements IEntityAdditionalS
             if (currentFrame >= frames) currentFrame = 1;
             else currentFrame++;
         }
+    }
+    
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (this.isDead || this.world.isRemote) return false;
+        
+        this.setDead();
+        
+        world.playSound(null, posX, posY, posZ, SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        
+        if (source.getTrueSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) source.getTrueSource();
+            if (player.capabilities.isCreativeMode) return true;
+        }
+        
+        ItemPaintingSpawner item = RLSEntityHandler.PAINTING_ITEMS.get(suffix);
+        if (item != null) {
+            ItemStack drop = new ItemStack(item);
+            this.entityDropItem(drop, 0.1F);
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean isEntityInvulnerable(DamageSource source) {
+        return false;
     }
     
     public ResourceLocation getCurrentTexture() {
