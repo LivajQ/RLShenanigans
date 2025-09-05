@@ -45,6 +45,9 @@ item.fixed_heart.name=Fixed Heart
 item.fixed_heart.tooltip.0=§9Slowly restores broken heart containers.
 item.fixed_heart.tooltip.1=§aWinners don't have time to sleep.
 
+item.musicdisc_lavachicken.name=Music Disc
+item.record.rlshenanigans:musicdisc_lavachicken.desc=Hyper Potions - Lava Chicken
+
 item.pocket_pet_holder_filled.name=Pocket Pet Holder (Filled)
 item.pocket_pet_holder_empty.name=Pocket Pet Holder
 item.pocket_pet_holder_empty.tooltip.0=§6Used to safely store and transport your pets. Only works on mobs from the tameable misc whitelist.

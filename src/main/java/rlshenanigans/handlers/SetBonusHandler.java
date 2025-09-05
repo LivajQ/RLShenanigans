@@ -15,52 +15,44 @@ import rlshenanigans.potion.PotionGolemBad;
 import rlshenanigans.potion.PotionPookie;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
-public class SetBonusHandler
-{
+public class SetBonusHandler {
     @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event)
-    {
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END || event.player.world.isRemote) return;
         
         EntityPlayer player = event.player;
         
         if (player.ticksExisted % 20 != 0) return;
         
+        ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+        ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+        ItemStack legs = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
+        ItemStack boots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
         
         //########## GOOD BONUSES ##########
         
-        if(ForgeConfigHandler.misc.setBonusEnabled)
-        {
-            ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-            ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-            ItemStack legs = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
-            ItemStack boots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
+        if(ForgeConfigHandler.misc.setBonusEnabled) {
             
             boolean wearingSentient = (head.getItem() == SRPItems.armor_helmetSentient || head.getItem() == SRPItems.armor_helmet) &&
                     (chest.getItem() == SRPItems.armor_chestSentient || chest.getItem() == SRPItems.armor_chest) &&
                     (legs.getItem() == SRPItems.armor_pantsSentient || legs.getItem() == SRPItems.armor_pants) &&
                     (boots.getItem() == SRPItems.armor_bootsSentient || boots.getItem() == SRPItems.armor_boots);
             
-            if (wearingSentient)
-            {
-                player.addPotionEffect(new PotionEffect(PotionPookie.INSTANCE, 40, 0, true, true));
-            }
+            if (wearingSentient) player.addPotionEffect(new PotionEffect(PotionPookie.INSTANCE, 40, 0, true, true));
+            
         }
         
         
         //########## BAD BONUSES ##########
         
-        if(ForgeConfigHandler.misc.badArmorDebuffsEnabled)
-        {
+        if(ForgeConfigHandler.misc.badArmorDebuffsEnabled) {
             boolean wearingDragon = dragonDetector(player);
-            if (wearingDragon)
-            {
+            if (wearingDragon) {
                 player.addPotionEffect(new PotionEffect(PotionDragonBad.INSTANCE, 40, 0, true, true));
             }
             
             boolean wearingGolem = golemDetector(player);
-            if (wearingGolem)
-            {
+            if (wearingGolem) {
                 player.addPotionEffect(new PotionEffect(PotionGolemBad.INSTANCE, 40, 0, true, true));
             }
         }

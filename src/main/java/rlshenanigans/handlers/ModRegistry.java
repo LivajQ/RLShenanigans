@@ -27,12 +27,13 @@ public class ModRegistry {
         public static PotionType golemBadPotion = new PotionType("GolemBad", new PotionEffect(PotionGolemBad.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "GolemBad"));
         public static PotionType bloodthirstyPotion = new PotionType("Bloodthirsty", new PotionEffect(PotionBloodthirsty.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Bloodthirsty"));
         
-        
         public static Item sinPendantLust = new ItemAmuletSinLust();
         public static Item trinketFixedHeart = new ItemTrinketFixedHeart();
         public static Item weaponZweihander = new ItemWeaponZweihander("weapon_zweihander");
         public static Item pocketPetHolderEmpty = new ItemPocketPetHolderEmpty();
         public static Item pocketPetHolderFilled = new ItemPocketPetHolderFilled();
+        public static Item musicDiscLavaChicken = new ItemMusicDisc("musicdisc_lavachicken", RLSSoundHandler.DISC_LAVACHICKEN);
+        
         
         public static void init() {
         }
@@ -44,7 +45,8 @@ public class ModRegistry {
                         weaponZweihander,
                         pocketPetHolderEmpty,
                         pocketPetHolderFilled,
-                        trinketFixedHeart
+                        trinketFixedHeart,
+                        musicDiscLavaChicken
                 );
         }
 

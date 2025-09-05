@@ -12,5 +12,15 @@
       "rlshenanigans:drjr_ambient_9",
       "rlshenanigans:drjr_ambient_10"
     ]
+  },
+
+  "musicdisc_lavachicken": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "rlshenanigans:musicdisc_lavachicken",
+        "stream": true
+      }
+    ]
   }
 }

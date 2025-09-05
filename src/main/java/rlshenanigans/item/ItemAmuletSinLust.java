@@ -23,8 +23,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.ModRegistry;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)

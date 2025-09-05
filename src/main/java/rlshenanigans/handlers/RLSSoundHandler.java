@@ -7,9 +7,11 @@ import rlshenanigans.RLShenanigans;
 
 public class RLSSoundHandler{
     public static SoundEvent DRJR_AMBIENT;
+    public static SoundEvent DISC_LAVACHICKEN;
     
     public static void init(){
         DRJR_AMBIENT = register("drjr_ambient");
+        DISC_LAVACHICKEN = register("musicdisc_lavachicken");
     }
     
     private static SoundEvent register(String name) {

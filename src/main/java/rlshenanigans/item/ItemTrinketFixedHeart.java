@@ -30,8 +30,8 @@ public class ItemTrinketFixedHeart extends Item implements IBauble
 {
     
     public ItemTrinketFixedHeart() {
-        setRegistryName(RLShenanigans.MODID, "fixed_heart");
-        setTranslationKey("fixed_heart");
+        setRegistryName(RLShenanigans.MODID, "trinket_fixed_heart");
+        setTranslationKey("trinket_fixed_heart");
         setCreativeTab(CreativeTabs.COMBAT);
         setMaxStackSize(1);
     }

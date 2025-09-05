@@ -18,7 +18,9 @@ public class ClientModRegistry {
                 ModRegistry.sinPendantLust,
                 ModRegistry.weaponZweihander,
                 ModRegistry.pocketPetHolderEmpty,
-                ModRegistry.pocketPetHolderFilled
+                ModRegistry.pocketPetHolderFilled,
+                ModRegistry.trinketFixedHeart,
+                ModRegistry.musicDiscLavaChicken
         );
     }
 

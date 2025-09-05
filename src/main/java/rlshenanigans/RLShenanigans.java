@@ -42,9 +42,9 @@ public class RLShenanigans
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         RLShenanigans.PROXY.preInit();
+        RLSSoundHandler.init();
         ModRegistry.init();
         RLSEntityHandler.init();
-        RLSSoundHandler.init();
     }
     
     @Mod.EventHandler
