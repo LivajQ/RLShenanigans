@@ -261,7 +261,7 @@ public class TameMiscHandler {
                 mob.setRevengeTarget(null);
             }
         }
-        
+
         Potion cothEffect = ForgeRegistries.POTIONS.getValue(new ResourceLocation("srparasites", "coth"));
         if (cothEffect != null && mob.isPotionActive(cothEffect)) {
             mob.removePotionEffect(cothEffect);

@@ -1,16 +1,34 @@
 package rlshenanigans.handlers;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import rlshenanigans.RLShenanigans;
+import rlshenanigans.util.SplashTextEntries;
 
-@Mod.EventBusSubscriber
+import java.lang.reflect.Field;
+import java.util.Random;
+
+@Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class OtherHandler {
+    
+    private static final Random RAND = new Random();
+    public static boolean canChangeSplash = true;
+    public static String currentSplash = "";
     
     @SubscribeEvent
     public static void lavaChickenDrop(LivingDeathEvent event) {
@@ -26,5 +44,61 @@ public class OtherHandler {
         else {
             if (deadMob.getPassengers().stream().anyMatch(e -> e instanceof EntityZombie)) deadMob.entityDropItem(lavaChickenDisc, 0.5F);
         }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void splashScreenDraw(GuiScreenEvent.DrawScreenEvent.Post event) {
+        GuiScreen gui = event.getGui();
+        String className = gui.getClass().getName();
+        
+        if (!(gui instanceof GuiMainMenu) && !className.equals("lumien.custommainmenu.gui.GuiCustom")) return;
+        if (!Loader.isModLoaded("rlmixins")) return;
+        
+        Minecraft mc = Minecraft.getMinecraft();
+        if (mc.currentScreen == null) return;
+        
+        if (currentSplash.isEmpty() && canChangeSplash) {
+            Field splashField;
+            try {
+                try {
+                    splashField = GuiMainMenu.class.getDeclaredField("field_73975_c");
+                } catch (NoSuchFieldException ex) {
+                    splashField = GuiMainMenu.class.getDeclaredField("splashText");
+                }
+                splashField.setAccessible(true);
+                currentSplash = (String) splashField.get(gui);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            if (currentSplash == null || currentSplash.isEmpty()) {
+                if (RAND.nextDouble() * 100 < ForgeConfigHandler.client.splashTextChance) currentSplash = SplashTextEntries.getRandomSplash();
+            }
+            
+            canChangeSplash = false;
+        }
+        
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(gui.width / 2.0F + 90.0F, gui.height / 5.0F + 36.0F, 0.0F);
+        GlStateManager.rotate(-20.0F, 0.0F, 0.0F, 1.0F);
+        float f = 1.8F - MathHelper.abs(MathHelper.sin((float)(Minecraft.getSystemTime() % 1000L) / 1000.0F * ((float)Math.PI * 2F)) * 0.1F);
+        f = f * 100.0F / (float)(mc.fontRenderer.getStringWidth(currentSplash) + 32);
+        GlStateManager.scale(f, f, f);
+        mc.fontRenderer.drawStringWithShadow(currentSplash, -mc.fontRenderer.getStringWidth(currentSplash) / 2f, -8f, -256);
+        GlStateManager.popMatrix();
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void splashRefresher(GuiScreenEvent.InitGuiEvent.Post event) {
+        GuiScreen gui = event.getGui();
+        String className = gui.getClass().getName();
+        
+        if (!(gui instanceof GuiMainMenu) && !className.equals("lumien.custommainmenu.gui.GuiCustom")) return;
+        if (!Loader.isModLoaded("rlmixins")) return;
+        
+        canChangeSplash = true;
+        currentSplash = "";
     }
 }
