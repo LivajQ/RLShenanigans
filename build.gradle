@@ -69,6 +69,7 @@ dependencies {
     implementation fg.deobf("curse.maven:llibrary-${llibrary_version}")
     implementation fg.deobf("curse.maven:jei-${jei_version}")
     implementation fg.deobf("curse.maven:bettersurvival-${bettersurvival_version}")
+    implementation fg.deobf("curse.maven:recurrent-complex-${recurrentcomplex_version}")
 
     implementation fg.deobf("libs:SRParasites:${srparasites_version}")
 }

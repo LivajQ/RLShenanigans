@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:nether_star" },
+    { "item": "bountifulbaubles:trinketbrokenheart" }
+  ],
+  "result": {
+    "item": "rlshenanigans:trinket_fixed_heart",
+    "count": 1
+  }
+}

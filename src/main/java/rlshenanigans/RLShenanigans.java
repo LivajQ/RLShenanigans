@@ -1,5 +1,7 @@
 package rlshenanigans;
 
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -24,7 +26,8 @@ import rlshenanigans.proxy.CommonProxy;
                 "required-after:lycanitesmobs;" +
                 "required-after:variedcommodities;" +
                 "required-after:jei;" +
-                "required-after:mujmajnkraftsbettersurvival"
+                "required-after:mujmajnkraftsbettersurvival;" +
+                "required-after:reccomplex"
 )
 public class RLShenanigans
 {

@@ -41,9 +41,9 @@ description.effects.rlshenanigans.GolemBad=Did I just catch you wearing golem ar
 item.amulet_sin_lust.name=§d§oLust Pendant
 item.amulet_sin_lust.tooltip.0=§fThis pendant resonates with the §d§ofreaky §r§fessence.
 item.amulet_sin_lust.tooltip.1=§9Grants sinful buff (+damage, +armor) when around multiple entities.
-item.fixed_heart.name=Fixed Heart
-item.fixed_heart.tooltip.0=§9Slowly restores broken heart containers.
-item.fixed_heart.tooltip.1=§aWinners don't have time to sleep.
+item.trinket_fixed_heart.name=Fixed Heart
+item.trinket_fixed_heart.tooltip.0=§9Slowly restores broken heart containers.
+item.trinket_fixed_heart.tooltip.1=§aWinners don't have time to sleep.
 
 item.musicdisc_lavachicken.name=Music Disc
 item.record.rlshenanigans:musicdisc_lavachicken.desc=Hyper Potions - Lava Chicken

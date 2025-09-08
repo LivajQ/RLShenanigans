@@ -25,11 +25,11 @@ public class TameableCreatureEntityMixin {
     public void injectIsTamingItem(ItemStack itemstack, CallbackInfoReturnable<Boolean> cir) {
         TameableCreatureEntity creature = (TameableCreatureEntity)(Object)this;
         
-        if ((creature instanceof EntityKobold)
-                && !itemstack.isEmpty()
+        if (!itemstack.isEmpty()
                 && creature.creatureInfo != null
                 && creature.creatureInfo.creatureType != null
-                && itemstack.getItem() instanceof CreatureTreatItem) {
+                && itemstack.getItem() instanceof CreatureTreatItem
+                && creature.isBoss()){
             
             CreatureTreatItem itemTreat = (CreatureTreatItem)itemstack.getItem();
             if (itemTreat.getCreatureType() == creature.creatureInfo.creatureType) {
@@ -48,7 +48,7 @@ public class TameableCreatureEntityMixin {
         if(isBossKobold) {
             //hot kotlin uwu
         }
-        else if (creature.isBoss() || !creature.isRareVariant()) return;
+        else if (!creature.isRareVariant() && !creature.isBoss()) return;
         
         ExtendedPlayer extendedPlayer = ExtendedPlayer.getForPlayer(player);
         if (extendedPlayer == null) {
