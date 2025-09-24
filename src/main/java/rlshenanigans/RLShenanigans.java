@@ -1,15 +1,15 @@
 package rlshenanigans;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rlshenanigans.command.CommandRLS;
 import rlshenanigans.handlers.*;
 import rlshenanigans.proxy.CommonProxy;
 
@@ -29,8 +29,7 @@ import rlshenanigans.proxy.CommonProxy;
                 "required-after:mujmajnkraftsbettersurvival;" +
                 "required-after:reccomplex"
 )
-public class RLShenanigans
-{
+public class RLShenanigans {
     public static final String MODID = "rlshenanigans";
     public static final String VERSION = "0.1";
     public static final String NAME = "RLShenanigans";
@@ -60,5 +59,10 @@ public class RLShenanigans
     public void postInit(FMLPostInitializationEvent event) {
         RLShenanigans.PROXY.postInit();
         RLSRecipeHandler.init();
+    }
+    
+    @Mod.EventHandler
+    public void onServerStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandRLS());
     }
 }

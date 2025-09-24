@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=bottom,variant=default": { "model": "lycanitesmobs:demonstonetile_slab" },
-        "half=top,variant=default": { "model": "lycanitesmobs:demonstonetile_slab_upper" }
-    }
-}

@@ -1,5 +1,9 @@
 package rlshenanigans.handlers;
 
+import com.lycanitesmobs.LycanitesMobs;
+import com.lycanitesmobs.core.info.CreatureInfo;
+import com.lycanitesmobs.core.info.CreatureManager;
+import com.lycanitesmobs.core.info.ModInfo;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
@@ -10,11 +14,17 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
+import rlshenanigans.entity.npc.EntityNPCGeneric;
+import rlshenanigans.entity.npc.EntityNPCInvader;
+import rlshenanigans.entity.npc.EntityNPCSummon;
 import rlshenanigans.item.ItemPaintingSpawner;
+import rlshenanigans.proxy.CommonProxy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +33,9 @@ import java.util.Map;
 public class RLSEntityHandler
 {
     public static final int drJrEntityID = 200;
+    public static final int npcGenericID = 201;
+    public static final int npcSummonID = 202;
+    public static final int npcInvaderID = 203;
     public static final int paintingID = 300;
     
     //texture path, frame count, internal name
@@ -44,12 +57,25 @@ public class RLSEntityHandler
                 "drjr", drJrEntityID, RLShenanigans.instance, 64, 3, true);
         EntityRegistry.registerEgg(new ResourceLocation(RLShenanigans.MODID, "drjr"), 0x00AA00, 0x005500);
         
-        for (Biome biome : Biome.REGISTRY) {
-            if(ForgeConfigHandler.misc.drJrEnabled) EntityRegistry.addSpawn(EntityDrJr.class, 5, 1, 1, EnumCreatureType.MONSTER, biome);
-        }
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "npc_generic"), EntityNPCGeneric.class,
+                "npc_generic", npcGenericID, RLShenanigans.instance, 64, 3, true);
+        EntityRegistry.registerEgg(new ResourceLocation(RLShenanigans.MODID, "npc_generic"), 0x708090, 0x505050);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "npc_summon"), EntityNPCSummon.class,
+                "npc_summon", npcSummonID, RLShenanigans.instance, 64, 3, true);
+        EntityRegistry.registerEgg(new ResourceLocation(RLShenanigans.MODID, "npc_summon"), 0xFFD700, 0xFFFFAA);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "npc_invader"), EntityNPCInvader.class,
+                "npc_invader", npcInvaderID, RLShenanigans.instance, 64, 3, true);
+        EntityRegistry.registerEgg(new ResourceLocation(RLShenanigans.MODID, "npc_invader"), 0xAA0000, 0x330000);
         
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "painting_template"), EntityPaintingTemplate.class,
                 "painting_template", paintingID, RLShenanigans.instance, 64, 3, false);
+        
+        for (Biome biome : Biome.REGISTRY) {
+            if (ForgeConfigHandler.misc.drJrEnabled) EntityRegistry.addSpawn(EntityDrJr.class, 5, 1, 1, EnumCreatureType.MONSTER, biome);
+            if (ForgeConfigHandler.npc.npcEnabled) EntityRegistry.addSpawn(EntityNPCGeneric.class, 2, 1, 1, EnumCreatureType.CREATURE, biome);
+        }
     }
     
     @SubscribeEvent
@@ -72,6 +98,26 @@ public class RLSEntityHandler
         for (ItemPaintingSpawner item : RLSEntityHandler.PAINTING_ITEMS.values()) {
             ModelLoader.setCustomModelResourceLocation(item, 0,
                     new ModelResourceLocation(RLShenanigans.MODID + ":painting_template", "inventory"));
+        }
+    }
+    
+    @SubscribeEvent
+    public static void registerLycaniteEntities(RegistryEvent.Register<EntityEntry> event) {
+        ModInfo modInfo = CommonProxy.modInfo;
+        for (CreatureInfo creatureInfo : CreatureManager.getInstance().creatures.values()) {
+            if (creatureInfo.modInfo != modInfo) continue;
+            try {
+                EntityEntry entityEntry = EntityEntryBuilder.create()
+                        .entity(creatureInfo.entityClass)
+                        .id(creatureInfo.getEntityId(), CreatureManager.getInstance().getNextCreatureNetworkId())
+                        .name(creatureInfo.getName())
+                        .tracker(creatureInfo.isBoss() ? 160 : 80, 3, false)
+                        .build();
+                event.getRegistry().register(entityEntry);
+            } catch (Exception e) {
+                LycanitesMobs.logWarning("", "Unable to find entity class for: " + creatureInfo.getName() + ".");
+                throw e;
+            }
         }
     }
 }

@@ -6,12 +6,10 @@ import net.minecraft.entity.ai.EntityAITasks;
 
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -21,14 +19,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.*;
-import rlshenanigans.mixin.vanilla.EntityLivingBaseMixin;
 import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.util.TameableMiscWhitelist;
 
@@ -115,33 +111,6 @@ public class TameMiscHandler {
                             new ParticlePulsePacket(mob, EnumParticleTypes.HEART, 100, 30));
                 }
                 event.setCanceled(true);
-            }
-        }
-    }
-    
-    @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event) {
-        
-        EntityLivingBase target = event.getEntityLiving();
-        DamageSource source = event.getSource();
-        Entity killer = source.getTrueSource();
-        
-        if (killer instanceof EntityLiving) {
-            EntityLiving mob = (EntityLiving) killer;
-            NBTTagCompound data = mob.getEntityData();
-            
-            if (data.hasUniqueId("OwnerUUID")) {
-                UUID ownerId = data.getUniqueId("OwnerUUID");
-                EntityPlayerMP owner = FMLCommonHandler.instance()
-                        .getMinecraftServerInstance()
-                        .getPlayerList()
-                        .getPlayerByUUID(ownerId);
-                
-                if (owner != null) {
-                    target.setLastAttackedEntity(owner);
-                    target.getCombatTracker().trackDamage(DamageSource.causePlayerDamage(owner), target.getHealth(), 1.0F);
-                    ((EntityLivingBaseMixin) target).invokeDropLoot(true, 0, DamageSource.GENERIC);
-                }
             }
         }
     }

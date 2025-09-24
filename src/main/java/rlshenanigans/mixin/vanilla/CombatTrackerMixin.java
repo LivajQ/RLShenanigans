@@ -49,8 +49,10 @@ public abstract class CombatTrackerMixin {
         }
         
         if (parasite != null) {
-            String custom = ParasiteDeathMessages.getParasiteDeathMessage(fighter, parasite);
-            cir.setReturnValue(new TextComponentString(custom));
+            try {
+                String custom = ParasiteDeathMessages.getParasiteDeathMessage(fighter, parasite);
+                cir.setReturnValue(new TextComponentString(custom));
+            } catch (Throwable ignored) {}
         }
     }
 }

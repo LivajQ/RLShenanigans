@@ -23,8 +23,8 @@ import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -32,7 +32,6 @@ import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.ParasiteEntityAIFollowOwner;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtByTarget;
 import rlshenanigans.entity.ai.ParasiteEntityAIOwnerHurtTarget;
-import rlshenanigans.mixin.vanilla.EntityLivingBaseMixin;
 import rlshenanigans.mixin.vanilla.EntityMixin;
 import rlshenanigans.packet.OpenParasiteGuiPacket;
 import rlshenanigans.packet.ParticlePulsePacket;
@@ -125,31 +124,9 @@ public class TameParasiteHandler
         }
     }
     
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void onLivingDeath(LivingDeathEvent event) {
-        
         EntityLivingBase target = event.getEntityLiving();
-        DamageSource source = event.getSource();
-        Entity killer = source.getTrueSource();
-        
-        if (killer instanceof EntityParasiteBase) {
-            EntityParasiteBase parasite = (EntityParasiteBase) killer;
-            NBTTagCompound data = parasite.getEntityData();
-            
-            if (data.hasUniqueId("OwnerUUID")) {
-                UUID ownerId = data.getUniqueId("OwnerUUID");
-                EntityPlayerMP owner = FMLCommonHandler.instance()
-                        .getMinecraftServerInstance()
-                        .getPlayerList()
-                        .getPlayerByUUID(ownerId);
-                
-                if (owner != null) {
-                    target.setLastAttackedEntity(owner);
-                    target.getCombatTracker().trackDamage(DamageSource.causePlayerDamage(owner), target.getHealth(), 1.0F);
-                    ((EntityLivingBaseMixin) target).invokeDropLoot(true, 0, DamageSource.GENERIC);
-                }
-            }
-        }
         
         if (!(target instanceof EntityParasiteBase)) return;
         

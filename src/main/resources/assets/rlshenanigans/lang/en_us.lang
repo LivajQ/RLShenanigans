@@ -57,6 +57,9 @@ tooltip.rlshenanigans:reach=§aZweihander
 tooltip.rlshenanigans:reach.desc=Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.
 
 entity.drjr.name=Dr. Jr.
+entity.npc_generic.name=NPC
+entity.npc_summon.name=Phantom Summon
+entity.npc_invader.name=Phantom Invader
 entity.amalgalichtamed.name=Mini Amalgalich
 entity.amalgalichtamed.description=Miniature version of Amalgalich but no less deadly, especially when it does the succy succy.
 entity.rahovarttamed.name=Mini Rahovart

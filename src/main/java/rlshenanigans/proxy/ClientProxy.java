@@ -2,9 +2,11 @@ package rlshenanigans.proxy;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
+import com.lycanitesmobs.LycanitesMobs;
 import com.lycanitesmobs.client.model.creature.ModelAmalgalich;
 import com.lycanitesmobs.client.model.creature.ModelAsmodeus;
 import com.lycanitesmobs.client.model.creature.ModelRahovart;
+import com.lycanitesmobs.client.renderer.RenderRegister;
 import net.minecraft.client.model.*;
 import net.minecraft.client.settings.KeyBinding;
 
@@ -16,16 +18,14 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import org.lwjgl.input.Keyboard;
 
 import rlshenanigans.client.model.creature.ModelDrJr;
-import rlshenanigans.client.render.RenderParasiteEntity;
-import rlshenanigans.client.render.RenderRLSEntityItem;
-import rlshenanigans.client.render.RenderRLSItemPainting;
-import rlshenanigans.client.render.RenderRLSModel;
+import rlshenanigans.client.render.*;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
+import rlshenanigans.entity.npc.EntityNPCBase;
 import rlshenanigans.handlers.RLSEntityHandler;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.util.ParasiteRegistry;
@@ -70,6 +70,12 @@ public class ClientProxy extends CommonProxy {
                 )
         );
         
+        RenderingRegistry.registerEntityRenderingHandler(EntityNPCBase.class, manager ->
+                new RenderNPC(manager, new ModelPlayer(0, false), 0.5F,
+                        new ResourceLocation("rlshenanigans", "textures/entity/creature/dummy.png")
+                )
+        );
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityRahovartTamed.class, manager ->
                 new RenderRLSModel<>(manager, new ModelRahovart(), 0.5F,
                         new ResourceLocation("lycanitesmobs", "textures/entity/rahovart.png")  //maybe sth custom later idk
@@ -105,6 +111,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         super.preInit();
+        RenderRegister renderRegister = new RenderRegister(modInfo);
+        renderRegister.registerRenderFactories();
         registerRenderers();
     }
 }

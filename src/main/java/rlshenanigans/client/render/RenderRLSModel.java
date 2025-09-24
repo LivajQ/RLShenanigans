@@ -6,8 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderRLSModel<T extends EntityLiving> extends RenderLiving<T>
-{
+public class RenderRLSModel<T extends EntityLiving> extends RenderLiving<T> {
     private final ResourceLocation texture;
     
     public RenderRLSModel(RenderManager renderManager, ModelBase model, float shadowSize, ResourceLocation texture) {
@@ -19,6 +18,4 @@ public class RenderRLSModel<T extends EntityLiving> extends RenderLiving<T>
     protected ResourceLocation getEntityTexture(T entity) {
         return texture;
     }
-    
-    
 }

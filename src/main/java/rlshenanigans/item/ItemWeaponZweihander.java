@@ -16,6 +16,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import noppes.vc.VCItems;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.packet.ParticlePulsePacket;
@@ -32,11 +33,8 @@ public class ItemWeaponZweihander extends ItemWeaponBase
     
     public ItemWeaponZweihander(String unlocName) {
         super(unlocName, ToolMaterialEx.DIAMOND, 10.0F, 1.0F, 0.6D,
-                new WeaponProperty[] {
-                        new WeaponProperty("reach", RLShenanigans.MODID, 3, 8.0F),
-                        WeaponProperties.SWEEP_DAMAGE_FULL
-                }
-        );
+                new WeaponProperty("reach", RLShenanigans.MODID, 3, 8.0F),
+                WeaponProperties.SWEEP_DAMAGE_FULL);
         
         this.setMaxDamage(2137);
         this.setTranslationKey("weapon_zweihander");
@@ -85,8 +83,13 @@ public class ItemWeaponZweihander extends ItemWeaponBase
             ItemStack weapon = attacker.getHeldItemMainhand();
             
             if (weapon.getItem() instanceof ItemWeaponZweihander && !(attacker instanceof EntityPlayer)) {
-                ((ItemWeaponZweihander) weapon.getItem()).hitEntity(weapon, target, attacker);
+                weapon.getItem().hitEntity(weapon, target, attacker);
             }
         }
+    }
+    
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        return repair.getItem() == VCItems.ingot_steel;
     }
 }

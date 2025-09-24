@@ -119,8 +119,6 @@ public class PotionStagger extends PotionBase {
                 if (player.motionY > 0) player.motionY = 0;
                 player.jumpMovementFactor = 0;
                 player.setVelocity(0, player.motionY, 0);
-                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED)
-                        .setBaseValue(0.0D);
                 player.swingProgress = 0;
                 player.swingProgressInt = 0;
                 player.isSwingInProgress = false;

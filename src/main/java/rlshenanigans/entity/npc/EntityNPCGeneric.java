@@ -1,0 +1,87 @@
+package rlshenanigans.entity.npc;
+
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import rlshenanigans.entity.ai.EntityAIHuntUntamed;
+import rlshenanigans.entity.ai.EntityAIMineToTarget;
+import rlshenanigans.entity.ai.EntityAISelfDefense;
+import rlshenanigans.handlers.ForgeConfigHandler;
+import rlshenanigans.util.NPCPresets;
+
+import java.util.Random;
+
+public class EntityNPCGeneric extends EntityNPCBase {
+    private static final Random RAND = new Random();
+    
+    public EntityNPCGeneric(World world) {
+        super(world);
+    }
+    
+    @Override
+    protected void applyEntityAI() {
+        super.applyEntityAI();
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        this.tasks.addTask(2, new EntityAIMineToTarget(this, 5, 3, 100));
+        this.targetTasks.addTask(3, new EntityAISelfDefense<>(this, EntityLivingBase.class));
+        this.targetTasks.addTask(4, new EntityAIHuntUntamed<>(this, EntityLivingBase.class, 10, true, false, true, target ->
+                target instanceof IMob
+        ));
+    }
+    
+    @Override
+    protected void createCharacter() {
+        if (this.world.isRemote) return;
+        if (RAND.nextFloat() < 0.2F) NPCPresets.generatePreset(this, NPCPresets.Categories.GENERIC);
+        else NPCPresets.generatePreset(this, NPCPresets.Categories.RANDOM);
+    }
+    
+    @Override
+    protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {
+        super.dropEquipment(wasRecentlyHit, lootingModifier);
+        ItemStack mainHand = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+        ItemStack offHand = getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);
+        if (!mainHand.isEmpty() && this.rand.nextFloat() < 0.1F) this.entityDropItem(mainHand.copy(), 0.5F);
+        if (!offHand.isEmpty() && this.rand.nextFloat() < 0.1F) this.entityDropItem(offHand.copy(), 0.5F);
+    }
+    
+    @Override
+    protected double getCharacterStatMultiplier() {
+        return ForgeConfigHandler.npc.genericStatisticsMultiplier;
+    }
+    
+    @Override
+    protected double statisticRandomFactor() {
+        double randomFactor = ForgeConfigHandler.npc.genericStatisticsRandomFactor;
+        double min = 1.0 / randomFactor;
+        return min + (rand.nextDouble() * (randomFactor - min));
+    }
+    
+    @Override
+    protected int getExtraEnchantmentCount() {
+        int min = ForgeConfigHandler.npc.genericExtraEnchantmentMin;
+        int max = ForgeConfigHandler.npc.genericExtraEnchantmentMax;
+        if (min > max) {
+            int temp = min;
+            min = max;
+            max = temp;
+        }
+        return min + rand.nextInt(max - min + 1);
+    }
+    
+    @Override
+    protected double getEnchantabilityMultiplier() {
+        return ForgeConfigHandler.npc.genericEnchantabilityMultiplier;
+    }
+    
+    @Override
+    protected boolean isWillingToTalk() {
+        return true;
+    }
+}
