@@ -11,23 +11,22 @@ import net.minecraft.util.ResourceLocation;
 import rlshenanigans.handlers.ForgeConfigHandler;
 
 public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
-    private final String parasiteNameLower;
+    private final String texture;
     
-    public RenderParasiteEntity(RenderManager manager, ModelBase model, float shadowSize, String parasiteName) {
+    public RenderParasiteEntity(RenderManager manager, ModelBase model, float shadowSize, String texture) {
         super(manager, model, shadowSize);
-        this.parasiteNameLower = parasiteName.toLowerCase();
+        this.texture = texture;
     }
     @Override
     protected ResourceLocation getEntityTexture(EntityParasiteBase entity) {
-        String name = parasiteNameLower;
-        String folder = entity.hasCustomName() ? "thh" : "normal";
-        if(!ForgeConfigHandler.client.thhEnabled) folder = "normal";
+        String folder = entity.hasCustomName() ? "thh/" : "";
+        if(!ForgeConfigHandler.client.thhEnabled) folder = "";
         
         String suffix = "";
         switch (entity.getSkin()) {
-            case 1: suffix = "sp1"; break; //tyrant longarms, armored haunter etc.
-            case 2: suffix = ""; break; //
-            case 3: suffix = ""; break; // some skin rng for humans and villagers, buggy and frankly whatever
+            case 1: suffix = "sp1"; break; //armored
+            case 2: suffix = "1"; break; //
+            case 3: suffix = "2"; break; // some skin rng for humans and villagers
             case 5: suffix = "v"; break; // viral
             case 6: suffix = "b"; break; // bleed
             case 7: suffix = "h"; break; // breacher
@@ -35,7 +34,10 @@ public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
             default: suffix = "";
         }
         
-        String path = "srparasites:textures/entity/monster/" + folder + "/" + name + suffix + ".png";
+        if (texture.equals("shycoa") && entity.getSkin() == 1) suffix = "tyrant";
+        if (texture.equals("mes") && entity.getSkin() == 1) suffix = "1";
+        
+        String path = "srparasites:textures/entity/monster/" + folder + texture + suffix + ".png";
         
         return new ResourceLocation(path);
     }

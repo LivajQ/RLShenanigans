@@ -2,7 +2,6 @@ package rlshenanigans.proxy;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
-import com.lycanitesmobs.LycanitesMobs;
 import com.lycanitesmobs.client.model.creature.ModelAmalgalich;
 import com.lycanitesmobs.client.model.creature.ModelAsmodeus;
 import com.lycanitesmobs.client.model.creature.ModelRahovart;
@@ -46,14 +45,14 @@ public class ClientProxy extends CommonProxy {
             try {
                 String entityClassName = "com.dhanantry.scapeandrunparasites.entity.monster." + mob.category + ".Entity" + mob.name;
                 String modelClassName  = "com.dhanantry.scapeandrunparasites.client.model.entity." + mob.category + ".Model" + mob.name;
-                String texturePath = "srparasites:textures/entity/monster/normal/" + mob.name.toLowerCase() + ".png";
+                if (mob.name.equals("Crux")) modelClassName += "A";
                 
                 Class<? extends EntityParasiteBase> entityClass = (Class<? extends EntityParasiteBase>) Class.forName(entityClassName);
                 Class<? extends ModelBase> modelClass = (Class<? extends ModelBase>) Class.forName(modelClassName);
                 ModelBase modelInstance = modelClass.getDeclaredConstructor().newInstance();
                 
                 RenderingRegistry.registerEntityRenderingHandler(entityClass, manager ->
-                        new RenderParasiteEntity(manager, modelInstance, 0.5F, mob.name)
+                        new RenderParasiteEntity(manager, modelInstance, 0.5F, mob.texture)
                 );
                 
                 
