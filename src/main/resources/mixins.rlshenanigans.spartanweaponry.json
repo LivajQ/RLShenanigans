@@ -1,19 +1,15 @@
 {
   "required": true,
-  "package": "rlshenanigans.mixin.vanilla",
+  "package": "rlshenanigans.mixin.spartanweaponry",
   "refmap": "mixins.rlshenanigans.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "mixins": [
-    "EntityLivingBaseAccessor",
-    "EntityLivingMixin",
-    "EntityAccessor",
-    "CombatTrackerMixin",
-	"AbstractSkeletonMixin"
-  ],
-  "client": [
-    "GuiMainMenuMixin"
+	"ItemKatanaMixin",
+	"ItemDaggerMixin",
+	"ItemBattleaxeMixin",
+	"ItemGlaiveMixin"
   ],
   "injectors": {
     "maxShiftBy": 10

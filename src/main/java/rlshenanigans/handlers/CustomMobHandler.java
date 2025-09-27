@@ -35,15 +35,15 @@ import rlshenanigans.entity.ai.RLSEntityAIFollow;
 import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.potion.PotionBloodthirsty;
 
+import static rlshenanigans.RLShenanigans.RLSRAND;
 import static rlshenanigans.handlers.ForgeConfigHandler.customMobSpawn;
 
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class CustomMobHandler {
     private static final ResourceLocation LIBRARIAN = new ResourceLocation("minecraft:librarian");
     private static final ResourceLocation CARTOGRAPHER = new ResourceLocation("minecraft:cartographer");
-    private static final Random RANDOM = new Random();
+    
     @SubscribeEvent
     public static void onSpecialSpawn(LivingSpawnEvent.SpecialSpawn event) {
         if (event.getWorld().isRemote) return;
@@ -237,6 +237,6 @@ public class CustomMobHandler {
     }
     
     private static boolean rollChance(double chancePercent) {
-        return RANDOM.nextDouble() * 100 < chancePercent;
+        return RLSRAND.nextDouble() * 100 < chancePercent;
     }
 }

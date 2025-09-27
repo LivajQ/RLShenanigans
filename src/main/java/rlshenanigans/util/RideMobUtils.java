@@ -33,7 +33,7 @@ import java.util.UUID;
 
 import static rlshenanigans.util.ParasiteRegistry.RANGED_PARASITES;
 
-public class RibeMobUtils {
+public class RideMobUtils {
     
     private static final Map<UUID, Long> attackCooldowns = new HashMap<>();
     

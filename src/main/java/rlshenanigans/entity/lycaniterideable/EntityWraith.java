@@ -147,17 +147,11 @@ public class EntityWraith extends RideableCreatureEntity implements IMob
     @Override
     public void mountAbility(Entity rider) {
         if (!this.getEntityWorld().isRemote && !this.abilityToggled) {
-            if (this.getStamina() >= this.getStaminaCost())
-            {
+            if (this.getStamina() >= this.getStaminaCost()) {
                 this.applyStaminaCost();
                 this.playAttackSound();
                 
-                World world = this.world;
-                double x = this.posX;
-                double y = this.posY;
-                double z = this.posZ;
-                
-                world.createExplosion(this, x, y, z, 100.0F, true);
+                world.createExplosion(this, posX, posY, posZ, 100.0F, true);
                 this.setDead();
             }
         }

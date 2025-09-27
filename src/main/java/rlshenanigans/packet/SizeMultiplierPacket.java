@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rlshenanigans.mixin.vanilla.EntityMixin;
+import rlshenanigans.mixin.vanilla.EntityAccessor;
 
 public class SizeMultiplierPacket implements IMessage
 {
@@ -53,7 +53,7 @@ public class SizeMultiplierPacket implements IMessage
                 Entity entity = Minecraft.getMinecraft().world.getEntityByID(message.entityId);
                 if (entity instanceof EntityLivingBase) {
                     entity.getEntityData().setFloat("SizeMultiplier", message.sizeMultiplier);
-                    ((EntityMixin) entity).invokeSetSize(message.baseWidth * message.sizeMultiplier, message.baseHeight * message.sizeMultiplier);
+                    ((EntityAccessor) entity).invokeSetSize(message.baseWidth * message.sizeMultiplier, message.baseHeight * message.sizeMultiplier);
                     float scaledWidth = message.baseWidth * message.sizeMultiplier;
                     float scaledHeight = message.baseHeight * message.sizeMultiplier;
                     

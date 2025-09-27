@@ -2,8 +2,9 @@ package rlshenanigans.item;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.WeaponProperties;
-import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
 import com.oblivioussp.spartanweaponry.item.ItemWeaponBase;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,17 +14,20 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import noppes.vc.VCItems;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.packet.ParticlePulsePacket;
 import rlshenanigans.potion.PotionStagger;
+import rlshenanigans.spartanweaponry.RLSWeaponProperties;
 
 import java.util.List;
-
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ItemWeaponZweihander extends ItemWeaponBase
@@ -33,8 +37,7 @@ public class ItemWeaponZweihander extends ItemWeaponBase
     
     public ItemWeaponZweihander(String unlocName) {
         super(unlocName, ToolMaterialEx.DIAMOND, 10.0F, 1.0F, 0.6D,
-                new WeaponProperty("reach", RLShenanigans.MODID, 3, 8.0F),
-                WeaponProperties.SWEEP_DAMAGE_FULL);
+                RLSWeaponProperties.REACH_3, WeaponProperties.SWEEP_DAMAGE_FULL);
         
         this.setMaxDamage(2137);
         this.setTranslationKey("weapon_zweihander");
@@ -43,8 +46,22 @@ public class ItemWeaponZweihander extends ItemWeaponBase
     }
     
     @Override
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
-    {
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        for (int i = 0; i < 10; i++) {
+            String key = getTranslationKey() + ".tooltip." + i;
+            String line = I18n.format(key);
+            if (!line.equals(key)) {
+                tooltip.add(line);
+            } else {
+                break;
+            }
+        }
+    }
+    
+    @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
         long currentTime = attacker.world.getTotalWorldTime();
         
         AxisAlignedBB sweepBox = target.getEntityBoundingBox().grow(1.5D, 0.25D, 1.5D);
@@ -54,13 +71,11 @@ public class ItemWeaponZweihander extends ItemWeaponBase
                 e -> e != attacker && e.isEntityAlive()
         );
         
-        for (EntityLivingBase sweptTarget : swept)
-        {
+        for (EntityLivingBase sweptTarget : swept) {
             NBTTagCompound tag = sweptTarget.getEntityData();
             long lastEffect = tag.getLong("StaggerEffect");
             
-            if (currentTime - lastEffect >= STAGGER_COOLDOWN)
-            {
+            if (currentTime - lastEffect >= STAGGER_COOLDOWN) {
                 sweptTarget.addPotionEffect(new PotionEffect(PotionStagger.INSTANCE, STAGGER_LENGTH, 1));
                 tag.setLong("StaggerEffect", currentTime);
                 

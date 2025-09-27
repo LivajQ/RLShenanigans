@@ -20,15 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ParasiteRegistry
-{
+public class ParasiteRegistry {
     
     public final String name;
     public final String texture;
     public final String category;
     
-    public ParasiteRegistry(String name, String texture, String category)
-    {
+    public ParasiteRegistry(String name, String texture, String category) {
         this.name = name;
         this.texture = texture;
         this.category = category;

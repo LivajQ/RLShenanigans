@@ -11,11 +11,11 @@ import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.ParasiteSpeakPacket;
 import rlshenanigans.util.ParasiteSpeech;
 
-import java.util.Random;
+import static rlshenanigans.RLShenanigans.RLSRAND;
+
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class SpeechParasiteHandler {
     
-    private static final Random RAND = new Random();
     private static final int COOLDOWN_BASE = 1200;
     private static final int COOLDOWN_WOUNDED = 100;
     private static final int COOLDOWN_KILL = 200;
@@ -27,7 +27,7 @@ public class SpeechParasiteHandler {
         if (!canSpeak(parasite, COOLDOWN_BASE)) return;
         if (parasite.ticksExisted % 20 != 0) return;
         
-        if (RAND.nextFloat() < 0.2f) {
+        if (RLSRAND.nextFloat() < 0.2f) {
             RLSPacketHandler.INSTANCE.sendToAll(new ParasiteSpeakPacket(
                     parasite, ParasiteSpeech.getRandomQuote(ParasiteSpeech.QuoteType.BASE), 240)
             );

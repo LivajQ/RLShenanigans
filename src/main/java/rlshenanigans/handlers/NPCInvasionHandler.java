@@ -28,6 +28,7 @@ public class NPCInvasionHandler {
         if (!ForgeConfigHandler.npc.invasionsEnabled
                 || player.world.isRemote
                 || player.capabilities.isCreativeMode
+                || player.ticksExisted < 6000
                 || player.ticksExisted % 200 != 0
                 || event.phase == TickEvent.Phase.START) return;
         

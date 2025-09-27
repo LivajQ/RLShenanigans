@@ -38,10 +38,6 @@ public class BehaviorParasiteHandler {
                 parasite.getEntityData().setBoolean("Waiting", true);
                 player.sendStatusMessage(new TextComponentString("Your §dPookie §fis roaming."), true);
                 break;
-            
-            case GIVEITEM:
-                player.sendStatusMessage(new TextComponentString("Maybe if I figure it out lol"), true);
-                break;
                 
             case RIDE:
                 player.startRiding(parasite, true);
@@ -132,6 +128,10 @@ public class BehaviorParasiteHandler {
             case DESPAWN:
                 parasite.getEntityData().setBoolean("SafeDespawn", true);
                 parasite.setDead();
+                break;
+                
+            case DISCARD:
+                TamedParasiteRegistry.untrack(parasite.getUniqueID());
                 break;
         }
     }

@@ -2,10 +2,10 @@ package rlshenanigans.util;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
+
+import static rlshenanigans.RLShenanigans.RLSRAND;
 
 public class ParasiteSpeech {
-    private static final Random rand = new Random();
     
     public enum QuoteType {
         BASE,
@@ -66,6 +66,6 @@ public class ParasiteSpeech {
         }
         
         if (selectedList == null) return "";
-        return selectedList.get(rand.nextInt(selectedList.size()));
+        return selectedList.get(RLSRAND.nextInt(selectedList.size()));
     }
 }

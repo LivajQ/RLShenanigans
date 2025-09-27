@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(Entity.class)
-public interface EntityMixin
+public interface EntityAccessor
 {
     @Accessor("width")
     public abstract float getWidth();

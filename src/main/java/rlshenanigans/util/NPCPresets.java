@@ -8,11 +8,10 @@ import rlshenanigans.entity.npc.EntityNPCBase;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
+
+import static rlshenanigans.RLShenanigans.RLSRAND;
 
 public class NPCPresets {
-    
-    private static final Random RAND = new Random();
     
     public enum Categories {
         RANDOM, GENERIC, SUMMON, INVADER
@@ -60,7 +59,8 @@ public class NPCPresets {
             new NPCPreset("Waltuh", "npc_generic_waltuh", null, new ResourceLocation("minecraft", "prismarine_crystals")),
             new NPCPreset("Professor", "npc_generic_professor", WeaponRegistry.WeaponTypes.SCYTHE, null),
             new NPCPreset("Spookman", "npc_generic_spookman", null, null),
-            new NPCPreset("Roderick", "npc_generic_roderick", null, new ResourceLocation("forgottenitems", "heath_talisman"))
+            new NPCPreset("Roderick", "npc_generic_roderick", null, new ResourceLocation("forgottenitems", "heath_talisman")),
+            new NPCPreset("Jay", "npc_generic_jay", null, new ResourceLocation("defiledlands", "umbra_blaster"))
     ));
     
     public static final List<NPCPreset> SUMMON_PRESETS = new ArrayList<>(Arrays.asList(
@@ -73,7 +73,8 @@ public class NPCPresets {
             new NPCPreset("Big Sword Bill", "npc_invader_bigswordbill", WeaponRegistry.WeaponTypes.GREATSWORD, null),
             new NPCPreset("Blade Master", "npc_invader_blademaster", WeaponRegistry.WeaponTypes.KATANA, null),
             new NPCPreset("Watchful Jim", "npc_invader_watchfuljim", WeaponRegistry.WeaponTypes.PIKE, null),
-            new NPCPreset("Crazy Axe Man", "npc_invader_crazyaxeman", WeaponRegistry.WeaponTypes.BATTLEAXE, new ResourceLocation("minecraft", "shield"))
+            new NPCPreset("Crazy Axe Man", "npc_invader_crazyaxeman", WeaponRegistry.WeaponTypes.BATTLEAXE, new ResourceLocation("minecraft", "shield")),
+            new NPCPreset("Mr Can't Parry", "npc_invader_mrcantparry", WeaponRegistry.WeaponTypes.DAGGER, new ResourceLocation("minecraft", "shield"))
     ));
     
     public static final List<ResourceLocation> OFFHAND_RANDOM = Arrays.asList(
@@ -85,11 +86,11 @@ public class NPCPresets {
     public static void generatePreset(EntityNPCBase npc, Categories category) {
         switch (category) {
             case RANDOM:
-                npc.name = RANDOM_NAMES[RAND.nextInt(RANDOM_NAMES.length)];
+                npc.name = RANDOM_NAMES[RLSRAND.nextInt(RANDOM_NAMES.length)];
                 npc.skin = new ResourceLocation(RLShenanigans.MODID, "textures/entity/npc/" +
-                        RANDOM_SKINS[RAND.nextInt(RANDOM_SKINS.length)] + ".png");
+                        RANDOM_SKINS[RLSRAND.nextInt(RANDOM_SKINS.length)] + ".png");
                 npc.preferredWeapon = null;
-                if (RAND.nextFloat() < npc.getRandomOffhandChance()) {
+                if (RLSRAND.nextFloat() < npc.getRandomOffhandChance()) {
                     npc.offhandItem = rollOffhandItem();
                     npc.offhandItemCount = 1;
                 }
@@ -112,16 +113,16 @@ public class NPCPresets {
     
     private static void applyPreset(EntityNPCBase npc, List<NPCPreset> pool) {
         if (pool.isEmpty()) return;
-        NPCPreset chosen = pool.get(RAND.nextInt(pool.size()));
+        NPCPreset chosen = pool.get(RLSRAND.nextInt(pool.size()));
         npc.name = chosen.name;
         npc.skin = chosen.skin;
         npc.preferredWeapon = chosen.preferredWeapon;
         if (chosen.offhandItem != null) npc.offhandItem = chosen.offhandItem;
-        else if (RAND.nextFloat() < npc.getRandomOffhandChance()) npc.offhandItem = rollOffhandItem();
+        else if (RLSRAND.nextFloat() < npc.getRandomOffhandChance()) npc.offhandItem = rollOffhandItem();
         npc.offhandItemCount = MathHelper.clamp(chosen.offhandItemCount, 1, 64);
     }
     
     private static ResourceLocation rollOffhandItem() {
-        return OFFHAND_RANDOM.get(RAND.nextInt(OFFHAND_RANDOM.size()));
+        return OFFHAND_RANDOM.get(RLSRAND.nextInt(OFFHAND_RANDOM.size()));
     }
 }

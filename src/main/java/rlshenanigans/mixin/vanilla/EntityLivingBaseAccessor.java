@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(EntityLivingBase.class)
-public interface EntityLivingBaseMixin {
+public interface EntityLivingBaseAccessor {
     @Invoker("dropLoot")
     void invokeDropLoot(boolean wasRecentlyHit, int lootingLevel, DamageSource source);
     

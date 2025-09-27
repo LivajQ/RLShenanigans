@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import rlshenanigans.handlers.RLSPacketHandler;
-import rlshenanigans.mixin.vanilla.EntityMixin;
+import rlshenanigans.mixin.vanilla.EntityAccessor;
 import rlshenanigans.packet.SizeMultiplierPacket;
 
 public final class SizeMultiplierHelper {
@@ -28,7 +28,7 @@ public final class SizeMultiplierHelper {
         float scaledWidth = baseWidth * sizeMultiplier;
         float scaledHeight = baseHeight * sizeMultiplier;
         
-        ((EntityMixin) living).invokeSetSize(scaledWidth, scaledHeight);
+        ((EntityAccessor) living).invokeSetSize(scaledWidth, scaledHeight);
         
         living.getEntityData().setFloat("SizeMultiplier", sizeMultiplier);
         

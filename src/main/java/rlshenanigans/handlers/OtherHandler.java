@@ -21,12 +21,11 @@ import rlshenanigans.RLShenanigans;
 import rlshenanigans.util.SplashTextEntries;
 
 import java.lang.reflect.Field;
-import java.util.Random;
+
+import static rlshenanigans.RLShenanigans.RLSRAND;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class OtherHandler {
-    
-    private static final Random RAND = new Random();
     public static boolean canChangeSplash = true;
     public static String currentSplash = "";
     
@@ -73,7 +72,7 @@ public class OtherHandler {
             }
             
             if (currentSplash == null || currentSplash.isEmpty()) {
-                if (RAND.nextDouble() * 100 < ForgeConfigHandler.client.splashTextChance) currentSplash = SplashTextEntries.getRandomSplash();
+                if (RLSRAND.nextDouble() * 100 < ForgeConfigHandler.client.splashTextChance) currentSplash = SplashTextEntries.getRandomSplash();
             }
             
             canChangeSplash = false;

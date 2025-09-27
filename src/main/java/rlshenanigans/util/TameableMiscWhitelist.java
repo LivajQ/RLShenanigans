@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-    A list for non-parasites and non-lycanites that can be tameable. More of
+    A list builder for non-parasites and non-lycanites that can be tamed. More of
     a "vanilla dog taming" system than anything convoluted, but some people
     really wanted those sea serpents.
 */

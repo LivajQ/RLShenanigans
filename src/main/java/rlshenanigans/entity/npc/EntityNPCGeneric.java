@@ -18,7 +18,6 @@ import rlshenanigans.util.NPCPresets;
 import java.util.Random;
 
 public class EntityNPCGeneric extends EntityNPCBase {
-    private static final Random RAND = new Random();
     
     public EntityNPCGeneric(World world) {
         super(world);
@@ -38,7 +37,7 @@ public class EntityNPCGeneric extends EntityNPCBase {
     @Override
     protected void createCharacter() {
         if (this.world.isRemote) return;
-        if (RAND.nextFloat() < 0.2F) NPCPresets.generatePreset(this, NPCPresets.Categories.GENERIC);
+        if (rand.nextFloat() < 0.2F) NPCPresets.generatePreset(this, NPCPresets.Categories.GENERIC);
         else NPCPresets.generatePreset(this, NPCPresets.Categories.RANDOM);
     }
     

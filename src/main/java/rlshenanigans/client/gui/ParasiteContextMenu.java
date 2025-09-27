@@ -20,14 +20,14 @@ public class ParasiteContextMenu extends GuiScreen {
     private static final String[] LABELS = new String[] {
             "Follow",
             "Roam",
-            "Give Item",
             "Ride",
             "Ride (Reverse)",
             "Resize",
             "Smooch",
             "Ask For Drops",
             "Spontaneously Combust",
-            "Despawn"
+            "Despawn",
+            "Discard"
     };
     
     public ParasiteContextMenu(int parasiteEntityId) {
@@ -66,8 +66,15 @@ public class ParasiteContextMenu extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton button) {
         if (button.id < 0 || button.id >= ParasiteCommand.values().length) return;
-        if (LABELS[button.id].equals("Resize")) {
+        String label = LABELS[button.id];
+        
+        if (label.equals("Resize")) {
             this.mc.displayGuiScreen(new ParasiteResizeMenu(this.parasiteEntityId, this));
+            return;
+        }
+        
+        if (label.equals("Discard")) {
+            this.mc.displayGuiScreen(new ConfirmScreen(this.parasiteEntityId, this));
             return;
         }
         

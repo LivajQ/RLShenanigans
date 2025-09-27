@@ -23,10 +23,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.RideMobPacket;
 import rlshenanigans.proxy.ClientProxy;
-import rlshenanigans.util.RibeMobUtils;
+import rlshenanigans.util.RideMobUtils;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
-public class RideMobHandler extends RibeMobUtils {
+public class RideMobHandler extends RideMobUtils {
     
     private static boolean eyeHeightChanged = false;
     
@@ -226,4 +226,6 @@ public class RideMobHandler extends RibeMobUtils {
             return null;
         }
     }
+    
+    
 }

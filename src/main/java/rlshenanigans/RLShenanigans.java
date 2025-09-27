@@ -13,6 +13,8 @@ import rlshenanigans.command.CommandRLS;
 import rlshenanigans.handlers.*;
 import rlshenanigans.proxy.CommonProxy;
 
+import java.util.Random;
+
 @Mod(
         modid = RLShenanigans.MODID,
         version = RLShenanigans.VERSION,
@@ -34,6 +36,7 @@ public class RLShenanigans {
     public static final String VERSION = "0.1";
     public static final String NAME = "RLShenanigans";
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final Random RLSRAND = new Random();
     
     @SidedProxy(clientSide = "rlshenanigans.proxy.ClientProxy", serverSide = "rlshenanigans.proxy.CommonProxy")
     public static CommonProxy PROXY;

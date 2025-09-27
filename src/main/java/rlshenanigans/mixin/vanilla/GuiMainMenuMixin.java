@@ -11,13 +11,14 @@ import rlshenanigans.util.SplashTextEntries;
 
 import java.util.Random;
 
+import static rlshenanigans.RLShenanigans.RLSRAND;
+
 @Mixin(value = GuiMainMenu.class, priority = 3000)
 public abstract class GuiMainMenuMixin {
     @Shadow private String splashText;
-    private static final Random RAND = new Random();
     
     @Inject(method = "<init>", at = @At("TAIL"))
     private void injectCustomSplash(CallbackInfo ci) {
-        if (RAND.nextDouble() * 100 < ForgeConfigHandler.client.splashTextChance) this.splashText = SplashTextEntries.getRandomSplash();
+        if (RLSRAND.nextDouble() * 100 < ForgeConfigHandler.client.splashTextChance) this.splashText = SplashTextEntries.getRandomSplash();
     }
 }

@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
-import rlshenanigans.mixin.vanilla.EntityLivingBaseMixin;
+import rlshenanigans.mixin.vanilla.EntityLivingBaseAccessor;
 import rlshenanigans.potion.PotionPookie;
 
 import java.lang.reflect.Field;
@@ -108,7 +108,7 @@ public class CombatAssistHandler {
             recentlyHitField.setInt(target, 100);
             
             DamageSource source = DamageSource.causePlayerDamage(owner);
-            ((EntityLivingBaseMixin) target).invokeDropLoot(true, 0, source);
+            ((EntityLivingBaseAccessor) target).invokeDropLoot(true, 0, source);
         } catch (Exception ignored) {}
     }
     
