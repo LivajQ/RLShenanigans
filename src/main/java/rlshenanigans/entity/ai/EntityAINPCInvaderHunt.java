@@ -5,7 +5,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import rlshenanigans.action.ParasiteCommand;
 import rlshenanigans.entity.npc.EntityNPCInvader;
+import rlshenanigans.handlers.RLSPacketHandler;
+import rlshenanigans.packet.NPCPhantomSyncFadePacket;
+import rlshenanigans.packet.ParasiteCommandPacket;
 
 import java.util.List;
 
@@ -36,6 +40,12 @@ public class EntityAINPCInvaderHunt extends EntityAIBase {
     @Override
     public void updateTask() {
         if (entity.ticksExisted % 20 != 0) return;
+        
+        if (!entity.getIsDespawning() && entity.getDistanceSq(target) > 32 * 32) {
+            entity.spawnInRadius(entity.world, target.getPosition(), 12, 24, true);
+            entity.setPhantomFadeTime(40);
+            RLSPacketHandler.INSTANCE.sendToAllTracking(new NPCPhantomSyncFadePacket(entity), entity);
+        }
         
         List<EntityLivingBase> nearbyThreats = entity.world.getEntitiesWithinAABB(EntityLivingBase.class,
                 entity.getEntityBoundingBox().grow(16.0D),

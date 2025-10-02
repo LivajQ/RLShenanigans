@@ -13,14 +13,20 @@ public class EntityAIThrowPearl extends EntityAIBase
     private final float offsetY;
     private final Random rand = new Random();
     private int cooldownTicks = 0;
+    private final int cooldownTicksMax;
     
     public EntityAIThrowPearl(EntityLiving entity) {
         this(entity, -0.2F);
     }
     
     public EntityAIThrowPearl(EntityLiving entity, float offsetY) {
+        this(entity, offsetY, 100);
+    }
+    
+    public EntityAIThrowPearl(EntityLiving entity, float offsetY, int cooldownTicksMax) {
         this.entity = entity;
         this.offsetY = offsetY;
+        this.cooldownTicksMax = cooldownTicksMax;
     }
     
     @Override
@@ -60,7 +66,7 @@ public class EntityAIThrowPearl extends EntityAIBase
         pearl.shoot(dx, dy, dz, 1.5F, 0.0F);
         entity.world.spawnEntity(pearl);
         
-        cooldownTicks = 100;
+        cooldownTicks = cooldownTicksMax;
     }
     
     @Override

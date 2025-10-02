@@ -18,12 +18,18 @@ public class EntityAIShieldBlock extends EntityAIBase {
     private static final AttributeModifier BLOCKING_SPEED_MODIFIER = new AttributeModifier(BLOCKING_SPEED_MODIFIER_UUID, "Blocking slowdown", -0.5D, 2);
     
     private final EntityLiving entity;
+    private final boolean slowdown;
     private int blockTicks = 0;
     private int cooldownTicks = 0;
     private final Random rand;
     
     public EntityAIShieldBlock(EntityLiving entity) {
+        this(entity, true);
+    }
+    
+    public EntityAIShieldBlock(EntityLiving entity, boolean slowdown) {
         this.entity = entity;
+        this.slowdown = slowdown;
         this.rand = entity.getRNG();
     }
     
@@ -54,6 +60,7 @@ public class EntityAIShieldBlock extends EntityAIBase {
     public void startExecuting() {
         entity.setActiveHand(EnumHand.OFF_HAND);
         blockTicks = 40 + rand.nextInt(20);
+        if (!slowdown) return;
         IAttributeInstance movement = entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
         if (!movement.hasModifier(BLOCKING_SPEED_MODIFIER)) {
             movement.applyModifier(BLOCKING_SPEED_MODIFIER);

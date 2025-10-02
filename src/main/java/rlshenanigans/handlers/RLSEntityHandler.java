@@ -22,6 +22,7 @@ import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.entity.npc.EntityNPCGeneric;
 import rlshenanigans.entity.npc.EntityNPCInvader;
+import rlshenanigans.entity.npc.EntityNPCJohnMinecraft;
 import rlshenanigans.entity.npc.EntityNPCSummon;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.proxy.CommonProxy;
@@ -36,6 +37,7 @@ public class RLSEntityHandler
     public static final int npcGenericID = 201;
     public static final int npcSummonID = 202;
     public static final int npcInvaderID = 203;
+    public static final int npcJohnMinecraftID = 204;
     public static final int paintingID = 300;
     
     //texture path, frame count, internal name
@@ -68,6 +70,9 @@ public class RLSEntityHandler
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "npc_invader"), EntityNPCInvader.class,
                 "npc_invader", npcInvaderID, RLShenanigans.instance, 64, 3, true);
         EntityRegistry.registerEgg(new ResourceLocation(RLShenanigans.MODID, "npc_invader"), 0xAA0000, 0x330000);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "npc_johnminecraft"), EntityNPCJohnMinecraft.class,
+                "npc_johnminecraft", npcJohnMinecraftID, RLShenanigans.instance, 64, 3, true);
         
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "painting_template"), EntityPaintingTemplate.class,
                 "painting_template", paintingID, RLShenanigans.instance, 64, 3, false);

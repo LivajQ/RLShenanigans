@@ -192,6 +192,11 @@ public class ForgeConfigHandler {
 		@Config.RangeDouble(min = 0.01D, max = 100.0D)
 		public double genericEnchantabilityMultiplier = 1.0D;
 		
+		@Config.Comment({"Chance for an NPC to turn into John Minecraft."
+		})
+		@Config.Name("John Minecraft Chance")
+		@Config.RangeDouble(min = 0.0D, max = 100.0D)
+		public double johnMinecraftChance = 0.9;
 	}
 	
 	

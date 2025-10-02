@@ -86,7 +86,7 @@ public class NPCInvasionHandler {
     public static void spawnInvader(EntityPlayer player, int phantomFadeTime) {
         EntityNPCInvader invader = new EntityNPCInvader(player.world, player.getUniqueID(), phantomFadeTime);
         BlockPos playerPos = new BlockPos(player);
-        if (!invader.spawnInRadius(invader.world, playerPos, 24, 32)) return;
+        if (!invader.spawnInRadius(invader.world, playerPos, 24, 32, false)) return;
         DifficultyInstance difficulty = player.world.getDifficultyForLocation(playerPos);
         invader.onInitialSpawn(difficulty, null);
     }

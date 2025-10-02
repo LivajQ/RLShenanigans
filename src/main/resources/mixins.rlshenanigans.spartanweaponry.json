@@ -9,6 +9,7 @@
 	"ItemKatanaMixin",
 	"ItemDaggerMixin",
 	"ItemBattleaxeMixin",
+	"ItemLanceMixin",
 	"ItemGlaiveMixin"
   ],
   "injectors": {

@@ -55,7 +55,7 @@ public class EntityNPCInvader extends EntityNPCPhantom {
                 if (distanceSq > 128 * 128) this.setDead();
             }
             
-            if (phantomFadeTime == 1 && player != null && !isDespawning) {
+            if (phantomFadeTime == 1 && player != null && !isDespawning && firstSpawn) {
                 String message = "§c§l" + this.name + " is invading you";
                 player.sendStatusMessage(new TextComponentString(message), true);
             }
@@ -134,6 +134,16 @@ public class EntityNPCInvader extends EntityNPCPhantom {
             if (entry.action instanceof EntityAINPCInvaderHunt) return true;
         }
         return false;
+    }
+    
+    @Override
+    protected int potionCooldown() {
+        return 160;
+    }
+    
+    @Override
+    protected float potionThrowerChance() {
+        return Math.min(1.0F, 0.2F + this.characterStrength * 0.0035F);
     }
     
     public UUID getInvadedPlayerUUID() {

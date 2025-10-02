@@ -8,11 +8,16 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.potion.PotionType;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -35,11 +40,14 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
     public ResourceLocation offhandItem;
     public int offhandItemCount;
     public double baseReach = ForgeConfigHandler.npc.baseReach;
+    public boolean potionThrower;
+    protected float characterStrength;
     
     public EntityNPCBase(World world) {
         super(world);
         this.setSize(0.6F, 1.8F);
         this.setCanPickUpLoot(true);
+        this.potionThrower = rand.nextFloat() < potionThrowerChance();
         this.createCharacter();
         this.setCustomNameTag(name);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
@@ -75,6 +83,12 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.updateArmSwingProgress();
+        
+        if (this.ticksExisted % potionCooldown() == 0 && this.potionThrower) {
+            EntityLivingBase target = this.getAttackTarget();
+            if (target != null && this.canEntityBeSeen(target)) throwPotion(target, false);
+            else if (target == null && this.getHealth() / this.getMaxHealth() < 0.75F) throwPotion(this, true, PotionTypes.REGENERATION);
+        }
     }
     
     @Override
@@ -83,14 +97,14 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         
         // --- Character strength ---
         EntityPlayer closestPlayer = world.getClosestPlayer(posX, posY, posZ, 128.0D, false);
-        float characterStrength = (float) (closestPlayer != null ? scaleCharacter(closestPlayer) : rand.nextFloat() * 300);
-        characterStrength = MathHelper.clamp(characterStrength, 0.0F, 300.0F);
+        this.characterStrength = (float) (closestPlayer != null ? scaleCharacter(closestPlayer) : rand.nextFloat() * 300);
+        this.characterStrength = MathHelper.clamp(this.characterStrength, 0.0F, 300.0F);
         
         // --- Build quality weights ---
         Map<WeaponRegistry.WeaponQualities, Integer> weights = new HashMap<>();
         final int maxRange = 50;
         for (WeaponRegistry.WeaponQualities quality : WeaponRegistry.WeaponQualities.values()) {
-            int distance = Math.abs(quality.powerLevel - Math.round(characterStrength));
+            int distance = Math.abs(quality.powerLevel - Math.round(this.characterStrength));
             int weight = Math.max(0, maxRange - distance);
             if (weight > 0) weights.put(quality, weight);
         }
@@ -99,9 +113,9 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
                 .orElse(WeaponRegistry.WeaponQualities.WOOD);
         
         ItemStack chosenWeapon = equipMainhand(chosenQuality);
-        if (chosenWeapon != null) enchantWeapon(chosenWeapon, characterStrength);
-        scaleStatistics(characterStrength);
-        this.experienceValue = getExperienceValue(characterStrength);
+        if (chosenWeapon != null) enchantWeapon(chosenWeapon);
+        scaleStatistics();
+        this.experienceValue = getExperienceValue();
         
         if (this.offhandItem != null) {
             Item item = ForgeRegistries.ITEMS.getValue(this.offhandItem);
@@ -164,7 +178,7 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         return null;
     }
     
-    protected void enchantWeapon(ItemStack weapon, float characterStrength) {
+    protected void enchantWeapon(ItemStack weapon) {
         List<Enchantment> applicableEnchants = new ArrayList<>();
         
         for (Enchantment enchantment : ForgeRegistries.ENCHANTMENTS) {
@@ -173,8 +187,8 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
             }
         }
         
-        int enchantmentAmount = (int) Math.floor((characterStrength / 20.0F) + getExtraEnchantmentCount());
-        int enchantability = (int) Math.round(characterStrength / 2.5F * getEnchantabilityMultiplier());
+        int enchantmentAmount = (int) Math.floor((this.characterStrength / 20.0F) + getExtraEnchantmentCount());
+        int enchantability = (int) Math.round(this.characterStrength / 2.5F * getEnchantabilityMultiplier());
         
         if (enchantmentAmount <= 0) return;
         
@@ -209,16 +223,16 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         EnchantmentHelper.setEnchantments(finalEnchants, weapon);
     }
     
-    protected void scaleStatistics(float characterStrength) {
+    protected void scaleStatistics() {
         double globalHealthMultiplier = ForgeConfigHandler.npc.globalHealthMultiplier;
         double globalDamageMultiplier = ForgeConfigHandler.npc.globalDamageMultiplier;
         double globalArmorMultiplier = ForgeConfigHandler.npc.globalArmorMultiplier;
         double globalArmorToughnessMultiplier = ForgeConfigHandler.npc.globalArmorToughnessMultiplier;
         
-        double healthBonus = (characterStrength / 2) * getCharacterStatMultiplier() * statisticRandomFactor() * globalHealthMultiplier;
-        double damageBonus = (characterStrength / 6) * getCharacterStatMultiplier() * statisticRandomFactor() * globalDamageMultiplier;
-        double armorBonus = (characterStrength / 10) * getCharacterStatMultiplier() * statisticRandomFactor() * globalArmorMultiplier;
-        double armorToughnessBonus = (characterStrength / 10) * getCharacterStatMultiplier() * statisticRandomFactor() * globalArmorToughnessMultiplier;
+        double healthBonus = (this.characterStrength / 2) * getCharacterStatMultiplier() * statisticRandomFactor() * globalHealthMultiplier;
+        double damageBonus = (this.characterStrength / 6) * getCharacterStatMultiplier() * statisticRandomFactor() * globalDamageMultiplier;
+        double armorBonus = (this.characterStrength / 10) * getCharacterStatMultiplier() * statisticRandomFactor() * globalArmorMultiplier;
+        double armorToughnessBonus = (this.characterStrength / 10) * getCharacterStatMultiplier() * statisticRandomFactor() * globalArmorToughnessMultiplier;
         
         IAttributeInstance health = this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
         IAttributeInstance attackDamage = this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE);
@@ -229,6 +243,8 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         attackDamage.setBaseValue(attackDamage.getBaseValue() + damageBonus);
         armor.setBaseValue(armor.getBaseValue() + armorBonus);
         toughness.setBaseValue(toughness.getBaseValue() + armorToughnessBonus);
+        
+        this.setHealth(this.getMaxHealth());
     }
     
     @Override
@@ -444,6 +460,7 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         this.skin = new ResourceLocation("minecraft", "textures/entity/steve.png");
         this.preferredWeapon = null;
         this.offhandItem = null;
+        this.offhandItemCount = 0;
     }
     
     protected double scaleCharacter(EntityPlayer closestPlayer) {
@@ -491,7 +508,54 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         return gameStage * getGameStageMultiplier();
     }
     
-    private double getGameStageMultiplier() {
+    protected void throwPotion(EntityLivingBase target, boolean positive) {
+        throwPotion(target, positive, null);
+    }
+    
+    //stolen witch code
+    protected void throwPotion(EntityLivingBase target, boolean positive, PotionType potion) {
+        double d0 = target.posY + (double) target.getEyeHeight() - 1.1D;
+        double d1 = target.posX + target.motionX - this.posX;
+        double d2 = d0 - this.posY;
+        double d3 = target.posZ + target.motionZ - this.posZ;
+        float f = MathHelper.sqrt(d1 * d1 + d3 * d3);
+        
+        PotionType potionType;
+        
+        if (potion != null) potionType = potion;
+        
+        else {
+            List<PotionType> potions = positive ? getPositivePotions() : getNegativePotions();
+            if (potions.isEmpty()) return;
+            potionType = potions.get(rand.nextInt(potions.size()));
+        }
+        
+        EntityPotion entitypotion = new EntityPotion(this.world, this, PotionUtils.addPotionToItemStack(new ItemStack(Items.SPLASH_POTION), potionType));
+        entitypotion.rotationPitch -= -20.0F;
+        entitypotion.shoot(d1, d2 + (double) (f * 0.2F), d3, 0.75F, 8.0F);
+        this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_WITCH_THROW, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
+        this.world.spawnEntity(entitypotion);
+    }
+    
+    protected List<PotionType> getNegativePotions() {
+        return Arrays.asList(
+                PotionTypes.POISON,
+                PotionTypes.HARMING,
+                PotionTypes.SLOWNESS,
+                PotionTypes.WEAKNESS
+        );
+    }
+    
+    protected List<PotionType> getPositivePotions() {
+        return Arrays.asList(
+                PotionTypes.HEALING,
+                PotionTypes.REGENERATION,
+                PotionTypes.STRENGTH,
+                PotionTypes.SWIFTNESS
+        );
+    }
+    
+    protected double getGameStageMultiplier() {
         return ForgeConfigHandler.npc.gameStageMultiplier;
     }
     
@@ -515,8 +579,16 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         return false;
     }
     
-    protected int getExperienceValue(float characterStrength) {
-        return 10 + Math.round(characterStrength / 5);
+    protected int getExperienceValue() {
+        return 10 + Math.round(this.characterStrength / 5);
+    }
+    
+    protected int potionCooldown() {
+        return 300;
+    }
+    
+    protected float potionThrowerChance() {
+        return 0.35F;
     }
     
     protected ItemStack getBestWeapon(EntityPlayer player) {

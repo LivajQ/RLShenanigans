@@ -58,6 +58,8 @@ tooltip.spartanweaponry:bleed_buildup=Bleed Buildup
 tooltip.spartanweaponry:bleed_buildup.desc=Causes bleed buildup on the target, dealing damage proportional to the target's max health
 tooltip.spartanweaponry:crazy_axe_man=Crazy Axe Man
 tooltip.spartanweaponry:crazy_axe_man.desc=For every kill, increases strength level, up to 5
+tooltip.spartanweaponry:impaler=Impaler
+tooltip.spartanweaponry:impaler.desc=Increases damage based on user's movement speed. Double damage when sprinting
 
 entity.drjr.name=Dr. Jr.
 entity.npc_generic.name=NPC

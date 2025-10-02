@@ -3,6 +3,7 @@ package rlshenanigans.spartanweaponry;
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponPropertyWithCallback;
+import com.oblivioussp.spartanweaponry.item.ItemSwordBase;
 import com.oblivioussp.spartanweaponry.item.ItemWeaponBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -39,8 +40,8 @@ public class WeaponPropertyCrazyAxeMan extends WeaponPropertyWithCallback {
         EntityLivingBase killer = (EntityLivingBase) event.getSource().getTrueSource();
         ItemStack mainHand = killer.getHeldItemMainhand();
         Item item = mainHand.getItem();
-        if (!(item instanceof ItemWeaponBase)) return;
-        ItemWeaponBase weapon = (ItemWeaponBase) item;
+        if (!(item instanceof ItemSwordBase)) return;
+        ItemSwordBase weapon = (ItemSwordBase) item;
         if (!weapon.hasWeaponProperty(RLSWeaponProperties.CRAZY_AXE_MAN)) return;
         
         PotionEffect strength = killer.getActivePotionEffect(MobEffects.STRENGTH);

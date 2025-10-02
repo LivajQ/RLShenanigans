@@ -54,7 +54,7 @@ public class EntityNPCSummon extends EntityNPCPhantom {
                 if (distanceSq > 128 * 128) this.setDead();
             }
             
-            if (phantomFadeTime == 1 && player != null && !isDespawning) {
+            if (phantomFadeTime == 1 && player != null && !isDespawning && firstSpawn) {
                 String message = "§6§l" + this.name + " has been summoned";
                 player.sendStatusMessage(new TextComponentString(message), true);
             }
@@ -98,6 +98,12 @@ public class EntityNPCSummon extends EntityNPCPhantom {
                 player.sendStatusMessage(new TextComponentString(message), true);
             }
         }
+    }
+    
+    @Override
+    public void onRemovedFromWorld() {
+        super.onRemovedFromWorld();
+        this.setDead();
     }
     
     @Override

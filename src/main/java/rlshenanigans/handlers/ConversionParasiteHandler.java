@@ -2,8 +2,10 @@ package rlshenanigans.handlers;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPInfected;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPPreeminent;
+import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPPure;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import com.dhanantry.scapeandrunparasites.entity.monster.crude.EntityLesh;
+import com.dhanantry.scapeandrunparasites.entity.monster.deterrent.EntityNak;
 import com.dhanantry.scapeandrunparasites.entity.monster.infected.EntityInfDragonE;
 import com.dhanantry.scapeandrunparasites.entity.monster.pure.preeminent.EntityFlam;
 import net.minecraft.entity.Entity;
@@ -95,24 +97,31 @@ public class ConversionParasiteHandler
     }
     
     @SubscribeEvent
-    public static void onEvolvedParasiteJoin(EntityJoinWorldEvent event)
-    {
-        if (event.getEntity() instanceof EntityFlam) {
-            EntityFlam flam = (EntityFlam) event.getEntity();
-            
-            List<Entity> nearby = flam.world.getEntitiesWithinAABBExcludingEntity(flam, flam.getEntityBoundingBox().grow(3));
-            for (Entity mob : nearby) {
-                if (mob instanceof EntityPPreeminent) {
-                    NBTTagCompound data = mob.getEntityData();
+    public static void onSupportParasiteJoin(EntityJoinWorldEvent event) {
+        Entity entity = event.getEntity();
+        
+        if (entity.getEntityData().hasKey("Tamed")) return;
+        if (entity instanceof EntityFlam) copyTamingData(entity, EntityPPreeminent.class, 3);
+        else if (entity instanceof EntityNak) copyTamingData(entity, EntityPPure.class, 12);
+    }
+    
+    private static void copyTamingData(Entity target, Class<? extends EntityParasiteBase> parent, double radius) {
+        List<Entity> nearby = target.world.getEntitiesWithinAABBExcludingEntity(
+                target, target.getEntityBoundingBox().grow(radius)
+        );
+        
+        for (Entity mob : nearby) {
+            if (parent.isInstance(mob)) {
+                NBTTagCompound data = mob.getEntityData();
+                
+                if (data.getBoolean("Tamed")) {
                     
-                    if (data.getBoolean("Tamed")) {
-                        flam.getEntityData().setBoolean("Tamed", true);
-                        
-                        if (data.hasUniqueId("OwnerUUID")) {
-                            flam.getEntityData().setUniqueId("OwnerUUID", data.getUniqueId("OwnerUUID"));
-                        }
-                        break;
+                    target.getEntityData().setBoolean("Tamed", true);
+                    
+                    if (data.hasUniqueId("OwnerUUID")) {
+                        target.getEntityData().setUniqueId("OwnerUUID", data.getUniqueId("OwnerUUID"));
                     }
+                    break;
                 }
             }
         }

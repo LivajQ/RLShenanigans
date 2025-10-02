@@ -25,6 +25,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
     protected int phantomFadeTime;
     protected int phantomFadeTimeMax;
     protected boolean isDespawning = false;
+    protected boolean firstSpawn = true;
     
     public EntityNPCPhantom(World world) {
         this(world, 100);
@@ -48,6 +49,8 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
             
             if (world.isRemote) spawnFadeParticles();
         }
+        
+        else if (firstSpawn) firstSpawn = false;
         
         if (phantomFadeTime == 0 && isDespawning) this.setDead();
         
@@ -90,6 +93,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
         compound.setInteger("PhantomFadeTime", this.phantomFadeTime);
         compound.setInteger("PhantomFadeTimeMax", this.phantomFadeTimeMax);
         compound.setBoolean("IsDespawning", this.isDespawning);
+        compound.setBoolean("FirstSpawn", this.firstSpawn);
     }
     
     @Override
@@ -98,6 +102,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
         this.phantomFadeTime = compound.getInteger("PhantomFadeTime");
         this.phantomFadeTimeMax = compound.getInteger("PhantomFadeTimeMax");
         this.isDespawning = compound.getBoolean("IsDespawning");
+        this.firstSpawn = compound.getBoolean("FirstSpawn");
     }
     
     @Override
@@ -106,6 +111,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
         buffer.writeInt(this.phantomFadeTime);
         buffer.writeInt(this.phantomFadeTimeMax);
         buffer.writeBoolean(this.isDespawning);
+        buffer.writeBoolean(this.firstSpawn);
     }
     
     @Override
@@ -114,6 +120,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
         this.phantomFadeTime = buffer.readInt();
         this.phantomFadeTimeMax = buffer.readInt();
         this.isDespawning = buffer.readBoolean();
+        this.firstSpawn = buffer.readBoolean();
     }
     
     @Override
@@ -131,7 +138,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
         return RLSSoundHandler.PHANTOM_SPAWN;
     }
     
-    public boolean spawnInRadius(World world, BlockPos center, int minRadius, int maxRadius) {
+    public boolean spawnInRadius(World world, BlockPos center, int minRadius, int maxRadius, boolean positionOnly) {
         int attempts = 30;
         
         for (int i = 0; i < attempts; i++) {
@@ -148,7 +155,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
                 if (state.getBlock().isTopSolid(state)) {
                     if (world.isAirBlock(above) && world.isAirBlock(above.up())) {
                         this.setPosition(x + 0.5, y + 1, z + 0.5);
-                        world.spawnEntity(this);
+                        if (!positionOnly) world.spawnEntity(this);
                         return true;
                     }
                 }
@@ -161,6 +168,18 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
     public float getFadeLevel() {
         float base = (float) (phantomFadeTimeMax - phantomFadeTime) / phantomFadeTimeMax;
         return isDespawning ? 1.0F - base : base;
+    }
+    
+    public boolean getIsDespawning() {
+        return isDespawning;
+    }
+    
+    public void setPhantomFadeTime(int time) {
+        this.phantomFadeTime = time;
+    }
+    
+    public int getPhantomFadeTime() {
+        return this.phantomFadeTime;
     }
     
     @SideOnly(Side.CLIENT)

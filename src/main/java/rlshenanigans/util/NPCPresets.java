@@ -28,9 +28,9 @@ public class NPCPresets {
             this(name, skinPath, preferredWeapon, offhandItem, 1);
         }
         
-        public NPCPreset(String name, String skinPath, WeaponRegistry.WeaponTypes preferredWeapon, ResourceLocation offhandItem, int offhandItemCount) {
+        public NPCPreset(String name, String skinName, WeaponRegistry.WeaponTypes preferredWeapon, ResourceLocation offhandItem, int offhandItemCount) {
             this.name = name;
-            this.skin = new ResourceLocation(RLShenanigans.MODID, "textures/entity/npc/" + skinPath + ".png");
+            this.skin = new ResourceLocation(RLShenanigans.MODID, "textures/entity/npc/" + skinName + ".png");
             this.preferredWeapon = preferredWeapon;
             this.offhandItem = offhandItem;
             this.offhandItemCount = offhandItemCount;

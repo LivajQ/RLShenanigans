@@ -6,6 +6,8 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import rlshenanigans.entity.npc.EntityNPCSummon;
 import rlshenanigans.handlers.CombatAssistHandler;
+import rlshenanigans.handlers.RLSPacketHandler;
+import rlshenanigans.packet.NPCPhantomSyncFadePacket;
 
 import java.util.List;
 
@@ -28,6 +30,12 @@ public class EntityAINPCSummonCoop extends EntityAIBase {
     @Override
     public void updateTask() {
         if (entity.getDistanceSq(player) > 25.0D) entity.getNavigator().tryMoveToEntityLiving(player, followSpeed);
+        
+        if (!entity.getIsDespawning() && entity.getDistanceSq(player) > 32 * 32) {
+            entity.spawnInRadius(entity.world, player.getPosition(), 2, 5, true);
+            entity.setPhantomFadeTime(20);
+            RLSPacketHandler.INSTANCE.sendToAllTracking(new NPCPhantomSyncFadePacket(entity), entity);
+        }
         
         EntityLivingBase currentTarget = entity.getAttackTarget();
         

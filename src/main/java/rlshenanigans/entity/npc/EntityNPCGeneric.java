@@ -1,14 +1,14 @@
 package rlshenanigans.entity.npc;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import rlshenanigans.entity.ai.EntityAIHuntUntamed;
 import rlshenanigans.entity.ai.EntityAIMineToTarget;
 import rlshenanigans.entity.ai.EntityAISelfDefense;
@@ -26,12 +26,40 @@ public class EntityNPCGeneric extends EntityNPCBase {
     @Override
     protected void applyEntityAI() {
         super.applyEntityAI();
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityNPCGeneric.class));
         this.tasks.addTask(2, new EntityAIMineToTarget(this, 5, 3, 100));
         this.targetTasks.addTask(3, new EntityAISelfDefense<>(this, EntityLivingBase.class));
         this.targetTasks.addTask(4, new EntityAIHuntUntamed<>(this, EntityLivingBase.class, 10, true, false, true, target ->
                 target instanceof IMob
         ));
+    }
+    
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+        this.updateArmSwingProgress();
+        
+        if (this.ticksExisted % potionCooldown() == 0 && this.potionThrower) {
+            //ally scan
+            EntityLivingBase target = this.getAttackTarget();
+            if (target != null && this.canEntityBeSeen(target)) throwPotion(target, false);
+            else if (target == null && this.getHealth() / this.getMaxHealth() < 0.75F) throwPotion(this, true, PotionTypes.REGENERATION);
+        }
+    }
+    
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        if (!world.isRemote) {
+            if (rand.nextDouble() * 100 < ForgeConfigHandler.npc.johnMinecraftChance) {
+                EntityNPCJohnMinecraft johnMinecraft = new EntityNPCJohnMinecraft(world);
+                johnMinecraft.setPosition(this.posX, this.posY, this.posZ);
+                world.spawnEntity(johnMinecraft);
+                johnMinecraft.onInitialSpawn(difficulty, null);
+                this.setDead();
+            }
+        }
+        return livingdata;
     }
     
     @Override
