@@ -86,7 +86,7 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         
         if (this.ticksExisted % potionCooldown() == 0 && this.potionThrower) {
             EntityLivingBase target = this.getAttackTarget();
-            if (target != null && this.canEntityBeSeen(target)) throwPotion(target, false);
+            if (target != null && target.isEntityAlive() && this.canEntityBeSeen(target)) throwPotion(target, false);
             else if (target == null && this.getHealth() / this.getMaxHealth() < 0.75F) throwPotion(this, true, PotionTypes.REGENERATION);
         }
     }

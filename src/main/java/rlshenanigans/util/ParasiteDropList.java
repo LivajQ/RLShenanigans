@@ -17,10 +17,10 @@ import rlshenanigans.item.ItemPaintingSpawner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
+
+import static rlshenanigans.RLShenanigans.RLSRAND;
 
 public class ParasiteDropList {
-    private static final Random rand = new Random();
     private static final List<ItemPaintingSpawner> PAINTINGS = new ArrayList<>(RLSEntityHandler.PAINTING_ITEMS.values());
     
     private static final List<DropEntry> SPECIAL_DROPS = Arrays.asList(
@@ -45,11 +45,11 @@ public class ParasiteDropList {
     
     public static ItemStack getDrops(EntityParasiteBase parasite) {
         for (DropEntry entry : SPECIAL_DROPS) {
-            if (rand.nextInt(entry.oneInX) == 0) return drop(entry.modid, entry.id, 1);
+            if (RLSRAND.nextInt(entry.oneInX) == 0) return drop(entry.modid, entry.id, 1);
         }
         
-        if (rand.nextInt(20) == 0 && !PAINTINGS.isEmpty()) {
-            ItemPaintingSpawner painting = PAINTINGS.get(rand.nextInt(PAINTINGS.size()));
+        if (RLSRAND.nextInt(20) == 0 && !PAINTINGS.isEmpty()) {
+            ItemPaintingSpawner painting = PAINTINGS.get(RLSRAND.nextInt(PAINTINGS.size()));
             return new ItemStack(painting);
         }
         

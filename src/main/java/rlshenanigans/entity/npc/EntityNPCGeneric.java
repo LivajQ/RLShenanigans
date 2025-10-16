@@ -15,8 +15,6 @@ import rlshenanigans.entity.ai.EntityAISelfDefense;
 import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.util.NPCPresets;
 
-import java.util.Random;
-
 public class EntityNPCGeneric extends EntityNPCBase {
     
     public EntityNPCGeneric(World world) {
