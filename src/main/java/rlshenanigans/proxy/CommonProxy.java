@@ -8,6 +8,7 @@ import com.lycanitesmobs.core.info.CreatureSpawnConfig;
 import com.lycanitesmobs.core.info.ModInfo;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.ForgeConfigHandler;
+import rlshenanigans.spartanweaponry.PropertyInjector;
 import rlshenanigans.util.TameableMiscWhitelist;
 import rlshenanigans.util.WeaponRegistry;
 
@@ -39,6 +40,8 @@ public class CommonProxy {
         TameableMiscWhitelist.load(ForgeConfigHandler.misc.tameableMiscEntries);
         
         WeaponRegistry.scanWeapons();
+
+        PropertyInjector.injectProperties();
     }
     
     public void registerRenderers() {

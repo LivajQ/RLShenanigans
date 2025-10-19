@@ -60,7 +60,7 @@ public class WeaponPropertyBleedBuildup extends WeaponPropertyWithCallback {
         world.spawnParticle(
                 EnumParticleTypes.REDSTONE,
                 victim.posX, victim.posY + victim.height * 0.5D, victim.posZ,
-                50,
+                100,
                 victim.width * 0.5D,
                 victim.height * 0.5D,
                 victim.width * 0.5D,
