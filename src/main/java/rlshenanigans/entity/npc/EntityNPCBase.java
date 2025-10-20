@@ -180,10 +180,22 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
     
     protected void enchantWeapon(ItemStack weapon) {
         List<Enchantment> applicableEnchants = new ArrayList<>();
+        final String[] bannedEnchants = bannedEnchants();
         
         for (Enchantment enchantment : ForgeRegistries.ENCHANTMENTS) {
             if (enchantment.canApply(weapon) || enchantment.canApplyAtEnchantingTable(weapon)) {
-                applicableEnchants.add(enchantment);
+                ResourceLocation id = enchantment.getRegistryName();
+                if (id == null) return;
+                String enchantmentName = id.getPath();
+
+                boolean banned = false;
+                for (String bannedEnchant : bannedEnchants) {
+                    if (enchantmentName.contains(bannedEnchant)) {
+                        banned = true;
+                        break;
+                    }
+                }
+                if (!banned) applicableEnchants.add(enchantment);
             }
         }
         
@@ -221,6 +233,10 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
             }
         }
         EnchantmentHelper.setEnchantments(finalEnchants, weapon);
+    }
+
+    protected String[] bannedEnchants() {
+        return new String[]{"possession", "vanishing", "decay", "binding"};
     }
     
     protected void scaleStatistics() {
