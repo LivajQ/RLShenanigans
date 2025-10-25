@@ -111,6 +111,11 @@ public class ForgeConfigHandler {
 		@Config.Name("Invasion offset")
 		public int invasionOffset = 108000;
 		
+		@Config.Comment("Maximum health % invaders can lose per second")
+		@Config.Name("Invader Damage Cap")
+		@Config.RangeDouble(min = 0, max = 100)
+		public double invaderDamageCapPercent = 10.0D;
+		
 		@Config.Comment("Additional statistics scaling for invaders")
 		@Config.Name("Invader Statistics Multiplier")
 		@Config.RangeDouble(min = 0.01D, max = 100.0D)

@@ -158,6 +158,21 @@ public class EntityNPCSummon extends EntityNPCPhantom {
         if (compound.hasUniqueId("HostPlayerUUID")) this.hostPlayerUUID = compound.getUniqueId("HostPlayerUUID");
     }
     
+    @Override
+    protected void potionTargeter() {
+        boolean coinFlip = this.rand.nextBoolean();
+        EntityLivingBase target = this.getAttackTarget();
+        
+        if (target != null) {
+            if (coinFlip && this.canEntityBeSeen(target)) throwPotion(target, false);
+            
+            else if (!coinFlip && this.hostPlayerUUID != null) {
+                EntityPlayer host = world.getPlayerEntityByUUID(this.hostPlayerUUID);
+                if (host != null) throwPotion(host, true);
+            }
+        }
+    }
+    
     private boolean hasCoopTask() {
         for (EntityAITasks.EntityAITaskEntry entry : this.tasks.taskEntries) {
             if (entry.action instanceof EntityAINPCSummonCoop) return true;

@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.items.ItemStackHandler;
 import rlshenanigans.entity.ai.EntityAINPCAttackMelee;
 import rlshenanigans.entity.ai.EntityAIShieldBlock;
 import rlshenanigans.handlers.ForgeConfigHandler;
@@ -42,6 +43,7 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
     public double baseReach = ForgeConfigHandler.npc.baseReach;
     public boolean potionThrower;
     protected float characterStrength;
+    private final ItemStackHandler handStorage = new ItemStackHandler(1);
     
     public EntityNPCBase(World world) {
         super(world);
@@ -84,11 +86,7 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         super.onLivingUpdate();
         this.updateArmSwingProgress();
         
-        if (this.ticksExisted % potionCooldown() == 0 && this.potionThrower) {
-            EntityLivingBase target = this.getAttackTarget();
-            if (target != null && target.isEntityAlive() && this.canEntityBeSeen(target)) throwPotion(target, false);
-            else if (target == null && this.getHealth() / this.getMaxHealth() < 0.75F) throwPotion(this, true, PotionTypes.REGENERATION);
-        }
+        if (this.ticksExisted % potionCooldown() == 0 && this.potionThrower) potionTargeter();
     }
     
     @Override
@@ -274,6 +272,26 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
             ItemStack stack = this.getItemStackFromSlot(slot);
             if (!stack.isEmpty()) this.entityDropItem(stack.copy(), 0.5F);
         }
+        
+        ItemStack mainHand = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+        
+        if (!mainHand.isEmpty() && !canDropThisWeapon(mainHand)) {
+            NBTTagCompound enchantments = mainHand.getTagCompound();
+            equipMainhand(replacedWeaponQuality());
+            
+            ItemStack newMainHand = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+            if (enchantments != null) newMainHand.setTagCompound(enchantments.copy());
+        }
+    }
+    
+    protected boolean canDropThisWeapon(ItemStack weapon) {
+        Item weaponItem = weapon.getItem();
+        ResourceLocation registryName = weaponItem.getRegistryName();
+        return registryName == null || !registryName.toString().contains("srparasites");
+    }
+    
+    protected WeaponRegistry.WeaponQualities replacedWeaponQuality() {
+        return WeaponRegistry.WeaponQualities.DRAGONBONEINF;
     }
     
     @Override
@@ -524,6 +542,13 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         return gameStage * getGameStageMultiplier();
     }
     
+    protected void potionTargeter() {
+        EntityLivingBase target = this.getAttackTarget();
+        
+        if (target != null && this.canEntityBeSeen(target)) throwPotion(target, false);
+        else if (this.getHealth() / this.getMaxHealth() < 0.75F) throwPotion(this, true, PotionTypes.REGENERATION);
+    }
+    
     protected void throwPotion(EntityLivingBase target, boolean positive) {
         throwPotion(target, positive, null);
     }
@@ -548,7 +573,8 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         
         EntityPotion entitypotion = new EntityPotion(this.world, this, PotionUtils.addPotionToItemStack(new ItemStack(Items.SPLASH_POTION), potionType));
         entitypotion.rotationPitch -= -20.0F;
-        entitypotion.shoot(d1, d2 + (double) (f * 0.2F), d3, 0.75F, 8.0F);
+        if (target == this) entitypotion.shoot(0.0F, -0.2F, 0.0F, 0.75F, 8.0F);
+        else entitypotion.shoot(d1, d2 + (double) (f * 0.2F), d3, 0.75F, 8.0F);
         this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_WITCH_THROW, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
         this.world.spawnEntity(entitypotion);
     }

@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -18,6 +19,8 @@ import java.util.UUID;
 
 public class EntityNPCInvader extends EntityNPCPhantom {
     protected UUID invadedPlayerUUID;
+    private final double damageCapPercent = ForgeConfigHandler.npc.invaderDamageCapPercent;
+    private double damageBuildup = 0;
     
     public EntityNPCInvader(World world) {
         this(world, null, 100);
@@ -38,6 +41,8 @@ public class EntityNPCInvader extends EntityNPCPhantom {
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
+        
+        if (this.ticksExisted % 20 == 0) damageBuildup = 0;
         
         if (invadedPlayerUUID != null) {
             EntityPlayer player = this.world.getPlayerEntityByUUID(invadedPlayerUUID);
@@ -66,6 +71,20 @@ public class EntityNPCInvader extends EntityNPCPhantom {
     public void onRemovedFromWorld() {
         super.onRemovedFromWorld();
         this.setDead();
+    }
+    
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        double maxDamage = this.getMaxHealth() * damageCapPercent;
+        
+        if (damageBuildup >= maxDamage) return false;
+        
+        double remaining = maxDamage - damageBuildup;
+        double applied = Math.min(amount, remaining);
+        
+        damageBuildup += applied;
+        
+        return super.attackEntityFrom(source, (float) applied);
     }
     
     @Override

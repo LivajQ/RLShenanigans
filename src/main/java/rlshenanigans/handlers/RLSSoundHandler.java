@@ -9,11 +9,13 @@ public class RLSSoundHandler{
     public static SoundEvent DRJR_AMBIENT;
     public static SoundEvent DISC_LAVACHICKEN;
     public static SoundEvent PHANTOM_SPAWN;
+    public static SoundEvent BLEED_BUILDUP;
     
     public static void init(){
         DRJR_AMBIENT = register("drjr_ambient");
         DISC_LAVACHICKEN = register("musicdisc_lavachicken");
         PHANTOM_SPAWN = register("phantom_spawn");
+        BLEED_BUILDUP = register("bleedbuildup");
     }
     
     private static SoundEvent register(String name) {

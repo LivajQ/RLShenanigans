@@ -10,8 +10,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.WorldServer;
+import rlshenanigans.handlers.RLSSoundHandler;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -56,6 +58,8 @@ public class WeaponPropertyBleedBuildup extends WeaponPropertyWithCallback {
     private static void bleedEffect(EntityLivingBase victim) {
         if (!(victim.world instanceof WorldServer)) return;
         WorldServer world = (WorldServer) victim.world;
+        
+        world.playSound(null, victim.getPosition(), RLSSoundHandler.BLEED_BUILDUP, SoundCategory.PLAYERS, 0.1F, 1.0F);
         
         world.spawnParticle(
                 EnumParticleTypes.REDSTONE,

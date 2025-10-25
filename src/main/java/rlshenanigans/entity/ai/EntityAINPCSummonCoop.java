@@ -39,6 +39,8 @@ public class EntityAINPCSummonCoop extends EntityAIBase {
         
         EntityLivingBase currentTarget = entity.getAttackTarget();
         
+        if (currentTarget == player) entity.setAttackTarget(null);
+        
         if (currentTarget == null || !currentTarget.isEntityAlive()) {
             EntityLivingBase playerTarget = player.getRevengeTarget();
             if (playerTarget != null
