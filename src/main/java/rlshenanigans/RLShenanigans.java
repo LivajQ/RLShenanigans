@@ -29,7 +29,9 @@ import java.util.Random;
                 "required-after:variedcommodities;" +
                 "required-after:jei;" +
                 "required-after:mujmajnkraftsbettersurvival;" +
-                "required-after:reccomplex"
+                "required-after:reccomplex;" +
+                "required-after:potioncore;" +
+                "required-after:xat"
 )
 public class RLShenanigans {
     public static final String MODID = "rlshenanigans";

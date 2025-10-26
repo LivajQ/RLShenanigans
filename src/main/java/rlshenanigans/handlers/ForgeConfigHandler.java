@@ -258,6 +258,10 @@ public class ForgeConfigHandler {
 		@Config.Name("Dr. Jr.")
 		public boolean drJrEnabled = true;
 		
+		@Config.Comment("Should flight potions be enabled (includes potions of dragon transformation)")
+		@Config.Name("Flight Potions")
+		public boolean flightPotionsEnabled = false;
+		
 		@Config.Comment("Set to false to disable misc mob taming")
 		@Config.Name("Tameable Misc Enabled")
 		public boolean miscTamingEnabled = true;

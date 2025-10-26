@@ -6,6 +6,7 @@ import com.lycanitesmobs.core.info.CreatureConfig;
 import com.lycanitesmobs.core.info.CreatureManager;
 import com.lycanitesmobs.core.info.CreatureSpawnConfig;
 import com.lycanitesmobs.core.info.ModInfo;
+import com.tmtravlr.potioncore.PotionCoreEffects;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.spartanweaponry.PropertyInjector;
@@ -19,7 +20,9 @@ public class CommonProxy {
         modInfo = new ModInfo(RLShenanigans.instance, "RLShenanigans", 999);
         ObjectManager.setCurrentModInfo(modInfo);
         CreatureManager.getInstance().startup(modInfo);
+        if (!ForgeConfigHandler.misc.flightPotionsEnabled) PotionCoreEffects.POTIONS.remove("flight");
     }
+    
     public void init() {
         com.mujmajnkraft.bettersurvival.config.ForgeConfigHandler.enchantments.vampirismLevel = 3;
     }

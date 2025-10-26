@@ -39,7 +39,7 @@ public class EntityAINPCSummonCoop extends EntityAIBase {
         
         EntityLivingBase currentTarget = entity.getAttackTarget();
         
-        if (currentTarget == player) entity.setAttackTarget(null);
+        if (currentTarget == player || currentTarget == entity) entity.setAttackTarget(null);
         
         if (currentTarget == null || !currentTarget.isEntityAlive()) {
             EntityLivingBase playerTarget = player.getRevengeTarget();
@@ -69,7 +69,7 @@ public class EntityAINPCSummonCoop extends EntityAIBase {
            if (entity.getAttackTarget() == null || !entity.getAttackTarget().isEntityAlive()) {
                List<EntityLiving> nearby = entity.world.getEntitiesWithinAABB(EntityLiving.class,
                        entity.getEntityBoundingBox().grow(16.0F),
-                       e -> e != entity && e.isEntityAlive() && (e.getAttackTarget() == player || e.getAttackTarget() == entity)
+                       e -> e != entity && entity.canEntityBeSeen(e) && e.isEntityAlive() && (e.getAttackTarget() == player || e.getAttackTarget() == entity)
                );
                
                if (!nearby.isEmpty()) entity.setAttackTarget(nearby.get(0));

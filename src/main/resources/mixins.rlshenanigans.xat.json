@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "rlshenanigans.mixin.xat",
+  "refmap": "mixins.rlshenanigans.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "mixins": [
+    "PotionObjectMixin"
+  ],
+  "injectors": {
+    "maxShiftBy": 10
+  }
+}
