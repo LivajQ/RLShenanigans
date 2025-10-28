@@ -53,7 +53,7 @@ item.pocket_pet_holder_empty.name=Pocket Pet Holder
 item.pocket_pet_holder_empty.tooltip.0=§6Used to safely store and transport your pets. Only works on mobs from the tameable misc whitelist.
 
 item.spartanweaponry:weapon_zweihander.name=§c§lZweihander
-item.spartanweaponry:weapon_zweihander.tooltip.0=Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.
+item.spartanweaponry:weapon_zweihander.tooltip.0=§8Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.
 tooltip.spartanweaponry:bleed_buildup=Bleed Buildup
 tooltip.spartanweaponry:bleed_buildup.desc=Causes bleed buildup on the target, dealing damage proportional to the target's maximum health
 tooltip.spartanweaponry:bleed_buildup_2=Bleed Buildup II
@@ -62,6 +62,8 @@ tooltip.spartanweaponry:crazy_axe_man=Crazy Axe Man
 tooltip.spartanweaponry:crazy_axe_man.desc=For every kill, increases strength level, up to 5
 tooltip.spartanweaponry:impaler=Impaler
 tooltip.spartanweaponry:impaler.desc=Increases damage based on user's movement speed. Double damage when sprinting
+tooltip.spartanweaponry:strong_grip=Strong Grip
+tooltip.spartanweaponry:strong_grip.desc=Cannot be dropped when in main hand
 
 entity.drjr.name=Dr. Jr.
 entity.npc_generic.name=NPC

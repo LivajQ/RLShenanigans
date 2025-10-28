@@ -10,7 +10,8 @@
     "EntityLivingMixin",
     "EntityAccessor",
     "CombatTrackerMixin",
-	"AbstractSkeletonMixin"
+	"AbstractSkeletonMixin",
+	"EntityPlayerMixin"
   ],
   "client": [
     "GuiMainMenuMixin"

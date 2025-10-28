@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -18,6 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -43,6 +45,7 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
     public double baseReach = ForgeConfigHandler.npc.baseReach;
     public boolean potionThrower;
     protected float characterStrength;
+    protected boolean trueArmor = true;
     private final ItemStackHandler handStorage = new ItemStackHandler(1);
     
     public EntityNPCBase(World world) {
@@ -95,7 +98,7 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         
         // --- Character strength ---
         EntityPlayer closestPlayer = world.getClosestPlayer(posX, posY, posZ, 128.0D, false);
-        this.characterStrength = (float) (closestPlayer != null ? scaleCharacter(closestPlayer) : rand.nextFloat() * 300);
+        this.characterStrength = (float) (closestPlayer != null ? scaleCharacter((EntityPlayerMP) closestPlayer) : rand.nextFloat() * 300);
         this.characterStrength = MathHelper.clamp(this.characterStrength, 0.0F, 300.0F);
         
         // --- Build quality weights ---
@@ -407,9 +410,8 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
     
     @Override
     protected float applyArmorCalculations(DamageSource source, float damage) {
-        this.damageArmor(damage);
-        damage = CombatRules.getDamageAfterAbsorb(damage, (float)this.getTotalArmorValue(), (float)this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue());
-        return damage;
+        if (trueArmor) return CombatRules.getDamageAfterAbsorb(damage, (float)this.getTotalArmorValue(), (float)this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue());
+        else return super.applyArmorCalculations(source, damage);
     }
     
     @Override
@@ -497,11 +499,12 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         this.offhandItemCount = 0;
     }
     
-    protected double scaleCharacter(EntityPlayer closestPlayer) {
+    protected double scaleCharacter(EntityPlayerMP closestPlayer) {
         float gameStage = 0.0F;
-        gameStage += Math.min(world.getTotalWorldTime() / 48000.0F, 100.0F);
-        gameStage += closestPlayer.getMaxHealth() - 20;
         
+        gameStage += Math.min(closestPlayer.getStatFile().readStat(StatList.PLAY_ONE_MINUTE) / 48000.0F, 100.0F);
+        gameStage += closestPlayer.getMaxHealth() - 20;
+
         int weaponTotalMaxEnchantability = 0;
         
         ItemStack bestWeapon = getBestWeapon(closestPlayer);

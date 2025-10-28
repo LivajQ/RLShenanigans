@@ -23,7 +23,7 @@ public class PropertyInjector {
             }
 
             else if (spartanWeapon instanceof ItemGlaive) {
-                spartanWeapon.addWeaponProperty(WeaponProperties.BLOCK_MELEE);
+                spartanWeapon.addWeaponProperty(RLSWeaponProperties.STRONG_GRIP);
             }
 
             else if (spartanWeapon instanceof ItemKatana) {

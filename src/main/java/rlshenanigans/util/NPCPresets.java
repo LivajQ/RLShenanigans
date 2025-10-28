@@ -37,7 +37,11 @@ public class NPCPresets {
         }
     }
     
-    public static final String[] RANDOM_NAMES = { "sth", "whatev" };
+    public static final String[] RANDOM_NAMES = {
+            "Lucas", "Nathan", "Elias", "Julian", "Adrian", "Marcus", "Leo", "Victor", "Damien", "Samuel",
+            "Alaric", "Cedric", "Thorne", "Edric", "Gareth", "Roland", "Beric", "Oswin", "Leofric", "Godwin",
+            "Kaelen", "Draven", "Zarek", "Thalor", "Rhydan", "Vael", "Torin", "Malrik", "Auren", "Fenric"
+    };
     public static final String[] RANDOM_SKINS;
     static {
         int skinCount = 10;
@@ -74,7 +78,11 @@ public class NPCPresets {
             new NPCPreset("Blade Master", "npc_invader_blademaster", WeaponRegistry.WeaponTypes.KATANA, null),
             new NPCPreset("Watchful Jim", "npc_invader_watchfuljim", WeaponRegistry.WeaponTypes.PIKE, null),
             new NPCPreset("Crazy Axe Man", "npc_invader_crazyaxeman", WeaponRegistry.WeaponTypes.BATTLEAXE, new ResourceLocation("minecraft", "shield")),
-            new NPCPreset("Mr Can't Parry", "npc_invader_mrcantparry", WeaponRegistry.WeaponTypes.DAGGER, new ResourceLocation("minecraft", "shield"))
+            new NPCPreset("Mr Can't Parry", "npc_invader_mrcantparry", WeaponRegistry.WeaponTypes.DAGGER, new ResourceLocation("spartanshields", "shield_basic_stone")),
+            new NPCPreset("Greeder", "npc_invader_greeder", null, new ResourceLocation("xat", "goblin_ring")),
+            new NPCPreset("Devourer", "npc_invader_devourer", null, new ResourceLocation("defiledlands", "scarlite_razor")),
+            new NPCPreset("Forest Dweller", "npc_invader_forestdweller", WeaponRegistry.WeaponTypes.SCYTHE, null),
+            new NPCPreset("Nightmare", "npc_invader_nightmare", null, new ResourceLocation("minecraft", "ender_pearl"))
     ));
     
     public static final List<ResourceLocation> OFFHAND_RANDOM = Arrays.asList(

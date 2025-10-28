@@ -29,6 +29,7 @@ public class EntityNPCInvader extends EntityNPCPhantom {
     public EntityNPCInvader(World world, UUID invadedPlayerUUID, int phantomFadeTime) {
         super(world, phantomFadeTime);
         this.invadedPlayerUUID = invadedPlayerUUID;
+        this.trueArmor = false;
     }
     
     @Override
@@ -75,7 +76,7 @@ public class EntityNPCInvader extends EntityNPCPhantom {
     
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        double maxDamage = this.getMaxHealth() * damageCapPercent;
+        double maxDamage = this.getMaxHealth() * (damageCapPercent / 100);
         
         if (damageBuildup >= maxDamage) return false;
         
