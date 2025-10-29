@@ -58,7 +58,7 @@ public class TameMiscHandler {
                     boolean isWaiting = creature.getEntityData().getBoolean("Waiting");
                     
                     if (isWaiting) {
-                        creature.tasks.addTask(1, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
+                        creature.tasks.addTask(6, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
                         player.sendStatusMessage(new TextComponentString(name + " is now following"), true);
                     }
                     
@@ -105,7 +105,7 @@ public class TameMiscHandler {
                         
                         creature.tasks.taskEntries.removeIf(taskEntry ->
                                 taskEntry.action.getClass().getSimpleName().toLowerCase().contains("follow"));
-                        creature.tasks.addTask(1, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
+                        creature.tasks.addTask(6, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
                     }
                     RLSPacketHandler.INSTANCE.sendToAll(
                             new ParticlePulsePacket(mob, EnumParticleTypes.HEART, 100, 30));
@@ -121,7 +121,7 @@ public class TameMiscHandler {
         
         EntityLiving mob = (EntityLiving) event.getEntityLiving();
         
-        if (!mob.getEntityData().getBoolean("MiscTamed")) return;
+        if (!mob.getEntityData().hasKey("MiscTamed")) return;
         
         UUID ownerId = mob.getEntityData().getUniqueId("OwnerUUID");
         if (ownerId == null) return;
@@ -211,7 +211,7 @@ public class TameMiscHandler {
         if (!hasFollowTask(mob) && !mob.getEntityData().getBoolean("Waiting") && mob instanceof EntityCreature)
         {
             EntityCreature creature = (EntityCreature) mob;
-            creature.tasks.addTask(1, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
+            creature.tasks.addTask(6, new MiscEntityAIFollowOwner(creature, 2.0D, 10.0F, 2.0F));
         }
         
         if (mob.getRevengeTarget() != null && mob.getRevengeTarget().equals(mob)) {

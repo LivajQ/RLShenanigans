@@ -7,14 +7,15 @@ import net.minecraft.world.World;
 
 import java.util.UUID;
 
-public class MiscEntityAIFollowOwner extends EntityAIBase
-{
+public class MiscEntityAIFollowOwner extends EntityAIBase {
     private final EntityCreature mob;
     private EntityLivingBase owner;
     private final World world;
     private final double followSpeed;
     private final float minDist;
     private final float maxDist;
+    private boolean tamed;
+    private UUID ownerId;
     
     public MiscEntityAIFollowOwner(EntityCreature mob, double speed, float minDist, float maxDist) {
         this.mob = mob;
@@ -22,18 +23,22 @@ public class MiscEntityAIFollowOwner extends EntityAIBase
         this.followSpeed = speed;
         this.minDist = minDist;
         this.maxDist = maxDist;
+        this.tamed = mob.getEntityData().getBoolean("MiscTamed");
+        this.ownerId = mob.getEntityData().getUniqueId("OwnerUUID");
         this.setMutexBits(3);
     }
     
     @Override
     public boolean shouldExecute() {
-        if (!mob.getEntityData().getBoolean("MiscTamed")) return false;
+        if (!tamed) {
+            if (mob.ticksExisted % 100 == 0) {
+                tamed = mob.getEntityData().getBoolean("Tamed");
+                ownerId = mob.getEntityData().getUniqueId("OwnerUUID");
+            }
+            return false;
+        }
         
-        UUID ownerId = mob.getEntityData().getUniqueId("OwnerUUID");
         if (ownerId == null) return false;
-        
-        if (mob.getAttackTarget() != null) return false;
-        if (mob.getRevengeTarget() != null) return false;
         
         owner = world.getPlayerEntityByUUID(ownerId);
         if (owner == null) return false;

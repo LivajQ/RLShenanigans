@@ -14,7 +14,6 @@ import rlshenanigans.RLShenanigans;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class WeaponPropertyImpaler extends WeaponPropertyWithCallback {
     
     public WeaponPropertyImpaler(String propType, String propModId) {

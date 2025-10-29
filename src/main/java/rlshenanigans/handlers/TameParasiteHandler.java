@@ -150,10 +150,10 @@ public class TameParasiteHandler
         
         EntityParasiteBase parasite = (EntityParasiteBase) event.getEntityLiving();
         
+        if (!parasite.getEntityData().hasKey("Tamed")) return;
+        
         if (parasite.getEntityData().getBoolean("Tamed") && !parasite.getEntityData().getBoolean("PersistenceRequired"))
             parasite.getEntityData().setBoolean("PersistenceRequired", true);
-        
-        if (!parasite.getEntityData().getBoolean("Tamed")) return;
         
         removeIfActive(parasite, SharedMonsterAttributes.MAX_HEALTH, UUID.fromString("554f3929-4194-4ae5-a4da-4b528a89ca32"));
         removeIfActive(parasite, SharedMonsterAttributes.ATTACK_DAMAGE, UUID.fromString("554f3929-4196-4ae5-a4da-4b528a89ca32"));
@@ -253,7 +253,7 @@ public class TameParasiteHandler
         
         if (!hasFollowTask(parasite) && !parasite.getEntityData().getBoolean("Waiting"))
         {
-            parasite.tasks.addTask(3, new ParasiteEntityAIFollowOwner(parasite, 2.0D, 10.0F, 2.0F));
+            parasite.tasks.addTask(6, new ParasiteEntityAIFollowOwner(parasite, 2.0D, 10.0F, 2.0F));
         }
         
         if (parasite.getRevengeTarget() != null && parasite.getRevengeTarget().equals(parasite)) {

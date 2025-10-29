@@ -22,7 +22,7 @@ public class PropertyInjector {
                 spartanWeapon.addWeaponProperty(RLSWeaponProperties.BLEED_BUILDUP_2);
             }
 
-            else if (spartanWeapon instanceof ItemGlaive) {
+            else if (spartanWeapon instanceof ItemGlaive || spartanWeapon instanceof ItemQuarterstaff || spartanWeapon instanceof ItemWarhammer) {
                 spartanWeapon.addWeaponProperty(RLSWeaponProperties.STRONG_GRIP);
             }
 
@@ -33,6 +33,10 @@ public class PropertyInjector {
 
             else if (spartanWeapon instanceof ItemLance) {
                 spartanWeapon.addWeaponProperty(RLSWeaponProperties.IMPALER);
+            }
+            
+            else if (spartanWeapon instanceof ItemScythe) {
+                spartanWeapon.addWeaponProperty(RLSWeaponProperties.REAPER);
             }
 
         }

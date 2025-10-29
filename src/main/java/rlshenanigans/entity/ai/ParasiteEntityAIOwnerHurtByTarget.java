@@ -3,25 +3,39 @@ package rlshenanigans.entity.ai;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
+import net.minecraft.world.World;
 import rlshenanigans.handlers.ForgeConfigHandler;
 
 import java.util.UUID;
 
-public class ParasiteEntityAIOwnerHurtByTarget extends EntityAITarget
-{
+public class ParasiteEntityAIOwnerHurtByTarget extends EntityAITarget {
+    
     private final EntityParasiteBase parasite;
     private EntityLivingBase attacker;
+    private final World world;
+    private boolean tamed;
+    private UUID ownerId;
     
     public ParasiteEntityAIOwnerHurtByTarget(EntityParasiteBase parasite) {
         super(parasite, false);
         this.parasite = parasite;
+        this.world = parasite.world;
+        this.tamed = parasite.getEntityData().getBoolean("Tamed");
+        this.ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
+        this.setMutexBits(1);
     }
     
     @Override
     public boolean shouldExecute() {
-        if (!parasite.getEntityData().getBoolean("Tamed")) return false;
+        if (!tamed) {
+            if (parasite.ticksExisted % 100 == 0) {
+                tamed = parasite.getEntityData().getBoolean("Tamed");
+                ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
+            }
+            return false;
+        }
         
-        EntityLivingBase owner = getOwner();
+        EntityLivingBase owner = world.getPlayerEntityByUUID(ownerId);
         if (owner == null) return false;
         
         attacker = owner.getLastAttackedEntity();
@@ -34,7 +48,7 @@ public class ParasiteEntityAIOwnerHurtByTarget extends EntityAITarget
         }
         
         if (attacker.equals(parasite)) return false;
-        if (attacker.equals(getOwner())) return false;
+        if (attacker.equals(owner)) return false;
         if (attacker instanceof EntityParasiteBase && !ForgeConfigHandler.parasite.parasiteOnParasiteViolence) return false;
         
         return revengeTimer != parasite.getRevengeTimer();
@@ -44,10 +58,5 @@ public class ParasiteEntityAIOwnerHurtByTarget extends EntityAITarget
     public void startExecuting() {
         this.taskOwner.setAttackTarget(this.attacker);
         super.startExecuting();
-    }
-    
-    private EntityLivingBase getOwner() {
-        UUID ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
-        return ownerId != null ? parasite.world.getPlayerEntityByUUID(ownerId) : null;
     }
 }

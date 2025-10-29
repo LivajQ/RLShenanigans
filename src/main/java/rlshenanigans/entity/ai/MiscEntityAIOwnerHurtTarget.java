@@ -4,6 +4,7 @@ import com.github.alexthe666.iceandfire.entity.EntityGorgon;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
+import net.minecraft.world.World;
 
 import java.util.UUID;
 
@@ -11,18 +12,30 @@ public class MiscEntityAIOwnerHurtTarget extends EntityAITarget
 {
     private final EntityCreature mob;
     private EntityLivingBase target;
+    private final World world;
+    private boolean tamed;
+    private UUID ownerId;
     
     public MiscEntityAIOwnerHurtTarget(EntityCreature mob) {
         super(mob, false);
         this.mob = mob;
+        this.world = mob.world;
+        this.tamed = mob.getEntityData().getBoolean("MiscTamed");
+        this.ownerId = mob.getEntityData().getUniqueId("OwnerUUID");
         this.setMutexBits(1);
     }
     
     @Override
     public boolean shouldExecute() {
-        if (!mob.getEntityData().getBoolean("MiscTamed")) return false;
+        if (!tamed) {
+            if (mob.ticksExisted % 100 == 0) {
+                tamed = mob.getEntityData().getBoolean("MiscTamed");
+                ownerId = mob.getEntityData().getUniqueId("OwnerUUID");
+            }
+            return false;
+        }
         
-        EntityLivingBase owner = getOwner();
+        EntityLivingBase owner = world.getPlayerEntityByUUID(ownerId);
         if (owner == null) return false;
         
         target = owner.getRevengeTarget();
@@ -36,7 +49,7 @@ public class MiscEntityAIOwnerHurtTarget extends EntityAITarget
         if (EntityGorgon.isStoneMob(target)) return false;
         
         if (target.equals(mob)) return false;
-        if (target.equals(getOwner())) return false;
+        if (target.equals(owner)) return false;
         
         return true;
     }
@@ -51,10 +64,5 @@ public class MiscEntityAIOwnerHurtTarget extends EntityAITarget
     public void resetTask() {
         this.taskOwner.setAttackTarget(null);
         this.target = null;
-    }
-    
-    private EntityLivingBase getOwner() {
-        UUID ownerId = mob.getEntityData().getUniqueId("OwnerUUID");
-        return ownerId != null ? mob.world.getPlayerEntityByUUID(ownerId) : null;
     }
 }

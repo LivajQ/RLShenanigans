@@ -7,14 +7,16 @@ import net.minecraft.world.World;
 
 import java.util.UUID;
 
-public class ParasiteEntityAIFollowOwner extends EntityAIBase
-{
+public class ParasiteEntityAIFollowOwner extends EntityAIBase {
+    
     private final EntityParasiteBase parasite;
     private EntityLivingBase owner;
     private final World world;
     private final double followSpeed;
     private final float minDist;
     private final float maxDist;
+    private boolean tamed;
+    private UUID ownerId;
     
     public ParasiteEntityAIFollowOwner(EntityParasiteBase parasite, double speed, float minDist, float maxDist) {
         this.parasite = parasite;
@@ -22,18 +24,22 @@ public class ParasiteEntityAIFollowOwner extends EntityAIBase
         this.followSpeed = speed;
         this.minDist = minDist;
         this.maxDist = maxDist;
+        this.tamed = parasite.getEntityData().getBoolean("Tamed");
+        this.ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
         this.setMutexBits(3);
     }
     
     @Override
     public boolean shouldExecute() {
-        if (!parasite.getEntityData().getBoolean("Tamed")) return false;
+        if (!tamed) {
+            if (parasite.ticksExisted % 100 == 0) {
+                tamed = parasite.getEntityData().getBoolean("Tamed");
+                ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
+            }
+            return false;
+        }
         
-        UUID ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
         if (ownerId == null) return false;
-        
-        if (parasite.getAttackTarget() != null) return false;
-        if (parasite.getRevengeTarget() != null) return false;
         
         owner = world.getPlayerEntityByUUID(ownerId);
         if (owner == null) return false;
