@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFleeSun;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -63,16 +64,19 @@ public class WeaponPropertyReaper extends WeaponPropertyWithCallback {
         DifficultyInstance difficulty = world.getDifficultyForLocation(new BlockPos(victim.posX, victim.posY, victim.posZ));
         summon.onInitialSpawn(difficulty, null);
         
-        summon.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue() * 0.3F);
-        summon.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() * 0.3F);
-        summon.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() * 0.3F);
+        IAttributeInstance attr = victim.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE);
+        if (attr == null) victim.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+        
+        summon.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue() * 0.4F);
+        summon.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() * 0.4F);
+        summon.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() * 0.4F);
         summon.setHealth(summon.getMaxHealth());
         summon.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.EMPTY);
         summon.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY);
         
         summon.getEntityData().setUniqueId("OwnerUUID", killer.getUniqueID());
         summon.getEntityData().setBoolean("MiscTamed", true);
-        summon.getEntityData().setInteger("ReaperSummonLifetime", 600);
+        summon.getEntityData().setInteger("ReaperSummonLifetime", 1200);
         summon.setCustomNameTag(killer.getName() + "'s Skeleton");
         summon.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, Integer.MAX_VALUE, 0));
         

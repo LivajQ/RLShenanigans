@@ -6,9 +6,9 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-
 import net.minecraft.util.ResourceLocation;
 import rlshenanigans.handlers.ForgeConfigHandler;
+import rlshenanigans.handlers.ParasiteRandomRenderHandler;
 
 public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
     private final String texture;
@@ -48,5 +48,11 @@ public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
         float sizeMultiplier = entity.getEntityData().getFloat("SizeMultiplier");
         if(sizeMultiplier < 0.25F) sizeMultiplier = 1.0F;
         GlStateManager.scale(sizeMultiplier, sizeMultiplier, sizeMultiplier);
+    }
+    
+    @Override
+    protected void renderModel(EntityParasiteBase parasite, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+        ParasiteRandomRenderHandler.init(parasite, this.mainModel);
+        super.renderModel(parasite, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
     }
 }

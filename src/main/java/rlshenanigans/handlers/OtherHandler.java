@@ -94,9 +94,7 @@ public class OtherHandler {
                 }
                 splashField.setAccessible(true);
                 currentSplash = (String) splashField.get(gui);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (Exception ignored) {}
             
             if (currentSplash == null || currentSplash.isEmpty()) {
                 if (RLSRAND.nextDouble() * 100 < ForgeConfigHandler.client.splashTextChance) currentSplash = SplashTextEntries.getRandomSplash();

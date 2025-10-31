@@ -35,9 +35,12 @@ public class PropertyInjector {
                 spartanWeapon.addWeaponProperty(RLSWeaponProperties.IMPALER);
             }
             
-            else if (spartanWeapon instanceof ItemScythe) {
-                spartanWeapon.addWeaponProperty(RLSWeaponProperties.REAPER);
-            }
+            try {
+                Class<?> scytheClass = Class.forName("com.oblivioussp.spartanweaponry.item.ItemScythe");
+                if (scytheClass.isInstance(item)) {
+                    spartanWeapon.addWeaponProperty(RLSWeaponProperties.REAPER);
+                }
+            } catch (ClassNotFoundException ignored) {}
 
         }
     }
