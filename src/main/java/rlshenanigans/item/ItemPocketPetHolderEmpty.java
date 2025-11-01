@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.handlers.ModRegistry;
+import rlshenanigans.handlers.RLSItemHandler;
 
 import java.util.List;
 
@@ -81,7 +81,7 @@ public class ItemPocketPetHolderEmpty extends Item {
         ResourceLocation rl = EntityList.getKey(target);
         if (rl == null) return false;
         
-        ItemStack filledHolder = new ItemStack(ModRegistry.pocketPetHolderFilled);
+        ItemStack filledHolder = new ItemStack(RLSItemHandler.pocketPetHolderFilled);
         
         NBTTagCompound filledTag = new NBTTagCompound();
         

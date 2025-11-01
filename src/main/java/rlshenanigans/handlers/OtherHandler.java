@@ -40,7 +40,7 @@ public class OtherHandler {
         if (!(event.getSource().getTrueSource() instanceof EntityPlayer)) return;
         EntityLivingBase deadMob = event.getEntityLiving();
         if (!(deadMob instanceof EntityZombie) && !(deadMob instanceof EntityChicken)) return;
-        ItemStack lavaChickenDisc = new ItemStack(ModRegistry.musicDiscLavaChicken);
+        ItemStack lavaChickenDisc = new ItemStack(RLSItemHandler.musicDiscLavaChicken);
         
         if (deadMob instanceof EntityZombie) {
             if (deadMob.getRidingEntity() instanceof EntityChicken) deadMob.entityDropItem(lavaChickenDisc, 0.5F);

@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.handlers.ModRegistry;
+import rlshenanigans.handlers.RLSItemHandler;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public class ItemTrinketFixedHeart extends Item implements IBauble
         EntityPlayer player = event.player;
         if (player.world.isRemote) return;
         if (player.ticksExisted % 60 != 0) return;
-        if (BaublesApi.isBaubleEquipped(player, ModRegistry.trinketFixedHeart) == -1) return;
+        if (BaublesApi.isBaubleEquipped(player, RLSItemHandler.trinketFixedHeart) == -1) return;
         
         IAttributeInstance maxHealth = player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
         AttributeModifier modifier = maxHealth.getModifier(ItemTrinketBrokenHeart.MODIFIER_UUID);

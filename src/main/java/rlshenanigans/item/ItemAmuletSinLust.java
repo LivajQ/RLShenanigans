@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.handlers.ModRegistry;
+import rlshenanigans.handlers.RLSItemHandler;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public class ItemAmuletSinLust extends Item implements IBauble
         EntityPlayer player = event.player;
         if (player.world.isRemote) return;
         if (player.ticksExisted % 20 != 0) return;
-        if (BaublesApi.isBaubleEquipped(player, ModRegistry.sinPendantLust) == -1) return;
+        if (BaublesApi.isBaubleEquipped(player, RLSItemHandler.sinPendantLust) == -1) return;
         
         AxisAlignedBB box = new AxisAlignedBB(
                 player.posX - 10, player.posY - 5, player.posZ - 10,

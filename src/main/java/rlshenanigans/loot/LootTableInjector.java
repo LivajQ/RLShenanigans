@@ -12,7 +12,7 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.handlers.ModRegistry;
+import rlshenanigans.handlers.RLSItemHandler;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class LootTableInjector {
@@ -20,7 +20,7 @@ public class LootTableInjector {
     private static final ResourceLocation SIMPLE_DUNGEON = new ResourceLocation("minecraft", "chests/simple_dungeon");
     private static final ResourceLocation NETHER_BRIDGE = new ResourceLocation("minecraft", "chests/nether_bridge");
     
-    private static final Item LUST_PENDANT = ModRegistry.sinPendantLust;
+    private static final Item LUST_PENDANT = RLSItemHandler.sinPendantLust;
     
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent event) {

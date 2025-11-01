@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.handlers.ModRegistry;
+import rlshenanigans.handlers.RLSItemHandler;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -111,7 +111,7 @@ public class ItemPocketPetHolderFilled extends Item {
                 entity.setLocationAndAngles(player.posX, player.posY, player.posZ, player.rotationYaw, player.rotationPitch);
                 world.spawnEntity(entity);
                 
-                ItemStack emptyHolder = new ItemStack(ModRegistry.pocketPetHolderEmpty);
+                ItemStack emptyHolder = new ItemStack(RLSItemHandler.pocketPetHolderEmpty);
                 player.setHeldItem(hand, emptyHolder);
             }
         }

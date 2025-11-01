@@ -57,8 +57,8 @@ public class CustomMobHandler {
             if(rollChance(customMobSpawn.strengthMainChance)) {
                 EntityZombie strengthMain = (EntityZombie) entity;
                 
-                strengthMain.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModRegistry.weaponZweihander));
-                strengthMain.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModRegistry.weaponZweihander));
+                strengthMain.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(RLSItemHandler.weaponZweihander));
+                strengthMain.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(RLSItemHandler.weaponZweihander));
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(ModItems.deathworm_white_helmet));
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(ModItems.deathworm_white_chestplate));
                 strengthMain.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(ModItems.deathworm_white_leggings));
