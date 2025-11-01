@@ -26,7 +26,8 @@ public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
         switch (entity.getSkin()) {
             case 1: suffix = "sp1"; break; //armored
             case 2: suffix = "1"; break; //
-            case 3: suffix = "2"; break; // some skin rng for humans and villagers
+            case 3: suffix = "2"; break; //
+            case 4: suffix = ""; break; // some skin rng for humans and villagers
             case 5: suffix = "v"; break; // viral
             case 6: suffix = "b"; break; // bleed
             case 7: suffix = "h"; break; // breacher
@@ -35,7 +36,9 @@ public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
         }
         
         if (texture.equals("shycoa") && entity.getSkin() == 1) suffix = "tyrant";
-        if (texture.equals("mes") && entity.getSkin() == 1) suffix = "1";
+        else if (texture.equals("mes") && entity.getSkin() == 1) suffix = "1";
+        else if (texture.equals("human") && entity.getSkin() == 1) suffix = "1";
+        else if (texture.equals("squid") && entity.getSkin() == 7) suffix = "";
         
         String path = "srparasites:textures/entity/monster/" + folder + texture + suffix + ".png";
         
