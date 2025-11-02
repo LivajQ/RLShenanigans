@@ -24,5 +24,6 @@ public class RLSPacketHandler {
         INSTANCE.registerMessage(PaintingResizePacket.Handler.class, PaintingResizePacket.class, id++, Side.SERVER);
         INSTANCE.registerMessage(PaintingSizeSyncPacket.Handler.class, PaintingSizeSyncPacket.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(NPCPhantomSyncFadePacket.Handler.class, NPCPhantomSyncFadePacket.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(SpellParticlePacket.Handler.class, SpellParticlePacket.class, id++, Side.CLIENT);
     }
 }

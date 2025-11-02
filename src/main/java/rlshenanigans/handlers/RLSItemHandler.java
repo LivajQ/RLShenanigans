@@ -7,6 +7,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.item.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class RLSItemHandler {
     
@@ -21,13 +25,17 @@ public class RLSItemHandler {
     
     @SubscribeEvent
     public static void registerItemEvent(RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(
-                sinPendantLust,
-                weaponZweihander,
-                pocketPetHolderEmpty,
-                pocketPetHolderFilled,
-                trinketFixedHeart,
-                musicDiscLavaChicken
-        );
+        List<Item> allItems = new ArrayList<>();
+        
+        allItems.add(sinPendantLust);
+        allItems.add(weaponZweihander);
+        allItems.add(pocketPetHolderEmpty);
+        allItems.add(pocketPetHolderFilled);
+        allItems.add(trinketFixedHeart);
+        allItems.add(musicDiscLavaChicken);
+        
+        Collections.addAll(allItems, ItemSpellList.getAllSpells());
+        
+        event.getRegistry().registerAll(allItems.toArray(new Item[0]));
     }
 }
