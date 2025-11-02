@@ -6,10 +6,9 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import rlshenanigans.entity.ai.EntityAIHuntUntamed;
@@ -18,10 +17,14 @@ import rlshenanigans.entity.ai.EntityAISelfDefense;
 import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.util.NPCPresets;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class EntityNPCGeneric extends EntityNPCBase {
+    private static final Map<BlockPos, Long> spawnCooldowns = new HashMap<>();
+    private static final int COOLDOWN_TICKS = 20 * 60 * 10;
+    private static final int AREA_SIZE = 500;
+    private static long lastCleanupTick = 0;
+    private static final long CLEANUP_INTERVAL = 20L * 60 * 60 * 2;
     public boolean inPlayerParty = false;
     
     public EntityNPCGeneric(World world) {
@@ -44,6 +47,13 @@ public class EntityNPCGeneric extends EntityNPCBase {
     public void onLivingUpdate() {
         super.onLivingUpdate();
         
+        if (!world.isRemote) {
+            long currentTime = this.world.getTotalWorldTime();
+            if (currentTime - lastCleanupTick > CLEANUP_INTERVAL) {
+                lastCleanupTick = currentTime;
+                cleanupSpawnCooldowns(currentTime);
+            }
+        }
     }
     
     @Override
@@ -76,6 +86,36 @@ public class EntityNPCGeneric extends EntityNPCBase {
         
         if (!mainHand.isEmpty() && this.rand.nextFloat() < 0.1F) this.entityDropItem(mainHand.copy(), 0.5F);
         if (!offHand.isEmpty() && this.rand.nextFloat() < 0.1F) this.entityDropItem(offHand.copy(), 0.5F);
+    }
+    
+    @Override
+    public boolean getCanSpawnHere() {
+        BlockPos region = getRegionKey(new BlockPos(this));
+        long currentTime = this.world.getTotalWorldTime();
+        Long lastSpawn = spawnCooldowns.get(region);
+        
+        if (lastSpawn == null || currentTime - lastSpawn > COOLDOWN_TICKS) {
+            spawnCooldowns.put(region, currentTime);
+            return super.getCanSpawnHere();
+        }
+        
+        return false;
+    }
+    
+    private BlockPos getRegionKey(BlockPos pos) {
+        int x = pos.getX() / AREA_SIZE;
+        int z = pos.getZ() / AREA_SIZE;
+        return new BlockPos(x, 0, z);
+    }
+    
+    private static void cleanupSpawnCooldowns(long currentTime) {
+        Iterator<Map.Entry<BlockPos, Long>> iterator = spawnCooldowns.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<BlockPos, Long> entry = iterator.next();
+            if (currentTime - entry.getValue() > COOLDOWN_TICKS) {
+                iterator.remove();
+            }
+        }
     }
     
     @Override

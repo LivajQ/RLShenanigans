@@ -1,5 +1,6 @@
 package rlshenanigans.item;
 
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,6 +16,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rlshenanigans.client.particle.ParticleSpell;
 import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.packet.SpellParticlePacket;
 import xzeroair.trinkets.capabilities.Capabilities;
@@ -94,20 +96,28 @@ public abstract class ItemSpellBase extends Item {
     public abstract void castSpell(EntityLivingBase caster);
     
     protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount) {
-        this.spawnCastParticle(target, textureIndex, particleCount, 0);
+        this.spawnCastParticle(target, textureIndex, particleCount, 20);
+    }
+    
+    protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount, int particleAge) {
+        this.spawnCastParticle(target, textureIndex, particleCount, particleAge, 0);
     }
     
     protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount, double particleSpeed) {
-        this.spawnCastParticle(textureIndex, particleCount, particleSpeed, target.posX, target.posY + target.height * 0.5D, target.posZ,
+        this.spawnCastParticle(target, textureIndex, particleCount, 20, particleSpeed);
+    }
+    
+    protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount, int particleAge, double particleSpeed) {
+        this.spawnCastParticle(textureIndex, particleCount, particleAge, particleSpeed, target.posX, target.posY + target.height * 0.5D, target.posZ,
                 target.width * 0.5D, target.height * 0.5D, target.width * 0.5D
                 );
     }
     
-    protected void spawnCastParticle(int textureIndex, int particleCount, double particleSpeed,
+    protected void spawnCastParticle(int textureIndex, int particleCount, int particleAge, double particleSpeed,
                                      double x, double y, double z, double motionX, double motionY, double motionZ) {
         
         RLSPacketHandler.INSTANCE.sendToAll(
-                new SpellParticlePacket(this, textureIndex, x, y, z, motionX * particleSpeed, motionY * particleSpeed, motionZ * particleSpeed, particleCount)
+                new SpellParticlePacket(this, textureIndex, x, y, z, motionX * particleSpeed, motionY * particleSpeed, motionZ * particleSpeed, particleCount, particleAge)
         );
     }
     
@@ -118,5 +128,10 @@ public abstract class ItemSpellBase extends Item {
     
     public Vec3d getParticleColor() {
         return new Vec3d(1.0D, 1.0D, 1.0D);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public Particle getParticle(World world, int textureIndex, int particleAge, double x, double y, double z, double motionX, double motionY, double motionZ) {
+        return new ParticleSpell(this, world, textureIndex, particleAge, x, y, z, motionX, motionY, motionZ);
     }
 }

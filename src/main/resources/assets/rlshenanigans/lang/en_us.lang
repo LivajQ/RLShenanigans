@@ -70,8 +70,12 @@ item.painting_gruenod.tooltip.1=Uh huh.
 item.painting_lgruenod.tooltip.1=Uh huh (but fancier).
 
 item.spell_empty.name=Spell Scroll (empty)
-item.spell_heal_light.name=Spell Scroll of Light Heal
-item.spell_heal_light.tooltip.desc=Restores §a25%% §7of user's health
+item.spell_heal_light.name=Spell Scroll of Light Healing
+item.spell_heal_medium.name=Spell Scroll of Medium Healing
+item.spell_heal_heavy.name=Spell Scroll of Heavy Healing
+item.spell_heal_light.tooltip.desc=Treats minor wounds, restoring §a25%% §7of user's health
+item.spell_heal_medium.tooltip.desc=Mends serious injuries, restoring §a50%% §7of user's health
+item.spell_heal_heavy.tooltip.desc=Provides superior healing, restoring §a75%% §7of user's health
 
 item.spartanweaponry:weapon_zweihander.name=§c§lZweihander
 item.spartanweaponry:weapon_zweihander.tooltip.0=§8Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.

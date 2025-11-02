@@ -21,13 +21,14 @@ public class SpellParticlePacket implements IMessage {
     private double x, y, z;
     private double motionX, motionY, motionZ;
     private int count;
+    private int age;
     
     public SpellParticlePacket() {}
     
     public SpellParticlePacket(ItemSpellBase item, int textureIndex,
                                double x, double y, double z,
                                double motionX, double motionY, double motionZ,
-                               int count) {
+                               int count, int age) {
         this.itemName = Item.REGISTRY.getNameForObject(item).toString();
         this.textureIndex = textureIndex;
         this.x = x;
@@ -37,6 +38,7 @@ public class SpellParticlePacket implements IMessage {
         this.motionY = motionY;
         this.motionZ = motionZ;
         this.count = count;
+        this.age = age;
     }
     
     @Override
@@ -50,6 +52,7 @@ public class SpellParticlePacket implements IMessage {
         buf.writeDouble(motionY);
         buf.writeDouble(motionZ);
         buf.writeInt(count);
+        buf.writeInt(age);
     }
     
     @Override
@@ -63,6 +66,7 @@ public class SpellParticlePacket implements IMessage {
         motionY = buf.readDouble();
         motionZ = buf.readDouble();
         count = buf.readInt();
+        age = buf.readInt();
     }
     
     public static class Handler implements IMessageHandler<SpellParticlePacket, IMessage> {
@@ -83,8 +87,9 @@ public class SpellParticlePacket implements IMessage {
                     double mx = (world.rand.nextDouble() - 0.5) * msg.motionX;
                     double my = (world.rand.nextDouble() - 0.5) * msg.motionY;
                     double mz = (world.rand.nextDouble() - 0.5) * msg.motionZ;
+                    int age = (int) (msg.age * (0.75 + world.rand.nextDouble() * 0.5));
                     
-                    Particle particle = new ParticleSpell(spell, world, msg.textureIndex, dx, dy, dz, mx, my, mz);
+                    Particle particle = spell.getParticle(world, msg.textureIndex, age, dx, dy, dz, mx, my, mz);
                     Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                 }
             });

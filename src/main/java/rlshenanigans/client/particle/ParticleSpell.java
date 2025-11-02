@@ -11,13 +11,12 @@ import rlshenanigans.item.ItemSpellBase;
 @SideOnly(Side.CLIENT)
 public class ParticleSpell extends Particle {
     
-    public ParticleSpell(ItemSpellBase spell, World world, int textureIndex, double x, double y, double z, double motionX, double motionY, double motionZ) {
+    public ParticleSpell(ItemSpellBase spell, World world, int textureIndex, int particleAge, double x, double y, double z, double motionX, double motionY, double motionZ) {
         super(world, x, y, z, motionX, motionY, motionZ);
         
         Vec3d color = spell.getParticleColor();
         this.setRBGColorF((float) color.x, (float) color.y, (float) color.z);
-        this.particleMaxAge = 20;
-        this.particleAlpha = 1.0F;
+        this.particleMaxAge = particleAge;
         if (motionX == 0.0D) this.motionX = 0;
         if (motionY == 0.0D) this.motionY = 0;
         if (motionZ == 0.0D) this.motionZ = 0;
