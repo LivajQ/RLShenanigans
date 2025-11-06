@@ -128,6 +128,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
         return 0.0F;
     }
     
+    @SideOnly(Side.CLIENT)
     public abstract Vec3d getPhantomGlowColor();
     
     protected boolean doesFadeFreezePhantom() {

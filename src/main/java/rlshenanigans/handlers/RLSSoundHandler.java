@@ -11,6 +11,7 @@ public class RLSSoundHandler{
     public static SoundEvent PHANTOM_SPAWN;
     public static SoundEvent BLEED_BUILDUP;
     public static SoundEvent SPELL_HEAL;
+    public static SoundEvent SPELL_INVULNERABILITY;
     
     public static void init(){
         DRJR_AMBIENT = register("drjr_ambient");
@@ -18,6 +19,7 @@ public class RLSSoundHandler{
         PHANTOM_SPAWN = register("phantom_spawn");
         BLEED_BUILDUP = register("bleedbuildup");
         SPELL_HEAL = register("spell_heal");
+        SPELL_INVULNERABILITY = register("spell_invulnerability");
     }
     
     private static SoundEvent register(String name) {

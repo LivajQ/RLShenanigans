@@ -2,7 +2,6 @@ package rlshenanigans.item;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.Vec3d;
 import rlshenanigans.client.particle.ParticleSpell;
 import rlshenanigans.handlers.RLSSoundHandler;
 

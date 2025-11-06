@@ -85,7 +85,7 @@ public abstract class ItemSpellBase extends Item {
             magicStat.spendMana(manaCost);
             player.getCooldownTracker().setCooldown(this, 10);
             castSpell(entity);
-            if (!this.infiniteUses()) stack.shrink(1);
+            if (!this.infiniteUses() && !player.capabilities.isCreativeMode) stack.shrink(1);
         }
     }
     

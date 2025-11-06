@@ -90,6 +90,7 @@ public class SpellParticlePacket implements IMessage {
                     int age = (int) (msg.age * (0.75 + world.rand.nextDouble() * 0.5));
                     
                     Particle particle = spell.getParticle(world, msg.textureIndex, age, dx, dy, dz, mx, my, mz);
+                    if (particle == null) return;
                     Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                 }
             });

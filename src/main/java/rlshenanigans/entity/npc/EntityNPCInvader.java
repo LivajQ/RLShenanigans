@@ -9,6 +9,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.entity.ai.EntityAIMineToTarget;
 import rlshenanigans.entity.ai.EntityAINPCInvaderHunt;
 import rlshenanigans.entity.ai.EntityAIThrowPearl;
@@ -133,6 +135,7 @@ public class EntityNPCInvader extends EntityNPCPhantom {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public Vec3d getPhantomGlowColor() {
         return new Vec3d(1.0, 0.1, 0.1);
     }

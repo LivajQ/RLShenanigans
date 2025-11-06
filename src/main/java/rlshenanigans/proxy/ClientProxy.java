@@ -16,9 +16,11 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import org.lwjgl.input.Keyboard;
 
+import rlshenanigans.client.model.ModelCube;
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.*;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
+import rlshenanigans.entity.EntitySpellInvulnerability;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
@@ -91,6 +93,10 @@ public class ClientProxy extends CommonProxy {
                 new RenderRLSModel<>(manager, new ModelAsmodeus(), 0.5F,
                         new ResourceLocation("lycanitesmobs", "textures/entity/asmodeus.png")
                 )
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellInvulnerability.class, manager ->
+                new RenderSpellEntity<>(manager, new ModelCube(), null)
         );
     }
     
