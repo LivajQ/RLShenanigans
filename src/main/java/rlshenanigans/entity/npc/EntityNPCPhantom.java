@@ -12,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -20,6 +19,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.client.particle.ParticleNPCPhantomSummon;
 import rlshenanigans.handlers.RLSSoundHandler;
+
+import javax.vecmath.Color3f;
 
 public abstract class EntityNPCPhantom extends EntityNPCBase {
     protected int phantomFadeTime;
@@ -129,7 +130,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
     }
     
     @SideOnly(Side.CLIENT)
-    public abstract Vec3d getPhantomGlowColor();
+    public abstract Color3f getPhantomGlowColor();
     
     protected boolean doesFadeFreezePhantom() {
         return true;

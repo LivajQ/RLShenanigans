@@ -38,12 +38,20 @@ item.spartanweaponry:proj_tipped.GolemBad=Did I just catch you wearing golem arm
 effects.rlshenanigans.GolemBad=Did I just catch you wearing golem armor >:(
 description.effects.rlshenanigans.GolemBad=Did I just catch you wearing golem armor >:(
 
+potion.effect.Power_Within=Potion of §c§lPower Within
+splash_potion.effect.Power_Within=Splash Potion of §c§lPower Within
+lingering_potion.effect.Power_Within=Lingering Potion of §c§lPower Within
+tipped_arrow.effect.Power_Within=Arrow of §c§lPower Within
+item.spartanweaponry:proj_tipped.Power_Within=Arrow of §c§lPower Within
+effects.rlshenanigans.Power_Within=§c§lPower Within
+description.effects.rlshenanigans.Power_Within=Increases speed and damage but decreases health over time.
+
 item.amulet_sin_lust.name=§d§oLust Pendant
 item.amulet_sin_lust.tooltip.0=§fThis pendant resonates with the §d§ofreaky §r§fessence.
 item.amulet_sin_lust.tooltip.1=§9Grants sinful buff (+damage, +armor) when around multiple entities.
 item.trinket_fixed_heart.name=Fixed Heart
 item.trinket_fixed_heart.tooltip.0=§9Slowly restores broken heart containers.
-item.trinket_fixed_heart.tooltip.1=§aWinners don't have time to sleep.
+item.trinket_fixed_heart.tooltip.1=§aWinners got no time to sleep.
 
 item.musicdisc_lavachicken.name=Music Disc
 item.record.rlshenanigans:musicdisc_lavachicken.desc=Hyper Potions - Lava Chicken
@@ -73,9 +81,14 @@ item.spell_empty.name=Spell Scroll (empty)
 item.spell_heal_light.name=Spell Scroll of Light Healing
 item.spell_heal_medium.name=Spell Scroll of Medium Healing
 item.spell_heal_heavy.name=Spell Scroll of Heavy Healing
+item.spell_invulnerability.name=Spell Scroll of Invulnerability
+item.spell_power_within.name=Spell Scroll of §c§lPower Within
 item.spell_heal_light.tooltip.desc=Treats minor wounds, restoring §a25%% §7of user's health
 item.spell_heal_medium.tooltip.desc=Mends serious injuries, restoring §a50%% §7of user's health
 item.spell_heal_heavy.tooltip.desc=Provides superior healing, restoring §a75%% §7of user's health
+item.spell_invulnerability.tooltip.desc=Surrounds the caster with a protective sphere, stopping projectiles and negating damage for every entity in its radius
+item.spell_power_within.tooltip.desc=§c§lTHE POWER WITHIN! THE POWER WITHIN!
+item.spell_power_within.tooltip.desc.2=§7§oPushes the body to its limit, increasing damage and speed but slowly decreasing health
 
 item.spartanweaponry:weapon_zweihander.name=§c§lZweihander
 item.spartanweaponry:weapon_zweihander.tooltip.0=§8Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.

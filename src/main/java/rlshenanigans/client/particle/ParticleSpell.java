@@ -1,12 +1,16 @@
 package rlshenanigans.client.particle;
 
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.item.ItemSpellBase;
+
+import javax.vecmath.Color3f;
 
 @SideOnly(Side.CLIENT)
 public class ParticleSpell extends Particle {
@@ -14,8 +18,8 @@ public class ParticleSpell extends Particle {
     public ParticleSpell(ItemSpellBase spell, World world, int textureIndex, int particleAge, double x, double y, double z, double motionX, double motionY, double motionZ) {
         super(world, x, y, z, motionX, motionY, motionZ);
         
-        Vec3d color = spell.getParticleColor();
-        this.setRBGColorF((float) color.x, (float) color.y, (float) color.z);
+        Color3f color = spell.getParticleColor();
+        this.setRBGColorF(color.x, color.y, color.z);
         this.particleMaxAge = particleAge;
         if (motionX == 0.0D) this.motionX = 0;
         if (motionY == 0.0D) this.motionY = 0;
@@ -36,8 +40,8 @@ public class ParticleSpell extends Particle {
             case WATER_WAKE: return 6;
             case SUSPENDED: return 7;
             case SUSPENDED_DEPTH: return 8;
-            case CRIT: return 9;
-            case CRIT_MAGIC: return 10;
+            case CRIT: return 65;
+            case CRIT_MAGIC: return 66;
             case SMOKE_NORMAL: return 50;
             case SMOKE_LARGE: return 51;
             case SPELL: return 128;

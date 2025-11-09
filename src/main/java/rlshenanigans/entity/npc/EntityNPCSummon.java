@@ -7,7 +7,6 @@ import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,6 +15,7 @@ import rlshenanigans.entity.ai.*;
 import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.util.NPCPresets;
 
+import javax.vecmath.Color3f;
 import java.util.UUID;
 
 public class EntityNPCSummon extends EntityNPCPhantom {
@@ -145,8 +145,8 @@ public class EntityNPCSummon extends EntityNPCPhantom {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public Vec3d getPhantomGlowColor() {
-        return new Vec3d(1.0, 0.85, 0.3);
+    public Color3f getPhantomGlowColor() {
+        return new Color3f(1.0F, 0.85F, 0.3F);
     }
     
     @Override

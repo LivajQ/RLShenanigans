@@ -77,7 +77,6 @@ public class SpellParticlePacket implements IMessage {
                 World world = Minecraft.getMinecraft().world;
                 Item item = Item.REGISTRY.getObject(new ResourceLocation(msg.itemName));
                 if (!(item instanceof ItemSpellBase)) return;
-                
                 ItemSpellBase spell = (ItemSpellBase) item;
                 
                 for (int i = 0; i < msg.count; i++) {

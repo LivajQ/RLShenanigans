@@ -107,4 +107,12 @@ public abstract class EntitySpellBase extends EntityLivingBase implements IEntit
         this.blue = buffer.readFloat();
         this.alpha = buffer.readFloat();
     }
+    
+    public boolean movingTexture() {
+        return false;
+    }
+    
+    public float textureScale() {
+        return 1.0F;
+    }
 }

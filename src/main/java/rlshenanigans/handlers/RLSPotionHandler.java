@@ -23,6 +23,7 @@ public class RLSPotionHandler {
     public static PotionType dragonBadPotion = new PotionType("DragonBad", new PotionEffect(PotionDragonBad.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "DragonBad"));
     public static PotionType golemBadPotion = new PotionType("GolemBad", new PotionEffect(PotionGolemBad.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "GolemBad"));
     public static PotionType bloodthirstyPotion = new PotionType("Bloodthirsty", new PotionEffect(PotionBloodthirsty.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Bloodthirsty"));
+    public static PotionType powerWithinPotion = new PotionType("Power_Within", new PotionEffect(PotionPowerWithin.INSTANCE, 1200)).setRegistryName(new ResourceLocation(RLShenanigans.MODID, "Power_Within"));
     
     public static void init(){}
     
@@ -33,6 +34,7 @@ public class RLSPotionHandler {
         event.getRegistry().register(PotionDragonBad.INSTANCE);
         event.getRegistry().register(PotionGolemBad.INSTANCE);
         event.getRegistry().register(PotionBloodthirsty.INSTANCE);
+        event.getRegistry().register(PotionPowerWithin.INSTANCE);
     }
     
     @SubscribeEvent
@@ -42,6 +44,7 @@ public class RLSPotionHandler {
         event.getRegistry().register(dragonBadPotion);
         event.getRegistry().register(golemBadPotion);
         event.getRegistry().register(bloodthirstyPotion);
+        event.getRegistry().register(powerWithinPotion);
         
         BrewingRecipeRegistry.addRecipe(new BrewingRecipe(
                 new ItemStack(ModItems.potionWormhole),

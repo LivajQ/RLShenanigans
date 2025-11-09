@@ -9,10 +9,11 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
 import rlshenanigans.entity.npc.EntityNPCBase;
 import rlshenanigans.entity.npc.EntityNPCPhantom;
+
+import javax.vecmath.Color3f;
 
 public class RenderNPC extends RenderLiving<EntityNPCBase> {
     
@@ -36,11 +37,11 @@ public class RenderNPC extends RenderLiving<EntityNPCBase> {
         boolean isPhantom = entity instanceof EntityNPCPhantom;
         if (isPhantom) {
             float fade = ((EntityNPCPhantom) entity).getFadeLevel();
-            Vec3d glowColor = ((EntityNPCPhantom) entity).getPhantomGlowColor();
+            Color3f glowColor = ((EntityNPCPhantom) entity).getPhantomGlowColor();
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GlStateManager.color((float) glowColor.x, (float) glowColor.y, (float) glowColor.z, 0.5F * fade);
+            GlStateManager.color(glowColor.x, glowColor.y, glowColor.z, 0.5F * fade);
         }
         
         super.doRender(entity, x, y, z, entityYaw, partialTicks);

@@ -96,7 +96,7 @@ public class ClientProxy extends CommonProxy {
         );
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellInvulnerability.class, manager ->
-                new RenderSpellEntity<>(manager, new ModelCube(), null)
+                new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "textures/misc/spell_invulnerability.png"))
         );
     }
     

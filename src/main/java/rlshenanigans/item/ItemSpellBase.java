@@ -10,7 +10,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -22,6 +21,8 @@ import rlshenanigans.packet.SpellParticlePacket;
 import xzeroair.trinkets.capabilities.Capabilities;
 import xzeroair.trinkets.capabilities.magic.MagicStats;
 
+import javax.vecmath.Color3f;
+import java.awt.*;
 import java.util.List;
 
 public abstract class ItemSpellBase extends Item {
@@ -126,8 +127,9 @@ public abstract class ItemSpellBase extends Item {
         world.playSound(null, target.getPosition(), sound, SoundCategory.PLAYERS, volume, pitch);
     }
     
-    public Vec3d getParticleColor() {
-        return new Vec3d(1.0D, 1.0D, 1.0D);
+    @SideOnly(Side.CLIENT)
+    public Color3f getParticleColor() {
+        return new Color3f(1.0F, 1.0F, 1.0F);
     }
     
     @SideOnly(Side.CLIENT)

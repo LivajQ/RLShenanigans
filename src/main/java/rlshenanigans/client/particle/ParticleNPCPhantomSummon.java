@@ -1,11 +1,12 @@
 package rlshenanigans.client.particle;
 
 import net.minecraft.client.particle.Particle;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.entity.npc.EntityNPCPhantom;
+
+import javax.vecmath.Color3f;
 
 @SideOnly(Side.CLIENT)
 public class ParticleNPCPhantomSummon extends Particle
@@ -15,8 +16,8 @@ public class ParticleNPCPhantomSummon extends Particle
         
         this.particleMaxAge = 20 + rand.nextInt(10);
         this.particleGravity = 0.1F;
-        Vec3d glowColor = phantom.getPhantomGlowColor();
-        this.setRBGColorF((float) glowColor.x, (float) glowColor.y, (float) glowColor.z);
+        Color3f glowColor = phantom.getPhantomGlowColor();
+        this.setRBGColorF(glowColor.x, glowColor.y, glowColor.z);
         this.setSize(0.4F, 0.4F);
     }
     
