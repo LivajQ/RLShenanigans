@@ -16,7 +16,7 @@ public class ItemSpellHealMedium extends ItemSpellBase {
         caster.heal(healAmount);
         
         this.playCastSound(caster, RLSSoundHandler.SPELL_HEAL, 1.0F, 1.0F);
-        this.spawnCastParticle(caster, ParticleSpell.getTextureIndexFromEnum(EnumParticleTypes.VILLAGER_HAPPY), 25, 0.5D);
+        this.spawnCastParticle(caster, getTextureIndexFromEnum(EnumParticleTypes.VILLAGER_HAPPY), 25, 0.5D);
     }
     
 }

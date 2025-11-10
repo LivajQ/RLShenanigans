@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHandSide;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
@@ -72,6 +73,19 @@ public abstract class EntitySpellBase extends EntityLivingBase implements IEntit
     @Override
     public EnumHandSide getPrimaryHand() {
         return EnumHandSide.RIGHT;
+    }
+    
+    @Override
+    public AxisAlignedBB getEntityBoundingBox() {
+        float halfHeight = this.height / 2.0F;
+        return new AxisAlignedBB(
+                this.posX - this.width / 2.0F,
+                this.posY - halfHeight,
+                this.posZ - this.width / 2.0F,
+                this.posX + this.width / 2.0F,
+                this.posY + halfHeight,
+                this.posZ + this.width / 2.0F
+        );
     }
     
     @Override

@@ -16,6 +16,7 @@ import javax.vecmath.Color3f;
 import java.util.List;
 
 public class ItemSpellPowerWithin extends ItemSpellBase {
+    
     public ItemSpellPowerWithin(String registryName, int manaCost, int castTime, int stackSize) {
         super(registryName, manaCost, castTime, stackSize);
     }

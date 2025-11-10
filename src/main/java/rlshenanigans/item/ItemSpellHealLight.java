@@ -2,7 +2,6 @@ package rlshenanigans.item;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumParticleTypes;
-import rlshenanigans.client.particle.ParticleSpell;
 import rlshenanigans.handlers.RLSSoundHandler;
 
 public class ItemSpellHealLight extends ItemSpellBase {
@@ -16,7 +15,7 @@ public class ItemSpellHealLight extends ItemSpellBase {
         caster.heal(healAmount);
         
         this.playCastSound(caster, RLSSoundHandler.SPELL_HEAL, 1.0F, 1.0F);
-        this.spawnCastParticle(caster, ParticleSpell.getTextureIndexFromEnum(EnumParticleTypes.VILLAGER_HAPPY), 20, 0.5D);
+        this.spawnCastParticle(caster, getTextureIndexFromEnum(EnumParticleTypes.VILLAGER_HAPPY), 20, 0.5D);
     }
     
 }

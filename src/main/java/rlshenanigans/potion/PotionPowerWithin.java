@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.client.particle.ParticleSpell;
 import rlshenanigans.handlers.RLSPacketHandler;
+import rlshenanigans.item.ItemSpellBase;
 import rlshenanigans.item.ItemSpellList;
 import rlshenanigans.packet.SpellParticlePacket;
 
@@ -54,7 +54,7 @@ public class PotionPowerWithin extends PotionBase{
         RLSPacketHandler.INSTANCE.sendToAll(
                 new SpellParticlePacket(
                         ItemSpellList.SPELL_POWER_WITHIN,
-                        ParticleSpell.getTextureIndexFromEnum(EnumParticleTypes.CRIT_MAGIC),
+                        ItemSpellBase.getTextureIndexFromEnum(EnumParticleTypes.CRIT_MAGIC),
                         (float) x, (float) y, (float) z,
                         (float) motionX, (float) motionY, (float) motionZ,
                         1, 40

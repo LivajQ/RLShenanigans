@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rlshenanigans.client.particle.ParticleSpell;
 import rlshenanigans.item.ItemSpellBase;
 
 public class SpellParticlePacket implements IMessage {
@@ -83,9 +82,9 @@ public class SpellParticlePacket implements IMessage {
                     double dx = msg.x + (world.rand.nextDouble() - 0.5);
                     double dy = msg.y + (world.rand.nextDouble() - 0.5);
                     double dz = msg.z + (world.rand.nextDouble() - 0.5);
-                    double mx = (world.rand.nextDouble() - 0.5) * msg.motionX;
-                    double my = (world.rand.nextDouble() - 0.5) * msg.motionY;
-                    double mz = (world.rand.nextDouble() - 0.5) * msg.motionZ;
+                    double mx = msg.motionX;
+                    double my = msg.motionY;
+                    double mz = msg.motionZ;
                     int age = (int) (msg.age * (0.75 + world.rand.nextDouble() * 0.5));
                     
                     Particle particle = spell.getParticle(world, msg.textureIndex, age, dx, dy, dz, mx, my, mz);

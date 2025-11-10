@@ -20,6 +20,7 @@ import rlshenanigans.client.model.ModelCube;
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.*;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
+import rlshenanigans.entity.EntitySpellCloudPoison;
 import rlshenanigans.entity.EntitySpellInvulnerability;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
@@ -27,6 +28,7 @@ import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.entity.npc.EntityNPCBase;
+import rlshenanigans.entity.projectile.EntitySpellFireball;
 import rlshenanigans.handlers.RLSEntityHandler;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.util.ParasiteRegistry;
@@ -97,6 +99,14 @@ public class ClientProxy extends CommonProxy {
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellInvulnerability.class, manager ->
                 new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "textures/misc/spell_invulnerability.png"))
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellCloudPoison.class, manager ->
+                new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellFireball.class, manager ->
+                new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))
         );
     }
     

@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import rlshenanigans.RLShenanigans;
+import rlshenanigans.entity.EntitySpellCloudPoison;
 import rlshenanigans.entity.EntitySpellInvulnerability;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
@@ -25,6 +26,7 @@ import rlshenanigans.entity.npc.EntityNPCGeneric;
 import rlshenanigans.entity.npc.EntityNPCInvader;
 import rlshenanigans.entity.npc.EntityNPCJohnMinecraft;
 import rlshenanigans.entity.npc.EntityNPCSummon;
+import rlshenanigans.entity.projectile.EntitySpellFireball;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.proxy.CommonProxy;
 
@@ -40,6 +42,8 @@ public class RLSEntityHandler
     public static final int npcInvaderID = 203;
     public static final int npcJohnMinecraftID = 204;
     public static final int spellInvulnerabilityID = 205;
+    public static final int spellFireballID = 206;
+    public static final int spellCloudPoisonID = 207;
     public static final int paintingID = 300;
     
     //texture path, frame count, internal name
@@ -81,6 +85,12 @@ public class RLSEntityHandler
         
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_invulnerability"), EntitySpellInvulnerability.class,
                 "spell_invulnerability", spellInvulnerabilityID, RLShenanigans.instance, 64, 1, false);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_cloud_poison"), EntitySpellCloudPoison.class,
+                "spell_cloud_poison", spellCloudPoisonID, RLShenanigans.instance, 64, 1, true);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_fireball"), EntitySpellFireball.class,
+                "spell_fireball", spellFireballID, RLShenanigans.instance, 64, 1, true);
         
         for (Biome biome : Biome.REGISTRY) {
             if (ForgeConfigHandler.misc.drJrEnabled) EntityRegistry.addSpawn(EntityDrJr.class, 5, 1, 1, EnumCreatureType.MONSTER, biome);

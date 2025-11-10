@@ -9,6 +9,8 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_HEAL_HEAVY = new ItemSpellHealHeavy("spell_heal_heavy", 35, 80, 8);
     public static final ItemSpellBase SPELL_INVULNERABILITY = new ItemSpellInvulnerability("spell_invulnerability", 75, 100, 3);
     public static final ItemSpellBase SPELL_POWER_WITHIN = new ItemSpellPowerWithin("spell_power_within", 50, 60, 3);
+    public static final ItemSpellBase SPELL_FIREBALL = new ItemSpellFireball("spell_fireball", 10, 10, 16);
+    public static final ItemSpellBase SPELL_CLOUD_POISON = new ItemSpellCloudPoison("spell_cloud_poison", 35, 40, 8);
     
     public static Item[] getAllSpells() {
         return new Item[] {
@@ -17,7 +19,9 @@ public class ItemSpellList {
                 SPELL_HEAL_MEDIUM,
                 SPELL_HEAL_HEAVY,
                 SPELL_INVULNERABILITY,
-                SPELL_POWER_WITHIN
+                SPELL_POWER_WITHIN,
+                SPELL_FIREBALL,
+                SPELL_CLOUD_POISON
         };
     }
 }
