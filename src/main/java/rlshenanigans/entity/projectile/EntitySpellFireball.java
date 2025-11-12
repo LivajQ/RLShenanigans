@@ -8,13 +8,21 @@ import net.minecraft.world.World;
 import javax.vecmath.Color3f;
 
 public class EntitySpellFireball extends EntitySpellProjectile {
+    protected float strength;
     
     public EntitySpellFireball(World worldIn) {
         super(worldIn);
     }
     
-    public EntitySpellFireball(World worldIn, EntityLivingBase shooter) {
-        super(worldIn, shooter);
+    public EntitySpellFireball(World worldIn, EntityLivingBase shooter, float damage, float size, float strength) {
+        this(worldIn, shooter, damage, size, strength, 0.0F);
+
+    }
+    
+    public EntitySpellFireball(World worldIn, EntityLivingBase shooter, float damage, float size, float strength, float gravity) {
+        super(worldIn, shooter, damage, gravity);
+        this.strength = strength;
+        this.setSize(size, size);
     }
     
     @Override
@@ -35,18 +43,28 @@ public class EntitySpellFireball extends EntitySpellProjectile {
     @Override
     protected void onImpact(RayTraceResult result) {
         if (!world.isRemote) {
-            world.createExplosion(this, posX, posY, posZ, 2.0F, true);
+            world.createExplosion(this, posX, posY, posZ, strength, true);
             this.setDead();
         }
     }
     
     @Override
-    protected float getGravityVelocity() {
-        return 0.0F;
+    public boolean isInWater() {
+        return false;
+    }
+    
+    @Override
+    public boolean handleWaterMovement() {
+        return false;
     }
     
     @Override
     public Color3f getColor() {
-        return new Color3f(1.0F, 1.0F, 0.0F);
+        return new Color3f(1.0F, 0.0F, 0.0F);
+    }
+    
+    @Override
+    public float textureSize() {
+        return 2.0F;
     }
 }

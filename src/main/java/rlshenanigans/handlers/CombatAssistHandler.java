@@ -6,6 +6,7 @@ import com.lycanitesmobs.core.entity.creature.EntityDarkling;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -58,7 +59,7 @@ public class CombatAssistHandler {
     }
     
     @SubscribeEvent
-    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+    public static void allyDarklings(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntityLiving().world.isRemote) return;
         
         if (event.getEntityLiving() instanceof EntityDarkling) {
@@ -83,6 +84,20 @@ public class CombatAssistHandler {
                 }
             }
         }
+    }
+    
+    @SubscribeEvent
+    public static void summonLifetime(LivingEvent.LivingUpdateEvent event) {
+        if (event.getEntityLiving().world.isRemote) return;
+        EntityLivingBase entity = event.getEntityLiving();
+        if (entity.ticksExisted % 20 != 0) return;
+        if (!entity.getEntityData().hasKey("RLSSummonLifetime")) return;
+        
+        int lifetime = entity.getEntityData().getInteger("RLSSummonLifetime");
+        
+        lifetime -= 20;
+        if (lifetime <= 0) entity.setDead();
+        else entity.getEntityData().setInteger("RLSSummonLifetime", lifetime);
     }
     
     @SubscribeEvent

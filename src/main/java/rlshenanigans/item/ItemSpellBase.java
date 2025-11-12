@@ -3,6 +3,7 @@ package rlshenanigans.item;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -122,9 +123,13 @@ public abstract class ItemSpellBase extends Item {
         );
     }
     
-    protected void playCastSound(EntityLivingBase target, SoundEvent sound, float volume, float pitch) {
+    protected void playCastSound(Entity target, SoundEvent sound, float volume, float pitch) {
+        this.playCastSound(target, sound, volume, pitch, 0, 0, 0);
+    }
+    
+    protected void playCastSound(Entity target, SoundEvent sound, float volume, float pitch, float offsetX, float offsetY, float offsetZ) {
         World world = target.world;
-        world.playSound(null, target.getPosition(), sound, SoundCategory.PLAYERS, volume, pitch);
+        world.playSound(null, target.posX + offsetX, target.posY + offsetY, target.posZ + offsetZ, sound, SoundCategory.PLAYERS, volume, pitch);
     }
     
     @SideOnly(Side.CLIENT)

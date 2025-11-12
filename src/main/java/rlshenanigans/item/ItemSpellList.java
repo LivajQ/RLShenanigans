@@ -11,6 +11,8 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_POWER_WITHIN = new ItemSpellPowerWithin("spell_power_within", 50, 60, 3);
     public static final ItemSpellBase SPELL_FIREBALL = new ItemSpellFireball("spell_fireball", 10, 10, 16);
     public static final ItemSpellBase SPELL_CLOUD_POISON = new ItemSpellCloudPoison("spell_cloud_poison", 35, 40, 8);
+    public static final ItemSpellBase SPELL_ARMY_OF_DARKNESS = new ItemSpellArmyOfDarkness("spell_army_of_darkness", 100, 120, 3);
+    public static final ItemSpellBase SPELL_ARMAGEDDON = new ItemSpellArmageddon("spell_armageddon", 150, 100, 3);
     
     public static Item[] getAllSpells() {
         return new Item[] {
@@ -21,7 +23,9 @@ public class ItemSpellList {
                 SPELL_INVULNERABILITY,
                 SPELL_POWER_WITHIN,
                 SPELL_FIREBALL,
-                SPELL_CLOUD_POISON
+                SPELL_CLOUD_POISON,
+                SPELL_ARMY_OF_DARKNESS,
+                SPELL_ARMAGEDDON
         };
     }
 }

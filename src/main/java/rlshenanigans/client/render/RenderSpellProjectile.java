@@ -38,7 +38,8 @@ public class RenderSpellProjectile<T extends EntitySpellProjectile> extends Rend
         
         this.bindEntityTexture(entity);
         
-        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+        float ts = entity.textureSize();
+        GlStateManager.scale(entity.width * ts, entity.height * ts, entity.width * ts);
         renderQuad();
         
         GlStateManager.popMatrix();

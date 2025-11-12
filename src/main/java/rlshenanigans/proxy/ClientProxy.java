@@ -29,6 +29,7 @@ import rlshenanigans.entity.creature.EntityRahovartTamed;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.entity.npc.EntityNPCBase;
 import rlshenanigans.entity.projectile.EntitySpellFireball;
+import rlshenanigans.entity.projectile.EntitySpellFireballCluster;
 import rlshenanigans.handlers.RLSEntityHandler;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.util.ParasiteRegistry;
@@ -106,6 +107,10 @@ public class ClientProxy extends CommonProxy {
         );
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellFireball.class, manager ->
+                new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellFireballCluster.class, manager ->
                 new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))
         );
     }

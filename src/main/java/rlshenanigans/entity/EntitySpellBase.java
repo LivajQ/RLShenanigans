@@ -76,19 +76,6 @@ public abstract class EntitySpellBase extends EntityLivingBase implements IEntit
     }
     
     @Override
-    public AxisAlignedBB getEntityBoundingBox() {
-        float halfHeight = this.height / 2.0F;
-        return new AxisAlignedBB(
-                this.posX - this.width / 2.0F,
-                this.posY - halfHeight,
-                this.posZ - this.width / 2.0F,
-                this.posX + this.width / 2.0F,
-                this.posY + halfHeight,
-                this.posZ + this.width / 2.0F
-        );
-    }
-    
-    @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setFloat("Red", red);

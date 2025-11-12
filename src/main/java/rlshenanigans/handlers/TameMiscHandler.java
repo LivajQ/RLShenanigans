@@ -72,7 +72,7 @@ public class TameMiscHandler {
                     event.setCanceled(true);
                 }
             }
-            else player.startRiding(creature, true);
+            else if (!creature.getEntityData().getBoolean("Unrideable")) player.startRiding(creature, true);
         }
         
         if(mob.getEntityData().getBoolean("MiscTamed")) return;

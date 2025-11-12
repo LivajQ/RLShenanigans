@@ -21,12 +21,11 @@ public class EntitySpellCloudPoison extends EntitySpellBase {
     private final Set<UUID> affectedEntities = new HashSet<>();
     
     public EntitySpellCloudPoison(World world) {
-        this(world, null, 0, 0, 0, 0, 0, 0);
+        this(world, null, 0, 0, 0);
     }
     
-    public EntitySpellCloudPoison(World world, EntityLivingBase caster, double x, double y, double z, double motionX, double motionY, double motionZ) {
+    public EntitySpellCloudPoison(World world, EntityLivingBase caster, double motionX, double motionY, double motionZ) {
         super(world, 0.0F, 0.0F, 0.0F, 0.0F);
-        this.setPosition(x, y, z);
         this.mX = motionX * 0.4D;
         this.mY = motionY * 0.4D;
         this.mZ = motionZ * 0.4D;

@@ -20,7 +20,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -76,7 +75,7 @@ public class WeaponPropertyReaper extends WeaponPropertyWithCallback {
         
         summon.getEntityData().setUniqueId("OwnerUUID", killer.getUniqueID());
         summon.getEntityData().setBoolean("MiscTamed", true);
-        summon.getEntityData().setInteger("ReaperSummonLifetime", 1200);
+        summon.getEntityData().setInteger("RLSSummonLifetime", 1200);
         summon.setCustomNameTag(killer.getName() + "'s Skeleton");
         summon.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, Integer.MAX_VALUE, 0));
         
@@ -86,20 +85,6 @@ public class WeaponPropertyReaper extends WeaponPropertyWithCallback {
         summon.targetTasks.addTask(2, new MiscEntityAIOwnerHurtTarget(summon));
         
         world.spawnEntity(summon);
-    }
-    
-    @SubscribeEvent
-    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-        if (!(event.getEntity() instanceof EntitySkeleton)) return;
-        EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
-        if (skeleton.ticksExisted % 20 != 0) return;
-        
-        int lifetime = skeleton.getEntityData().getInteger("ReaperSummonLifetime");
-        if (lifetime <= 0) return;
-        
-        lifetime -= 20;
-        if (lifetime <= 0) skeleton.setDead();
-        else skeleton.getEntityData().setInteger("ReaperSummonLifetime", lifetime);
     }
     
     private static boolean isReaperProperty(Item item) {

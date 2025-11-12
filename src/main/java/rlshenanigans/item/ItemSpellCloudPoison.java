@@ -26,7 +26,7 @@ public class ItemSpellCloudPoison extends ItemSpellBase {
         double particleSpeed = 3.0D;
         double particleSpread = 0.8D;
         
-        Vec3d look = caster.getLookVec().normalize();
+        Vec3d look = caster.getLookVec();
         
         double originX = caster.posX;
         double originY = caster.posY + caster.getEyeHeight();
@@ -44,7 +44,8 @@ public class ItemSpellCloudPoison extends ItemSpellBase {
             spawnCastParticle(textureIndex, 1, particleAge, posX, posY, posZ, motionX, motionY, motionZ);
         }
         
-        EntitySpellCloudPoison cloud = new EntitySpellCloudPoison(caster.world, caster, originX, originY, originZ, look.x, look.y, look.z);
+        EntitySpellCloudPoison cloud = new EntitySpellCloudPoison(caster.world, caster, look.x, look.y, look.z);
+        cloud.setPosition(originX, originY - cloud.height / 2, originZ);
         caster.world.spawnEntity(cloud);
     }
     
