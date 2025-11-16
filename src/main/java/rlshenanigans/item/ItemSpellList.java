@@ -13,6 +13,7 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_CLOUD_POISON = new ItemSpellCloudPoison("spell_cloud_poison", 35, 40, 8);
     public static final ItemSpellBase SPELL_ARMY_OF_DARKNESS = new ItemSpellArmyOfDarkness("spell_army_of_darkness", 100, 120, 3);
     public static final ItemSpellBase SPELL_ARMAGEDDON = new ItemSpellArmageddon("spell_armageddon", 150, 100, 3);
+    public static final ItemSpellBase SPELL_RAY_OF_FROST = new ItemSpellRayOfFrost("spell_ray_of_frost", 35, 35, 8);
     
     public static Item[] getAllSpells() {
         return new Item[] {
@@ -25,7 +26,8 @@ public class ItemSpellList {
                 SPELL_FIREBALL,
                 SPELL_CLOUD_POISON,
                 SPELL_ARMY_OF_DARKNESS,
-                SPELL_ARMAGEDDON
+                SPELL_ARMAGEDDON,
+                SPELL_RAY_OF_FROST
         };
     }
 }

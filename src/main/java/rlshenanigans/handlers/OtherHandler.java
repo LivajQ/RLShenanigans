@@ -72,6 +72,52 @@ public class OtherHandler {
         }
     }
     
+    /*    Goofy ahh 5 star infernal blighted parasite generator
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
+        if (event.getWorld().isRemote) return;
+        
+        if (!(event.getEntity() instanceof EntityParasiteBase)) return;
+        
+        EntityParasiteBase parasite = (EntityParasiteBase) event.getEntity();
+        
+        EntityLiving living = (EntityLiving) event.getEntity();
+        
+        if (!ChampionHelper.isValidChampion(living)) return;
+        
+        IChampionship chp = CapabilityChampionship.getChampionship(living);
+        if (chp == null) return;
+        
+        Rank rank = RankManager.getRankForTier(5);
+        chp.setRank(rank);
+        
+        Set<String> affixes = new LinkedHashSet<>(Arrays.asList(
+                "vortex", "adaptable", "shielding", "jailer", "scrapper"
+        ));
+        chp.setAffixes(affixes);
+        
+        chp.setName("Ayerael§r Bloodborne§r");
+        
+        chp.getRank().applyGrowth(living);
+        for (String id : chp.getAffixes()) {
+            IAffix affix = AffixRegistry.getAffix(id);
+            if (affix != null) {
+                affix.onInitialSpawn(living, chp);
+            }
+        }
+        
+        NBTTagCompound infernalTag = parasite.getEntityData();
+        
+        String infernalEffects = "Rust 1UP Bulwark LifeSteal Ender Vengeance Sprint Sticky Webber Storm Ghastly Gravity Blastoff Exhaust Choke Sapper Weakness Wither ";
+        
+        infernalTag.setString("InfernalMobsMod", infernalEffects);
+        infernalTag.setBoolean("InfernalMobsInitialized", true);
+        
+        NBTTagCompound data = parasite.getEntityData();
+        data.setBoolean("ScalingHealth.IsBlight", true);
+    }
+     */
+    
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void splashScreenDraw(GuiScreenEvent.DrawScreenEvent.Post event) {

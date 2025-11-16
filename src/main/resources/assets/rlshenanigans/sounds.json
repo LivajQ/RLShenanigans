@@ -113,5 +113,12 @@
     "sounds": [
       "rlshenanigans:bleedbuildup_1"
     ]
+  },
+  
+  "spell_ray_of_frost": {
+    "category": "neutral",
+    "sounds": [
+      "rlshenanigans:spell_ray_of_frost"
+    ]
   }
 }

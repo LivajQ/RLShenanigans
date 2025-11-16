@@ -98,9 +98,10 @@ public class RideMobHandler extends RideMobUtils {
         {
             if (!(entity instanceof EntityLiving)) continue;
             EntityLiving mob = (EntityLiving) entity;
-            if (!isValidMob(mob)) continue;
             
             if (mob.getPassengers().isEmpty()) continue;
+            
+            if (!isValidMob(mob)) continue;
             
             if (!(mob.getPassengers().get(0) instanceof EntityPlayer)) continue;
             

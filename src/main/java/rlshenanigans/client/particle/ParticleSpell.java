@@ -16,6 +16,7 @@ public class ParticleSpell extends Particle {
         
         Color3f color = spell.getParticleColor();
         this.setRBGColorF(color.x, color.y, color.z);
+        this.setAlphaF(spell.getParticleAlpha());
         this.particleMaxAge = particleAge;
         this.motionX = motionX;
         this.motionY = motionY;

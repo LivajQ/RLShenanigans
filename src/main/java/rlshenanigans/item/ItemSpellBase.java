@@ -110,9 +110,11 @@ public abstract class ItemSpellBase extends Item {
     }
     
     protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount, int particleAge, double particleSpeed) {
-        this.spawnCastParticle(textureIndex, particleCount, particleAge, target.posX, target.posY + target.height * 0.5D, target.posZ,
-                target.width * 0.5D, target.height * 0.5D, target.width * 0.5D
-                );
+        double xSpeed = (target.world.rand.nextDouble() * 2.0 - 1.0) * particleSpeed;
+        double ySpeed = (target.world.rand.nextDouble() * 2.0 - 1.0) * particleSpeed;
+        double zSpeed = (target.world.rand.nextDouble() * 2.0 - 1.0) * particleSpeed;
+        
+        this.spawnCastParticle(textureIndex, particleCount, particleAge, target.posX, target.posY + target.height * 0.5D, target.posZ, xSpeed, ySpeed, zSpeed);
     }
     
     protected void spawnCastParticle(int textureIndex, int particleCount, int particleAge,
@@ -135,6 +137,11 @@ public abstract class ItemSpellBase extends Item {
     @SideOnly(Side.CLIENT)
     public Color3f getParticleColor() {
         return new Color3f(1.0F, 1.0F, 1.0F);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public float getParticleAlpha() {
+        return 1.0F;
     }
     
     @SideOnly(Side.CLIENT)

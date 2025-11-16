@@ -11,7 +11,8 @@
     "EntityAccessor",
     "CombatTrackerMixin",
 	"AbstractSkeletonMixin",
-	"EntityPlayerMixin"
+	"EntityPlayerMixin",
+	"EntityMixin"
   ],
   "client": [
     "GuiMainMenuMixin"

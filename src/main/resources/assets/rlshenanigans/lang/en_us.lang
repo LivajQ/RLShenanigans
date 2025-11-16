@@ -87,6 +87,8 @@ item.spell_fireball.name=Spell Scroll of Fireball
 item.spell_army_of_darkness.name=Spell Scroll of Army of Darkness
 item.spell_armageddon.name=Spell Scroll of Armageddon
 item.spell_cloud_poison.name=Spell Scroll of Poison Cloud
+item.spell_ray_of_frost.name=Spell Scroll of Ray of Frost
+
 item.spell_heal_light.tooltip.desc=Treats minor wounds, restoring §a25%% §7of user's health
 item.spell_heal_medium.tooltip.desc=Mends serious injuries, restoring §a50%% §7of user's health
 item.spell_heal_heavy.tooltip.desc=Provides superior healing, restoring §a75%% §7of user's health
@@ -97,6 +99,7 @@ item.spell_fireball.tooltip.desc=Casts an explosive ball of fire which explodes 
 item.spell_army_of_darkness.tooltip.desc=Summons a group of zombies and skeletons to aid you in battle
 item.spell_armageddon.tooltip.desc=Conjures a giant meteor obliterating everything in the area
 item.spell_cloud_poison.tooltip.desc=Releases a toxic cloud, applying weakness and poison to every affected entity
+item.spell_ray_of_frost.tooltip.desc=Damages and freezes every entity in its path
 
 item.spartanweaponry:weapon_zweihander.name=§c§lZweihander
 item.spartanweaponry:weapon_zweihander.tooltip.0=§8Combines heavy weight and reach with ergonomic design, allowing it to deliver slow but deadly attacks and stagger enemies both one- and two-handed.
