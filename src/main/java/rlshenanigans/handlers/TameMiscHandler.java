@@ -133,7 +133,7 @@ public class TameMiscHandler {
             List<EntityLiving> hostiles = mob.world.getEntitiesWithinAABB(EntityLiving.class, mob.getEntityBoundingBox().grow(24));
             for (EntityLiving hostileMob : hostiles) {
                 if (hostileMob.getAttackTarget() == owner) {
-                    if (mob.getAttackTarget() != hostileMob) mob.setAttackTarget(hostileMob);
+                    if (mob.getAttackTarget() != hostileMob && mob.canEntityBeSeen(hostileMob)) mob.setAttackTarget(hostileMob);
                     break;
                 }
             }

@@ -27,7 +27,7 @@ public class TamedParasiteInfo {
     public final float sizeMultiplier;
     public final long lastDropTime;
     
-    public TamedParasiteInfo(EntityParasiteBase mob, EntityPlayer owner) {
+    public TamedParasiteInfo(EntityParasiteBase mob, EntityPlayer owner, boolean includeAttributes) {
         NBTTagCompound tag = new NBTTagCompound();
         mob.writeToNBT(tag);
         this.mobUUID = mob.getUniqueID();
@@ -36,13 +36,25 @@ public class TamedParasiteInfo {
         this.mobClass = mob.getClass().asSubclass(EntityParasiteBase.class);
         this.skin = mob.getSkin();
         this.strainId = getBaseEntityName(mob);
-        this.maxHealth = mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
-        this.attackDamage = mob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
-        this.armor = mob.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue();
+        
+        this.maxHealth = includeAttributes ? mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue()
+                : mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
+        this.attackDamage = includeAttributes ? mob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()
+                : mob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+        this.armor = includeAttributes ? mob.getEntityAttribute(SharedMonsterAttributes.ARMOR).getAttributeValue()
+                : mob.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue();
+        
         this.baseWidth = mob.getEntityData().getFloat("BaseWidth");
         this.baseHeight = mob.getEntityData().getFloat("BaseHeight");
         this.sizeMultiplier = mob.getEntityData().getFloat("SizeMultiplier");
         this.lastDropTime = mob.getEntityData().getLong("LastDropTime");
+        
+        if (includeAttributes) {
+            mob.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(this.attackDamage);
+            mob.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(this.armor);
+            mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.maxHealth);
+            mob.setHealth((float)this.maxHealth);
+        }
     }
     
     public NBTTagCompound toNBT() {

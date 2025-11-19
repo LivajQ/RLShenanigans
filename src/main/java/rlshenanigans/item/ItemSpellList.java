@@ -3,7 +3,7 @@ package rlshenanigans.item;
 import net.minecraft.item.Item;
 
 public class ItemSpellList {
-    public static final ItemSpellBase SPELL_EMPTY = new ItemSpellEmpty("spell_empty", 0, 40, 8);
+    public static final ItemSpellBase SPELL_EMPTY = new ItemSpellEmpty("spell_empty", 0, 40, 16);
     public static final ItemSpellBase SPELL_HEAL_LIGHT = new ItemSpellHealLight("spell_heal_light", 10, 40, 8);
     public static final ItemSpellBase SPELL_HEAL_MEDIUM = new ItemSpellHealMedium("spell_heal_medium", 25, 60, 8);
     public static final ItemSpellBase SPELL_HEAL_HEAVY = new ItemSpellHealHeavy("spell_heal_heavy", 35, 80, 8);
@@ -14,6 +14,8 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_ARMY_OF_DARKNESS = new ItemSpellArmyOfDarkness("spell_army_of_darkness", 100, 120, 3);
     public static final ItemSpellBase SPELL_ARMAGEDDON = new ItemSpellArmageddon("spell_armageddon", 150, 100, 3);
     public static final ItemSpellBase SPELL_RAY_OF_FROST = new ItemSpellRayOfFrost("spell_ray_of_frost", 35, 35, 8);
+    public static final ItemSpellBase SPELL_CHARM = new ItemSpellCharm("spell_charm", 50, 40, 8);
+    public static final ItemSpellBase SPELL_FRENZY = new ItemSpellFrenzy("spell_frenzy", 65, 50, 8);
     
     public static Item[] getAllSpells() {
         return new Item[] {
@@ -27,7 +29,9 @@ public class ItemSpellList {
                 SPELL_CLOUD_POISON,
                 SPELL_ARMY_OF_DARKNESS,
                 SPELL_ARMAGEDDON,
-                SPELL_RAY_OF_FROST
+                SPELL_RAY_OF_FROST,
+                SPELL_CHARM,
+                SPELL_FRENZY
         };
     }
 }

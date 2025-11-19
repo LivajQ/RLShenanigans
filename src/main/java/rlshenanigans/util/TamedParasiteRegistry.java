@@ -13,11 +13,15 @@ import java.util.stream.Collectors;
 public class TamedParasiteRegistry {
     
     public static void track(EntityParasiteBase mob, EntityPlayer owner) {
+        track(mob, owner, false);
+    }
+    
+    public static void track(EntityParasiteBase mob, EntityPlayer owner, boolean includeAttributes) {
         TamedParasiteData data = getOverworldData();
         
         data.getAll().removeIf(info -> info.mobUUID.equals(mob.getUniqueID()));
         
-        data.getAll().add(new TamedParasiteInfo(mob, owner));
+        data.getAll().add(new TamedParasiteInfo(mob, owner, includeAttributes));
         data.markDirty();
     }
     

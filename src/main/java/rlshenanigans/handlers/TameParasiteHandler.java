@@ -91,7 +91,7 @@ public class TameParasiteHandler
             {
                 setTags(parasite, player, world);
                 
-                TamedParasiteRegistry.track(parasite, player);
+                TamedParasiteRegistry.track(parasite, player, true);
                 
                 RLSPacketHandler.INSTANCE.sendTo(new OpenParasiteGuiPacket(parasite.getEntityId()), (EntityPlayerMP) player);
                 
