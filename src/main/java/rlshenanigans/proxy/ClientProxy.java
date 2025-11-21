@@ -1,7 +1,9 @@
 package rlshenanigans.proxy;
 
+import com.dhanantry.scapeandrunparasites.client.model.entity.adapted.ModelShycoAdapted;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
+import com.dhanantry.scapeandrunparasites.entity.monster.adapted.EntityShycoAdapted;
 import com.lycanitesmobs.client.model.creature.ModelAmalgalich;
 import com.lycanitesmobs.client.model.creature.ModelAsmodeus;
 import com.lycanitesmobs.client.model.creature.ModelRahovart;
@@ -56,9 +58,13 @@ public class ClientProxy extends CommonProxy {
                 Class<? extends ModelBase> modelClass = (Class<? extends ModelBase>) Class.forName(modelClassName);
                 ModelBase modelInstance = modelClass.getDeclaredConstructor().newInstance();
                 
-                RenderingRegistry.registerEntityRenderingHandler(entityClass, manager ->
-                        new RenderParasiteEntity(manager, modelInstance, 0.5F, mob.texture)
-                );
+                RenderingRegistry.registerEntityRenderingHandler(entityClass, manager -> {
+                    RenderParasiteEntity renderer = new RenderParasiteEntity(manager, modelInstance, 0.5F, mob.texture);
+                    
+                    renderer.addLayer(new RenderParasiteLayer(renderer));
+                    
+                    return renderer;
+                });
                 
                 
             } catch (Exception e) {
@@ -113,6 +119,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellFireballCluster.class, manager ->
                 new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))
         );
+
     }
     
     @Override

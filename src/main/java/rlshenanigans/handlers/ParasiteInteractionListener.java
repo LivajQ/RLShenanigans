@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.packet.OpenParasiteGuiPacket;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class ParasiteInteractionListener {
     
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
         EntityPlayer player = event.getEntityPlayer();
         Entity target = event.getTarget();

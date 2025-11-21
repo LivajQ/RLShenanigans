@@ -44,6 +44,17 @@ public class TamedParasiteRegistry {
         data.markDirty();
     }
     
+    public static void updateName(UUID mobId, String newName) {
+        TamedParasiteData data = getOverworldData();
+        for (TamedParasiteInfo info : data.getAll()) {
+            if (info.mobUUID.equals(mobId)) {
+                info.setName(newName);
+                data.markDirty();
+                break;
+            }
+        }
+    }
+    
     private static TamedParasiteData getOverworldData() {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         World overworld = server != null ? server.getWorld(0) : null;

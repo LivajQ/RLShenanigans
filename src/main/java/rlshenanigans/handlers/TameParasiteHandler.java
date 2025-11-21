@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -43,11 +44,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
-public class TameParasiteHandler
-{
+public class TameParasiteHandler {
+    
     @SubscribeEvent
-    public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event)
-    {
+    public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
+        
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = event.getItemStack();
         Entity target = event.getTarget();
@@ -73,22 +74,27 @@ public class TameParasiteHandler
         }
         */
         
-        if (world.isRemote || parasite.getEntityData().getBoolean("Tamed")) return;
+        if (world.isRemote) return;
+        
+        if (stack.getItem() == Items.NAME_TAG && isOwnedByUser(parasite, player)) {
+            if (stack.hasDisplayName()) {
+                String newName = stack.getDisplayName();
+                TamedParasiteRegistry.updateName(parasite.getUniqueID(), newName);
+            }
+        }
+        
+        if (parasite.getEntityData().getBoolean("Tamed")) return;
         if (event.getHand() != EnumHand.MAIN_HAND) return;
         
         ResourceLocation rl = new ResourceLocation(ForgeConfigHandler.parasite.parasiteTamingItem);
         Item item = ForgeRegistries.ITEMS.getValue(rl);
         int meta = ForgeConfigHandler.parasite.parasiteTamingItemMetadata;
         
-        if (stack.getItem() == item && stack.getMetadata() == meta)
-        {
-            if (!player.capabilities.isCreativeMode)
-            {
-                stack.shrink(1);
-            }
+        if (stack.getItem() == item && stack.getMetadata() == meta) {
             
-            if (world.rand.nextInt(3) == 0)
-            {
+            if (!player.capabilities.isCreativeMode) stack.shrink(1);
+            
+            if (world.rand.nextInt(3) == 0) {
                 setTags(parasite, player, world);
                 
                 TamedParasiteRegistry.track(parasite, player, true);
@@ -114,12 +120,9 @@ public class TameParasiteHandler
                             sizeMultiplier,baseWidth, baseHeight, true);
                 }
             }
-            else
-            {
-                RLSPacketHandler.INSTANCE.sendToAll(
-                        new ParticlePulsePacket(parasite, EnumParticleTypes.SMOKE_NORMAL, 20, 15)
-                );
-            }
+            
+            else RLSPacketHandler.INSTANCE.sendToAll(new ParticlePulsePacket(parasite, EnumParticleTypes.SMOKE_NORMAL, 20, 15));
+            
             event.setCanceled(true);
         }
     }
@@ -166,9 +169,7 @@ public class TameParasiteHandler
         boolean stillTracked = TamedParasiteRegistry.getOwnedBy(ownerId).stream()
                 .anyMatch(info -> info.mobUUID.equals(parasite.getUniqueID()));
         
-        if (!stillTracked) {
-            parasite.setDead();
-        }
+        if (!stillTracked) parasite.setDead();
         
         EntityPlayer owner = parasite.world.getPlayerEntityByUUID(ownerId);
         if (owner == null) return;
@@ -188,10 +189,8 @@ public class TameParasiteHandler
                 double dz = parasite.posZ - owner.posZ;
                 double distanceSq = dx * dx + dz * dz;
                 
-                if (distanceSq > 32 * 32)
-                {
-                    for (EntityAITasks.EntityAITaskEntry entry : parasite.tasks.taskEntries)
-                    {
+                if (distanceSq > 32 * 32) {
+                    for (EntityAITasks.EntityAITaskEntry entry : parasite.tasks.taskEntries) {
                         entry.action.resetTask();
                     }
                     parasite.setAttackTarget(null);
@@ -366,5 +365,13 @@ public class TameParasiteHandler
         parasite.getEntityData().setFloat("BaseWidth", ((EntityAccessor) parasite).getWidth());
         parasite.getEntityData().setFloat("BaseHeight", ((EntityAccessor) parasite).getHeight());
         parasite.getEntityData().setFloat("SizeMultiplier", 1.0F);
+    }
+    
+    private static boolean isOwnedByUser(EntityParasiteBase parasite, EntityLivingBase user) {
+        if (parasite.getEntityData().hasUniqueId("OwnerUUID")) {
+            UUID ownerId = parasite.getEntityData().getUniqueId("OwnerUUID");
+            return ownerId != null && ownerId.equals(user.getUniqueID());
+        }
+        else return false;
     }
 }

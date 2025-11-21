@@ -72,6 +72,7 @@ dependencies {
     implementation fg.deobf("curse.maven:recurrent-complex-${recurrentcomplex_version}")
     implementation fg.deobf("curse.maven:potioncore-${potioncore_version}")
     implementation fg.deobf("curse.maven:trinkets-and-baubles-${trinketsandbaubles_version}")
+    implementation fg.deobf("curse.maven:champions-${champions_version}")
 
     implementation fg.deobf("libs:SRParasites:${srparasites_version}")
 }

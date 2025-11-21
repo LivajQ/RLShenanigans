@@ -300,6 +300,12 @@ public class ForgeConfigHandler {
 		@Config.Name("Alternative Splash Text Chance")
 		@Config.RangeDouble(min = 0.0D, max = 100.0D)
 		public double splashTextChance = 25.0D;
+        
+        @Config.Comment({"Which parasite parts should be affected by the 'Rainbow Thighs' option",
+        "0: off, 1: clothing, 2: body, 3: everything"})
+        @Config.Name("Rainbow Thighs")
+        @Config.RangeInt(min = 0, max = 3)
+        public int rainbowThighs = 1;
 	}
 
 	

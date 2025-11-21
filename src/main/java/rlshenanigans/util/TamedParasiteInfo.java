@@ -15,7 +15,7 @@ import java.util.UUID;
 public class TamedParasiteInfo {
     public final UUID mobUUID;
     public final UUID ownerId;
-    public final String name;
+    public String name;
     public final Class<? extends EntityParasiteBase> mobClass;
     public final int skin;
     public final double maxHealth;
@@ -127,6 +127,10 @@ public class TamedParasiteInfo {
         this.baseHeight = baseHeight;
         this.sizeMultiplier = sizeMultiplier;
         this.lastDropTime = lastDropTime;
+    }
+    
+    public void setName(String newName) {
+        this.name = newName;
     }
     
     private static String getBaseEntityName(EntityLivingBase mob) {
