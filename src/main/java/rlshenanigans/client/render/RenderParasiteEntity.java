@@ -43,30 +43,31 @@ public class RenderParasiteEntity extends RenderLiving<EntityParasiteBase> {
             applyRainbowColor(parasite, ageInTicks, 0.0F);
         
         super.renderModel(parasite, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-        
+    
         GlStateManager.color(1,1,1,1);
     }
-    
+        
     public String getSuffixForSkin(EntityParasiteBase entity) {
         String suffix;
+        
         switch (entity.getSkin()) {
-            case 1: suffix = "sp1"; break; // armored
-            case 2: suffix = "1"; break; //
-            case 3: suffix = "2"; break; //
-            case 4: suffix = ""; break; // some skin rng for humans and villagers
-            case 5: suffix = "v"; break; // viral
-            case 6: suffix = "b"; break; // bleed
-            case 7: suffix = "h"; break; // breacher
-            
-            default: suffix = "";
-        }
+        case 1: suffix = "sp1"; break; // armored
+        case 2: suffix = "1"; break; //
+        case 3: suffix = "2"; break; //
+        case 4: suffix = ""; break; // some skin rng for humans and villagers
+        case 5: suffix = "v"; break; // viral
+        case 6: suffix = "b"; break; // bleed
+        case 7: suffix = "h"; break; // breacher
         
-        if (texture.equals("shycoa") && entity.getSkin() == 1) suffix = "tyrant";
-        else if (texture.equals("mes") && entity.getSkin() == 1) suffix = "1";
-        else if (texture.equals("human") && entity.getSkin() == 1) suffix = "1";
-        else if (texture.equals("squid") && entity.getSkin() == 7) suffix = "";
-        
-        return suffix;
+        default: suffix = "";
+    }
+    
+    if (texture.equals("shycoa") && entity.getSkin() == 1) suffix = "tyrant";
+    else if (texture.equals("mes") && entity.getSkin() == 1) suffix = "1";
+    else if (texture.equals("human") && entity.getSkin() == 1) suffix = "1";
+    else if (texture.equals("squid") && entity.getSkin() == 7) suffix = "";
+    
+    return suffix;
     }
     
     public String getTextureName() {

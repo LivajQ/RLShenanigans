@@ -1,9 +1,7 @@
 package rlshenanigans.proxy;
 
-import com.dhanantry.scapeandrunparasites.client.model.entity.adapted.ModelShycoAdapted;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
-import com.dhanantry.scapeandrunparasites.entity.monster.adapted.EntityShycoAdapted;
 import com.lycanitesmobs.client.model.creature.ModelAmalgalich;
 import com.lycanitesmobs.client.model.creature.ModelAsmodeus;
 import com.lycanitesmobs.client.model.creature.ModelRahovart;

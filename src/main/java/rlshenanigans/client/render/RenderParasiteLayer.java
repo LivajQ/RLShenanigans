@@ -28,8 +28,8 @@ public class RenderParasiteLayer implements LayerRenderer<EntityParasiteBase> {
     }
     
     @Override
-    public void doRenderLayer(EntityParasiteBase entity, float limbSwing, float limbSwingAmount,
-                              float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void doRenderLayer(EntityParasiteBase entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        if (entity.isInvisible()) return;
         if (!entity.hasCustomName()) return;
         
         ResourceLocation layerTex = getLayerTexture(entity);
@@ -53,7 +53,6 @@ public class RenderParasiteLayer implements LayerRenderer<EntityParasiteBase> {
         if (ForgeConfigHandler.client.rainbowThighs == 1 || ForgeConfigHandler.client.rainbowThighs == 3)
             RenderParasiteEntity.applyRainbowColor(entity, partialTicks, 1.5F);
         
-        
         GlStateManager.enablePolygonOffset();
         GlStateManager.doPolygonOffset(-1.0F, -10.0F);
         
@@ -67,5 +66,3 @@ public class RenderParasiteLayer implements LayerRenderer<EntityParasiteBase> {
     @Override
     public boolean shouldCombineTextures() { return false; }
 }
-
-// TODO Pri arachnida, Ada longarms viral, Ada arachnida nails, Warden, Marauder base, Grunt
