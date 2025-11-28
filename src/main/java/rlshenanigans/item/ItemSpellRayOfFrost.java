@@ -57,7 +57,7 @@ public class ItemSpellRayOfFrost extends ItemSpellBase {
                     e -> e != caster && e.isEntityAlive() && !hitEntities.contains(e));
             
             for (EntityLivingBase target : entities) {
-                target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(caster, caster), 10.0F);
+                target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(caster, caster).setMagicDamage().setDamageBypassesArmor(), 10.0F);
                 IEntityEffectCapability cap = target.getCapability(EntityEffectProvider.ENTITY_EFFECT, null);
                 if (cap != null) cap.setFrozen();
                 

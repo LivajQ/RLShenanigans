@@ -14,8 +14,10 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_ARMY_OF_DARKNESS = new ItemSpellArmyOfDarkness("spell_army_of_darkness", 100, 120, 3);
     public static final ItemSpellBase SPELL_ARMAGEDDON = new ItemSpellArmageddon("spell_armageddon", 150, 100, 3);
     public static final ItemSpellBase SPELL_RAY_OF_FROST = new ItemSpellRayOfFrost("spell_ray_of_frost", 35, 35, 8);
-    public static final ItemSpellBase SPELL_CHARM = new ItemSpellCharm("spell_charm", 50, 40, 8);
+    public static final ItemSpellBase SPELL_ARCANE_SHIELD = new ItemSpellArcaneShield("spell_arcane_shield", 10, 50, 8);
     public static final ItemSpellBase SPELL_FRENZY = new ItemSpellFrenzy("spell_frenzy", 65, 50, 8);
+    public static final ItemSpellBase SPELL_BLINK = new ItemSpellBlink("spell_blink", 20, 20, 16);
+    public static final ItemSpellBase SPELL_EAGLE_EYE = new ItemSpellEagleEye("spell_eagle_eye", 35, 80, 16);
     
     public static Item[] getAllSpells() {
         return new Item[] {
@@ -30,8 +32,10 @@ public class ItemSpellList {
                 SPELL_ARMY_OF_DARKNESS,
                 SPELL_ARMAGEDDON,
                 SPELL_RAY_OF_FROST,
-                SPELL_CHARM,
-                SPELL_FRENZY
+                SPELL_ARCANE_SHIELD,
+                SPELL_FRENZY,
+                SPELL_BLINK,
+                SPELL_EAGLE_EYE
         };
     }
 }

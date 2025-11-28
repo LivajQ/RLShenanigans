@@ -3,6 +3,7 @@ package rlshenanigans.potion;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -37,6 +38,7 @@ public class PotionPowerWithin extends PotionBase{
     @Override
     public void performEffect(EntityLivingBase entity, int amplifier) {
         if (entity.ticksExisted % 5 == 0) spawnParticle(entity);
+        if (entity instanceof EntityPlayer && ((EntityPlayer)entity).capabilities.isCreativeMode) return;
         if (entity.ticksExisted % 20 == 0) entity.attackEntityFrom(DamageSource.OUT_OF_WORLD, entity.getMaxHealth() / 30.0F);
     }
     

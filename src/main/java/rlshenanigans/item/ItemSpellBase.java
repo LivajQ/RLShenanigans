@@ -30,6 +30,7 @@ public abstract class ItemSpellBase extends Item {
     protected final int manaCost;
     protected final int castTime;
     protected final int stackSize;
+    protected boolean castFailed;
     
     public ItemSpellBase(String registryName, int manaCost, int castTime, int stackSize) {
         this.manaCost = manaCost;
@@ -84,9 +85,14 @@ public abstract class ItemSpellBase extends Item {
                 return;
             }
             
+            castSpell(entity);
+            if (this.castFailed) {
+                player.sendStatusMessage(new TextComponentString("Cast Failed"), true);
+                return;
+            }
+            
             magicStat.spendMana(manaCost);
             player.getCooldownTracker().setCooldown(this, 10);
-            castSpell(entity);
             if (!this.infiniteUses() && !player.capabilities.isCreativeMode) stack.shrink(1);
         }
     }

@@ -21,6 +21,7 @@ import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.*;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
 import rlshenanigans.entity.EntitySpellCloudPoison;
+import rlshenanigans.entity.EntitySpellEagleEye;
 import rlshenanigans.entity.EntitySpellInvulnerability;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
@@ -46,6 +47,9 @@ public class ClientProxy extends CommonProxy {
     @SuppressWarnings("unchecked")
     @Override
     public void registerRenderers() {
+        
+        //***SRPARASITES***
+        
         for (ParasiteRegistry mob : PARASITES) {
             try {
                 String entityClassName = "com.dhanantry.scapeandrunparasites.entity.monster." + mob.category + ".Entity" + mob.name;
@@ -70,7 +74,11 @@ public class ClientProxy extends CommonProxy {
             }
         }
         
+        //***TILE ENTITIES***
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityPaintingTemplate.class, RenderRLSEntityItem::new);
+        
+        //***MOBS***
         
         RenderingRegistry.registerEntityRenderingHandler(EntityDrJr.class, manager ->
                 new RenderRLSModel<>(manager, new ModelDrJr(), 0.5F,
@@ -102,6 +110,8 @@ public class ClientProxy extends CommonProxy {
                 )
         );
         
+        //***ENTITIES***
+        
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellInvulnerability.class, manager ->
                 new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "textures/misc/spell_invulnerability.png"))
         );
@@ -109,6 +119,12 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellCloudPoison.class, manager ->
                 new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
         );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellEagleEye.class, manager ->
+                new RenderSpellEntityBill<>(manager, new ModelCube(), 0.5F, new ResourceLocation("rlshenanigans",  "nothinglol.png"))
+        );
+        
+        //***PROJECTILES***
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellFireball.class, manager ->
                 new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))

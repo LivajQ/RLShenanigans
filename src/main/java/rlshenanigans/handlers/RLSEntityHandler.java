@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.EntitySpellCloudPoison;
+import rlshenanigans.entity.EntitySpellEagleEye;
 import rlshenanigans.entity.EntitySpellInvulnerability;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
@@ -46,6 +47,7 @@ public class RLSEntityHandler
     public static final int spellFireballID = 206;
     public static final int spellFireballClusterID = 207;
     public static final int spellCloudPoisonID = 208;
+    public static final int spellLightID = 209;
     public static final int paintingID = 300;
     
     //texture path, frame count, internal name
@@ -63,6 +65,9 @@ public class RLSEntityHandler
     public static final Map<String, ItemPaintingSpawner> PAINTING_ITEMS = new HashMap<>();
     
     public static void init() {
+        
+        //***MOBS***
+        
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "drjr"), EntityDrJr.class,
                 "drjr", drJrEntityID, RLShenanigans.instance, 64, 3, true);
         EntityRegistry.registerEgg(new ResourceLocation(RLShenanigans.MODID, "drjr"), 0x00AA00, 0x005500);
@@ -82,8 +87,12 @@ public class RLSEntityHandler
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "npc_johnminecraft"), EntityNPCJohnMinecraft.class,
                 "npc_johnminecraft", npcJohnMinecraftID, RLShenanigans.instance, 64, 3, true);
         
+        //***TILE ENTITIES***
+        
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "painting_template"), EntityPaintingTemplate.class,
                 "painting_template", paintingID, RLShenanigans.instance, 64, 3, false);
+        
+        //***ENTITIES***
         
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_invulnerability"), EntitySpellInvulnerability.class,
                 "spell_invulnerability", spellInvulnerabilityID, RLShenanigans.instance, 64, 1, false);
@@ -91,11 +100,18 @@ public class RLSEntityHandler
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_cloud_poison"), EntitySpellCloudPoison.class,
                 "spell_cloud_poison", spellCloudPoisonID, RLShenanigans.instance, 64, 1, true);
         
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_light"), EntitySpellEagleEye.class,
+                "spell_light", spellLightID, RLShenanigans.instance, 64, 1, true);
+        
+        //***PROJECTILES***
+        
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_fireball"), EntitySpellFireball.class,
                 "spell_fireball", spellFireballID, RLShenanigans.instance, 64, 1, true);
         
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_fireball_cluster"), EntitySpellFireballCluster.class,
                 "spell_fireball_cluster", spellFireballClusterID, RLShenanigans.instance, 64, 1, true);
+        
+        //***WORLD SPAWNS***
         
         for (Biome biome : Biome.REGISTRY) {
             if (ForgeConfigHandler.misc.drJrEnabled) EntityRegistry.addSpawn(EntityDrJr.class, 5, 1, 1, EnumCreatureType.MONSTER, biome);

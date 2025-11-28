@@ -14,7 +14,6 @@ import java.util.UUID;
 
 public class EntitySpellCloudPoison extends EntitySpellBase {
     private int lifetime = 25;
-    private final EntityLivingBase caster;
     private final double mX;
     private final double mY;
     private final double mZ;
@@ -25,11 +24,10 @@ public class EntitySpellCloudPoison extends EntitySpellBase {
     }
     
     public EntitySpellCloudPoison(World world, EntityLivingBase caster, double motionX, double motionY, double motionZ) {
-        super(world, 0.0F, 0.0F, 0.0F, 0.0F);
+        super(world, caster, 0.0F, 0.0F, 0.0F, 0.0F);
         this.mX = motionX * 0.4D;
         this.mY = motionY * 0.4D;
         this.mZ = motionZ * 0.4D;
-        this.caster = caster;
         this.noClip = true;
         this.setSize(2.5F, 2.5F);
     }
@@ -44,8 +42,9 @@ public class EntitySpellCloudPoison extends EntitySpellBase {
             List<EntityLivingBase> targets = world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox());
             for (EntityLivingBase target : targets) {
                 if (target != caster && !affectedEntities.contains(target.getUniqueID())) {
-                    target.addPotionEffect(new PotionEffect(MobEffects.POISON, 60, 1));
-                    target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 60, 1));
+                    target.addPotionEffect(new PotionEffect(MobEffects.POISON, 600, 1));
+                    target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 600, 1));
+                    target.addPotionEffect(new PotionEffect(MobEffects.WITHER, 600, 1));
                     affectedEntities.add(target.getUniqueID());
                 }
             }

@@ -14,9 +14,9 @@ import rlshenanigans.entity.EntitySpellBase;
 @SideOnly(Side.CLIENT)
 public class RenderSpellEntity<T extends EntitySpellBase> extends RenderLivingBase<T> {
     
-    private static final ResourceLocation WHITE_TEXTURE =
+    protected static final ResourceLocation WHITE_TEXTURE =
             new ResourceLocation("minecraft:textures/blocks/concrete_white.png");
-    private final ResourceLocation texture;
+    protected final ResourceLocation texture;
     
     public RenderSpellEntity(RenderManager renderManager, ModelBase model, ResourceLocation texture) {
         super(renderManager, model, 0.0F);
