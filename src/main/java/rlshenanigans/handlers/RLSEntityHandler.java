@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import rlshenanigans.RLShenanigans;
+import rlshenanigans.entity.EntitySpellChainLightning;
 import rlshenanigans.entity.EntitySpellCloudPoison;
 import rlshenanigans.entity.EntitySpellEagleEye;
 import rlshenanigans.entity.EntitySpellInvulnerability;
@@ -48,6 +49,7 @@ public class RLSEntityHandler
     public static final int spellFireballClusterID = 207;
     public static final int spellCloudPoisonID = 208;
     public static final int spellLightID = 209;
+    public static final int spellChainLightningID = 210;
     public static final int paintingID = 300;
     
     //texture path, frame count, internal name
@@ -102,6 +104,9 @@ public class RLSEntityHandler
         
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_light"), EntitySpellEagleEye.class,
                 "spell_light", spellLightID, RLShenanigans.instance, 64, 1, true);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_light"), EntitySpellChainLightning.class,
+                "spell_chain_lightning", spellChainLightningID, RLShenanigans.instance, 64, 1, true);
         
         //***PROJECTILES***
         

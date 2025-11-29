@@ -20,6 +20,7 @@ import rlshenanigans.client.model.ModelCube;
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.*;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
+import rlshenanigans.entity.EntitySpellChainLightning;
 import rlshenanigans.entity.EntitySpellCloudPoison;
 import rlshenanigans.entity.EntitySpellEagleEye;
 import rlshenanigans.entity.EntitySpellInvulnerability;
@@ -117,6 +118,10 @@ public class ClientProxy extends CommonProxy {
         );
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellCloudPoison.class, manager ->
+                new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellChainLightning.class, manager ->
                 new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
         );
         

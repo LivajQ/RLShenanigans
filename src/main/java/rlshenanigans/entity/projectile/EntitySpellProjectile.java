@@ -146,7 +146,7 @@ public abstract class EntitySpellProjectile extends EntityThrowable implements I
                     if (entity instanceof EntityLivingBase) {
                         EntityLivingBase target = (EntityLivingBase) entity;
                         target.attackEntityFrom(
-                                new EntityDamageSource("explosion", projectile).setMagicDamage().setDamageBypassesArmor(),
+                                new EntityDamageSource("explosion", caster).setMagicDamage().setDamageBypassesArmor(),
                                 projectile.damage
                         );
                     }

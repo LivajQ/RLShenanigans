@@ -24,18 +24,21 @@ public class EntitySpellEagleEye extends EntitySpellBase {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (caster == null || lifetime-- <= 0) {
+        
+        if (this.ticksExisted < 10) return;
+        if (caster != null) this.setPosition(caster.posX, caster.posY + caster.height + 0.5F, caster.posZ);
+        if (this.world.isRemote) return;
+        
+        if (lifetime-- <= 0) {
             this.setDead();
             return;
         }
         
-        this.setPosition(caster.posX, caster.posY + caster.height + 0.5F, caster.posZ);
-        
-        if (!this.world.isRemote && this.ticksExisted % 20 == 0) {
+        if (this.ticksExisted % 20 == 0) {
             List<EntityLivingBase> entities = this.world.getEntitiesWithinAABB (EntityLivingBase.class, this.getEntityBoundingBox().grow(32));
             for (EntityLivingBase entity : entities) {
-                if (entity == caster && !caster.isPotionActive(MobEffects.NIGHT_VISION)) caster.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 400));
-                if (entity != caster && !entity.isPotionActive(MobEffects.GLOWING)) entity.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 400));
+                if (entity == caster) caster.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 400));
+                if (entity != caster) entity.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 400));
             }
         }
     }

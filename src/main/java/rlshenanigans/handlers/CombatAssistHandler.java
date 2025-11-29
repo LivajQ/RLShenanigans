@@ -142,10 +142,12 @@ public class CombatAssistHandler {
         if (data.hasUniqueId("OwnerUUID") && !data.getUniqueId("OwnerUUID").equals("")) return true;
         
         try {
-            if (entity instanceof TameableCreatureEntity) {
-                if (((TameableCreatureEntity) entity).isTamed()) return true;
+            Class<?> clazz = Class.forName("com.lycanitesmobs.core.entity.TameableCreatureEntity");
+            if (clazz.isInstance(entity)) {
+                Boolean tamed = (Boolean) clazz.getMethod("isTamed").invoke(entity);
+                if (Boolean.TRUE.equals(tamed)) return true;
             }
-        } catch (NoClassDefFoundError ignored) {}
+        } catch (Exception ignored) {}
         
         if (entity instanceof EntityTameable) {
             if (((EntityTameable) entity).isTamed()) return true;
@@ -164,11 +166,12 @@ public class CombatAssistHandler {
         if (entityData.hasUniqueId("OwnerUUID") && entityData.getUniqueId("OwnerUUID").equals(player.getUniqueID())) return true;
         
         try {
-            if (entity instanceof TameableCreatureEntity) {
-                UUID ownerId = ((TameableCreatureEntity) entity).getOwnerId();
+            Class<?> clazz = Class.forName("com.lycanitesmobs.core.entity.TameableCreatureEntity");
+            if (clazz.isInstance(entity)) {
+                UUID ownerId = (UUID) clazz.getMethod("getOwnerId").invoke(entity);
                 if (ownerId != null && ownerId.equals(player.getUniqueID())) return true;
             }
-        } catch (NoClassDefFoundError ignored) {}
+        } catch (Exception ignored) {}
         
         if (entity instanceof EntityTameable) {
             UUID ownerId = ((EntityTameable) entity).getOwnerId();

@@ -7,14 +7,14 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHandSide;
+
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import java.util.Collections;
 import java.util.UUID;
 
-public abstract class EntitySpellBase extends EntityLivingBase implements IEntityAdditionalSpawnData {
+public abstract class EntitySpellBase extends Entity implements IEntityAdditionalSpawnData {
     public float red;
     public float green;
     public float blue;
@@ -35,8 +35,10 @@ public abstract class EntitySpellBase extends EntityLivingBase implements IEntit
         this.caster = caster;
         this.casterUUID = this.caster != null ? this.caster.getUniqueID() : null;
         this.setSize(1.0F, 1.0F);
-        this.setHealth(2137);
     }
+    
+    @Override
+    protected void entityInit() {}
     
     @Override
     public void onUpdate() {
@@ -83,21 +85,10 @@ public abstract class EntitySpellBase extends EntityLivingBase implements IEntit
     }
     
     @Override
-    public ItemStack getItemStackFromSlot(EntityEquipmentSlot slotIn) {
-        return ItemStack.EMPTY;
-    }
-    
-    @Override
     public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack) {}
     
     @Override
-    public EnumHandSide getPrimaryHand() {
-        return EnumHandSide.RIGHT;
-    }
-    
-    @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
-        super.writeEntityToNBT(compound);
         compound.setFloat("Red", red);
         compound.setFloat("Green", green);
         compound.setFloat("Blue", blue);
@@ -107,7 +98,6 @@ public abstract class EntitySpellBase extends EntityLivingBase implements IEntit
     
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
-        super.readEntityFromNBT(compound);
         red = compound.getFloat("Red");
         green = compound.getFloat("Green");
         blue = compound.getFloat("Blue");

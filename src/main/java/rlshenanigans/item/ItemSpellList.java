@@ -18,6 +18,7 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_FRENZY = new ItemSpellFrenzy("spell_frenzy", 65, 50, 8);
     public static final ItemSpellBase SPELL_BLINK = new ItemSpellBlink("spell_blink", 20, 20, 16);
     public static final ItemSpellBase SPELL_EAGLE_EYE = new ItemSpellEagleEye("spell_eagle_eye", 35, 80, 16);
+    public static final ItemSpellBase SPELL_CHAIN_LIGHTNING = new ItemSpellChainLightning("spell_chain_lightning", 75, 60, 5);
     
     public static Item[] getAllSpells() {
         return new Item[] {
@@ -35,7 +36,8 @@ public class ItemSpellList {
                 SPELL_ARCANE_SHIELD,
                 SPELL_FRENZY,
                 SPELL_BLINK,
-                SPELL_EAGLE_EYE
+                SPELL_EAGLE_EYE,
+                SPELL_CHAIN_LIGHTNING
         };
     }
 }
