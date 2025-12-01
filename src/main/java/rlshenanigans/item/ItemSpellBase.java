@@ -103,19 +103,19 @@ public abstract class ItemSpellBase extends Item {
     
     public abstract void castSpell(EntityLivingBase caster);
     
-    protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount) {
+    public void spawnCastParticle(Entity target, int textureIndex, int particleCount) {
         this.spawnCastParticle(target, textureIndex, particleCount, 20);
     }
     
-    protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount, int particleAge) {
+    public void spawnCastParticle(Entity target, int textureIndex, int particleCount, int particleAge) {
         this.spawnCastParticle(target, textureIndex, particleCount, particleAge, 0);
     }
     
-    protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount, double particleSpeed) {
+    public void spawnCastParticle(Entity target, int textureIndex, int particleCount, double particleSpeed) {
         this.spawnCastParticle(target, textureIndex, particleCount, 20, particleSpeed);
     }
     
-    protected void spawnCastParticle(EntityLivingBase target, int textureIndex, int particleCount, int particleAge, double particleSpeed) {
+    public void spawnCastParticle(Entity target, int textureIndex, int particleCount, int particleAge, double particleSpeed) {
         double xSpeed = (target.world.rand.nextDouble() * 2.0 - 1.0) * particleSpeed;
         double ySpeed = (target.world.rand.nextDouble() * 2.0 - 1.0) * particleSpeed;
         double zSpeed = (target.world.rand.nextDouble() * 2.0 - 1.0) * particleSpeed;
@@ -123,7 +123,7 @@ public abstract class ItemSpellBase extends Item {
         this.spawnCastParticle(textureIndex, particleCount, particleAge, target.posX, target.posY + target.height * 0.5D, target.posZ, xSpeed, ySpeed, zSpeed);
     }
     
-    protected void spawnCastParticle(int textureIndex, int particleCount, int particleAge,
+    public void spawnCastParticle(int textureIndex, int particleCount, int particleAge,
                                      double x, double y, double z, double motionX, double motionY, double motionZ) {
         
         RLSPacketHandler.INSTANCE.sendToAll(
@@ -131,7 +131,7 @@ public abstract class ItemSpellBase extends Item {
         );
     }
     
-    protected void playCastSound(Entity target, SoundEvent sound, float volume, float pitch) {
+    public void playCastSound(Entity target, SoundEvent sound, float volume, float pitch) {
         this.playCastSound(target, sound, volume, pitch, 0, 0, 0);
     }
     

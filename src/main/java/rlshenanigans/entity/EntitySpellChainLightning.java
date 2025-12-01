@@ -8,16 +8,22 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import rlshenanigans.handlers.CombatAssistHandler;
+import rlshenanigans.item.ItemSpellBase;
+import rlshenanigans.item.ItemSpellList;
 
+import javax.vecmath.Color4f;
 import java.util.*;
 
-public class EntitySpellChainLightning extends EntitySpellBase {
+public class EntitySpellChainLightning extends EntitySpellBase implements ISpellLightning {
     private EntityLivingBase target;
     private EntityLivingBase previousTarget;
     private int lifetime;
     private final Set<EntityLivingBase> affectedEntities = new HashSet<>();
+    private static final int TEXTURE_INDEX = ItemSpellBase.getTextureIndexFromEnum(EnumParticleTypes.SPELL_WITCH);
+    private static final Color4f COLOR = new Color4f(1.0f, 1.0f, 0.0f, 0.7f);
     private static final DataParameter<Integer> TARGET_ID = EntityDataManager.createKey(EntitySpellChainLightning.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> PREVIOUS_TARGET_ID = EntityDataManager.createKey(EntitySpellChainLightning.class, DataSerializers.VARINT);
     
@@ -29,6 +35,7 @@ public class EntitySpellChainLightning extends EntitySpellBase {
         super(world, caster, 0.0F, 0.0F, 0.0F, 0.0F);
         this.noClip = true;
         this.lifetime = lifetime;
+        this.setSize(0.5F, 0.5F);
     }
     
     @Override
@@ -56,7 +63,9 @@ public class EntitySpellChainLightning extends EntitySpellBase {
             return;
         }
         
-        if (this.ticksExisted % 20 == 0) {
+        ItemSpellList.SPELL_CHAIN_LIGHTNING.spawnCastParticle(this, TEXTURE_INDEX, 1, 0.2F);
+        
+        if (this.ticksExisted % 10 == 0) {
             List<EntityLivingBase> entities = this.getEntityWorld().getEntitiesWithinAABB(
                     EntityLivingBase.class,
                     this.getEntityBoundingBox().grow(10),
@@ -101,13 +110,13 @@ public class EntitySpellChainLightning extends EntitySpellBase {
         this.dataManager.set(TARGET_ID, target != null ? target.getEntityId() : -1);
     }
     
-    public EntityLivingBase getTarget() {
+    public EntityLivingBase getTargetData() {
         int id = this.dataManager.get(TARGET_ID);
         Entity entity = this.world.getEntityByID(id);
         return id == -1 || !(entity instanceof EntityLivingBase) ? null : (EntityLivingBase) entity;
     }
     
-    public EntityLivingBase getPreviousTarget() {
+    public EntityLivingBase getPreviousTargetData() {
         int id = this.dataManager.get(PREVIOUS_TARGET_ID);
         Entity entity = this.world.getEntityByID(id);
         return id == -1 || !(entity instanceof EntityLivingBase) ? null : (EntityLivingBase) entity;
@@ -119,14 +128,24 @@ public class EntitySpellChainLightning extends EntitySpellBase {
         if (!this.world.isRemote) return;
         
         if (TARGET_ID.equals(key) || PREVIOUS_TARGET_ID.equals(key)) {
-            target = getTarget();
-            previousTarget = getPreviousTarget();
-            
-            // Only trigger VFX if both are valid
-            if (target != null && previousTarget != null) {
-                // spawn lightning arc particles between previous and current
-            }
+            target = getTargetData();
+            previousTarget = getPreviousTargetData();
         }
+    }
+    
+    @Override
+    public EntityLivingBase getTarget() {
+        return target;
+    }
+    
+    @Override
+    public EntityLivingBase getPreviousTarget() {
+        return previousTarget;
+    }
+    
+    @Override
+    public Color4f getColor() {
+        return COLOR;
     }
     
     @Override
