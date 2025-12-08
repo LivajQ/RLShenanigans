@@ -1,12 +1,11 @@
 package rlshenanigans.entity;
 
-import net.minecraft.entity.Entity;
+import com.lycanitesmobs.ObjectManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -18,15 +17,14 @@ import javax.vecmath.Color4f;
 import java.util.*;
 
 public class EntitySpellChainLightning extends EntitySpellBase implements ISpellLightning {
-    private EntityLivingBase target;
-    private EntityLivingBase previousTarget;
+    private EntityLivingBase parent;
+    private EntityLivingBase child;
     private int lifetime;
     private final Set<EntityLivingBase> affectedEntities = new HashSet<>();
+    private final Map<EntityLivingBase, Set<EntityLivingBase>> lightningConnections = new HashMap<>();
     private static final int TEXTURE_INDEX = ItemSpellBase.getTextureIndexFromEnum(EnumParticleTypes.SPELL_WITCH);
     private static final Color4f COLOR = new Color4f(1.0f, 1.0f, 0.0f, 0.7f);
-    private static final DataParameter<Integer> TARGET_ID = EntityDataManager.createKey(EntitySpellChainLightning.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> PREVIOUS_TARGET_ID = EntityDataManager.createKey(EntitySpellChainLightning.class, DataSerializers.VARINT);
-    
+
     public EntitySpellChainLightning(World world) {
         this(world, null, 300);
     }
@@ -39,23 +37,11 @@ public class EntitySpellChainLightning extends EntitySpellBase implements ISpell
     }
     
     @Override
-    protected void entityInit() {
-        super.entityInit();
-        this.dataManager.register(TARGET_ID, -1);
-        this.dataManager.register(PREVIOUS_TARGET_ID, -1);
-        if (caster != null) {
-            target = caster;
-            affectedEntities.add(target);
-            this.dataManager.set(TARGET_ID, target.getEntityId());
-        }
-    }
-    
-    @Override
     public void onUpdate() {
         super.onUpdate();
         
         if (this.ticksExisted < 10) return;
-        if (target != null) this.setPosition(target.posX, target.posY + 0.5F * target.height, target.posZ);
+        if (parent != null) this.setPosition(parent.posX, parent.posY + 0.5F * parent.height, parent.posZ);
         if (this.world.isRemote) return;
         
         if (lifetime-- <= 0) {
@@ -69,7 +55,7 @@ public class EntitySpellChainLightning extends EntitySpellBase implements ISpell
             List<EntityLivingBase> entities = this.getEntityWorld().getEntitiesWithinAABB(
                     EntityLivingBase.class,
                     this.getEntityBoundingBox().grow(10),
-                    e -> e.canEntityBeSeen(this) && shouldTarget(e, caster, target)
+                    e -> e.canEntityBeSeen(this) && shouldTarget(e, caster, parent)
             );
             
             List<EntityLivingBase> unaffectedEntities = new ArrayList<>();
@@ -81,18 +67,26 @@ public class EntitySpellChainLightning extends EntitySpellBase implements ISpell
             if (!unaffectedEntities.isEmpty()) pickNewTarget(unaffectedEntities);
             else if (!entities.isEmpty()) pickNewTarget(entities);
             else {
-                previousTarget = target;
-                target = caster;
-                this.dataManager.set(PREVIOUS_TARGET_ID, previousTarget != null ? previousTarget.getEntityId() : -1);
-                this.dataManager.set(TARGET_ID, target != null ? target.getEntityId() : -1);
+                child = parent;
+                parent = caster;
             }
             
-            if (target != null && target != caster && !target.isDead) target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, caster), 10.0F);
+            lightningConnections.clear();
+            Set<EntityLivingBase> childConnection = new HashSet<>();
+            childConnection.add(child);
+            lightningConnections.put(parent, childConnection);
+            this.syncConnections(this);
+            
+            if (parent != null && parent != caster && !parent.isDead) {
+                parent.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, caster), 10.0F);
+                Potion paralysis = ObjectManager.getEffect("paralysis");
+                if (paralysis != null) parent.addPotionEffect(new PotionEffect(paralysis, 100, 0, false, true));
+            }
         }
     }
     
-    private boolean shouldTarget(EntityLivingBase e, EntityLivingBase caster, EntityLivingBase currentTarget) {
-        if (e == currentTarget || e == caster) return false;
+    private boolean shouldTarget(EntityLivingBase e, EntityLivingBase caster, EntityLivingBase parent) {
+        if (e == parent || e == caster) return false;
         if (caster instanceof EntityPlayer) return !CombatAssistHandler.isEntityTamedByPlayer(e, (EntityPlayer) caster);
         return true;
     }
@@ -100,47 +94,15 @@ public class EntitySpellChainLightning extends EntitySpellBase implements ISpell
     private void pickNewTarget(List<EntityLivingBase> candidates) {
         if (candidates.isEmpty()) return;
         
-        previousTarget = target;
-        this.dataManager.set(PREVIOUS_TARGET_ID, previousTarget != null ? previousTarget.getEntityId() : -1);
-        
+        child = parent;
         int idx = rand.nextInt(candidates.size());
-        target = candidates.get(idx);
-        affectedEntities.add(target);
-        
-        this.dataManager.set(TARGET_ID, target != null ? target.getEntityId() : -1);
-    }
-    
-    public EntityLivingBase getTargetData() {
-        int id = this.dataManager.get(TARGET_ID);
-        Entity entity = this.world.getEntityByID(id);
-        return id == -1 || !(entity instanceof EntityLivingBase) ? null : (EntityLivingBase) entity;
-    }
-    
-    public EntityLivingBase getPreviousTargetData() {
-        int id = this.dataManager.get(PREVIOUS_TARGET_ID);
-        Entity entity = this.world.getEntityByID(id);
-        return id == -1 || !(entity instanceof EntityLivingBase) ? null : (EntityLivingBase) entity;
+        parent = candidates.get(idx);
+        affectedEntities.add(parent);
     }
     
     @Override
-    public void notifyDataManagerChange(DataParameter<?> key) {
-        super.notifyDataManagerChange(key);
-        if (!this.world.isRemote) return;
-        
-        if (TARGET_ID.equals(key) || PREVIOUS_TARGET_ID.equals(key)) {
-            target = getTargetData();
-            previousTarget = getPreviousTargetData();
-        }
-    }
-    
-    @Override
-    public EntityLivingBase getTarget() {
-        return target;
-    }
-    
-    @Override
-    public EntityLivingBase getPreviousTarget() {
-        return previousTarget;
+    public Map<EntityLivingBase, Set<EntityLivingBase>> getConnections() {
+        return lightningConnections;
     }
     
     @Override

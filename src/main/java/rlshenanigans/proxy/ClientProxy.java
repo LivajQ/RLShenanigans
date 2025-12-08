@@ -32,6 +32,7 @@ import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.entity.npc.EntityNPCBase;
 import rlshenanigans.entity.projectile.EntitySpellFireball;
 import rlshenanigans.entity.projectile.EntitySpellFireballCluster;
+import rlshenanigans.entity.projectile.EntitySpellShockWard;
 import rlshenanigans.handlers.RLSEntityHandler;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.util.ParasiteRegistry;
@@ -122,6 +123,10 @@ public class ClientProxy extends CommonProxy {
         );
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellChainLightning.class, manager ->
+                new RenderSpellLightning<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellShockWard.class, manager ->
                 new RenderSpellLightning<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
         );
         
