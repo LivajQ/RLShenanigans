@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import rlshenanigans.entity.projectile.EntitySpellProjectile;
+import rlshenanigans.entity.projectile.ProjectileSpellBase;
 
 import javax.vecmath.Color3f;
 
-public class RenderSpellProjectile<T extends EntitySpellProjectile> extends Render<T> {
+public class RenderSpellProjectile<T extends ProjectileSpellBase> extends Render<T> {
     
     protected final ResourceLocation texture;
     
@@ -29,7 +29,7 @@ public class RenderSpellProjectile<T extends EntitySpellProjectile> extends Rend
     @Override
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
-        GlStateManager.translate(x, y, z);
+        GlStateManager.translate(x, y + entity.height / 2, z);
         Color3f color = entity.getColor();
         GlStateManager.color(color.x, color.y, color.z);
         

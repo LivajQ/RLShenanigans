@@ -195,7 +195,7 @@ public abstract class EntityNPCPhantom extends EntityNPCBase {
         double motionZ = (rand.nextDouble() - 0.5) * 1.5;
         
         Minecraft.getMinecraft().effectRenderer.addEffect(
-                new ParticleNPCPhantomSummon(world, this, x, y, z, motionX, motionY, motionZ, 0)
+                new ParticleNPCPhantomSummon(world, this, x, y, z, motionX, motionY, motionZ)
         );
     }
 }

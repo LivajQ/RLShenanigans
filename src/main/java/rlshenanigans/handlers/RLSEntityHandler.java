@@ -18,19 +18,16 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.entity.EntitySpellChainLightning;
-import rlshenanigans.entity.EntitySpellCloudPoison;
-import rlshenanigans.entity.EntitySpellEagleEye;
-import rlshenanigans.entity.EntitySpellInvulnerability;
+import rlshenanigans.entity.*;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.entity.npc.EntityNPCGeneric;
 import rlshenanigans.entity.npc.EntityNPCInvader;
 import rlshenanigans.entity.npc.EntityNPCJohnMinecraft;
 import rlshenanigans.entity.npc.EntityNPCSummon;
-import rlshenanigans.entity.projectile.EntitySpellFireball;
-import rlshenanigans.entity.projectile.EntitySpellFireballCluster;
-import rlshenanigans.entity.projectile.EntitySpellShockWard;
+import rlshenanigans.entity.projectile.ProjectileSpellFireball;
+import rlshenanigans.entity.projectile.ProjectileSpellFireballCluster;
+import rlshenanigans.entity.projectile.ProjectileSpellImplosion;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.proxy.CommonProxy;
 
@@ -38,8 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
-public class RLSEntityHandler
-{
+public class RLSEntityHandler {
     public static final int drJrEntityID = 200;
     public static final int npcGenericID = 201;
     public static final int npcSummonID = 202;
@@ -52,6 +48,8 @@ public class RLSEntityHandler
     public static final int spellLightID = 209;
     public static final int spellChainLightningID = 210;
     public static final int spellShockWardID = 211;
+    public static final int spellImplosionID = 212;
+    public static final int spellImplosionPID = 213;
     public static final int paintingID = 300;
     
     //texture path, frame count, internal name
@@ -113,13 +111,19 @@ public class RLSEntityHandler
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_shock_ward"), EntitySpellShockWard.class,
                 "spell_shock_ward", spellShockWardID, RLShenanigans.instance, 64, 1, true);
         
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_implosion"), EntitySpellImplosion.class,
+                "spell_implosion", spellImplosionID, RLShenanigans.instance, 64, 1, true);
+        
         //***PROJECTILES***
         
-        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_fireball"), EntitySpellFireball.class,
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_fireball"), ProjectileSpellFireball.class,
                 "spell_fireball", spellFireballID, RLShenanigans.instance, 64, 1, true);
         
-        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_fireball_cluster"), EntitySpellFireballCluster.class,
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_fireball_cluster"), ProjectileSpellFireballCluster.class,
                 "spell_fireball_cluster", spellFireballClusterID, RLShenanigans.instance, 64, 1, true);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_implosion_p"), ProjectileSpellImplosion.class,
+                "spell_implosion_p", spellImplosionPID, RLShenanigans.instance, 64, 1, true);
         
         //***WORLD SPAWNS***
         

@@ -2,7 +2,7 @@ package rlshenanigans.item;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
-import rlshenanigans.entity.projectile.EntitySpellFireball;
+import rlshenanigans.entity.projectile.ProjectileSpellFireball;
 
 public class ItemSpellFireball extends ItemSpellBase {
     
@@ -13,7 +13,7 @@ public class ItemSpellFireball extends ItemSpellBase {
     @Override
     public void castSpell(EntityLivingBase caster) {
         this.playCastSound(caster, SoundEvents.ENTITY_BLAZE_SHOOT, 1.0F, 0.6F);
-        EntitySpellFireball fireball = new EntitySpellFireball(caster.world, caster, 5.0F, 1.0F, 2.0F);
+        ProjectileSpellFireball fireball = new ProjectileSpellFireball(caster.world, caster, 5.0F, 1.0F, 2.0F);
         fireball.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 0.0F);
         caster.world.spawnEntity(fireball);
     }

@@ -3,7 +3,7 @@ package rlshenanigans.item;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rlshenanigans.entity.projectile.EntitySpellShockWard;
+import rlshenanigans.entity.EntitySpellShockWard;
 
 import javax.vecmath.Color3f;
 

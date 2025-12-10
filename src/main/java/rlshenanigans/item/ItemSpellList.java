@@ -20,6 +20,8 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_EAGLE_EYE = new ItemSpellEagleEye("spell_eagle_eye", 35, 80, 16);
     public static final ItemSpellBase SPELL_CHAIN_LIGHTNING = new ItemSpellChainLightning("spell_chain_lightning", 75, 60, 5);
     public static final ItemSpellBase SPELL_SHOCK_WARD = new ItemSpellShockWard("spell_shock_ward", 200, 140, 2);
+    public static final ItemSpellBase SPELL_FORCE = new ItemSpellForce("spell_force", 25, 20, 16);
+    public static final ItemSpellBase SPELL_IMPLOSION = new ItemSpellImplosion("spell_implosion", 125, 60, 8);
     
     public static Item[] getAllSpells() {
         return new Item[] {
@@ -39,7 +41,9 @@ public class ItemSpellList {
                 SPELL_BLINK,
                 SPELL_EAGLE_EYE,
                 SPELL_CHAIN_LIGHTNING,
-                SPELL_SHOCK_WARD
+                SPELL_SHOCK_WARD,
+                SPELL_FORCE,
+                SPELL_IMPLOSION
         };
     }
 }

@@ -7,19 +7,19 @@ import net.minecraft.world.World;
 
 import javax.vecmath.Color3f;
 
-public class EntitySpellFireball extends EntitySpellProjectile {
+public class ProjectileSpellFireball extends ProjectileSpellBase {
     protected float strength;
     
-    public EntitySpellFireball(World worldIn) {
+    public ProjectileSpellFireball(World worldIn) {
         super(worldIn);
     }
     
-    public EntitySpellFireball(World worldIn, EntityLivingBase shooter, float damage, float size, float strength) {
+    public ProjectileSpellFireball(World worldIn, EntityLivingBase shooter, float damage, float size, float strength) {
         this(worldIn, shooter, damage, size, strength, 0.0F);
 
     }
     
-    public EntitySpellFireball(World worldIn, EntityLivingBase shooter, float damage, float size, float strength, float gravity) {
+    public ProjectileSpellFireball(World worldIn, EntityLivingBase shooter, float damage, float size, float strength, float gravity) {
         super(worldIn, shooter, damage, gravity);
         this.strength = strength;
         this.setSize(size, size);

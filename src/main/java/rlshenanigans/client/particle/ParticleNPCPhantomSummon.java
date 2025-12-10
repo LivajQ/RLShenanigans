@@ -11,7 +11,7 @@ import javax.vecmath.Color3f;
 @SideOnly(Side.CLIENT)
 public class ParticleNPCPhantomSummon extends Particle
 {
-    public ParticleNPCPhantomSummon(World world, EntityNPCPhantom phantom, double x, double y, double z, double motionX, double motionY, double motionZ, int color) {
+    public ParticleNPCPhantomSummon(World world, EntityNPCPhantom phantom, double x, double y, double z, double motionX, double motionY, double motionZ) {
         super(world, x, y, z, motionX, motionY, motionZ);
         
         this.particleMaxAge = 20 + rand.nextInt(10);
@@ -19,10 +19,5 @@ public class ParticleNPCPhantomSummon extends Particle
         Color3f glowColor = phantom.getPhantomGlowColor();
         this.setRBGColorF(glowColor.x, glowColor.y, glowColor.z);
         this.setSize(0.4F, 0.4F);
-    }
-    
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
     }
 }

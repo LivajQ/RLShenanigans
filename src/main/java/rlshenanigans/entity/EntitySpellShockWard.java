@@ -1,4 +1,4 @@
-package rlshenanigans.entity.projectile;
+package rlshenanigans.entity;
 
 import com.lycanitesmobs.ObjectManager;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,8 +8,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import rlshenanigans.entity.EntitySpellBase;
-import rlshenanigans.entity.ISpellLightning;
 import rlshenanigans.handlers.CombatAssistHandler;
 
 import javax.vecmath.Color4f;

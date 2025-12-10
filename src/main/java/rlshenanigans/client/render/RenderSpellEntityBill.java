@@ -24,7 +24,7 @@ public class RenderSpellEntityBill<T extends EntitySpellBase> extends RenderSpel
     @Override
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
-        GlStateManager.translate(x, y, z);
+        GlStateManager.translate(x, y + entity.height / 2, z);
 
         GlStateManager.rotate(180 - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -34,7 +34,8 @@ public class RenderSpellEntityBill<T extends EntitySpellBase> extends RenderSpel
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         
         this.bindTexture(this.getEntityTexture(entity));
-
+        
+        GlStateManager.scale(size * entity.width, size * entity.height, size * entity.width);
         GlStateManager.color(entity.red, entity.green, entity.blue, entity.alpha);
         
         Tessellator tess = Tessellator.getInstance();

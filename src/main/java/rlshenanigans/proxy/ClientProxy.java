@@ -20,19 +20,16 @@ import rlshenanigans.client.model.ModelCube;
 import rlshenanigans.client.model.creature.ModelDrJr;
 import rlshenanigans.client.render.*;
 import rlshenanigans.client.visual.ParticlePulseScheduler;
-import rlshenanigans.entity.EntitySpellChainLightning;
-import rlshenanigans.entity.EntitySpellCloudPoison;
-import rlshenanigans.entity.EntitySpellEagleEye;
-import rlshenanigans.entity.EntitySpellInvulnerability;
+import rlshenanigans.entity.*;
 import rlshenanigans.entity.creature.EntityAmalgalichTamed;
 import rlshenanigans.entity.creature.EntityAsmodeusTamed;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.creature.EntityRahovartTamed;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.entity.npc.EntityNPCBase;
-import rlshenanigans.entity.projectile.EntitySpellFireball;
-import rlshenanigans.entity.projectile.EntitySpellFireballCluster;
-import rlshenanigans.entity.projectile.EntitySpellShockWard;
+import rlshenanigans.entity.projectile.ProjectileSpellFireball;
+import rlshenanigans.entity.projectile.ProjectileSpellFireballCluster;
+import rlshenanigans.entity.projectile.ProjectileSpellImplosion;
 import rlshenanigans.handlers.RLSEntityHandler;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.util.ParasiteRegistry;
@@ -134,13 +131,21 @@ public class ClientProxy extends CommonProxy {
                 new RenderSpellEntityBill<>(manager, new ModelCube(), 0.5F, new ResourceLocation("rlshenanigans",  "nothinglol.png"))
         );
         
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellImplosion.class, manager ->
+                new RenderSpellEntityBill<>(manager, new ModelCube(), 1.0F, new ResourceLocation("minecraft",  "textures/items/fireball.png"))
+        );
+        
         //***PROJECTILES***
         
-        RenderingRegistry.registerEntityRenderingHandler(EntitySpellFireball.class, manager ->
+        RenderingRegistry.registerEntityRenderingHandler(ProjectileSpellFireball.class, manager ->
                 new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))
         );
         
-        RenderingRegistry.registerEntityRenderingHandler(EntitySpellFireballCluster.class, manager ->
+        RenderingRegistry.registerEntityRenderingHandler(ProjectileSpellFireballCluster.class, manager ->
+                new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))
+        );
+        
+        RenderingRegistry.registerEntityRenderingHandler(ProjectileSpellImplosion.class, manager ->
                 new RenderSpellProjectile<>(manager, new ResourceLocation("minecraft", "textures/items/fireball.png"))
         );
 

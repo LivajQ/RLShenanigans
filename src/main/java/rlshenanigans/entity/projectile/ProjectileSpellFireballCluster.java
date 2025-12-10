@@ -4,16 +4,16 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntitySpellFireballCluster extends EntitySpellFireball {
-    public EntitySpellFireballCluster(World world) {
+public class ProjectileSpellFireballCluster extends ProjectileSpellFireball {
+    public ProjectileSpellFireballCluster(World world) {
         super(world);
     }
     
-    public EntitySpellFireballCluster(World worldIn, EntityLivingBase shooter, float damage, float size, float strength) {
+    public ProjectileSpellFireballCluster(World worldIn, EntityLivingBase shooter, float damage, float size, float strength) {
         this(worldIn, shooter, damage, size, strength, 0.0F);
     }
     
-    public EntitySpellFireballCluster(World worldIn, EntityLivingBase shooter, float damage, float size, float strength, float gravity) {
+    public ProjectileSpellFireballCluster(World worldIn, EntityLivingBase shooter, float damage, float size, float strength, float gravity) {
         super(worldIn, shooter, damage, size, strength, gravity);
     }
     
@@ -27,7 +27,7 @@ public class EntitySpellFireballCluster extends EntitySpellFireball {
         };
         
         for (double[] dir : directions) {
-            EntitySpellFireball mini = new EntitySpellFireball(world, shooter, damage * 0.25F, 0.3F, 2.0F, 0.1F);
+            ProjectileSpellFireball mini = new ProjectileSpellFireball(world, shooter, damage * 0.25F, 0.3F, 2.0F, 0.1F);
             mini.setPosition(posX + dir[0], posY + 2.0D, posZ + dir[1]);
             double speed = 0.55 + rand.nextDouble() * 0.2;
             mini.motionX = dir[0] * speed;

@@ -1,0 +1,6 @@
+{
+  "parent": "rlshenanigans:item/spell_default",
+  "TODO_textures": {
+    "layer0": "rlshenanigans:items/spells/spell_implosion"
+  }
+}

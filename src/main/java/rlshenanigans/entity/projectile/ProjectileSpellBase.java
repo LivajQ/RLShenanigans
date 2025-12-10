@@ -21,17 +21,17 @@ import rlshenanigans.handlers.CombatAssistHandler;
 import javax.vecmath.Color3f;
 import java.lang.reflect.Field;
 
-public abstract class EntitySpellProjectile extends EntityThrowable implements IEntityAdditionalSpawnData {
+public abstract class ProjectileSpellBase extends EntityThrowable implements IEntityAdditionalSpawnData {
     protected Explosion explosion;
     protected float damage;
     protected float gravity;
     protected EntityLivingBase shooter;
     
-    public EntitySpellProjectile(World worldIn) {
+    public ProjectileSpellBase(World worldIn) {
         super(worldIn);
     }
     
-    public EntitySpellProjectile(World worldIn, EntityLivingBase shooter, float damage, float gravity) {
+    public ProjectileSpellBase(World worldIn, EntityLivingBase shooter, float damage, float gravity) {
         super(worldIn, shooter);
         this.damage = damage;
         this.gravity = gravity;
@@ -101,9 +101,9 @@ public abstract class EntitySpellProjectile extends EntityThrowable implements I
             DamageSource source = event.getSource();
             EntityLivingBase target = event.getEntityLiving();
             
-            if (!(source.getImmediateSource() instanceof EntitySpellProjectile)) return;
+            if (!(source.getImmediateSource() instanceof ProjectileSpellBase)) return;
             
-            EntitySpellProjectile projectile = (EntitySpellProjectile) source.getImmediateSource();
+            ProjectileSpellBase projectile = (ProjectileSpellBase) source.getImmediateSource();
             
             if (projectile.canDamageSelf()) return;
             
@@ -130,9 +130,9 @@ public abstract class EntitySpellProjectile extends EntityThrowable implements I
                 exploderField.setAccessible(true);
                 Entity exploder = (Entity) exploderField.get(explosion);
                 
-                if (!(exploder instanceof EntitySpellProjectile)) return;
+                if (!(exploder instanceof ProjectileSpellBase)) return;
                 
-                EntitySpellProjectile projectile = (EntitySpellProjectile) exploder;
+                ProjectileSpellBase projectile = (ProjectileSpellBase) exploder;
                 if (projectile.canDamageSelf()) return;
                 EntityLivingBase caster = projectile.getThrower();
                 
