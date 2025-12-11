@@ -4,14 +4,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.entity.EntitySpellChainLightning;
+import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.handlers.RLSSoundHandler;
 
 import javax.vecmath.Color3f;
 
 public class ItemSpellChainLightning extends ItemSpellBase {
-    
-    public ItemSpellChainLightning(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellChainLightning(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

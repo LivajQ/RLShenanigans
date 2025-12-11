@@ -4,13 +4,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.entity.EntitySpellShockWard;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 import javax.vecmath.Color3f;
 
 public class ItemSpellShockWard extends ItemSpellBase {
-    
-    public ItemSpellShockWard(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellShockWard(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

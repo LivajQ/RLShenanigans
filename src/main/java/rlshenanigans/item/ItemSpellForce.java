@@ -3,14 +3,15 @@ package rlshenanigans.item;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 import javax.vecmath.Color3f;
 import java.util.List;
 
 public class ItemSpellForce extends ItemSpellBase {
-    
-    public ItemSpellForce(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellForce(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

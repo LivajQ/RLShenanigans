@@ -3,11 +3,12 @@ package rlshenanigans.item;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import rlshenanigans.entity.projectile.ProjectileSpellFireballCluster;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 public class ItemSpellArmageddon extends ItemSpellBase {
-    
-    public ItemSpellArmageddon(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellArmageddon(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

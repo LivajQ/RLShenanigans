@@ -10,15 +10,16 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.potion.PotionPowerWithin;
 
 import javax.vecmath.Color3f;
 import java.util.List;
 
 public class ItemSpellPowerWithin extends ItemSpellBase {
-    
-    public ItemSpellPowerWithin(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellPowerWithin(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

@@ -2,26 +2,29 @@ package rlshenanigans.item;
 
 import net.minecraft.item.Item;
 
+import static rlshenanigans.handlers.ForgeConfigHandler.SpellConfig;
+
 public class ItemSpellList {
+
     public static final ItemSpellBase SPELL_EMPTY = new ItemSpellEmpty("spell_empty", 0, 40, 16);
-    public static final ItemSpellBase SPELL_HEAL_LIGHT = new ItemSpellHealLight("spell_heal_light", 10, 40, 8);
-    public static final ItemSpellBase SPELL_HEAL_MEDIUM = new ItemSpellHealMedium("spell_heal_medium", 25, 60, 8);
-    public static final ItemSpellBase SPELL_HEAL_HEAVY = new ItemSpellHealHeavy("spell_heal_heavy", 35, 80, 8);
-    public static final ItemSpellBase SPELL_INVULNERABILITY = new ItemSpellInvulnerability("spell_invulnerability", 75, 100, 3);
-    public static final ItemSpellBase SPELL_POWER_WITHIN = new ItemSpellPowerWithin("spell_power_within", 50, 60, 3);
-    public static final ItemSpellBase SPELL_FIREBALL = new ItemSpellFireball("spell_fireball", 10, 10, 16);
-    public static final ItemSpellBase SPELL_CLOUD_POISON = new ItemSpellCloudPoison("spell_cloud_poison", 35, 40, 8);
-    public static final ItemSpellBase SPELL_ARMY_OF_DARKNESS = new ItemSpellArmyOfDarkness("spell_army_of_darkness", 100, 120, 3);
-    public static final ItemSpellBase SPELL_ARMAGEDDON = new ItemSpellArmageddon("spell_armageddon", 150, 100, 3);
-    public static final ItemSpellBase SPELL_RAY_OF_FROST = new ItemSpellRayOfFrost("spell_ray_of_frost", 35, 35, 8);
-    public static final ItemSpellBase SPELL_ARCANE_SHIELD = new ItemSpellArcaneShield("spell_arcane_shield", 10, 50, 8);
-    public static final ItemSpellBase SPELL_FRENZY = new ItemSpellFrenzy("spell_frenzy", 65, 50, 8);
-    public static final ItemSpellBase SPELL_BLINK = new ItemSpellBlink("spell_blink", 20, 20, 16);
-    public static final ItemSpellBase SPELL_EAGLE_EYE = new ItemSpellEagleEye("spell_eagle_eye", 35, 80, 16);
-    public static final ItemSpellBase SPELL_CHAIN_LIGHTNING = new ItemSpellChainLightning("spell_chain_lightning", 75, 60, 5);
-    public static final ItemSpellBase SPELL_SHOCK_WARD = new ItemSpellShockWard("spell_shock_ward", 200, 140, 2);
-    public static final ItemSpellBase SPELL_FORCE = new ItemSpellForce("spell_force", 25, 20, 16);
-    public static final ItemSpellBase SPELL_IMPLOSION = new ItemSpellImplosion("spell_implosion", 125, 60, 8);
+    public static final ItemSpellBase SPELL_HEAL_LIGHT = new ItemSpellHealLight("spell_heal_light", SpellConfig.spellHealLight);
+    public static final ItemSpellBase SPELL_HEAL_MEDIUM = new ItemSpellHealMedium("spell_heal_medium", SpellConfig.spellHealMedium);
+    public static final ItemSpellBase SPELL_HEAL_HEAVY = new ItemSpellHealHeavy("spell_heal_heavy", SpellConfig.spellHealHeavy);
+    public static final ItemSpellBase SPELL_INVULNERABILITY = new ItemSpellInvulnerability("spell_invulnerability", SpellConfig.spellInvulnerability);
+    public static final ItemSpellBase SPELL_POWER_WITHIN = new ItemSpellPowerWithin("spell_power_within", SpellConfig.spellPowerWithin);
+    public static final ItemSpellBase SPELL_FIREBALL = new ItemSpellFireball("spell_fireball", SpellConfig.spellFireball);
+    public static final ItemSpellBase SPELL_CLOUD_POISON = new ItemSpellCloudPoison("spell_cloud_poison", SpellConfig.spellCloudPoison);
+    public static final ItemSpellBase SPELL_ARMY_OF_DARKNESS = new ItemSpellArmyOfDarkness("spell_army_of_darkness", SpellConfig.spellArmyOfDarkness);
+    public static final ItemSpellBase SPELL_ARMAGEDDON = new ItemSpellArmageddon("spell_armageddon", SpellConfig.spellArmageddon);
+    public static final ItemSpellBase SPELL_RAY_OF_FROST = new ItemSpellRayOfFrost("spell_ray_of_frost", SpellConfig.spellRayOfFrost);
+    public static final ItemSpellBase SPELL_ARCANE_SHIELD = new ItemSpellArcaneShield("spell_arcane_shield", SpellConfig.spellArcaneShield);
+    public static final ItemSpellBase SPELL_FRENZY = new ItemSpellFrenzy("spell_frenzy", SpellConfig.spellFrenzy);
+    public static final ItemSpellBase SPELL_BLINK = new ItemSpellBlink("spell_blink", SpellConfig.spellBlink);
+    public static final ItemSpellBase SPELL_EAGLE_EYE = new ItemSpellEagleEye("spell_eagle_eye", SpellConfig.spellEagleEye);
+    public static final ItemSpellBase SPELL_CHAIN_LIGHTNING = new ItemSpellChainLightning("spell_chain_lightning", SpellConfig.spellChainLightning);
+    public static final ItemSpellBase SPELL_SHOCK_WARD = new ItemSpellShockWard("spell_shock_ward", SpellConfig.spellShockWard);
+    public static final ItemSpellBase SPELL_FORCE = new ItemSpellForce("spell_force", SpellConfig.spellForce);
+    public static final ItemSpellBase SPELL_IMPLOSION = new ItemSpellImplosion("spell_implosion", SpellConfig.spellImplosion);
     
     public static Item[] getAllSpells() {
         return new Item[] {

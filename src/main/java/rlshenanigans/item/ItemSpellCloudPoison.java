@@ -5,15 +5,16 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import rlshenanigans.entity.EntitySpellCloudPoison;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 import javax.vecmath.Color3f;
 
 import static rlshenanigans.RLShenanigans.RLSRAND;
 
 public class ItemSpellCloudPoison extends ItemSpellBase {
-    
-    public ItemSpellCloudPoison(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellCloudPoison(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

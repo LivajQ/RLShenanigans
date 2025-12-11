@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.client.particle.ParticleSpell;
+import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.handlers.RLSPacketHandler;
 import rlshenanigans.packet.SpellParticlePacket;
 import xzeroair.trinkets.capabilities.Capabilities;
@@ -31,6 +32,10 @@ public abstract class ItemSpellBase extends Item {
     protected final int castTime;
     protected final int stackSize;
     protected boolean castFailed;
+
+    public ItemSpellBase(String registryName, ForgeConfigHandler.SpellOptions options) {
+        this(registryName, options.manaCost, options.castTime, options.stackSize);
+    }
     
     public ItemSpellBase(String registryName, int manaCost, int castTime, int stackSize) {
         this.manaCost = manaCost;

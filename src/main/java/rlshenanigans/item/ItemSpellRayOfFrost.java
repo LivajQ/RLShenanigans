@@ -13,6 +13,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.handlers.RLSSoundHandler;
 
 import javax.vecmath.Color3f;
@@ -24,9 +25,9 @@ import static rlshenanigans.RLShenanigans.RLSRAND;
 
 public class ItemSpellRayOfFrost extends ItemSpellBase {
     Set<EntityLivingBase> hitEntities = new HashSet<>();
-    
-    public ItemSpellRayOfFrost(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellRayOfFrost(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

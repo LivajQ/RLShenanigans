@@ -7,13 +7,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 import static rlshenanigans.RLShenanigans.RLSRAND;
 
 public class ItemSpellBlink extends ItemSpellBase {
-    
-    public ItemSpellBlink(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellBlink(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

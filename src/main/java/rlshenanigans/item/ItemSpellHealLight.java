@@ -2,11 +2,13 @@ package rlshenanigans.item;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumParticleTypes;
+import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.handlers.RLSSoundHandler;
 
 public class ItemSpellHealLight extends ItemSpellBase {
-    public ItemSpellHealLight(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellHealLight(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

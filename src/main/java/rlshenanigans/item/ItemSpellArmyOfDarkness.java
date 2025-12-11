@@ -14,13 +14,14 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 import javax.vecmath.Color3f;
 
 public class ItemSpellArmyOfDarkness extends ItemSpellBase {
-    
-    public ItemSpellArmyOfDarkness(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellArmyOfDarkness(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

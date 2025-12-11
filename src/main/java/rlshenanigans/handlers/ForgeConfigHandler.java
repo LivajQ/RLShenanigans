@@ -25,6 +25,10 @@ public class ForgeConfigHandler {
 	@Config.Comment("Spawn odds for custom mobs")
 	@Config.Name("Custom Mobs Spawn Chance")
 	public static final CustomMobSpawnConfig customMobSpawn = new CustomMobSpawnConfig();
+
+    @Config.Comment("Spell-related settings")
+    @Config.Name("Spells")
+    public static final SpellConfig spell = new SpellConfig();
 	
 	@Config.Comment("Misc options")
 	@Config.Name("Misc")
@@ -281,7 +285,101 @@ public class ForgeConfigHandler {
 	
 
 	
-	
+
+    public static class SpellConfig {
+        @Config.Name("Light Heal")
+        public static final SpellOptions spellHealLight = new SpellOptions(10, 40, 8);
+
+        @Config.Name("Medium Heal")
+        public static final SpellOptions spellHealMedium = new SpellOptions(25, 60, 8);
+
+        @Config.Name("Heavy Heal")
+        public static final SpellOptions spellHealHeavy = new SpellOptions(35, 80, 8);
+
+        @Config.Name("Invulnerability")
+        public static final SpellOptions spellInvulnerability = new SpellOptions(75, 100, 3);
+
+        @Config.Name("Power Within")
+        public static final SpellOptions spellPowerWithin = new SpellOptions(50, 60, 3);
+
+        @Config.Name("Fireball")
+        public static final SpellOptions spellFireball = new SpellOptions(10, 10, 16);
+
+        @Config.Name("Poison Cloud")
+        public static final SpellOptions spellCloudPoison = new SpellOptions(35, 40, 8);
+
+        @Config.Name("Army of Darkness")
+        public static final SpellOptions spellArmyOfDarkness = new SpellOptions(100, 120, 3);
+
+        @Config.Name("Armageddon")
+        public static final SpellOptions spellArmageddon = new SpellOptions(150, 100, 3);
+
+        @Config.Name("Ray of Frost")
+        public static final SpellOptions spellRayOfFrost = new SpellOptions(35, 35, 8);
+
+        @Config.Name("Arcane Shield")
+        public static final SpellOptions spellArcaneShield = new SpellOptions(10, 50, 8);
+
+        @Config.Name("Frenzy")
+        public static final SpellOptions spellFrenzy = new SpellOptions(65, 50, 8);
+
+        @Config.Name("Blink")
+        public static final SpellOptions spellBlink = new SpellOptions(20, 20, 16);
+
+        @Config.Name("Eagle Eye")
+        public static final SpellOptions spellEagleEye = new SpellOptions(35, 80, 16);
+
+        @Config.Name("Chain Lightning")
+        public static final SpellOptions spellChainLightning = new SpellOptions(75, 60, 5);
+
+        @Config.Name("Shock Ward")
+        public static final SpellOptions spellShockWard = new SpellOptions(200, 140, 2);
+
+        @Config.Name("Force")
+        public static final SpellOptions spellForce = new SpellOptions(25, 20, 16);
+
+        @Config.Name("Implosion")
+        public static final SpellOptions spellImplosion = new SpellOptions(125, 60, 8);
+    }
+
+    public static class SpellOptions {
+
+        @Config.Comment("The base cost of casting the spell")
+        @Config.Name("Mana Cost")
+        @Config.RequiresMcRestart
+        public int manaCost;
+
+        @Config.Comment("Time in ticks to cast the spell")
+        @Config.Name("Cast Time")
+        @Config.RequiresMcRestart
+        public int castTime;
+
+        @Config.Comment("How many items can fit in a stack for this spell")
+        @Config.Name("Stack Size")
+        @Config.RequiresMcRestart
+        public int stackSize;
+
+        @Config.Comment("Whether the spell should be enabled")
+        @Config.Name("Enabled")
+        @Config.RequiresMcRestart
+        public boolean enabled = true;
+
+        public SpellOptions(int manaCost, int castTime, int stackSize) {
+            this(manaCost, castTime, stackSize, true);
+        }
+
+        public SpellOptions(int manaCost, int castTime, int stackSize,  boolean enabled) {
+            this.manaCost = manaCost;
+            this.castTime = castTime;
+            this.stackSize = stackSize;
+            this.enabled = enabled;
+        }
+    }
+
+
+
+
+
 	public static class ClientConfig {
 
 		@Config.Comment("Set to false to disable THH textures for parasites (even bigger monster)")

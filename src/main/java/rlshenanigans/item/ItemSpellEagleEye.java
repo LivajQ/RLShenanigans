@@ -3,11 +3,12 @@ package rlshenanigans.item;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import rlshenanigans.entity.EntitySpellEagleEye;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 public class ItemSpellEagleEye extends ItemSpellBase {
-    
-    public ItemSpellEagleEye(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellEagleEye(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

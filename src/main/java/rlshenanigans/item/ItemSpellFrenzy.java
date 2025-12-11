@@ -7,6 +7,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.WorldServer;
 import rlshenanigans.handlers.CombatAssistHandler;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,9 +15,9 @@ import java.util.stream.Collectors;
 import static rlshenanigans.RLShenanigans.RLSRAND;
 
 public class ItemSpellFrenzy extends ItemSpellBase {
-    
-    public ItemSpellFrenzy(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellFrenzy(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override

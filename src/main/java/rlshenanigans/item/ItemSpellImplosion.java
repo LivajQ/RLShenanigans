@@ -2,11 +2,12 @@ package rlshenanigans.item;
 
 import net.minecraft.entity.EntityLivingBase;
 import rlshenanigans.entity.projectile.ProjectileSpellImplosion;
+import rlshenanigans.handlers.ForgeConfigHandler;
 
 public class ItemSpellImplosion extends ItemSpellBase {
-    
-    public ItemSpellImplosion(String registryName, int manaCost, int castTime, int stackSize) {
-        super(registryName, manaCost, castTime, stackSize);
+
+    public ItemSpellImplosion(String registryName, ForgeConfigHandler.SpellOptions options) {
+        super(registryName, options);
     }
     
     @Override
