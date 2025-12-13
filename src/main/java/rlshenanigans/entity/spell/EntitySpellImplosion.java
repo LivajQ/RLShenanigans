@@ -1,4 +1,4 @@
-package rlshenanigans.entity;
+package rlshenanigans.entity.spell;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;

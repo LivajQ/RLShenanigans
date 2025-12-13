@@ -1,4 +1,4 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import net.minecraft.entity.EntityLivingBase;
 import rlshenanigans.entity.projectile.ProjectileSpellImplosion;

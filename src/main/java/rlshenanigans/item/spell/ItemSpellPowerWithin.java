@@ -1,4 +1,4 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;

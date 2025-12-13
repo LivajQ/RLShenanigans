@@ -199,8 +199,10 @@ public class RideMobHandler extends RideMobUtils {
                 
                 boolean canFly = mount.tasks.taskEntries.stream()
                         .map(task -> task.action.getClass().getSimpleName().toLowerCase())
-                        .anyMatch(name -> name.contains("fly") || name.contains("flight"))
-                        || mount.getNavigator() instanceof PathNavigateFlying;
+                        .anyMatch(name -> name.contains("fly")
+                                        || name.contains("flight"))
+                                        || mount.getNavigator() instanceof PathNavigateFlying
+                                        || getParasiteFlyers().contains(mount.getClass());
                 
                 if (canFly) {
                     if (msg.ascend) {

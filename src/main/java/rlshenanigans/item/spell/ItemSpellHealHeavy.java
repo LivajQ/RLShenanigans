@@ -1,24 +1,24 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumParticleTypes;
 import rlshenanigans.handlers.ForgeConfigHandler;
 import rlshenanigans.handlers.RLSSoundHandler;
 
-public class ItemSpellHealLight extends ItemSpellBase {
+public class ItemSpellHealHeavy extends ItemSpellBase {
 
-    public ItemSpellHealLight(String registryName, ForgeConfigHandler.SpellOptions options) {
+    public ItemSpellHealHeavy(String registryName, ForgeConfigHandler.SpellOptions options) {
         super(registryName, options);
     }
     
     @Override
     public void castSpell(EntityLivingBase caster) {
-        float healAmount = caster.getMaxHealth() * 0.25F;
+        float healAmount = caster.getMaxHealth() * 0.5F;
         caster.heal(healAmount);
         
         this.playCastSound(caster, RLSSoundHandler.SPELL_HEAL, 1.0F, 1.0F);
-        for (int x = 1; x <= 20; x++) {
-            this.spawnCastParticle(caster, getTextureIndexFromEnum(EnumParticleTypes.VILLAGER_HAPPY), 1, 20, 0.3D);
+        for (int x = 1; x <= 40; x++) {
+            this.spawnCastParticle(caster, getTextureIndexFromEnum(EnumParticleTypes.VILLAGER_HAPPY), 1, 60, 0.3D);
         }
     }
     

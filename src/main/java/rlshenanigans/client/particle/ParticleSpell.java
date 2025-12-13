@@ -4,7 +4,7 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rlshenanigans.item.ItemSpellBase;
+import rlshenanigans.item.spell.ItemSpellBase;
 
 import javax.vecmath.Color3f;
 

@@ -1,9 +1,9 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rlshenanigans.entity.EntitySpellShockWard;
+import rlshenanigans.entity.spell.EntitySpellShockWard;
 import rlshenanigans.handlers.ForgeConfigHandler;
 
 import javax.vecmath.Color3f;

@@ -1,12 +1,16 @@
 package rlshenanigans.util;
 
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
+import com.dhanantry.scapeandrunparasites.entity.monster.adapted.EntityEmanaAdapted;
 import com.dhanantry.scapeandrunparasites.entity.monster.ancient.EntityOronco;
 import com.dhanantry.scapeandrunparasites.entity.monster.ancient.EntityTerla;
 import com.dhanantry.scapeandrunparasites.entity.monster.crude.EntityCrux;
 import com.dhanantry.scapeandrunparasites.entity.monster.crude.EntityMes;
 import com.dhanantry.scapeandrunparasites.entity.monster.deterrent.nexus.*;
+import com.dhanantry.scapeandrunparasites.entity.monster.inborn.EntityButhol;
 import com.dhanantry.scapeandrunparasites.entity.monster.infected.EntityInfDragonE;
+import com.dhanantry.scapeandrunparasites.entity.monster.primitive.EntityEmana;
+import com.dhanantry.scapeandrunparasites.entity.monster.primitive.EntityIki;
 import com.dhanantry.scapeandrunparasites.entity.monster.pure.EntityAlafha;
 import com.dhanantry.scapeandrunparasites.entity.monster.pure.EntityEsor;
 import com.dhanantry.scapeandrunparasites.entity.monster.pure.EntityGanro;
@@ -27,15 +31,22 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.lang.reflect.Constructor;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static rlshenanigans.util.ParasiteRegistry.RANGED_PARASITES;
 
 public class RideMobUtils {
     
     private static final Map<UUID, Long> attackCooldowns = new HashMap<>();
+    private static final List<Class<? extends EntityParasiteBase>> PARASITE_FLYERS =
+            Arrays.asList(
+                    EntityInfDragonE.class,
+                    EntityAlafha.class,
+                    EntityEmana.class,
+                    EntityEmanaAdapted.class,
+                    EntityIki.class,
+                    EntityButhol.class
+            );
     
     protected static boolean isValidMob(EntityLiving mob) {
         boolean isParasite = mob instanceof EntityParasiteBase;
@@ -60,6 +71,10 @@ public class RideMobUtils {
         if (player.getRidingEntity() instanceof EntityVesta) player.eyeHeight = 4.0F;
         if (player.getRidingEntity() instanceof EntityOronco) player.eyeHeight = 5.5F;
         if (player.getRidingEntity() instanceof EntityTerla) player.eyeHeight = 10.0F;
+    }
+    
+    protected static List<Class<? extends EntityParasiteBase>> getParasiteFlyers() {
+        return PARASITE_FLYERS;
     }
     
     protected static void purgeAttackCooldown(EntityLiving mob) {

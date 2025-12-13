@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rlshenanigans.item.ItemSpellBase;
+import rlshenanigans.item.spell.ItemSpellBase;
 
 public class SpellParticlePacket implements IMessage {
     private String itemName;

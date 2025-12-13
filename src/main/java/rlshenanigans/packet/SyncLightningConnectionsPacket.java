@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import rlshenanigans.entity.ISpellLightning;
+import rlshenanigans.entity.spell.ISpellLightning;
 
 import java.util.*;
 import java.util.stream.Collectors;

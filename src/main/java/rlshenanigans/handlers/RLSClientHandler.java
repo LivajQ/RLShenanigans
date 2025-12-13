@@ -7,7 +7,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.item.ItemSpellList;
+import rlshenanigans.item.spell.ItemSpellList;
 
 import java.util.ArrayList;
 import java.util.Collections;

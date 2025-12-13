@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import rlshenanigans.RLShenanigans;
-import rlshenanigans.entity.*;
 import rlshenanigans.entity.creature.EntityDrJr;
 import rlshenanigans.entity.item.EntityPaintingTemplate;
 import rlshenanigans.entity.npc.EntityNPCGeneric;
@@ -28,6 +27,7 @@ import rlshenanigans.entity.npc.EntityNPCSummon;
 import rlshenanigans.entity.projectile.ProjectileSpellFireball;
 import rlshenanigans.entity.projectile.ProjectileSpellFireballCluster;
 import rlshenanigans.entity.projectile.ProjectileSpellImplosion;
+import rlshenanigans.entity.spell.*;
 import rlshenanigans.item.ItemPaintingSpawner;
 import rlshenanigans.proxy.CommonProxy;
 

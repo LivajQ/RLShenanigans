@@ -13,8 +13,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
-import rlshenanigans.entity.EntitySpellBase;
-import rlshenanigans.entity.ISpellLightning;
+import rlshenanigans.entity.spell.EntitySpellBase;
+import rlshenanigans.entity.spell.ISpellLightning;
 
 import javax.vecmath.Color4f;
 import java.util.*;

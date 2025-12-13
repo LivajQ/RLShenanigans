@@ -1,4 +1,4 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import com.github.alexthe666.iceandfire.api.IEntityEffectCapability;
 import com.github.alexthe666.iceandfire.capability.entityeffect.EntityEffectProvider;

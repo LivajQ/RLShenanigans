@@ -1,10 +1,10 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
-import rlshenanigans.entity.EntitySpellCloudPoison;
+import rlshenanigans.entity.spell.EntitySpellCloudPoison;
 import rlshenanigans.handlers.ForgeConfigHandler;
 
 import javax.vecmath.Color3f;

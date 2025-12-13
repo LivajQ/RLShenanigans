@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
-import rlshenanigans.entity.EntitySpellBase;
+import rlshenanigans.entity.spell.EntitySpellBase;
 
 @SideOnly(Side.CLIENT)
 public class RenderSpellEntityBill<T extends EntitySpellBase> extends RenderSpellEntity<T> {

@@ -1,4 +1,4 @@
-package rlshenanigans.entity;
+package rlshenanigans.entity.spell;
 
 import com.lycanitesmobs.ObjectManager;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,8 +10,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import rlshenanigans.handlers.CombatAssistHandler;
-import rlshenanigans.item.ItemSpellBase;
-import rlshenanigans.item.ItemSpellList;
+import rlshenanigans.item.spell.ItemSpellBase;
+import rlshenanigans.item.spell.ItemSpellList;
 
 import javax.vecmath.Color4f;
 import java.util.*;

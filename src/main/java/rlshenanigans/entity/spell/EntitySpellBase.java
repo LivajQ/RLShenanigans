@@ -1,4 +1,4 @@
-package rlshenanigans.entity;
+package rlshenanigans.entity.spell;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;

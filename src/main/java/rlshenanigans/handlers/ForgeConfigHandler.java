@@ -288,58 +288,64 @@ public class ForgeConfigHandler {
 
     public static class SpellConfig {
         @Config.Name("Light Heal")
-        public static final SpellOptions spellHealLight = new SpellOptions(10, 40, 8);
+        public  SpellOptions spellHealLight = new SpellOptions(10, 40, 8);
 
         @Config.Name("Medium Heal")
-        public static final SpellOptions spellHealMedium = new SpellOptions(25, 60, 8);
+        public SpellOptions spellHealMedium = new SpellOptions(25, 60, 8);
 
         @Config.Name("Heavy Heal")
-        public static final SpellOptions spellHealHeavy = new SpellOptions(35, 80, 8);
+        public SpellOptions spellHealHeavy = new SpellOptions(35, 80, 8);
 
         @Config.Name("Invulnerability")
-        public static final SpellOptions spellInvulnerability = new SpellOptions(75, 100, 3);
+        public SpellOptions spellInvulnerability = new SpellOptions(75, 100, 3);
 
         @Config.Name("Power Within")
-        public static final SpellOptions spellPowerWithin = new SpellOptions(50, 60, 3);
+        public SpellOptions spellPowerWithin = new SpellOptions(50, 60, 3);
 
         @Config.Name("Fireball")
-        public static final SpellOptions spellFireball = new SpellOptions(10, 10, 16);
+        public SpellOptions spellFireball = new SpellOptions(10, 10, 16);
 
         @Config.Name("Poison Cloud")
-        public static final SpellOptions spellCloudPoison = new SpellOptions(35, 40, 8);
+        public SpellOptions spellCloudPoison = new SpellOptions(35, 40, 8);
 
         @Config.Name("Army of Darkness")
-        public static final SpellOptions spellArmyOfDarkness = new SpellOptions(100, 120, 3);
+        public SpellOptions spellArmyOfDarkness = new SpellOptions(100, 120, 3);
 
         @Config.Name("Armageddon")
-        public static final SpellOptions spellArmageddon = new SpellOptions(150, 100, 3);
+        public SpellOptions spellArmageddon = new SpellOptions(150, 100, 3);
 
         @Config.Name("Ray of Frost")
-        public static final SpellOptions spellRayOfFrost = new SpellOptions(35, 35, 8);
+        public SpellOptions spellRayOfFrost = new SpellOptions(35, 35, 8);
 
         @Config.Name("Arcane Shield")
-        public static final SpellOptions spellArcaneShield = new SpellOptions(10, 50, 8);
+        public SpellOptions spellArcaneShield = new SpellOptions(10, 50, 8);
 
         @Config.Name("Frenzy")
-        public static final SpellOptions spellFrenzy = new SpellOptions(65, 50, 8);
+        public SpellOptions spellFrenzy = new SpellOptions(65, 50, 8);
 
         @Config.Name("Blink")
-        public static final SpellOptions spellBlink = new SpellOptions(20, 20, 16);
+        public SpellOptions spellBlink = new SpellOptions(20, 20, 16);
 
         @Config.Name("Eagle Eye")
-        public static final SpellOptions spellEagleEye = new SpellOptions(35, 80, 16);
+        public SpellOptions spellEagleEye = new SpellOptions(35, 80, 16);
 
         @Config.Name("Chain Lightning")
-        public static final SpellOptions spellChainLightning = new SpellOptions(75, 60, 5);
+        public SpellOptions spellChainLightning = new SpellOptions(75, 60, 5);
 
         @Config.Name("Shock Ward")
-        public static final SpellOptions spellShockWard = new SpellOptions(200, 140, 2);
+        public SpellOptions spellShockWard = new SpellOptions(200, 140, 2);
 
         @Config.Name("Force")
-        public static final SpellOptions spellForce = new SpellOptions(25, 20, 16);
+        public SpellOptions spellForce = new SpellOptions(25, 20, 16);
 
         @Config.Name("Implosion")
-        public static final SpellOptions spellImplosion = new SpellOptions(125, 60, 8);
+        public SpellOptions spellImplosion = new SpellOptions(125, 60, 8);
+		
+		@Config.Name("Rain of Fire")
+		public SpellOptions spellRainOfFire = new SpellOptions(100, 80, 3);
+		
+		@Config.Name("Magic Weapon")
+		public SpellOptions spellMagicWeapon = new SpellOptions(50, 60, 8);
     }
 
     public static class SpellOptions {

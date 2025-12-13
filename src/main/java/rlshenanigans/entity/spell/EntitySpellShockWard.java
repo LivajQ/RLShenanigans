@@ -1,4 +1,4 @@
-package rlshenanigans.entity;
+package rlshenanigans.entity.spell;
 
 import com.lycanitesmobs.ObjectManager;
 import net.minecraft.entity.EntityLivingBase;

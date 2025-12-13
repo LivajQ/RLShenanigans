@@ -1,8 +1,8 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
-import rlshenanigans.entity.EntitySpellEagleEye;
+import rlshenanigans.entity.spell.EntitySpellEagleEye;
 import rlshenanigans.handlers.ForgeConfigHandler;
 
 public class ItemSpellEagleEye extends ItemSpellBase {

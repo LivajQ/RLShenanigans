@@ -13,8 +13,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.handlers.RLSPacketHandler;
-import rlshenanigans.item.ItemSpellBase;
-import rlshenanigans.item.ItemSpellList;
+import rlshenanigans.item.spell.ItemSpellBase;
+import rlshenanigans.item.spell.ItemSpellList;
 import rlshenanigans.packet.SpellParticlePacket;
 
 import static rlshenanigans.RLShenanigans.RLSRAND;

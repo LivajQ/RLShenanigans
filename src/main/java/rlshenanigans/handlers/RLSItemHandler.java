@@ -6,9 +6,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.item.*;
+import rlshenanigans.item.spell.ItemSpellBase;
+import rlshenanigans.item.spell.ItemSpellList;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
@@ -34,7 +35,9 @@ public class RLSItemHandler {
         allItems.add(trinketFixedHeart);
         allItems.add(musicDiscLavaChicken);
         
-        Collections.addAll(allItems, ItemSpellList.getAllSpells());
+        for (ItemSpellBase spell : ItemSpellList.getAllSpells()) {
+            if (spell.isEnabled()) allItems.add(spell);
+        }
         
         event.getRegistry().registerAll(allItems.toArray(new Item[0]));
     }

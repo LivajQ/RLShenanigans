@@ -1,4 +1,4 @@
-package rlshenanigans.item;
+package rlshenanigans.item.spell;
 
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.resources.I18n;
@@ -31,16 +31,22 @@ public abstract class ItemSpellBase extends Item {
     protected final int manaCost;
     protected final int castTime;
     protected final int stackSize;
+    protected final boolean enabled;
     protected boolean castFailed;
 
     public ItemSpellBase(String registryName, ForgeConfigHandler.SpellOptions options) {
-        this(registryName, options.manaCost, options.castTime, options.stackSize);
+        this(registryName, options.manaCost, options.castTime, options.stackSize, options.enabled);
     }
     
     public ItemSpellBase(String registryName, int manaCost, int castTime, int stackSize) {
+        this(registryName, manaCost, castTime, stackSize, true);
+    }
+    
+    public ItemSpellBase(String registryName, int manaCost, int castTime, int stackSize, boolean enabled) {
         this.manaCost = manaCost;
         this.castTime = castTime;
         this.stackSize = stackSize;
+        this.enabled = enabled;
         this.setMaxStackSize(stackSize);
         this.setRegistryName(registryName);
         this.setTranslationKey(registryName);
@@ -143,6 +149,10 @@ public abstract class ItemSpellBase extends Item {
     protected void playCastSound(Entity target, SoundEvent sound, float volume, float pitch, float offsetX, float offsetY, float offsetZ) {
         World world = target.world;
         world.playSound(null, target.posX + offsetX, target.posY + offsetY, target.posZ + offsetZ, sound, SoundCategory.PLAYERS, volume, pitch);
+    }
+    
+    public boolean isEnabled() {
+        return enabled;
     }
     
     @SideOnly(Side.CLIENT)
