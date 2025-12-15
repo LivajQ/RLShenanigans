@@ -1,11 +1,16 @@
 package rlshenanigans.handlers;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.item.spell.ItemSpellList;
 
@@ -32,6 +37,12 @@ public class RLSClientHandler {
         Collections.addAll(allItems, ItemSpellList.getAllSpells());
         
         registerModels(allItems.toArray(new Item[0]));
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void onTextureStitch(TextureStitchEvent.Pre event) {
+        event.getMap().registerSprite(new ResourceLocation("rlshenanigans", "particle/rain_transparent"));
     }
     
     private static void registerModels(Item... values) {

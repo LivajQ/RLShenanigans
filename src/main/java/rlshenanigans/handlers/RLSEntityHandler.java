@@ -50,6 +50,7 @@ public class RLSEntityHandler {
     public static final int spellShockWardID = 211;
     public static final int spellImplosionID = 212;
     public static final int spellImplosionPID = 213;
+    public static final int spellRainOfFireID = 214;
     public static final int paintingID = 300;
     
     //texture path, frame count, internal name
@@ -113,6 +114,9 @@ public class RLSEntityHandler {
         
         EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_implosion"), EntitySpellImplosion.class,
                 "spell_implosion", spellImplosionID, RLShenanigans.instance, 64, 1, true);
+        
+        EntityRegistry.registerModEntity(new ResourceLocation(RLShenanigans.MODID, "spell_rain_of_fire"), EntitySpellRainOfFire.class,
+                "spell_rain_of_fire", spellRainOfFireID, RLShenanigans.instance, 64, 1, true);
         
         //***PROJECTILES***
         

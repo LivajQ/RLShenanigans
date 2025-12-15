@@ -119,6 +119,10 @@ public class ClientProxy extends CommonProxy {
                 new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
         );
         
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpellRainOfFire.class, manager ->
+                new RenderSpellEntity<>(manager, new ModelCube(), new ResourceLocation("minecraft",  "nothinglol.png"))
+        );
+        
         RenderingRegistry.registerEntityRenderingHandler(EntitySpellChainLightning.class, manager ->
                 new RenderSpellLightning<>(manager, new ModelCube(), new ResourceLocation("rlshenanigans",  "nothinglol.png"))
         );
