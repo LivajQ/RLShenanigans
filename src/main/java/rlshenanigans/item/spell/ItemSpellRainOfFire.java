@@ -13,7 +13,6 @@ public class ItemSpellRainOfFire extends ItemSpellBase {
     @Override
     public void castSpell(EntityLivingBase caster) {
         EntitySpellRainOfFire rain = new EntitySpellRainOfFire(caster.world, caster, 400);
-        rain.width = 5;
         rain.setPosition(caster.posX, caster.posY, caster.posZ);
         caster.world.spawnEntity(rain);
     }

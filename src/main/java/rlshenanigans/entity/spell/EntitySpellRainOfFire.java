@@ -3,9 +3,11 @@ package rlshenanigans.entity.spell;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -20,21 +22,23 @@ public class EntitySpellRainOfFire extends EntitySpellBase {
     private int lifetime;
     private final float radius;
     private final float altitude;
+    private final float particleAmount;
     
     public EntitySpellRainOfFire(World world) {
-        this(world, null, 60);
+        this(world, null, 400);
     }
     
     public EntitySpellRainOfFire(World world, EntityLivingBase caster, int lifetime) {
-        this(world, caster, lifetime, 10.0F, 8.0F);
+        this(world, caster, lifetime, 12, 24.0F, 16.0F);
     }
     
-    public EntitySpellRainOfFire(World world, EntityLivingBase caster, int lifetime, float radius, float altitude) {
-        super(world, caster, 0.0F, 0.0F, 0.0F, 1.0F);
+    public EntitySpellRainOfFire(World world, EntityLivingBase caster, int lifetime, int particleAmount, float radius, float altitude) {
+        super(world, caster, 0.0F, 0.0F, 0.0F, 0.0F);
         this.noClip = true;
         this.lifetime = lifetime;
         this.radius = radius;
         this.altitude = altitude;
+        this.particleAmount = particleAmount;
         this.setNoGravity(true);
     }
     
@@ -74,6 +78,33 @@ public class EntitySpellRainOfFire extends EntitySpellBase {
                 entity.setFire(100);
             }
         }
+        
+        if (this.ticksExisted % 5 == 0 && world.rand.nextFloat() < 0.5F) {
+            
+            double cx = caster.posX;
+            double cy = caster.posY + caster.height + this.altitude;
+            double cz = caster.posZ;
+            
+            double rx = cx + (world.rand.nextDouble() - 0.5) * this.radius * 2;
+            double rz = cz + (world.rand.nextDouble() - 0.5) * this.radius * 2;
+            
+            RayTraceResult hit = world.rayTraceBlocks(
+                    new Vec3d(rx, cy, rz),
+                    new Vec3d(rx, cy - 100, rz),
+                    false,
+                    true,
+                    false
+            );
+            
+            if (hit != null && hit.typeOfHit == RayTraceResult.Type.BLOCK) {
+                BlockPos pos = hit.getBlockPos().up();
+
+                if (world.isAirBlock(pos) && world.getBlockState(pos.down()).isOpaqueCube()) {
+                    world.setBlockState(pos, Blocks.FIRE.getDefaultState());
+                }
+            }
+        }
+        
     }
     
     private boolean isValidTarget(EntityLivingBase e) {
@@ -104,7 +135,7 @@ public class EntitySpellRainOfFire extends EntitySpellBase {
         double y = this.posY;
         double z = this.posZ;
         
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < this.particleAmount; i++) {
             double px = x + (world.rand.nextDouble() - 0.5) * this.radius * 2;
             double pz = z + (world.rand.nextDouble() - 0.5) * this.radius * 2;
             

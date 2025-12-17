@@ -1,7 +1,7 @@
 package rlshenanigans.handlers;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -20,6 +20,7 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class RLSClientHandler {
+    public static TextureAtlasSprite PARTICLE_RAIN_TRANSPARENT;
     
     public static void init() {}
     
@@ -42,7 +43,7 @@ public class RLSClientHandler {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void onTextureStitch(TextureStitchEvent.Pre event) {
-        event.getMap().registerSprite(new ResourceLocation("rlshenanigans", "particle/rain_transparent"));
+        PARTICLE_RAIN_TRANSPARENT = event.getMap().registerSprite(new ResourceLocation("rlshenanigans:particle/rain_transparent"));
     }
     
     private static void registerModels(Item... values) {
