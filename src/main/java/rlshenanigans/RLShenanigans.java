@@ -3,16 +3,14 @@ package rlshenanigans;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rlshenanigans.command.CommandRLS;
 import rlshenanigans.handlers.*;
 import rlshenanigans.proxy.CommonProxy;
 
+import java.io.*;
 import java.util.Random;
 
 @Mod(
@@ -40,6 +38,8 @@ public class RLShenanigans {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final Random RLSRAND = new Random();
     
+    public static File marker;
+    
     @SidedProxy(clientSide = "rlshenanigans.proxy.ClientProxy", serverSide = "rlshenanigans.proxy.CommonProxy")
     public static CommonProxy PROXY;
     
@@ -48,7 +48,9 @@ public class RLShenanigans {
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        RLShenanigans.PROXY.preInit();
+        marker = new File(event.getModConfigurationDirectory(), RLShenanigans.MODID + "/first_launch_marker");
+        
+        RLShenanigans.PROXY.preInit(event);
         RLSSoundHandler.init();
         RLSEntityHandler.init();
         RLSPotionHandler.init();
@@ -58,18 +60,28 @@ public class RLShenanigans {
     
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        RLShenanigans.PROXY.init();
+        RLShenanigans.PROXY.init(event);
         RLSPacketHandler.init();
     }
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        RLShenanigans.PROXY.postInit();
+        RLShenanigans.PROXY.postInit(event);
         RLSRecipeHandler.init();
+        
+        if (!marker.exists()) {
+            try {
+                marker.createNewFile();
+            } catch (IOException e) {
+                System.err.println("Error creating marker file");
+                e.printStackTrace();
+            }
+        }
     }
     
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandRLS());
     }
+    
 }

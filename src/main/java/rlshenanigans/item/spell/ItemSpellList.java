@@ -24,7 +24,7 @@ public class ItemSpellList {
     public static final ItemSpellBase SPELL_FORCE = new ItemSpellForce("spell_force", spell.spellForce);
     public static final ItemSpellBase SPELL_IMPLOSION = new ItemSpellImplosion("spell_implosion", spell.spellImplosion);
     public static final ItemSpellBase SPELL_RAIN_OF_FIRE = new ItemSpellRainOfFire("spell_rain_of_fire", spell.spellRainOfFire);
-    //public static final ItemSpellBase SPELL_MAGIC_WEAPON = new ItemSpellMagicWeapon("spell_magic_weapon", spell.spellMagicWeapon);
+    public static final ItemSpellBase SPELL_MAGIC_WEAPON = new ItemSpellMagicWeapon("spell_magic_weapon", spell.spellMagicWeapon);
     
     public static ItemSpellBase[] getAllSpells() {
         return new ItemSpellBase[] {
@@ -48,7 +48,7 @@ public class ItemSpellList {
                 SPELL_FORCE,
                 SPELL_IMPLOSION,
                 SPELL_RAIN_OF_FIRE,
-                //SPELL_MAGIC_WEAPON
+                SPELL_MAGIC_WEAPON
         };
     }
 }

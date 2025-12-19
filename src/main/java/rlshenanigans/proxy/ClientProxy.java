@@ -14,6 +14,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.lwjgl.input.Keyboard;
 
 import rlshenanigans.client.model.ModelCube;
@@ -154,10 +156,18 @@ public class ClientProxy extends CommonProxy {
         );
 
     }
+
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
+        super.preInit(event);
+        RenderRegister renderRegister = new RenderRegister(modInfo);
+        renderRegister.registerRenderFactories();
+        registerRenderers();
+    }
     
     @Override
-    public void init() {
-        super.init();
+    public void init(FMLInitializationEvent event) {
+        super.init(event);
         MinecraftForge.EVENT_BUS.register(ParticlePulseScheduler.class);
         ClientRegistry.registerKeyBinding(keyAscend);
         ClientRegistry.registerKeyBinding(keyDescend);
@@ -166,13 +176,5 @@ public class ClientProxy extends CommonProxy {
         for (ItemPaintingSpawner item : RLSEntityHandler.PAINTING_ITEMS.values()) {
             item.setTileEntityItemStackRenderer(new RenderRLSItemPainting());
         }
-    }
-
-    @Override
-    public void preInit() {
-        super.preInit();
-        RenderRegister renderRegister = new RenderRegister(modInfo);
-        renderRegister.registerRenderFactories();
-        registerRenderers();
     }
 }
