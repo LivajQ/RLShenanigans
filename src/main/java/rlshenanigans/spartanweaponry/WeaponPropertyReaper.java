@@ -4,6 +4,8 @@ import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponPropertyWithCallback;
 import com.oblivioussp.spartanweaponry.item.ItemSwordBase;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFleeSun;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlshenanigans.RLShenanigans;
 import rlshenanigans.entity.ai.*;
+import rlshenanigans.util.WeaponRegistry;
 
 import java.util.List;
 
@@ -66,12 +69,15 @@ public class WeaponPropertyReaper extends WeaponPropertyWithCallback {
         IAttributeInstance attr = victim.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE);
         if (attr == null) victim.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
         
-        summon.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue() * 0.4F);
-        summon.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() * 0.4F);
-        summon.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() * 0.4F);
+        summon.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ARMOR).getAttributeValue());
+        summon.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue() * 0.7F);
+        summon.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(victim.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() * 0.7F);
         summon.setHealth(summon.getMaxHealth());
-        summon.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.EMPTY);
+        Item mainWeapon = WeaponRegistry.chooseRandomWeapon();
+        summon.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, mainWeapon != null ? new ItemStack(mainWeapon) : ItemStack.EMPTY);
         summon.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY);
+        if (summon.getHeldItemMainhand() != ItemStack.EMPTY)
+            EnchantmentHelper.addRandomEnchantment(summon.world.rand, summon.getHeldItemMainhand(), (int)victim.getMaxHealth(), true);
         
         summon.getEntityData().setUniqueId("OwnerUUID", killer.getUniqueID());
         summon.getEntityData().setBoolean("MiscTamed", true);

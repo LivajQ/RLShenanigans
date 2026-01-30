@@ -15,7 +15,8 @@
 	"EntityMixin"
   ],
   "client": [
-    "GuiMainMenuMixin"
+    "GuiMainMenuMixin",
+	"RenderItemMixin"
   ],
   "injectors": {
     "maxShiftBy": 10

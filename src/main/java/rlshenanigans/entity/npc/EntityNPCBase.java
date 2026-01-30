@@ -144,28 +144,28 @@ public abstract class EntityNPCBase extends EntityCreature implements IEntityAdd
         List<WeaponRegistry> candidates;
         
         if (this.preferredWeapon != null) {
-            candidates = WeaponRegistry.WEAPONS.stream()
+            candidates = WeaponRegistry.WEAPONS.values().stream()
                     .filter(w -> w.type == this.preferredWeapon && w.quality == quality)
                     .collect(Collectors.toList());
             
             if (candidates.isEmpty() && quality == WeaponRegistry.WeaponQualities.SPECIAL) {
-                candidates = WeaponRegistry.WEAPONS.stream()
+                candidates = WeaponRegistry.WEAPONS.values().stream()
                         .filter(w -> w.quality == WeaponRegistry.WeaponQualities.SPECIAL)
                         .collect(Collectors.toList());
             }
             
             if (candidates.isEmpty()) {
-                candidates = WeaponRegistry.WEAPONS.stream()
+                candidates = WeaponRegistry.WEAPONS.values().stream()
                         .filter(w -> w.type == this.preferredWeapon)
                         .collect(Collectors.toList());
             }
         } else {
-            candidates = WeaponRegistry.WEAPONS.stream()
+            candidates = WeaponRegistry.WEAPONS.values().stream()
                     .filter(w -> w.quality == quality)
                     .collect(Collectors.toList());
         }
         
-        if (candidates.isEmpty()) candidates = new ArrayList<>(WeaponRegistry.WEAPONS);
+        if (candidates.isEmpty()) candidates = new ArrayList<>(WeaponRegistry.WEAPONS.values());
         
         if (!candidates.isEmpty()) {
             WeaponRegistry selected = candidates.get(rand.nextInt(candidates.size()));

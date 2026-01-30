@@ -1,25 +1,15 @@
 package rlshenanigans.handlers;
 
-import c4.champions.common.affix.AffixRegistry;
-import c4.champions.common.affix.IAffix;
-import c4.champions.common.capability.CapabilityChampionship;
-import c4.champions.common.capability.IChampionship;
-import c4.champions.common.rank.Rank;
-import c4.champions.common.rank.RankManager;
-import c4.champions.common.util.ChampionHelper;
-import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -27,7 +17,6 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -37,9 +26,6 @@ import rlshenanigans.entity.lycaniterideable.EntityWraith;
 import rlshenanigans.util.SplashTextEntries;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import static rlshenanigans.RLShenanigans.RLSRAND;
 
@@ -85,6 +71,26 @@ public class OtherHandler {
             event.setCanceled(true);
         }
     }
+    
+    /*
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void test(LivingDamageEvent event) {
+        if (event.getSource().getTrueSource() instanceof BaseCreatureEntity && event.getEntityLiving() instanceof EntityPlayer) {
+            BaseCreatureEntity creature = (BaseCreatureEntity) event.getSource().getTrueSource();
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+
+            String message = ("Mob: "
+                    + creature.getName()
+                    + " creatureStats damage: " + creature.creatureStats.getDamage()
+                    + " Attribute damage: " + (float)creature.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()
+                    + " getAttackDamage method damage (damageScale should be 1): " + creature.getAttackDamage(1)
+                    + " Out of desperation float damage cast to double: " + (double)creature.getAttackDamage(1)
+                    + " Is damage <= piercing?: " + ((double)creature.getAttackDamage(1) <= creature.creatureStats.getPierce())
+            );
+            player.sendMessage(new TextComponentString(message));
+        }
+    }
+     */
     
     /*    Goofy ahh 5 star infernal blighted parasite generator
     @SubscribeEvent(priority = EventPriority.HIGHEST)

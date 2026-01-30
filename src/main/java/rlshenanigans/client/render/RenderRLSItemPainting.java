@@ -21,6 +21,7 @@ public class RenderRLSItemPainting extends TileEntityItemStackRenderer {
     private static final ResourceLocation PAINTING_WOOD = new ResourceLocation("rlshenanigans", "textures/entity/item/painting_template_wood.png");
     private static final float SCALE_BASE = 0.0625F;
     private static long currentTick = 0;
+    
     @Override
     public void renderByItem(ItemStack stack) {
         if (!(stack.getItem() instanceof ItemPaintingSpawner)) return;

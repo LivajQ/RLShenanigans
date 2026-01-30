@@ -1,5 +1,6 @@
 package rlshenanigans.handlers;
 
+import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPInfected;
 import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityParasiteBase;
 
 import net.minecraft.entity.Entity;
@@ -24,7 +25,9 @@ import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -42,6 +45,7 @@ import rlshenanigans.util.TamedParasiteRegistry;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = RLShenanigans.MODID)
 public class TameParasiteHandler {
@@ -327,10 +331,30 @@ public class TameParasiteHandler {
             event.setCanceled(true);
         }
     }
-
+    
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onSleep(PlayerSleepInBedEvent event) {
+        EntityPlayer player = event.getEntityPlayer();
+        
+        List<EntityParasiteBase> tamedParasites = player.world.getEntitiesWithinAABB(EntityParasiteBase.class, player.getEntityBoundingBox().grow(8))
+                .stream()
+                .filter(mob -> mob.getEntityData().getBoolean("Tamed"))
+                .collect(Collectors.toList());
+        
+        boolean protectorsNearby = !tamedParasites.isEmpty();
+        
+        if (protectorsNearby) {
+            event.setResult(Event.Result.ALLOW);
+            
+            //List<EntityParasiteBase> ownedParasites = tamedParasites
+            //        .stream()
+            //        .filter(mob -> isSmallParasite)
+            //        .collect(Collectors.toList());
+        }
+    }
+    
     private static boolean hasLoyaltyTasks(EntityParasiteBase parasite) {
-        for (EntityAITasks.EntityAITaskEntry entry : parasite.targetTasks.taskEntries)
-        {
+        for (EntityAITasks.EntityAITaskEntry entry : parasite.targetTasks.taskEntries) {
             if (entry.action instanceof ParasiteEntityAIOwnerHurtTarget ||
                     entry.action instanceof ParasiteEntityAIOwnerHurtByTarget) return true;
         }
